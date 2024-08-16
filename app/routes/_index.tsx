@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 
+import Home from "~/pages/home/home";
 export const meta: MetaFunction = () => {
   return [
     { title: "Olga Lucía Cortes – Ideal para mujeres reales" },
@@ -9,8 +10,6 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Olga Lucía Cortes</h1>
-    </div>
+    <Home />
   );
 }
