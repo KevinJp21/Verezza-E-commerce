@@ -2,7 +2,7 @@
     width: 100%;
     height: fit-content;
     background-color: var(--olga-black-primary);
-    padding: 20px;
+    padding: 20px 10px;
     display: flex;
     flex-direction: column;
 }
@@ -29,7 +29,6 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    flex: 1;
     gap: 10px;
 }
 
@@ -45,9 +44,31 @@
  
  }
 
+ .hamburgerMenu{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+ }
+
+ .hamburgerMenu .bar {
+    width: 20px;
+    height: 2px;
+    margin: 3px 0;
+    background-color: var(--olga-white-primary);
+    transition: .4s;
+}
+
 
 
 @media screen and (min-width: 768px) {
+    .navbar{
+        padding: 20px 64px;
+    }
     .NavBar2{
         display: flex;
         justify-content: center;
@@ -62,7 +83,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 10px;
     }
 
     .NavbarListWrapper > li{

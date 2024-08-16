@@ -1,9 +1,25 @@
+import { useState } from 'react';
 import './NavBar.css'
+import './SideBar.css'
 import logoOlgaBlack from '~/assets/logos/Logo Olga black.webp'
 import logoOlgaWhite from '~/assets/logos/Logo Olga white.webp'
+import SideBar from '../sidebar/SideBar';
 
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 export default function NavBar() {
+
+    const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+
+    const toggleSideBar = () => {
+        setIsSideBarOpen(!isSideBarOpen);
+    }
+
+    const closeSidebar = () => {
+        setIsSideBarOpen(false);
+    }
+
+
+
     return (
         <header className='navbar'>
             <nav className='NavBarContainer'>
@@ -21,6 +37,11 @@ export default function NavBar() {
                         <a href="/" className="whishlistHeader">
                             {cartIcon()}
                         </a>
+                        <button className='hamburgerMenu' onClick={toggleSideBar}>
+                            <span className='bar bar1'></span>
+                            <span className='bar bar2'></span>
+                            <span className='bar bar3'></span>
+                        </button>
                     </div>
                 </div>
                 <div className='NavBar2'>
@@ -49,6 +70,10 @@ export default function NavBar() {
                     </ul>
                 </div>
             </nav>
+                    <div className={`overlay-sidebar ${isSideBarOpen ? 'open' : ''}`} onClick={closeSidebar}></div>
+                    <div className={`sidebar ${isSideBarOpen ? 'open' : ''}`}>
+
+                    </div>
         </header>
     );
 }
