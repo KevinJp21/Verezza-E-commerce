@@ -1,0 +1,90 @@
+.navbar{
+    width: 100%;
+    height: fit-content;
+    background-color: var(--olga-black-primary);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.NavBar1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+.NavBar1 img{
+    max-width: 290px;
+    width: 100%;
+    height: 20px;
+    object-fit: contain;
+    padding-inline: 20px;
+}
+
+.NavBar2{
+    display: none;
+}
+
+.NavBar1-1{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex: 1;
+    gap: 10px;
+}
+
+.NavBar1-1 .whishlistHeader, .NavBar1-1 .accoutHeader{
+   color: var(--olga-gray-100);
+
+
+
+}
+
+.NavBar1-1 .whishlistHeader:hover, .NavBar1-1 .accoutHeader:hover{
+    color: var(--olga-white-primary);
+ 
+ }
+
+
+
+@media screen and (min-width: 768px) {
+    .NavBar2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .NavbarListWrapper{
+        list-style: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .NavbarListWrapper > li{
+        padding-inline: 10px;
+    }
+
+    .NavbarListWrapper > li .strongLink{
+        color: var(--olga-yellow-primary);
+    }
+
+    .NavbarListWrapper > li .strongLink:hover{
+        color: var(--olga-yellow-primary);
+    }
+
+    .NavbarListWrapper > li a{
+        text-decoration: none;
+        font-size: 0.65rem;
+        color: var(--olga-gray-100);
+        font-weight: 900;
+    }
+
+    .NavbarListWrapper > li a:hover{
+        color: var(--olga-white-primary);
+    }
+}
