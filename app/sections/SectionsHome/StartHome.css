@@ -1,7 +1,8 @@
 .StartHomeContainer{
     background: black;
     width: 100%;
-    height: fit-content
+    height: fit-content;
+    position: relative;
 }
 
 .StartHomeImg{
@@ -27,11 +28,63 @@
     object-fit: contain;
 }
 
+.StartHomeWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+}
+
+.StartHomeWrapper > *{
+    padding: 5px 0;
+}
+
+.StartHomeWrapper h1{
+    color: var(--olga-white-primary);
+    text-align: center;
+    text-wrap: balance;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.StartHomeWrapper h2{
+    color: var(--olga-white-primary);
+    text-align: center;
+    text-wrap: balance;
+    font-size: 1.25rem;
+    font-weight: normal;
+}
+
+.StartHomeWrapper a{
+    color: var(--olga-white-primary);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.8;
+    text-underline-offset: 3px;
+}
+
+.StartHomeWrapper a:hover{
+    opacity: 1;
+}
+
 
 
 @media screen and (min-width: 768px) {
     .StartHomeContainer{
         height: fit-content
+    }
+
+    .StartHomeWrapper{
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     }
 
     .StartHomeImg .img1{
@@ -44,4 +97,7 @@
         grid-row: 1/2;
     }
 
+    .StartHomeImg .img4{
+        display: none;
+    }
 }
