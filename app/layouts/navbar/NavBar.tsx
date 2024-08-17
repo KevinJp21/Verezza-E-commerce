@@ -3,7 +3,9 @@ import './NavBar.css'
 import './SideBar.css'
 import logoOlgaBlack from '~/assets/logos/Logo Olga black.webp'
 import logoOlgaWhite from '~/assets/logos/Logo Olga white.webp'
-import SideBar from '../sidebar/SideBar';
+import { closeIcon } from '~/assets/icons/icons'
+
+
 
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 export default function NavBar() {
@@ -70,10 +72,65 @@ export default function NavBar() {
                     </ul>
                 </div>
             </nav>
-                    <div className={`overlay-sidebar ${isSideBarOpen ? 'open' : ''}`} onClick={closeSidebar}></div>
-                    <div className={`sidebar ${isSideBarOpen ? 'open' : ''}`}>
+            <div className={`overlay-sidebar ${isSideBarOpen ? 'open' : ''}`} onClick={closeSidebar}></div>
+            <div className={`sidebar ${isSideBarOpen ? 'open' : ''}`}>
+                <div className='sidebarWrapper'>
+                    <div className="sidebarHeader">
+                        <picture>
+                            <img src={logoOlgaBlack} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} decoding='async' loading='lazy' />
+                        </picture>
+                        <button className='closeSidebar' onClick={closeSidebar}>
+                            {closeIcon()}
+                        </button>
+                    </div>
+                    <div className="sidebarContent">
+                        <div className="sidebarBody">
+                            <span>TIENDA</span>
+                            <ul className='sidebarList'>
+                                <li>
+                                    <a href="">BLUSAS</a>
+                                </li>
+                                <li>
+                                    <a href="">PANTALONES</a>
+                                </li>
+                                <li>
+                                    <a href="">VESTIDOS</a>
+                                </li>
+                                <li>
+                                    <a href="">CONJUNTOS</a>
+                                </li>
+                                <li>
+                                    <a href="">COMPLEMENTOS</a>
+                                </li>
+                                <li>
+                                    <a href="">ATÉLIER</a>
+                                </li>
+                                <li>
+                                    <a href="" className='strongLink'>NUESTRA MARCA</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="sidebarBody">
+                            <span>USUARIO</span>
+                            <ul className='sidebarList sidebarListOthers'>
+                                <li>
+                                    <a href=""><strong>Inicia sesión</strong> o <strong>Crea una cuenta</strong></a>
+                                </li>
+                                <li>
+                                    <a href="">Bolsa de compras</a>
+                                </li>
+                                <li>
+                                    <a href="">Politica de privacidad</a>
+                                </li>
+                                <li>
+                                    <a href="">Devoluciones/reembolsos</a>
+                                </li>
+                            </ul>
+                        </div>
 
                     </div>
+                </div>
+            </div>
         </header>
     );
 }

@@ -16,7 +16,7 @@
 .NavBar1 img{
     max-width: 290px;
     width: 100%;
-    height: 20px;
+    height: fit-content;
     object-fit: contain;
     padding-inline: 20px;
 }
@@ -108,4 +108,6 @@
     .NavbarListWrapper > li a:hover{
         color: var(--olga-white-primary);
     }
+
+
 }
