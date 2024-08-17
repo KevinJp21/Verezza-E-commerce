@@ -30,19 +30,19 @@ export default function NavBar() {
                         <img src={logoOlgaWhite} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} decoding='async' loading='lazy' />
                     </a>
                     <div className='NavBar1-1'>
-                        <a href="" className="accoutHeader">
+                        <a href="" className="accoutHeader" aria-label="Usuario">
                             {userIcon()}
                         </a>
-                        <a href="/" className="whishlistHeader">
+                        <a href="/" className="whishlistHeader" aria-label="Lista de deseos">
                             {heartIcon()}
                         </a>
-                        <a href="/" className="whishlistHeader">
+                        <a href="/" className="whishlistHeader" aria-label="Bolsa de compras">
                             {cartIcon()}
                         </a>
-                        <button className='BTNSearch'>
+                        <button className='BTNSearch' aria-label="Buscar">
                             {searchIcon()}
                         </button>
-                        <button className='hamburgerMenu' onClick={toggleSideBar}>
+                        <button className='hamburgerMenu' onClick={toggleSideBar} aria-label="Menu">
                             <span className='bar bar1'></span>
                             <span className='bar bar2'></span>
                             <span className='bar bar3'></span>
@@ -82,7 +82,7 @@ export default function NavBar() {
                         <picture>
                             <img src={logoOlgaBlack} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} decoding='async' loading='lazy' />
                         </picture>
-                        <button className='closeSidebar' onClick={closeSidebar}>
+                        <button className='closeSidebar' onClick={closeSidebar} aria-label="Cerrar menu">
                             {closeIcon()}
                         </button>
                     </div>
