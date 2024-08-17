@@ -1,0 +1,88 @@
+.WearHomeContainer{
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+}
+
+.WearHomeWrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.WearHomeWrapper .img1{
+    grid-column: 1/3;
+    grid-row: 1/2;
+}
+
+.WearHomeWrapper .img2{
+    grid-column: 1/3;
+    grid-row: 2/3;
+}
+
+.WearHomeContainer .WearHomeWrapper .WearImg> img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.WearHomeContainer .WearHomeWrapper .WearImg{
+    position: relative;
+}
+
+.WearImg .WearImgText{
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    row-gap: 5px;
+}
+
+.WearImgText h3{
+    color: var(--olga-white-primary);
+    opacity: 0.8;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.WearImgText p{
+    color: var(--olga-white-primary);
+    opacity: 0.8;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.WearImgText a{
+    color: var(--olga-white-primary);
+    opacity: 0.8;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.WearImgText a:hover{
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .WearHomeWrapper{
+        gap: 20px;
+    }
+
+    .WearHomeWrapper .img1{
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .WearHomeWrapper .img2{
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+
+}
+

@@ -36,3 +36,6 @@ input,
 option {
     font-family: 'Lato';
 }
+a{
+    text-underline-offset: 3px;
+}
