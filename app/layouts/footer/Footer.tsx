@@ -1,9 +1,116 @@
+import { useState } from 'react';
 import './Footer.css'
 
 export default function Footer() {
+
+  const [isSelectCurrencyOpen, setIsSelectCurrencyOpen] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState('COP');
+  const [selectedCurrencySymbol, setSelectedCurrencySymbol] = useState('Pesos Colombianos');
+
+  const [isSelectLocationOpen, setIsSelectLocationOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState('Colombia');
+
+  const currentYear = new Date().getFullYear();
+
+  // Currency selector
+  const toggleSelectCurrency = () => {
+    setIsSelectCurrencyOpen(!isSelectCurrencyOpen);
+    setIsSelectLocationOpen(false);
+  }
+
+  const handleCurrencyClick = (currency: string, symbol: string) => {
+    setSelectedCurrency(currency);
+    setSelectedCurrencySymbol(symbol);
+    setIsSelectCurrencyOpen(false);
+  }
+
+  // Location selector
+
+  const toggleSelectLocation = () => {
+    setIsSelectLocationOpen(!isSelectLocationOpen);
+    setIsSelectCurrencyOpen(false);
+  }
+
+  const handleLocationClick = (location: string) => {
+    setSelectedLocation(location);
+    setIsSelectLocationOpen(false);
+  }
   return (
-    <div>
-      <h1>Footer</h1>
-    </div>
+    <footer className='Footer'>
+      <div className="FooterContainer">
+      <div className="FooterHeader">
+        <div className="footerSelectorWrapper">
+          <div className="FooterSelector CurrencySelector">
+            <h3>ELIGE TU DIVISA</h3>
+            <div className={`customSelect ${isSelectCurrencyOpen ? 'open' : ''}`}>
+              <div className="selectHeader" onClick={toggleSelectCurrency}>
+                <div className="currencyWrapper">
+                  <div className="currencyDetails">
+                    <span>{selectedCurrency || "Elige tu divisa"}</span>
+                    <span>{selectedCurrencySymbol || ""}</span>
+                  </div>
+                  <span className="arrow"></span>
+                </div>
+              </div>
+              <ul className="optionsList">
+                <li className="option" onClick={() => handleCurrencyClick('Pesos Colombianos', 'COP')}>
+                  <span>Pesos Colombianos</span>
+                  <span>COP</span>
+                </li>
+                <li className="option" onClick={() => handleCurrencyClick('Dólares', 'USD')}>
+                  <span>Dólares</span>
+                  <span>USD</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="FooterSelector LocationSelector">
+            <h3>ELIGE TU UBICACIÓN/REGION</h3>
+            <div className={`customSelect ${isSelectLocationOpen ? 'open' : ''}`}>
+              <div className="selectHeader" onClick={toggleSelectLocation}>
+                <div className="currencyWrapper">
+                  <div className="currencyDetails">
+                    <span>{selectedLocation || "Elige tu ubicación"}</span>
+                  </div>
+                  <span className="arrow"></span>
+                </div>
+              </div>
+              <ul className="optionsList">
+                <li className="option" onClick={() => handleLocationClick('Colombia')}>
+                  <span>Colombia</span>
+                </li>
+                <li className="option" onClick={() => handleLocationClick('Estados Unidos')}>
+                  <span>Estados Unidos</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="FooterInfoWrapper">
+          <h3>INFORMACIÓN</h3>
+          <ul className='FooterInfoList'>
+            <li className='FooterInfoItem'>
+              <a href=""><span>Atelier</span></a>
+            </li>
+            <li className='FooterInfoItem'>
+              <a href=""><span>Nuestra marca</span></a>
+            </li>
+            <li className='FooterInfoItem'>
+              <a href=""><span>Politica de privacidad</span></a>
+            </li>
+            <li className='FooterInfoItem'>
+              <a href=""><span>Devoluciones/reembolsos</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="FooterBottom">
+        <span>© {currentYear} Olga Lucía Cortés.</span>
+      </div>
+      </div>
+    </footer>
   );
 }
