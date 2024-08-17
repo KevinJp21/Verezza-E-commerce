@@ -32,12 +32,29 @@ export const cartIcon = () => {
 						5.61 14.2602 5.75V7H9.76023V5.75H9.75023ZM18.5002 18.01C18.5002 18.28 18.2802 18.51 18.0002 
 						18.51H6.00023C5.73023 18.51 5.50023 18.29 5.50023 18.01V9.01C5.50023 8.74 5.72023 8.51 6.00023 
 						8.51H8.25023V10.01H9.75023V8.51H14.2502V10.01H15.7502V8.51H18.0002C18.2702 8.51 18.5002 8.73 
-						18.5002 9.01V18.01Z" fill="var(--_g-icon-fill-color)"></path></svg>
+						18.5002 9.01V18.01Z" fill="currentColor"></path></svg>
     )
 }
 
 export const closeIcon = () => {
     return (
         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path fillRule="evenodd" clipRule="evenodd" d="M10.4951 11.5557L5.02539 17.0254L6.08605 18.086L11.5557 12.6164L17.0254 18.0861L18.086 17.0254L12.6164 11.5557L18.086 6.08605L17.0254 5.02539L11.5557 10.4951L6.08605 5.0254L5.02539 6.08606L10.4951 11.5557Z" fill="currentColor"></path></svg>
+    )
+}
+
+export const searchIcon = () => {
+    return (
+        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="none" xmlns="http://www.w3.org/2000/svg">
+            <g clipPath="url(#clip0_15_152)">
+                <rect width="24" height="24" fill="none" />
+                <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" strokeLinejoin="round" />
+                <path d="M19.6464 20.3536C19.8417 20.5488 20.1583 20.5488 20.3536 20.3536C20.5488 20.1583 20.5488 19.8417 20.3536 19.6464L19.6464 20.3536ZM20.3536 19.6464L15.3536 14.6464L14.6464 15.3536L19.6464 20.3536L20.3536 19.6464Z" fill="currentColor" />
+            </g>
+            <defs>
+                <clipPath id="clip0_15_152">
+                    <rect width="24" height="24" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
     )
 }

@@ -1,28 +1,31 @@
 .navbar{
     width: 100%;
+    max-height: 120px;
     height: fit-content;
     background-color: var(--olga-black-primary);
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
 }
-
+.NavBarContainer{
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
 .NavBar1{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: fit-content;
 }
+
 .NavBar1 img{
+    min-width: 170px;
     max-width: 290px;
     width: 100%;
     height: fit-content;
     object-fit: contain;
-    padding-inline: 20px;
-}
-
-.NavBar2{
-    display: none;
+    padding-right: 10px;
 }
 
 .NavBar1-1{
@@ -30,19 +33,34 @@
     justify-content: end;
     align-items: center;
     gap: 10px;
+    max-width: 143px;
+    width: 100%;
 }
 
-.NavBar1-1 .whishlistHeader, .NavBar1-1 .accoutHeader{
+.NavBar1-1 .whishlistHeader svg, .NavBar1-1 .accoutHeader svg, .NavBar1-1 .BTNSearch svg{
+    max-width: 22px;
+    width: 100%;
+    height: fit-content;
+    min-width: 10px;
+}
+
+.NavBar1-1 .whishlistHeader, .NavBar1-1 .accoutHeader, .NavBar1-1 .BTNSearch{
    color: var(--olga-gray-100);
-
-
-
+   display: flex;
+  
 }
 
-.NavBar1-1 .whishlistHeader:hover, .NavBar1-1 .accoutHeader:hover{
+.NavBar1-1 .whishlistHeader:hover, .NavBar1-1 .accoutHeader:hover, .NavBar1-1 .BTNSearch:hover{
     color: var(--olga-white-primary);
- 
  }
+
+
+ .NavBar1-1 .BTNSearch{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 
  .hamburgerMenu{
     border: none;
@@ -56,7 +74,8 @@
  }
 
  .hamburgerMenu .bar {
-    width: 20px;
+    max-width: 20px;
+    width: 100%;
     height: 2px;
     margin: 3px 0;
     background-color: var(--olga-white-primary);
@@ -64,6 +83,9 @@
 }
 
 
+.NavBar2{
+    display: none;
+}
 
 @media screen and (min-width: 768px) {
     .navbar{
@@ -74,6 +96,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
+        height: 40px;
 
     }
 
