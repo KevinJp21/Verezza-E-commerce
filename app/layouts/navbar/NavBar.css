@@ -141,3 +141,26 @@
 
 
 }
+
+@media screen and (max-width: 300px) {
+
+    .NavBar1{
+        
+    }
+
+    .NavBar1-1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--olga-black-primary);
+      padding: 10px;
+      z-index: -1;
+    }
+  
+    .NavBar1 img {
+      max-width: 140px;
+
+    }
+  }
+  
