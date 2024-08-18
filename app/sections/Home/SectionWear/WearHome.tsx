@@ -10,6 +10,7 @@ import imgWearComplements4 from '~/assets/images/SectionWear/cinturonBeauty2.web
 export default function WearHome(){
     return(
         <section className='WearHomeContainer'>
+            <h2>Complementa tu look</h2>
             <div className='WearHomeWrapper'>
                 <div className='WearImg img1'>
                     <img className='img1-1' src={imgWearComplements} alt="Imagen complementos olga lucia cortes" loading="eager" width={780} height={1200} />

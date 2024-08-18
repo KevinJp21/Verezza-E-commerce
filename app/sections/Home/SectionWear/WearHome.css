@@ -1,7 +1,15 @@
 .WearHomeContainer{
-    padding: 20px;
+    padding: 16px;
     width: 100%;
     height: fit-content;
+}
+
+.WearHomeContainer h2{
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--olga-black-primary);
+    text-align: center;
+    padding: 16px;
 }
 
 .WearHomeWrapper{
@@ -104,10 +112,6 @@
 }
 
 @media (min-width: 768px) {
-    .WearHomeWrapper{
-        gap: 20px;
-    }
-
     .WearHomeWrapper .img1{
         grid-column: 1/2;
         grid-row: 1/2;
