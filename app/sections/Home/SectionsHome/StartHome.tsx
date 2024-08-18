@@ -22,9 +22,9 @@ export default function StartHome() {
   <section className="StartHomeContainer">
     <div className="StartHomeImg">
         <img className='img1' src={imgStartHome1} alt="Olga Lucía Cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'}/>
-        <img className='img2' src={imgStartHome2} alt="Olga Lucía Cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'}/>
-        <img className='img3' src={imgStartHome3} alt="Olga Lucía Cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'}/>
-        <img className='img4' src={imgStartHome4} alt="Olga Lucía Cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'}/>
+        <img className='img2' src={imgStartHome2} alt="Olga Lucía Cortes" loading="lazy" decoding="async"/>
+        <img className='img3' src={imgStartHome3} alt="Olga Lucía Cortes" loading="lazy" decoding="async"/>
+        <img className='img4' src={imgStartHome4} alt="Olga Lucía Cortes" loading="lazy" decoding="async"/>
     </div>
     <div className="StartHomeWrapper">
       <h1>Descubre la moda que te hará sentir única</h1>
