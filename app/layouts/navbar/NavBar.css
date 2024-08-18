@@ -37,8 +37,7 @@
     justify-content: end;
     align-items: center;
     gap: 10px;
-    width: 100%;
-    flex: 1;
+    width: fit-content
 }
 
 .NavBar1-1 a, .NavBar1-1 button{

@@ -21,10 +21,10 @@ export default function StartHome() {
   return( 
   <section className="StartHomeContainer">
     <div className="StartHomeImg">
-        <img className='img1' src={imgStartHome1} alt="Olga Lucía Cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'}/>
-        <img className='img2' src={imgStartHome2} alt="Olga Lucía Cortes" loading="lazy" decoding="async"/>
-        <img className='img3' src={imgStartHome3} alt="Olga Lucía Cortes" loading="lazy" decoding="async"/>
-        <img className='img4' src={imgStartHome4} alt="Olga Lucía Cortes" loading="lazy" decoding="async"/>
+        <img className='img1' src={imgStartHome1} alt="Olga Lucía Cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'} width={138} height={75}/>
+        <img className='img2' src={imgStartHome2} alt="Olga Lucía Cortes" loading="lazy" decoding="async" width={138} height={75}/>
+        <img className='img3' src={imgStartHome3} alt="Olga Lucía Cortes" loading="lazy" decoding="async" width={138} height={75}/>
+        <img className='img4' src={imgStartHome4} alt="Olga Lucía Cortes" loading="lazy" decoding="async" width={138} height={75}/>
     </div>
     <div className="StartHomeWrapper">
       <h1>Descubre la moda que te hará sentir única</h1>

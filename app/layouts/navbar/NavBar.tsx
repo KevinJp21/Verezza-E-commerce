@@ -27,7 +27,7 @@ export default function NavBar() {
             <nav className='NavBarContainer'>
                 <div className='NavBar1'>
                     <a href="/">
-                        <img src={logoOlgaWhite} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} decoding='async' loading='lazy' />
+                        <img src={logoOlgaWhite} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20}/>
                     </a>
                     <div className='NavBar1-1'>
                         <a href="" className="accoutHeader" aria-label="Usuario">
