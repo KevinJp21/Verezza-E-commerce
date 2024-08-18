@@ -23,7 +23,7 @@
 }
 
 .NavBar1 img{
-    min-width: 170px;
+    min-width: 140px;
     max-width: 290px;
     width: 100%;
     height: fit-content;
@@ -36,16 +36,18 @@
     justify-content: end;
     align-items: center;
     gap: 10px;
-    max-width: 143px;
     width: 100%;
+    flex: 1;
 }
 
-.NavBar1-1 .whishlistHeader svg, .NavBar1-1 .accoutHeader svg, .NavBar1-1 .BTNSearch svg{
-    max-width: 22px;
-    width: 100%;
-    height: fit-content;
-    min-width: 10px;
+.NavBar1-1 a, .NavBar1-1 button{
+    height: 30px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .NavBar1-1 .whishlistHeader, .NavBar1-1 .accoutHeader, .NavBar1-1 .BTNSearch{
    color: var(--olga-gray-100);
@@ -62,6 +64,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    
 }
 
 
@@ -79,7 +82,7 @@
  .hamburgerMenu .bar {
     max-width: 20px;
     width: 100%;
-    height: 2px;
+    height: 1px;
     margin: 3px 0;
     background-color: var(--olga-white-primary);
     transition: .4s;
