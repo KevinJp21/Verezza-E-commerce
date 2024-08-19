@@ -1,0 +1,50 @@
+.carrusel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carrusel-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carrusel-productos {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.producto-item {
+  flex: 0 0 20%;
+  min-width: 20%;
+  text-align: center;
+  padding: 10px;
+  user-select: none;
+}
+
+.producto-item img {
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.carrusel-boton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px;
+}
+
+.carrusel-boton.izquierda {
+  left: 10px;
+}
+
+.carrusel-boton.derecha {
+  right: 10px;
+}
