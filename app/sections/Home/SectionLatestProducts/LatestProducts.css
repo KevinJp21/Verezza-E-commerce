@@ -3,6 +3,7 @@
   width: 100%;
   overflow: hidden;
   margin-top: 84px;
+  padding-bottom: 46px ;
 }
 
 .carrusel-viewport {
@@ -17,6 +18,7 @@
 
 .CarrouselProducts {
   display: flex;
+  width: fit-content;
   transition: transform 0.3s ease;
 }
 
