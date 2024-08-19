@@ -6,7 +6,7 @@ import p3 from '~/assets/images/StartSectionHome/banner03.webp'
 import p4 from '~/assets/images/StartSectionHome/banner04.webp'
 import p5 from '~/assets/images/StartSectionHome/tendencias.webp'
 import p6 from '~/assets/images/StartSectionHome/banner01.webp'
-const productos = [
+const products = [
   { id: 1, nombre: 'Blazer', imagen: p1 },
   { id: 2, nombre: 'Vomero', imagen: p2 },
   { id: 3, nombre: 'Air Max', imagen: p3 },
@@ -21,51 +21,110 @@ const productos = [
 ];
 
 export default function LatestProducts() {
-  const [indiceInicial, setIndiceInicial] = useState(0);
-  const carruselRef = useRef<HTMLDivElement>(null);
+  const [InitialIndex, setInitialIndex] = useState(0);
+  const carrouselRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [startScrollLeft, setStartScrollLeft] = useState(0);
 
-  const productosVisibles = productos.slice(indiceInicial, indiceInicial + 5);
+  const ExtendedProducts = [...products.slice(-5), ...products, ...products.slice(0, 5)];
 
-  const avanzar = () => {
-    setIndiceInicial((prevIndice) => 
-      (prevIndice + 1) % (productos.length - 4)
-    );
+  const next = () => {
+    setInitialIndex((prevIndice) => {
+      const nextIndex = prevIndice + 1;
+      if (nextIndex >= products.length) {
+        setTimeout(() => setInitialIndex(0), 300);
+        return products.length;
+      }
+      return nextIndex;
+    });
   };
 
-  const retroceder = () => {
-    setIndiceInicial((prevIndice) => 
-      prevIndice === 0 ? productos.length - 5 : prevIndice - 1
-    );
+  const prev = () => {
+    setInitialIndex((prevIndice) => {
+      const nextIndex = prevIndice - 1;
+      if (nextIndex < 0) {
+        setTimeout(() => setInitialIndex(products.length - 1), 300);
+        return -1;
+      }
+      return nextIndex;
+    });
   };
 
-  useEffect(() => {
-    if (carruselRef.current) {
-      carruselRef.current.style.transform = `translateX(-${indiceInicial * 20}%)`;
+  const startDragging = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setStartX(e.pageX - carrouselRef.current!.offsetLeft);
+    setStartScrollLeft(InitialIndex);
+  };
+
+  const stopDragging = () => {
+    setIsDragging(false);
+  };
+
+  const onDrag = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carrouselRef.current!.offsetLeft;
+    const walk = (x - startX) / carrouselRef.current!.offsetWidth;
+    let newIndex = Math.round(startScrollLeft - walk * 5);
+    
+    if (newIndex < 0) {
+      newIndex = products.length - 1;
+    } else if (newIndex >= products.length) {
+      newIndex = 0;
     }
-  }, [indiceInicial]);
+    
+    setInitialIndex(newIndex);
+  };
 
   useEffect(() => {
-    const intervalo = setInterval(avanzar, 5000); // Avanza cada 5 segundos
+    if (carrouselRef.current) {
+      carrouselRef.current.style.transition = 'transform 0.3s ease';
+      carrouselRef.current.style.transform = `translateX(-${(InitialIndex + 5) * 20}%)`;
+    }
+  }, [InitialIndex]);
+
+  useEffect(() => {
+    if (carrouselRef.current) {
+      if (InitialIndex === products.length || InitialIndex === -1) {
+        setTimeout(() => {
+          if (carrouselRef.current) {
+            carrouselRef.current.style.transition = 'none';
+            carrouselRef.current.style.transform = `translateX(-${(InitialIndex === -1 ? products.length - 1 : 0) * 20}%)`;
+          }
+        }, 300);
+      }
+    }
+  }, [InitialIndex, products.length]);
+
+  useEffect(() => {
+    const intervalo = setInterval(next, 5000);
     return () => clearInterval(intervalo);
   }, []);
 
   return (
-    <div className="carrusel-container">
-      <button onClick={retroceder} className="carrusel-boton izquierda">{'<'}</button>
-      <div className="carrusel-viewport">
+    <section className="CarrouselContainer">
+      <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{'<'}</button>
+      <div 
+        className="carrusel-viewport"
+        onMouseDown={startDragging}
+        onMouseUp={stopDragging}
+        onMouseLeave={stopDragging}
+        onMouseMove={onDrag}
+      >
         <div 
-          className="carrusel-productos"
-          ref={carruselRef}
+          className="CarrouselProducts"
+          ref={carrouselRef}
         >
-          {productos.map((producto) => (
-            <div key={producto.id} className="producto-item">
+          {ExtendedProducts.map((producto, index) => (
+            <div key={`${producto.id}-${index}`} className="ProductItem">
               <img src={producto.imagen} alt={producto.nombre} draggable="false" />
               <p>{producto.nombre}</p>
             </div>
           ))}
         </div>
       </div>
-      <button onClick={avanzar} className="carrusel-boton derecha">{'>'}</button>
-    </div>
+      <button onClick={next} className="carrouselButton CarrouselButtonRight">{'>'}</button>
+    </section>
   );
 }

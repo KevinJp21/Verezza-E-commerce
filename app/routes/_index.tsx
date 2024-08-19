@@ -3,7 +3,7 @@ import type { MetaFunction } from "@remix-run/node";
 import Home from "~/pages/home/home";
 
 export const meta: MetaFunction = () => {
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date().toISOString().split('.')[0] + "Z";
  
   return [
     { title: "Olga Lucía Cortes – Moda exclusiva para mujeres reales" },

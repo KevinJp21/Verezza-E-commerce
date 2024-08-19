@@ -1,4 +1,4 @@
-.carrusel-container {
+.CarrouselContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -7,14 +7,19 @@
 .carrusel-viewport {
   width: 100%;
   overflow: hidden;
+  cursor: grab;
 }
 
-.carrusel-productos {
+.carrusel-viewport:active {
+  cursor: grabbing;
+}
+
+.CarrouselProducts {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
-.producto-item {
+.ProductItem {
   flex: 0 0 20%;
   min-width: 20%;
   text-align: center;
@@ -22,13 +27,13 @@
   user-select: none;
 }
 
-.producto-item img {
+.ProductItem img {
   max-width: 100%;
   height: auto;
   pointer-events: none;
 }
 
-.carrusel-boton {
+.carrouselButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -41,10 +46,10 @@
   padding: 10px;
 }
 
-.carrusel-boton.izquierda {
+.CarrouselButtonLeft {
   left: 10px;
 }
 
-.carrusel-boton.derecha {
+.CarrouselButtonRight {
   right: 10px;
 }
