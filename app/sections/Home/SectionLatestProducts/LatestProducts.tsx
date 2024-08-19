@@ -10,6 +10,8 @@ export default function LatestProducts() {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [startScrollLeft, setStartScrollLeft] = useState(0);
+    const [itemsPerView, setItemsPerView] = useState(5);
+    const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
 
     // Obtener los productos
     useEffect(() => {
@@ -33,35 +35,56 @@ export default function LatestProducts() {
     const startDragging = (e: React.MouseEvent<HTMLDivElement>) => {
         setIsDragging(true);
         setStartX(e.pageX - carrouselRef.current!.offsetLeft);
-        setStartScrollLeft(InitialIndex);
+        setStartScrollLeft(carrouselRef.current!.scrollLeft);
+        setAutoScrollEnabled(false);
     };
 
     const stopDragging = () => {
         setIsDragging(false);
+        setTimeout(() => setAutoScrollEnabled(true), 5000);
     };
 
     const onDrag = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!isDragging) return;
         e.preventDefault();
         const x = e.pageX - carrouselRef.current!.offsetLeft;
-        const walk = (x - startX) / carrouselRef.current!.offsetWidth;
-        let newIndex = Math.round(startScrollLeft - walk * 5);
-
-        newIndex = Math.max(0, Math.min(newIndex, products.length - 1));
-
-        setInitialIndex(newIndex);
+        const walk = (x - startX) * 2;
+        carrouselRef.current!.scrollLeft = startScrollLeft - walk;
     };
 
     useEffect(() => {
         if (carrouselRef.current) {
             carrouselRef.current.style.transition = 'transform 0.3s ease';
-            carrouselRef.current.style.transform = `translateX(-${(InitialIndex % products.length) * (100 / products.length)}%)`;
+            carrouselRef.current.style.transform = `translateX(-${(InitialIndex % products.length) * (100 / itemsPerView)}%)`;
         }
-    }, [InitialIndex, products.length]);
+    }, [InitialIndex, products.length, itemsPerView]);
 
     useEffect(() => {
-        const intervalo = setInterval(next, 8000);
+        let intervalo: NodeJS.Timeout;
+        if (autoScrollEnabled) {
+            intervalo = setInterval(next, 8000);
+        }
         return () => clearInterval(intervalo);
+    }, [autoScrollEnabled]);
+
+    useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth < 600) {
+                setItemsPerView(1);
+            } else if (window.innerWidth < 900) {
+                setItemsPerView(2);
+            } else if (window.innerWidth < 1200) {
+                setItemsPerView(3);
+            } else if (window.innerWidth < 1500) {
+                setItemsPerView(4);
+            } else {
+                setItemsPerView(5);
+            }
+        }
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return (
@@ -76,7 +99,7 @@ export default function LatestProducts() {
             >
                 <div className="CarrouselProducts" ref={carrouselRef}>
                     {[...products, ...products, ...products].map((product, index) => (
-                        <div key={`${product.id}-${index}`} className="ProductItem">
+                        <div key={`${product.id}-${index}`} className="ProductItem" style={{flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%`}}>
                             <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={451} />
                             <div className="ProductDetails">
                                 <p>{product.title}</p>
