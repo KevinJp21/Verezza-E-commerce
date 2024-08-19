@@ -3,7 +3,6 @@ import type { MetaFunction } from "@remix-run/node";
 import Home from "~/pages/home/home";
 
 export const meta: MetaFunction = () => {
-  const currentDate = new Date().toISOString().split('.')[0] + "Z";
  
   return [
     { title: "Olga Lucía Cortes – Moda exclusiva para mujeres reales" },
@@ -21,7 +20,6 @@ export const meta: MetaFunction = () => {
     { name: "twitter:title", content: "Olga Lucía Cortes – Moda exclusiva para mujeres reales" },
     { name: "twitter:description", content: "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas." },
     { name: "twitter:image", content: `https://olga-lucia-cortes.vercel.app/seo/HomeScreen.webp` },
-    { name: "og:updated_time", content: currentDate },
   ];
 };
 

@@ -1,5 +1,3 @@
-// utils/shopify.ts
-
 const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as string;
 const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
 
@@ -20,13 +18,14 @@ export async function fetchShopify(query: string, variables = {}) {
   return json.data;
 }
 
-export async function getProducts() {
+export async function getLatestProducts() {
     const query = `
-      query getLastestProducts {
+    query getLastProducts {
   products(first: 10, sortKey: CREATED_AT, reverse: true) {
     edges {
       node {
         id
+        title
         description
         createdAt
         priceRange {

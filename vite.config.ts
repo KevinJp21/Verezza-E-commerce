@@ -11,7 +11,9 @@ export default defineConfig({
         v3_throwAbortReason: true,
       },
     }),
-  
     tsconfigPaths(),
   ],
+  define: {
+    'process.env': process.env
+  }
 });
