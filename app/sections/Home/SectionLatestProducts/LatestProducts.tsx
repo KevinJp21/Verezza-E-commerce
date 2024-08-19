@@ -74,14 +74,14 @@ export default function LatestProducts() {
                 onMouseLeave={stopDragging}
                 onMouseMove={onDrag}
             >
-                <div
-                    className="CarrouselProducts"
-                    ref={carrouselRef}
-                >
+                <div className="CarrouselProducts" ref={carrouselRef}>
                     {[...products, ...products, ...products].map((product, index) => (
                         <div key={`${product.id}-${index}`} className="ProductItem">
-                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" />
-                            <p>{product.title}</p>
+                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={451} />
+                            <div className="ProductDetails">
+                                <p>{product.title}</p>
+                                <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
