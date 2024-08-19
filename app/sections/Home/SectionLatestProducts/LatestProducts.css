@@ -6,6 +6,15 @@
   padding-bottom: 46px ;
 }
 
+.CarrouselContainer h2{
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--olga-black-primary);
+    text-align: start;
+    text-transform: uppercase;
+    padding: 16px;
+}
+
 .carrusel-viewport {
   width: 100%;
   overflow: hidden;

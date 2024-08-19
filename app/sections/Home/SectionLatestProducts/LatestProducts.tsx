@@ -99,6 +99,7 @@ export default function LatestProducts() {
 
     return (
         <section className="CarrouselContainer">
+            <h2>RECIENTES</h2>
             <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{'<'}</button>
             <div
                 className="carrusel-viewport"
