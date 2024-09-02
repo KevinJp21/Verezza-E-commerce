@@ -19,7 +19,7 @@ export async function fetchShopify(query: string, variables = {}) {
 }
 
 export async function getLatestProducts() {
-    const query = `
+  const query = `
     query getLastProducts {
   products(first: 10, sortKey: CREATED_AT, reverse: true) {
     edges {
@@ -42,13 +42,23 @@ export async function getLatestProducts() {
             }
           }
         }
-          
+        collections(first: 1) {
+          nodes {
+            title
+          }
+        } 
+        variants(first: 10){
+          nodes{
+            id
+            title
+          }
+        }
       }
     }
   }
 }
     `;
-  
-    const data = await fetchShopify(query);
-    return data.products.edges.map(({ node }: any) => node);
-  }
+
+  const data = await fetchShopify(query);
+  return data.products.edges.map(({ node }: any) => node);
+}
