@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { getLatestProducts } from '~/utils/GetLatestProucts';
 import './LatestProducts.css';
+import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 
 export default function LatestProducts() {
     const [products, setProducts] = useState<any[]>([]);
@@ -16,10 +17,10 @@ export default function LatestProducts() {
     useEffect(() => {
         async function fetchProducts() {
             const fetchedProducts = await getLatestProducts();
-            setProducts([...fetchedProducts, ...fetchedProducts]);
+            setProducts([...fetchedProducts, ...fetchedProducts.slice(0, itemsPerView)]);
         }
         fetchProducts();
-    }, []);
+    }, [itemsPerView]);
 
     const next = () => {
         setCurrentIndex((prevIndex) => {
@@ -43,9 +44,9 @@ export default function LatestProducts() {
             } else {
                 setTimeout(() => {
                     setTransitionEnabled(false);
-                    setCurrentIndex(products.length / 2 - itemsPerView);
+                    setCurrentIndex(products.length - itemsPerView - 1);
                     setTimeout(() => setTransitionEnabled(true), 0);
-                }, 300); 
+                }, 300);
                 return prevIndex;
             }
         });
@@ -106,10 +107,8 @@ export default function LatestProducts() {
                 setItemsPerView(2);
             } else if (window.innerWidth < 1200) {
                 setItemsPerView(3);
-            } else if (window.innerWidth < 1500) {
-                setItemsPerView(4);
             } else {
-                setItemsPerView(5);
+                setItemsPerView(4);
             }
             setCurrentIndex(0);
             setTimeout(() => setAutoScrollEnabled(true), 1000);
@@ -122,8 +121,13 @@ export default function LatestProducts() {
 
     return (
         <section className="CarrouselContainer">
-            <h2>RECIENTES</h2>
-            <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{'<'}</button>
+            <div className="CarrouselHeader">
+                <h2>RECIENTES</h2>
+                <div className="CarrouselButtons">
+                    <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
+                    <button onClick={next} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
+                </div>
+            </div>
             <div
                 className="carrusel-viewport"
                 onMouseDown={startDragging}
@@ -146,7 +150,7 @@ export default function LatestProducts() {
                     ))}
                 </div>
             </div>
-            <button onClick={next} className="carrouselButton CarrouselButtonRight">{'>'}</button>
+          
         </section>
     );
 }
