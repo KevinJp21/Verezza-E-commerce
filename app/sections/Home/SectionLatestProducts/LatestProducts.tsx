@@ -11,21 +11,44 @@ export default function LatestProducts() {
     const [dragPosition, setDragPosition] = useState(0);
     const [itemsPerView, setItemsPerView] = useState(5);
     const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+    const [transitionEnabled, setTransitionEnabled] = useState(true);
 
     useEffect(() => {
         async function fetchProducts() {
             const fetchedProducts = await getLatestProducts();
-            setProducts(fetchedProducts);
+            setProducts([...fetchedProducts, ...fetchedProducts]);
         }
         fetchProducts();
     }, []);
 
     const next = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
+        setCurrentIndex((prevIndex) => {
+            if (prevIndex < products.length - itemsPerView) {
+                return prevIndex + 1;
+            } else {
+                setTimeout(() => {
+                    setTransitionEnabled(false);
+                    setCurrentIndex(0);
+                    setTimeout(() => setTransitionEnabled(true), 0);
+                }, 300);
+                return prevIndex;
+            }
+        });
     };
 
     const prev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length);
+        setCurrentIndex((prevIndex) => {
+            if (prevIndex > 0) {
+                return prevIndex - 1;
+            } else {
+                setTimeout(() => {
+                    setTransitionEnabled(false);
+                    setCurrentIndex(products.length / 2 - itemsPerView);
+                    setTimeout(() => setTransitionEnabled(true), 0);
+                }, 300); 
+                return prevIndex;
+            }
+        });
     };
 
     const startDragging = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -61,17 +84,17 @@ export default function LatestProducts() {
         if (carrouselRef.current) {
             const itemWidth = carrouselRef.current.offsetWidth / itemsPerView;
             const translateX = -(currentIndex * itemWidth) + dragPosition;
-            carrouselRef.current.style.transition = isDragging ? 'none' : 'transform 0.3s ease';
+            carrouselRef.current.style.transition = transitionEnabled ? 'transform 0.3s ease' : 'none';
             carrouselRef.current.style.transform = `translateX(${translateX}px)`;
         }
-    }, [currentIndex, itemsPerView, dragPosition, isDragging]);
+    }, [currentIndex, itemsPerView, dragPosition, transitionEnabled]);
 
     useEffect(() => {
-        let intervalo: NodeJS.Timeout;
+        let interval: NodeJS.Timeout;
         if (autoScrollEnabled) {
-            intervalo = setInterval(next, 8000);
+            interval = setInterval(next, 8000);
         }
-        return () => clearInterval(intervalo);
+        return () => clearInterval(interval);
     }, [autoScrollEnabled]);
 
     useEffect(() => {
@@ -88,8 +111,8 @@ export default function LatestProducts() {
             } else {
                 setItemsPerView(5);
             }
-            setCurrentIndex(0);  // Reinicia el índice para evitar errores de posición
-            setTimeout(() => setAutoScrollEnabled(true), 1000); // Reanuda el auto-scroll después de un breve tiempo
+            setCurrentIndex(0);
+            setTimeout(() => setAutoScrollEnabled(true), 1000);
         }
 
         handleResize();
@@ -112,9 +135,9 @@ export default function LatestProducts() {
                     className="CarrouselProducts" 
                     ref={carrouselRef}
                 >
-                    {[...products, ...products, ...products].map((product, index) => (
+                    {products.map((product, index) => (
                         <div key={`${product.id}-${index}`} className="ProductItem" style={{flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%`}}>
-                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={451} />
+                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={600} />
                             <div className="ProductDetails">
                                 <p>{product.title}</p>
                                 <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
