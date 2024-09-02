@@ -44,7 +44,6 @@
 .ProductItem {
   flex: 0 0 20%;
   min-width: 20%;
-
   text-align: center;
   user-select: none;
   position: relative;
@@ -66,23 +65,5 @@
     background: rgba(0, 0, 0, 0.5);
     color: var(--olga-white-primary);
     padding: 10px;
-}
-
-.carrouselButton {
-  all: unset;
-  background-color: var(--olga-white-primary);
-  color: var(--olga-black-primary);
-  height: 30px;
-  width: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.carrouselButton svg{
-  width: 10px;
-  height: 10px;
 }
 

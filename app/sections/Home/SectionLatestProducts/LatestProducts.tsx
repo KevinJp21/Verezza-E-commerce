@@ -140,13 +140,19 @@ export default function LatestProducts() {
                     ref={carrouselRef}
                 >
                     {products.map((product, index) => (
-                        <div key={`${product.id}-${index}`} className="ProductItem" style={{flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%`}}>
+                        <a
+                            href='#'
+                            key={`${product.id}-${index}`}
+                            className="ProductItem"
+                            style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
+                            onMouseDown={(e) => e.preventDefault()} // Prevenir comportamiento predeterminado
+                        >
                             <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={600} />
                             <div className="ProductDetails">
                                 <p>{product.title}</p>
                                 <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>

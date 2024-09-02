@@ -65,3 +65,19 @@ a{
 .link_btn:hover{
     opacity: 0.8;
 }
+
+
+.CarrouselButtonLeft, .CarrouselButtonRight {
+    all: unset;
+    background-color: var(--olga-white-primary);
+    color: var(--olga-black-primary);
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  
