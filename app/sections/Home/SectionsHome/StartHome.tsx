@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { MetaFunction } from '@remix-run/node'
 import './StartHome.css'
 import imgStartHome1 from '~/assets/images/StartSectionHome/banner01.webp'
 import imgStartHome2 from '~/assets/images/StartSectionHome/banner04.webp'
@@ -31,7 +30,7 @@ export default function StartHome() {
     <div className="StartHomeWrapper">
       <h1>Descubre la moda que te hará sentir única</h1>
       <h2>¡Bienvenida a Olga Lucía Cortés!</h2>
-      <a href='#'><span>Explora ahora</span></a>
+      <a className='link_btn' href='#'>Explora ahora</a>
     </div>
   </section>
   )

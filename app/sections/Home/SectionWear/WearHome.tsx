@@ -31,8 +31,7 @@ export default function WearHome(){
                     <img className='img1-2' src={imgWearComplements2} alt="Imagen complementos olga lucia cortes" loading="lazy" decoding='async' width={780} height={1200} />
                     <div className='WearImgText'>
                         <h3>Hebilla Anfar</h3>
-                        <p>El toque final perfecto: un accesorio que transforma cualquier look en una declaración audaz.</p>
-                        <a href="#">Ver más</a>
+                        <a className="link_btn" href="#">Ver más</a>
                     </div>
                 </div>
 
@@ -41,8 +40,7 @@ export default function WearHome(){
                     <img className='img1-2' src={imgWearComplements4} alt="Cinturon beauty Olga Lucia Cortes" loading='lazy' decoding='async' width={780} height={1200} />
                     <div className='WearImgText'>
                         <h3>Cinturón Beauty</h3>
-                        <p>El cinturón Beauty es la esencia de la sofisticación. Define tu estilo con su elegancia atemporal y realza cualquier atuendo con un toque de distinción.</p>
-                        <a href="#">Ver más</a>
+                        <a className="link_btn" href="#">Ver más</a>
                     </div>
                 </div>
             </div>

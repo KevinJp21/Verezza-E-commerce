@@ -39,3 +39,25 @@ option {
 a{
     text-underline-offset: 3px;
 }
+
+.link_btn{
+    background-color: var(--olga-white-primary);
+    width: fit-content;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 20px;
+    color: var(--olga-black-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 10px 32px;
+    margin-top: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.link_btn:hover{
+    opacity: 0.8;
+}

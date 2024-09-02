@@ -76,7 +76,7 @@ export default function LatestProducts() {
         }
         return () => clearInterval(intervalo);
     }, [autoScrollEnabled]);
-
+//Se bloquea el carrousel a cambiar el tamaño de la pantalla
     useEffect(() => {
         function handleResize() {
             if (window.innerWidth < 600) {
