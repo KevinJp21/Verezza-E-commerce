@@ -12,7 +12,6 @@ export default function LatestProducts() {
     const [itemsPerView, setItemsPerView] = useState(5);
     const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
 
-    // Obtener los productos
     useEffect(() => {
         async function fetchProducts() {
             const fetchedProducts = await getLatestProducts();
@@ -20,8 +19,6 @@ export default function LatestProducts() {
         }
         fetchProducts();
     }, []);
-
-    //Funciones de carrusel
 
     const next = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
@@ -76,9 +73,10 @@ export default function LatestProducts() {
         }
         return () => clearInterval(intervalo);
     }, [autoScrollEnabled]);
-//Se bloquea el carrousel a cambiar el tamaño de la pantalla
+
     useEffect(() => {
         function handleResize() {
+            setAutoScrollEnabled(false);
             if (window.innerWidth < 600) {
                 setItemsPerView(1);
             } else if (window.innerWidth < 900) {
@@ -90,6 +88,8 @@ export default function LatestProducts() {
             } else {
                 setItemsPerView(5);
             }
+            setCurrentIndex(0);  // Reinicia el índice para evitar errores de posición
+            setTimeout(() => setAutoScrollEnabled(true), 1000); // Reanuda el auto-scroll después de un breve tiempo
         }
 
         handleResize();
