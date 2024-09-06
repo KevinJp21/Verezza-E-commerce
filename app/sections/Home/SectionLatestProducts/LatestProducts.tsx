@@ -27,11 +27,12 @@ export default function LatestProducts() {
             if (prevIndex < products.length - itemsPerView) {
                 return prevIndex + 1;
             } else {
+                setTransitionEnabled(false);
+                setCurrentIndex(0);
                 setTimeout(() => {
-                    setTransitionEnabled(false);
-                    setCurrentIndex(0);
-                    setTimeout(() => setTransitionEnabled(true), 0);
-                }, 300);
+                    setTransitionEnabled(true);
+                    setCurrentIndex(1);
+                }, 0);
                 return prevIndex;
             }
         });
@@ -42,11 +43,12 @@ export default function LatestProducts() {
             if (prevIndex > 0) {
                 return prevIndex - 1;
             } else {
+                setTransitionEnabled(false);
+                setCurrentIndex(products.length - itemsPerView);
                 setTimeout(() => {
-                    setTransitionEnabled(false);
+                    setTransitionEnabled(true);
                     setCurrentIndex(products.length - itemsPerView - 1);
-                    setTimeout(() => setTransitionEnabled(true), 0);
-                }, 300);
+                }, 0);
                 return prevIndex;
             }
         });
