@@ -1,0 +1,35 @@
+.ProductCarousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ProductCarousel .carrouselButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+  }
+  .ProductCarousel .carrouselButton:hover {
+    opacity: .8;
+  }
+
+  .ProductCarousel .CarrouselButtonLeft {
+    left: 10px;
+  }
+
+  .ProductCarousel .CarrouselButtonRight {
+    right: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .ProductCarousel .carrouselButton {
+        display: none;
+    }
+
+    .ProductCarousel:hover .carrouselButton {
+        display: block;
+    }
+  }

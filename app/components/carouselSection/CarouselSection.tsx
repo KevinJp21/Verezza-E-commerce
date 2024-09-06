@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
+import ProductCarousel from '../productCarousel/ProductCarousel';
 import './CarouselSection.css';
 
 interface CarouselSectionProps {
@@ -46,7 +47,6 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         });
     };
 
-
     useEffect(() => {
         if (carrouselRef.current) {
             const itemWidth = carrouselRef.current.offsetWidth / itemsPerView;
@@ -87,11 +87,11 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
 
     const handlePause = () => {
         setAutoScrollEnabled(false);
-    }
+    };
 
     const handleResume = () => {
         setAutoScrollEnabled(true);
-    }
+    };
 
     return (
         <section className="CarrouselContainer">
@@ -112,19 +112,18 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     ref={carrouselRef}
                 >
                     {products.map((product, index) => (
-                        <a
-                            href='#'
+                        <div
                             key={`${product.id}-${index}`}
                             className="ProductItem"
                             style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
                             onMouseDown={(e) => e.preventDefault()}
                         >
-                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={600} loading='lazy'/>
+                            <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} />
                             <div className="ProductDetails">
                                 <p>{product.title}</p>
                                 <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </div>
             </div>
