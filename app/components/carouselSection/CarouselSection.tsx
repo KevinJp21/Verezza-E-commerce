@@ -97,7 +97,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         <section className="CarrouselContainer">
             <div className="CarrouselHeader">
                 <h2>{title}</h2>
-                <div className="CarrouselButtons">
+                <div className="CarrouselButtons" onMouseEnter={handlePause} onMouseLeave={handleResume}>
                     <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
                     <button onClick={next} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
                 </div>
