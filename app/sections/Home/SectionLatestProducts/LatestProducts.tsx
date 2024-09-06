@@ -54,35 +54,6 @@ export default function LatestProducts() {
         });
     };
 
-    const startDragging = (e: React.MouseEvent<HTMLDivElement>) => {
-        setIsDragging(true);
-        setStartX(e.clientX);
-        setAutoScrollEnabled(false);
-    };
-
-    const stopDragging = () => {
-        setIsDragging(false);
-        const dragDistance = dragPosition;
-        const itemWidth = carrouselRef.current?.offsetWidth ? carrouselRef.current.offsetWidth / itemsPerView : 0;
-        if (Math.abs(dragDistance) > itemWidth / 2) {
-            if (dragDistance > 0) {
-                prev();
-            } else {
-                next();
-            }
-        }
-        setDragPosition(0);
-        setTimeout(() => setAutoScrollEnabled(true), 5000);
-    };
-
-    const onDrag = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.clientX;
-        const walk = x - startX;
-        setDragPosition(walk);
-    };
-
     useEffect(() => {
         if (carrouselRef.current) {
             const itemWidth = carrouselRef.current.offsetWidth / itemsPerView;
@@ -132,10 +103,6 @@ export default function LatestProducts() {
             </div>
             <div
                 className="carrusel-viewport"
-                onMouseDown={startDragging}
-                onMouseUp={stopDragging}
-                onMouseLeave={stopDragging}
-                onMouseMove={onDrag}
             >
                 <div 
                     className="CarrouselProducts" 
