@@ -7,8 +7,6 @@ export default function LatestProducts() {
     const [products, setProducts] = useState<any[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const carrouselRef = useRef<HTMLDivElement>(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
     const [dragPosition, setDragPosition] = useState(0);
     const [itemsPerView, setItemsPerView] = useState(5);
     const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
@@ -61,7 +59,7 @@ export default function LatestProducts() {
             carrouselRef.current.style.transition = transitionEnabled ? 'transform 0.3s ease' : 'none';
             carrouselRef.current.style.transform = `translateX(${translateX}px)`;
         }
-    }, [currentIndex, itemsPerView, dragPosition, transitionEnabled]);
+    }, [currentIndex, itemsPerView, transitionEnabled]);
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -116,7 +114,7 @@ export default function LatestProducts() {
                             style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
                             onMouseDown={(e) => e.preventDefault()} // Prevenir comportamiento predeterminado
                         >
-                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={600} />
+                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={600} loading='lazy'/>
                             <div className="ProductDetails">
                                 <p>{product.title}</p>
                                 <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>

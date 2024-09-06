@@ -94,6 +94,9 @@ export default function NavBar() {
                                     <a href="">BLUSAS</a>
                                 </li>
                                 <li>
+                                    <a href="">CHAQUETAS</a>
+                                </li>
+                                <li>
                                     <a href="">PANTALONES</a>
                                 </li>
                                 <li>
@@ -101,6 +104,12 @@ export default function NavBar() {
                                 </li>
                                 <li>
                                     <a href="">CONJUNTOS</a>
+                                </li>
+                                <li>
+                                    <a href="">VESTIDOS</a>
+                                </li>
+                                <li>
+                                    <a href="">FALDAS</a>
                                 </li>
                                 <li>
                                     <a href="">COMPLEMENTOS</a>
