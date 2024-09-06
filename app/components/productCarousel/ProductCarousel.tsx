@@ -4,9 +4,10 @@ import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 
 interface ProductCarouselProps {
   images: Array<{ src: string; altText: string }>;
+  productId: string;
 }
 
-export default function ProductCarousel({ images }: ProductCarouselProps) {
+export default function ProductCarousel({ images, productId }: ProductCarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -20,12 +21,15 @@ export default function ProductCarousel({ images }: ProductCarouselProps) {
   return (
     <div className="ProductCarousel">
       <button onClick={prevImage} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
-      <img
-        src={images[currentImageIndex].src}
-        alt={images[currentImageIndex].altText}
-        draggable="false"
-        className="ProductImage"
-      />
+      {images.map((image, index) => (
+        <img
+          key={`${productId}-${index}`}
+          src={image.src}
+          alt={image.altText}
+          draggable="false"
+          className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}
+        />
+      ))}
       <button onClick={nextImage} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
     </div>
   );

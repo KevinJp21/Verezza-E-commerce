@@ -3,33 +3,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%; /* Ajusta según tus necesidades */
+    height: 100%; /* Ajusta según tus necesidades */
   }
-
+  
+  .ProductImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
+    transition: opacity .5s ease;
+    
+  }
+  
+  .ProductImage.visible {
+    opacity: 1;
+    z-index: 1; /* Asegura que la imagen visible esté encima de las otras */
+  }
+  
   .ProductCarousel .carrouselButton {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 2;
     transition: opacity 0.3s ease;
   }
+  
   .ProductCarousel .carrouselButton:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
-
+  
   .ProductCarousel .CarrouselButtonLeft {
     left: 10px;
   }
-
+  
   .ProductCarousel .CarrouselButtonRight {
     right: 10px;
   }
-
+  
   @media (min-width: 768px) {
     .ProductCarousel .carrouselButton {
-        display: none;
+      display: none;
     }
-
+  
     .ProductCarousel:hover .carrouselButton {
-        display: block;
+      display: block;
     }
   }
+  
