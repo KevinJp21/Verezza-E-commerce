@@ -1,0 +1,133 @@
+import { useState, useEffect, useRef } from 'react';
+import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
+import './CarouselSection.css';
+
+interface CarouselSectionProps {
+  title: string;
+  products: any[];
+}
+
+export default function CarouselSection({ title, products }: CarouselSectionProps) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const carrouselRef = useRef<HTMLDivElement>(null);
+    const [itemsPerView, setItemsPerView] = useState(5);
+    const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+    const [transitionEnabled, setTransitionEnabled] = useState(true);
+
+    const next = () => {
+        setCurrentIndex((prevIndex) => {
+            if (prevIndex < products.length - itemsPerView) {
+                return prevIndex + 1;
+            } else {
+                setTransitionEnabled(false);
+                setCurrentIndex(0);
+                setTimeout(() => {
+                    setTransitionEnabled(true);
+                    setCurrentIndex(1);
+                }, 0);
+                return prevIndex;
+            }
+        });
+    };
+
+    const prev = () => {
+        setCurrentIndex((prevIndex) => {
+            if (prevIndex > 0) {
+                return prevIndex - 1;
+            } else {
+                setTransitionEnabled(false);
+                setCurrentIndex(products.length - itemsPerView);
+                setTimeout(() => {
+                    setTransitionEnabled(true);
+                    setCurrentIndex(products.length - itemsPerView - 1);
+                }, 0);
+                return prevIndex;
+            }
+        });
+    };
+
+
+    useEffect(() => {
+        if (carrouselRef.current) {
+            const itemWidth = carrouselRef.current.offsetWidth / itemsPerView;
+            const translateX = -(currentIndex * itemWidth);
+            carrouselRef.current.style.transition = transitionEnabled ? 'transform 0.7s ease' : 'none';
+            carrouselRef.current.style.transform = `translateX(${translateX}px)`;
+        }
+    }, [currentIndex, itemsPerView, transitionEnabled]);
+
+    useEffect(() => {
+        let interval: NodeJS.Timeout;
+        if (autoScrollEnabled) {
+            interval = setInterval(next, 7000);
+        }
+        return () => clearInterval(interval);
+    }, [autoScrollEnabled]);
+
+    useEffect(() => {
+        function handleResize() {
+            setAutoScrollEnabled(false);
+            if (window.innerWidth < 600) {
+                setItemsPerView(1);
+            } else if (window.innerWidth < 900) {
+                setItemsPerView(2);
+            } else if (window.innerWidth < 1200) {
+                setItemsPerView(3);
+            } else {
+                setItemsPerView(4);
+            }
+            setCurrentIndex(0);
+            setTimeout(() => setAutoScrollEnabled(true), 1000);
+        }
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handlePause = () => {
+        setAutoScrollEnabled(false);
+    }
+
+    const handleResume = () => {
+        setAutoScrollEnabled(true);
+    }
+
+    return (
+        <section className="CarrouselContainer">
+            <div className="CarrouselHeader">
+                <h2>{title}</h2>
+                <div className="CarrouselButtons">
+                    <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
+                    <button onClick={next} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
+                </div>
+            </div>
+            <div
+                className="carrusel-viewport"
+                onMouseEnter={handlePause}
+                onMouseLeave={handleResume}
+            >
+                <div 
+                    className="CarrouselProducts" 
+                    ref={carrouselRef}
+                >
+                    {products.map((product, index) => (
+                        <a
+                            href='#'
+                            key={`${product.id}-${index}`}
+                            className="ProductItem"
+                            style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
+                            onMouseDown={(e) => e.preventDefault()}
+                        >
+                            <img src={product.images.edges[0].node.src} alt={product.images.edges[0].node.altText} draggable="false" width={280} height={600} loading='lazy'/>
+                            <div className="ProductDetails">
+                                <p>{product.title}</p>
+                                <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
