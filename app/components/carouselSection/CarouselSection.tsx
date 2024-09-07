@@ -4,8 +4,8 @@ import ProductCarousel from '../productCarousel/ProductCarousel';
 import './CarouselSection.css';
 
 interface CarouselSectionProps {
-  title: string;
-  products: any[];
+    title: string;
+    products: any[];
 }
 
 export default function CarouselSection({ title, products }: CarouselSectionProps) {
@@ -100,14 +100,18 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     <button onClick={prev} className="carrouselButton CarrouselButtonLeft" disabled={isButtonDisabled}>{arrowLeftIcon()}</button>
                     <button onClick={next} className="carrouselButton CarrouselButtonRight" disabled={isButtonDisabled}>{arrowRightIcon()}</button>
                 </div>
+                <div className="CarrouselSectionPagination">
+                    <span className="CarrouselSectionPaginationText">{currentIndex - products.length + 1} / {products.length}</span>
+                </div>
             </div>
+
             <div
                 className="carrusel-viewport"
                 onMouseEnter={handlePause}
                 onMouseLeave={handleResume}
             >
-                <div 
-                    className="CarrouselProducts" 
+                <div
+                    className="CarrouselProducts"
                     ref={carrouselRef}
                 >
                     {extendedProducts.map((product, index) => (
@@ -125,9 +129,6 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                         </div>
                     ))}
                 </div>
-            </div>
-            <div className="CarrouselPagination">
-                {currentIndex - products.length + 1} / {products.length}
             </div>
         </section>
     );
