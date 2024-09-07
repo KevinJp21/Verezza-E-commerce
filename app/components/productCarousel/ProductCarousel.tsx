@@ -28,6 +28,7 @@ export default function ProductCarousel({ images, productId }: ProductCarouselPr
           alt={image.altText}
           draggable="false"
           className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}
+          decoding='async'
         />
       ))}
       <button onClick={nextImage} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>

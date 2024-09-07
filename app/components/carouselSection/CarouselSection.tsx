@@ -9,42 +9,20 @@ interface CarouselSectionProps {
 }
 
 export default function CarouselSection({ title, products }: CarouselSectionProps) {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(products.length);
     const carrouselRef = useRef<HTMLDivElement>(null);
     const [itemsPerView, setItemsPerView] = useState(5);
     const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
     const [transitionEnabled, setTransitionEnabled] = useState(true);
 
+    const extendedProducts = [...products, ...products, ...products];
+
     const next = () => {
-        setCurrentIndex((prevIndex) => {
-            if (prevIndex < products.length - itemsPerView) {
-                return prevIndex + 1;
-            } else {
-                setTransitionEnabled(false);
-                setCurrentIndex(0);
-                setTimeout(() => {
-                    setTransitionEnabled(true);
-                    setCurrentIndex(1);
-                }, 0);
-                return prevIndex;
-            }
-        });
+        setCurrentIndex((prevIndex) => prevIndex + 1);
     };
 
     const prev = () => {
-        setCurrentIndex((prevIndex) => {
-            if (prevIndex > 0) {
-                return prevIndex - 1;
-            } else {
-                setTransitionEnabled(false);
-                setCurrentIndex(products.length - itemsPerView);
-                setTimeout(() => {
-                    setTransitionEnabled(true);
-                    setCurrentIndex(products.length - itemsPerView - 1);
-                }, 0);
-                return prevIndex;
-            }
-        });
+        setCurrentIndex((prevIndex) => prevIndex - 1);
     };
 
     useEffect(() => {
@@ -55,6 +33,18 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             carrouselRef.current.style.transform = `translateX(${translateX}px)`;
         }
     }, [currentIndex, itemsPerView, transitionEnabled]);
+
+    useEffect(() => {
+        if (currentIndex === products.length * 2) {
+            setTransitionEnabled(false);
+            setCurrentIndex(products.length);
+            setTimeout(() => setTransitionEnabled(true), 0);
+        } else if (currentIndex === products.length - 1) {
+            setTransitionEnabled(false);
+            setCurrentIndex(products.length * 2 - 1);
+            setTimeout(() => setTransitionEnabled(true), 0);
+        }
+    }, [currentIndex, products.length]);
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -76,14 +66,14 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             } else {
                 setItemsPerView(4);
             }
-            setCurrentIndex(0);
+            setCurrentIndex(products.length);
             setTimeout(() => setAutoScrollEnabled(true), 1000);
         }
 
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [products.length]);
 
     const handlePause = () => {
         setAutoScrollEnabled(false);
@@ -111,7 +101,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     className="CarrouselProducts" 
                     ref={carrouselRef}
                 >
-                    {products.map((product, index) => (
+                    {extendedProducts.map((product, index) => (
                         <div
                             key={`${product.id}-${index}`}
                             className="ProductItem"

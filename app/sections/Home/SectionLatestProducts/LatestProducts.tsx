@@ -9,7 +9,7 @@ export default function LatestProducts() {
     useEffect(() => {
         async function fetchProducts() {
             const fetchedProducts = await getLatestProducts();
-            setProducts([...fetchedProducts, ...fetchedProducts.slice(0, 5)]);
+            setProducts([...fetchedProducts.slice(0, 5)]);
         }
         fetchProducts();
     }, []);
