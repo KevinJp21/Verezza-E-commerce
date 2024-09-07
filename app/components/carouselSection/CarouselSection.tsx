@@ -120,11 +120,22 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             className="ProductItem"
                             style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
                             onMouseDown={(e) => e.preventDefault()}
+                            draggable="false"
                         >
                             <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} productId={product.id} />
                             <div className="ProductDetails">
-                                <p>{product.title}</p>
-                                <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                                <div className="ProductDetailsHeader">
+                                    <a href={`/collections/${product.collections.nodes[0].title}`}>{product.collections.nodes[0].title}</a>
+                                </div>
+                                <div className="ProductContent">
+                                    <p>{product.title}</p>
+                                    <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                                </div>
+                                <div className="ProductSize">
+                                    {product.variants.nodes.map(( size : any) => (
+                                        <span key={size.id}>{size.title}</span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     ))}

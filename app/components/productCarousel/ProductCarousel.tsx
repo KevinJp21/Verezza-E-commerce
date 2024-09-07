@@ -22,14 +22,15 @@ export default function ProductCarousel({ images, productId }: ProductCarouselPr
     <div className="ProductCarousel">
       <button onClick={prevImage} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
       {images.map((image, index) => (
-        <img
-          key={`${productId}-${index}`}
+        <a href={`/product/${productId}`} key={`${productId}-${index}`}>
+          <img
           src={image.src}
           alt={image.altText}
           draggable="false"
           className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}
           decoding='async'
         />
+        </a>
       ))}
       <button onClick={nextImage} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
     </div>
