@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Footer.css'
 
 export default function Footer() {
 
   const [isSelectCurrencyOpen, setIsSelectCurrencyOpen] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState('COP');
-  const [selectedCurrencySymbol, setSelectedCurrencySymbol] = useState('Pesos Colombianos');
+  const [selectedCurrency, setSelectedCurrency] = useState('');
+  const [selectedCurrencySymbol, setSelectedCurrencySymbol] = useState('');
 
   const [isSelectLocationOpen, setIsSelectLocationOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('Colombia');
@@ -22,6 +22,7 @@ export default function Footer() {
     setSelectedCurrency(currency);
     setSelectedCurrencySymbol(symbol);
     setIsSelectCurrencyOpen(false);
+    window.location.reload();
   }
 
   // Location selector
@@ -35,6 +36,24 @@ export default function Footer() {
     setSelectedLocation(location);
     setIsSelectLocationOpen(false);
   }
+
+  useEffect(() => {
+    // Verificar si localStorage está disponible
+    if (typeof window !== 'undefined') {
+      const storedSymbol = localStorage.getItem('selectedCurrencySymbol');
+      if (storedSymbol) {
+        setSelectedCurrencySymbol(storedSymbol);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Guardar en localStorage solo si está disponible
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedCurrencySymbol', selectedCurrencySymbol);
+    }
+  }, [selectedCurrencySymbol]);
+
   return (
     <footer className='Footer'>
       <div className="FooterContainer">

@@ -19,8 +19,14 @@ export async function fetchShopify(query: string, variables = {}) {
 }
 
 export async function getLatestProducts() {
+  let currency = localStorage.getItem('selectedCurrencySymbol') || 'COP';
+  if(currency === 'COP'){
+    currency = 'CO';
+  }else if(currency === 'USD'){
+    currency = 'US';
+  }
   const query = `
-    query getLastProducts @inContext(country: CO) {
+    query getLastProducts @inContext(country: ${currency}) {
   products(first: 10, sortKey: CREATED_AT, reverse: true) {
     edges {
       node {
