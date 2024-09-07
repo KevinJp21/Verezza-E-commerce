@@ -14,16 +14,23 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [itemsPerView, setItemsPerView] = useState(5);
     const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
     const [transitionEnabled, setTransitionEnabled] = useState(true);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const extendedProducts = [...products, ...products, ...products];
 
-    const next = () => {
-        setCurrentIndex((prevIndex) => prevIndex + 1);
+    const handleNavigation = (direction: 'next' | 'prev') => {
+        if (isButtonDisabled) return;
+
+        setIsButtonDisabled(true);
+        setCurrentIndex((prevIndex) => prevIndex + (direction === 'next' ? 1 : -1));
+
+        setTimeout(() => {
+            setIsButtonDisabled(false);
+        }, 700);
     };
 
-    const prev = () => {
-        setCurrentIndex((prevIndex) => prevIndex - 1);
-    };
+    const next = () => handleNavigation('next');
+    const prev = () => handleNavigation('prev');
 
     useEffect(() => {
         if (carrouselRef.current) {
@@ -32,19 +39,21 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             carrouselRef.current.style.transition = transitionEnabled ? 'transform 0.7s ease' : 'none';
             carrouselRef.current.style.transform = `translateX(${translateX}px)`;
         }
-    }, [currentIndex, itemsPerView, transitionEnabled]);
 
-    useEffect(() => {
-        if (currentIndex === products.length * 2) {
-            setTransitionEnabled(false);
-            setCurrentIndex(products.length);
-            setTimeout(() => setTransitionEnabled(true), 0);
-        } else if (currentIndex === products.length - 1) {
-            setTransitionEnabled(false);
-            setCurrentIndex(products.length * 2 - 1);
-            setTimeout(() => setTransitionEnabled(true), 0);
+        if (currentIndex >= products.length * 2) {
+            setTimeout(() => {
+                setTransitionEnabled(false);
+                setCurrentIndex(products.length);
+            }, 700);
+        } else if (currentIndex < products.length) {
+            setTimeout(() => {
+                setTransitionEnabled(false);
+                setCurrentIndex(products.length * 2 - 1);
+            }, 700);
         }
-    }, [currentIndex, products.length]);
+
+        setTimeout(() => setTransitionEnabled(true), 750);
+    }, [currentIndex, itemsPerView, products.length]);
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -88,8 +97,8 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             <div className="CarrouselHeader">
                 <h2>{title}</h2>
                 <div className="CarrouselButtons" onMouseEnter={handlePause} onMouseLeave={handleResume}>
-                    <button onClick={prev} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
-                    <button onClick={next} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
+                    <button onClick={prev} className="carrouselButton CarrouselButtonLeft" disabled={isButtonDisabled}>{arrowLeftIcon()}</button>
+                    <button onClick={next} className="carrouselButton CarrouselButtonRight" disabled={isButtonDisabled}>{arrowRightIcon()}</button>
                 </div>
             </div>
             <div
@@ -116,6 +125,9 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="CarrouselPagination">
+                {currentIndex - products.length + 1} / {products.length}
             </div>
         </section>
     );
