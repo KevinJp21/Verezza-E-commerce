@@ -20,7 +20,7 @@ export async function fetchShopify(query: string, variables = {}) {
 
 export async function getLatestProducts() {
   const query = `
-    query @inContext(country: CO) {
+    query getLastProducts @inContext(country: CO) {
   products(first: 10, sortKey: CREATED_AT, reverse: true) {
     edges {
       node {
