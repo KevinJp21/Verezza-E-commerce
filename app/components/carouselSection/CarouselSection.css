@@ -28,6 +28,14 @@
   gap: 5px;
 }
 
+.CarrouselHeader .CarrouselButtons{
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .carrusel-viewport {
   width: 100%;
   min-height: 600px;
