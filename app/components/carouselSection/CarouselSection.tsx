@@ -125,7 +125,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} productId={product.id} />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">
-                                    <a href={`/collections/${product.collections.nodes[0].title}`}>{product.collections.nodes[0].title}</a>
+                                    <a href={`/collections/${product.collections.nodes[0].title.toLowerCase().replace(/\s+/g, '-')}`}>{product.collections.nodes[0].title}</a>
                                 </div>
                                 <div className="ProductContent">
                                     <p>{product.title}</p>
