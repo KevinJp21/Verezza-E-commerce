@@ -128,7 +128,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             onMouseDown={(e) => e.preventDefault()}
                             draggable="false"
                         >
-                            <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} productId={product.id} />
+                            <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} productId={product.id} productName={product.title} />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">
                                     <a href={`/collections/${product.collections.nodes[0].title.toLowerCase().replace(/\s+/g, '-')}`}>{product.collections.nodes[0].title}</a>

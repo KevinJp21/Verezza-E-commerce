@@ -5,9 +5,10 @@ import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 interface ProductCarouselProps {
   images: Array<{ src: string; altText: string }>;
   productId: string;
+  productName: String;
 }
 
-export default function ProductCarousel({ images, productId }: ProductCarouselProps) {
+export default function ProductCarousel({ images, productId, productName}: ProductCarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -20,19 +21,19 @@ export default function ProductCarousel({ images, productId }: ProductCarouselPr
 
   return (
     <div className="ProductCarousel">
-      <button onClick={prevImage} className="carrouselButton CarrouselButtonLeft">{arrowLeftIcon()}</button>
+      <button onClick={prevImage} className="carrouselButton CarrouselButtonLeft"  aria-label="Botón Prev">{arrowLeftIcon()}</button>
       {images.map((image, index) => (
-        <a href={`/product/${productId}`} key={`${productId}-${index}`}>
+        <div key={`${productId}-${index}`}>
           <img
           src={image.src}
-          alt={image.altText}
+          alt={image.altText || (productName as string) || ''}
           draggable="false"
           className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}
           decoding='async'
         />
-        </a>
+        </div>
       ))}
-      <button onClick={nextImage} className="carrouselButton CarrouselButtonRight">{arrowRightIcon()}</button>
+      <button onClick={nextImage} className="carrouselButton CarrouselButtonRight" aria-label="Botón Next">{arrowRightIcon()}</button>
     </div>
   );
 }
