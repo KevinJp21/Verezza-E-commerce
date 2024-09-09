@@ -22,7 +22,13 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         if (isButtonDisabled) return;
 
         setIsButtonDisabled(true);
-        setCurrentIndex((prevIndex) => prevIndex + (direction === 'next' ? 1 : -1));
+        setCurrentIndex((prevIndex) => {
+            if (direction === 'next') {
+                return prevIndex + 1;
+            } else {
+                return prevIndex === 0 ? products.length * 2 - 1 : prevIndex - 1;
+            }
+        });
 
         setTimeout(() => {
             setIsButtonDisabled(false);
@@ -43,12 +49,12 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         if (currentIndex >= products.length * 2) {
             setTimeout(() => {
                 setTransitionEnabled(false);
-                setCurrentIndex(products.length);
+                setCurrentIndex(currentIndex - products.length);
             }, 700);
         } else if (currentIndex < products.length) {
             setTimeout(() => {
                 setTransitionEnabled(false);
-                setCurrentIndex(products.length * 2 - 1);
+                setCurrentIndex(currentIndex + products.length);
             }, 700);
         }
 
@@ -101,7 +107,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     <button onClick={next} className="carrouselButton CarrouselButtonRight" disabled={isButtonDisabled}>{arrowRightIcon()}</button>
                 </div>
                 <div className="CarrouselSectionPagination">
-                    <span className="CarrouselSectionPaginationText">{currentIndex - products.length + 1} / {products.length}</span>
+                    <span className="CarrouselSectionPaginationText">{(currentIndex % products.length) + 1 || 1} / {products.length}</span>
                 </div>
             </div>
 
