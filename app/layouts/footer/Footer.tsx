@@ -22,6 +22,8 @@ export default function Footer() {
     setSelectedCurrency(currency);
     setSelectedCurrencySymbol(symbol);
     setIsSelectCurrencyOpen(false);
+    localStorage.setItem('selectedCurrency', currency);
+    localStorage.setItem('selectedCurrencySymbol', symbol);
     window.location.reload();
   }
 
@@ -35,24 +37,30 @@ export default function Footer() {
   const handleLocationClick = (location: string) => {
     setSelectedLocation(location);
     setIsSelectLocationOpen(false);
+    localStorage.setItem('selectedLocation', location);
   }
 
   useEffect(() => {
-    // Verificar si localStorage está disponible
     if (typeof window !== 'undefined') {
       const storedSymbol = localStorage.getItem('selectedCurrencySymbol');
-      if (storedSymbol) {
+      const storedCurrency = localStorage.getItem('selectedCurrency');
+      if (storedSymbol && storedCurrency) {
         setSelectedCurrencySymbol(storedSymbol);
+        setSelectedCurrency(storedCurrency);
+      } else {
+        // Valores predeterminados si no hay nada en localStorage
+        setSelectedCurrencySymbol('COP');
+        setSelectedCurrency('Pesos Colombianos');
+        localStorage.setItem('selectedCurrencySymbol', 'COP');
+        localStorage.setItem('selectedCurrency', 'Pesos Colombianos');
+      }
+
+      const storedLocation = localStorage.getItem('selectedLocation');
+      if (storedLocation) {
+        setSelectedLocation(storedLocation);
       }
     }
   }, []);
-
-  useEffect(() => {
-    // Guardar en localStorage solo si está disponible
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('selectedCurrencySymbol', selectedCurrencySymbol);
-    }
-  }, [selectedCurrencySymbol]);
 
   return (
     <footer className='Footer'>

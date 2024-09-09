@@ -20,50 +20,53 @@ export async function fetchShopify(query: string, variables = {}) {
 
 export async function getLatestProducts() {
   let currency = localStorage.getItem('selectedCurrencySymbol') || 'COP';
-  if(currency === 'COP'){
-    currency = 'CO';
-  }else if(currency === 'USD'){
-    currency = 'US';
+  let countryCode = 'CO'; // Valor predeterminado
+
+  if (currency === 'COP') {
+    countryCode = 'CO';
+  } else if (currency === 'USD') {
+    countryCode = 'US';
   }
+
   const query = `
-    query getLastProducts @inContext(country: ${currency}) {
-  products(first: 10, sortKey: CREATED_AT, reverse: true) {
-    edges {
-      node {
-        id
-        title
-        description
-        createdAt
-        priceRange {
-          minVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-        images(first: 5) {
-          edges {
-            node {
-              src
-              altText
-            }
-          }
-        }
-        collections(first: 1) {
-          nodes {
-            title
-          }
-        } 
-        variants(first: 10){
-          nodes{
+    query getLastProducts @inContext(country: ${countryCode}) {
+      products(first: 10, sortKey: CREATED_AT, reverse: true) {
+        edges {
+          node {
             id
             title
+            description
+            createdAt
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 5) {
+              edges {
+                node {
+                  src
+                  altText
+                }
+              }
+            }
+            collections(first: 1) {
+              nodes {
+                title
+              }
+            } 
+            variants(first: 10){
+              nodes{
+                id
+                title
+              }
+            }
           }
         }
       }
     }
-  }
-}
-    `;
+  `;
 
   const data = await fetchShopify(query);
   return data.products.edges.map(({ node }: any) => node);
