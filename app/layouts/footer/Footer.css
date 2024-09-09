@@ -20,12 +20,16 @@
     position: relative;
     width: 100%;
     margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 10px;
   }
 
 .FooterSelector h3 {
     color: var(--olga-white-primary);
     font-size: 0.875rem;
-    margin: 0 0 24px;
+
     font-weight: 900;
     opacity: 0.7;
 }
@@ -200,6 +204,23 @@
     opacity: 0.7;
   }
 
+  .footerSelectorWrapper{
+    display: flex;
+    flex-wrap: wrap;
+
+    .CurrencySelector{
+      flex: 1 0 60%;
+    }
+
+    .LocationSelector{
+      flex: 1 0 40%;
+    }
+
+    .LanguajeSelector{
+      width: 100%;
+    }
+  }
+
   @media screen and (min-width: 768px) {
     .FooterHeader{
         flex-direction: row-reverse;
@@ -220,6 +241,7 @@
 
     .footerSelectorWrapper{
         flex: 1;
+
     }
 
  

@@ -137,7 +137,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="FooterSelector LocationSelector">
+          <div className="FooterSelector LanguajeSelector">
             <h3>ELIGE TU LENGUAJE</h3>
             <div className={`customSelect ${isSelectLanguageOpen ? 'open' : ''}`}>
               <div className="selectHeader" onClick={toggleSelectLanguage}>
