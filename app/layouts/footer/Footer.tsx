@@ -10,12 +10,16 @@ export default function Footer() {
   const [isSelectLocationOpen, setIsSelectLocationOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('Colombia');
 
+  const [isSelectLanguageOpen, setIsSelectLanguageOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('Español');
+
   const currentYear = new Date().getFullYear();
 
   // Currency selector
   const toggleSelectCurrency = () => {
     setIsSelectCurrencyOpen(!isSelectCurrencyOpen);
     setIsSelectLocationOpen(false);
+    setIsSelectLanguageOpen(false);
   }
 
   const handleCurrencyClick = (currency: string, symbol: string) => {
@@ -32,6 +36,7 @@ export default function Footer() {
   const toggleSelectLocation = () => {
     setIsSelectLocationOpen(!isSelectLocationOpen);
     setIsSelectCurrencyOpen(false);
+    setIsSelectLanguageOpen(false);
   }
 
   const handleLocationClick = (location: string) => {
@@ -44,15 +49,19 @@ export default function Footer() {
     if (typeof window !== 'undefined') {
       const storedSymbol = localStorage.getItem('selectedCurrencySymbol');
       const storedCurrency = localStorage.getItem('selectedCurrency');
-      if (storedSymbol && storedCurrency) {
+      const storedLanguaje = localStorage.getItem('selectedLanguage');
+      if (storedSymbol && storedCurrency && storedLanguaje) {
         setSelectedCurrencySymbol(storedSymbol);
         setSelectedCurrency(storedCurrency);
+        setSelectedLanguage(storedLanguaje);
       } else {
         // Valores predeterminados si no hay nada en localStorage
         setSelectedCurrencySymbol('COP');
         setSelectedCurrency('Pesos Colombianos');
+        setSelectedLanguage('Español')
         localStorage.setItem('selectedCurrencySymbol', 'COP');
         localStorage.setItem('selectedCurrency', 'Pesos Colombianos');
+        localStorage.setItem('selectedLanguage', 'Español')
       }
 
       const storedLocation = localStorage.getItem('selectedLocation');
@@ -61,6 +70,20 @@ export default function Footer() {
       }
     }
   }, []);
+
+  // Language selector
+  const toggleSelectLanguage = () => {
+    setIsSelectLanguageOpen(!isSelectLanguageOpen);
+    setIsSelectLocationOpen(false);
+    setIsSelectCurrencyOpen(false);
+  }
+
+  const handleLanguageClick = (language: string) => {
+    setSelectedLanguage(language);
+    setIsSelectLanguageOpen(false);
+    localStorage.setItem('selectedLanguage', language);
+    window.location.reload();
+  }
 
   return (
     <footer className='Footer'>
@@ -109,6 +132,28 @@ export default function Footer() {
                 </li>
                 <li className="option" onClick={() => handleLocationClick('Estados Unidos')}>
                   <span>Estados Unidos</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="FooterSelector LocationSelector">
+            <h3>ELIGE TU LENGUAJE</h3>
+            <div className={`customSelect ${isSelectLanguageOpen ? 'open' : ''}`}>
+              <div className="selectHeader" onClick={toggleSelectLanguage}>
+                <div className="currencyWrapper">
+                  <div className="currencyDetails">
+                    <span>{selectedLanguage || "Elige tu idioma"}</span>
+                  </div>
+                  <span className="arrow"></span>
+                </div>
+              </div>
+              <ul className="optionsList">
+                <li className="option" onClick={() => handleLanguageClick('Español')}>
+                  <span>Español</span>
+                </li>
+                <li className="option" onClick={() => handleLanguageClick('English')}>
+                  <span>English</span>
                 </li>
               </ul>
             </div>

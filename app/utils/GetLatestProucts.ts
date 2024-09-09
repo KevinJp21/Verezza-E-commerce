@@ -21,6 +21,7 @@ export async function fetchShopify(query: string, variables = {}) {
 export async function getLatestProducts() {
   let currency = localStorage.getItem('selectedCurrencySymbol') || 'COP';
   let countryCode = 'CO'; // Valor predeterminado
+  let language = localStorage.getItem('selectedLanguage') || 'ES';
 
   if (currency === 'COP') {
     countryCode = 'CO';
@@ -28,8 +29,14 @@ export async function getLatestProducts() {
     countryCode = 'US';
   }
 
+  if (language === 'Español') {
+    language = 'ES';
+  } else if (language === 'English') {
+    language = 'EN';
+  }
+
   const query = `
-    query getLastProducts @inContext(country: ${countryCode}) {
+    query getLastProducts @inContext(country: ${countryCode}, language: ${language}) {
       products(first: 10, sortKey: CREATED_AT, reverse: true) {
         edges {
           node {
