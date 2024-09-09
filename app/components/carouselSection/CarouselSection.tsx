@@ -103,8 +103,8 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             <div className="CarrouselHeader">
                 <h2>{title}</h2>
                 <div className="CarrouselButtons" onMouseEnter={handlePause} onMouseLeave={handleResume}>
-                    <button onClick={prev} className="carrouselButton CarrouselButtonLeft" disabled={isButtonDisabled}>{arrowLeftIcon()}</button>
-                    <button onClick={next} className="carrouselButton CarrouselButtonRight" disabled={isButtonDisabled}>{arrowRightIcon()}</button>
+                    <button onClick={prev} className="carrouselButton CarrouselButtonLeft" disabled={isButtonDisabled} aria-label="Botón Prev">{arrowLeftIcon()}</button>
+                    <button onClick={next} className="carrouselButton CarrouselButtonRight" disabled={isButtonDisabled} aria-label="Botón Next">{arrowRightIcon()}</button>
                 </div>
                 <div className="CarrouselSectionPagination">
                     <span className="CarrouselSectionPaginationText">{(currentIndex % products.length) + 1 || 1} / {products.length}</span>
