@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './NavBar.css'
 import './SideBar.css'
 import logoOlgaBlack from '~/assets/logos/Logo Olga black.webp'
@@ -9,6 +9,7 @@ import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 export default function NavBar() {
 
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const toggleSideBar = () => {
         setIsSideBarOpen(!isSideBarOpen);
@@ -18,6 +19,26 @@ export default function NavBar() {
         setIsSideBarOpen(false);
     }
 
+    const toggleSearch = () => {
+        setIsSearchOpen(!isSearchOpen);
+    }
+
+    const closeSearch = () => {
+        setIsSearchOpen(false);
+    }
+
+    //CloseSearch al hacer scorll
+    useEffect(() => {
+        const handleScroll = () => {
+            closeSearch();
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
     return (
@@ -37,7 +58,7 @@ export default function NavBar() {
                         <a href="/" className="whishlistHeader" aria-label="Bolsa de compras">
                             {cartIcon()}
                         </a>
-                        <button className='BTNSearch' aria-label="Buscar">
+                        <button className='BTNSearch' aria-label="Buscar" onClick={toggleSearch}>
                             {searchIcon()}
                         </button>
                         <button className='hamburgerMenu' onClick={toggleSideBar} aria-label="Menu">
@@ -153,8 +174,15 @@ export default function NavBar() {
                         <li>
                             <a href="/">{userIcon()}</a>
                         </li>
-
+                        <li>
+                            <button onClick={toggleSearch}>{searchIcon()}</button>
+                        </li>
                     </ul>
+                </div>
+                <div className={`searchOverlay ${isSearchOpen ? 'open' : ''}`} onClick={closeSearch}></div>
+                <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`} >
+                    <input className='SearchInput' type="text" placeholder="Buscar" />
+                    
                 </div>
         </header>
     );
