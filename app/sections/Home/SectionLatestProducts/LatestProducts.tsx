@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react';
-import { getLatestProducts } from '~/utils/GetLatestProucts';
 import CarouselSection from '~/components/carouselSection/CarouselSection';
 import './LatestProducts.css';
+import { useProductContext } from '~/hooks/ProductContext';
 
 export default function LatestProducts() {
-    const [products, setProducts] = useState<any[]>([]);
+    const { products } = useProductContext();
 
-    useEffect(() => {
-        async function fetchProducts() {
-            const fetchedProducts = await getLatestProducts();
-            setProducts([...fetchedProducts.slice(0, 5)]);
-        }
-        fetchProducts();
-    }, []);
+    //Obtener los productos mas recientes segun su fecha de creacion
+    const latestProducts = products.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 5);
 
+    
     return (
-        <CarouselSection title="RECIENTES" products={products} />
+        <CarouselSection title="RECIENTES" products={latestProducts} />
     );
 }
