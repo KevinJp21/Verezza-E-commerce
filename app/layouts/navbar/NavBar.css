@@ -161,6 +161,72 @@
     background-color: var(--olga-white-primary); /* Añadimos efecto hover */
 }
 
+.SearhContainer .SearchInput{
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: var(--olga-gray-100);
+    font-size: 2rem;
+    font-weight: normal;
+    border-bottom: 1px solid var(--olga-gray-100);
+    width: 100%;
+}
+
+.SearchResults{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.SearchResults .searhResultWrapper{
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.SearchResults .searhResultWrapper .ResultImg{
+    width: 50px;
+    height: 50px;
+}
+
+
+.SearchResults .searhResultWrapper .ResultImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.SearchResults .searhResultWrapper .resultDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.SearchResults .searhResultWrapper .resultDetails a {
+    text-decoration: underline;
+    color: var(--olga-gray-100);
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.SearchResults .searhResultWrapper .resultDetails a:hover {
+    color: var(--olga-white-primary);
+}
+
+.SearchResults .searhResultWrapper .resultDetails p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
+    color: var(--olga-gray-100);
+}
+
 
 
 @media screen and (min-width: 768px) {

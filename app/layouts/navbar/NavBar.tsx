@@ -51,8 +51,8 @@ export default function NavBar() {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const term = event.target.value;
         setSearchTerm(term);
-        
-        const filtered = products.filter(product => 
+
+        const filtered = products.filter(product =>
             product && product.title && product.title.toLowerCase().includes(term.toLowerCase())
         );
         setFilteredProducts(filtered);
@@ -63,7 +63,7 @@ export default function NavBar() {
             <nav className='NavBarContainer'>
                 <div className='NavBar1'>
                     <a href="/">
-                        <img src={logoOlgaWhite} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20}/>
+                        <img src={logoOlgaWhite} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} />
                     </a>
                     <div className='NavBar1-1'>
                         <a href="" className="accoutHeader" aria-label="Usuario">
@@ -181,40 +181,48 @@ export default function NavBar() {
             </div>
 
             <div className="NavBarMobileContainer">
-                    <ul className='NavBarMobileList'>
-                        <li>
-                            <a href="/">{heartIcon()}</a>
-                        </li>
-                        <li>
-                            <button>{cartIcon()}</button>
-                        </li>
-                        <li>
-                            <a href="/">{userIcon()}</a>
-                        </li>
-                        <li>
-                            <button onClick={toggleSearch}>{searchIcon()}</button>
-                        </li>
+                <ul className='NavBarMobileList'>
+                    <li>
+                        <a href="/">{heartIcon()}</a>
+                    </li>
+                    <li>
+                        <button>{cartIcon()}</button>
+                    </li>
+                    <li>
+                        <a href="/">{userIcon()}</a>
+                    </li>
+                    <li>
+                        <button onClick={toggleSearch}>{searchIcon()}</button>
+                    </li>
+                </ul>
+            </div>
+            <div className={`searchOverlay ${isSearchOpen ? 'open' : ''}`} onClick={closeSearch}></div>
+            <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`} >
+                <input
+                    className='SearchInput'
+                    type="text"
+                    placeholder="Buscar"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                {searchTerm && (
+                    <ul className="SearchResults">
+                        {filteredProducts.map((product, index) => (
+                            <li key={`${product.id}-${index}`} className='searhResultWrapper'>
+                                
+                                    <picture className='ResultImg'>
+                                        <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} />
+                                    </picture>
+                                    <div className="resultDetails">
+                                        <a href={`/producto/${product.id}`}>{product.title}</a>
+                                        <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                                    </div>
+                              
+                            </li>
+                        ))}
                     </ul>
-                </div>
-                <div className={`searchOverlay ${isSearchOpen ? 'open' : ''}`} onClick={closeSearch}></div>
-                <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`} >
-                    <input 
-                        className='SearchInput' 
-                        type="text" 
-                        placeholder="Buscar" 
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                    />
-                    {searchTerm && (
-                        <ul className="SearchResults">
-                            {filteredProducts.map((product, index) => (
-                                <li key={`${product.id}-${index}`}>
-                                    <a href={`/producto/${product.id}`}>{product.title}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+                )}
+            </div>
         </header>
     );
 }

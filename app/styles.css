@@ -84,18 +84,18 @@ a{
     margin-top: 20px;
     width: 100%;
     display: flex;
-
-    .CarrouselSectionPaginationText{
-        background-color: var(--olga-white-primary);
-        padding: 7px 16px 6px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 15px;
-        font-size: 0.875rem;
-        font-weight: normal;
-    }
   }
+
+  .CarrouselSectionPagination .CarrouselSectionPaginationText{
+    background-color: var(--olga-white-primary);
+    padding: 7px 16px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: normal;
+}
 
   
   
