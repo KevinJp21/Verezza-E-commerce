@@ -32,7 +32,7 @@ export default function NavBar() {
         setIsSearchOpen(false);
     }
 
-    //CloseSearch al hacer scorll
+     //CloseSearch al hacer scorll
     useEffect(() => {
         const handleScroll = () => {
             closeSearch();
@@ -44,10 +44,8 @@ export default function NavBar() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
+   
     //Obtener productos y filtrarlos en tiempo real
-
-
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const term = event.target.value;
         setSearchTerm(term);
@@ -197,11 +195,11 @@ export default function NavBar() {
                 </ul>
             </div>
             <div className={`searchOverlay ${isSearchOpen ? 'open' : ''}`} onClick={closeSearch}></div>
-            <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`} >
+            <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`}>
                 <input
                     className='SearchInput'
                     type="text"
-                    placeholder="Buscar"
+                    placeholder="Buscar en olgaluciacortes.com"
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />

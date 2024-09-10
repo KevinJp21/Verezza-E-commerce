@@ -119,6 +119,9 @@
 
 .SearhContainer {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 70px;
     top: 0;
     left: 0;
@@ -167,9 +170,10 @@
     outline: none;
     padding: 10px;
     color: var(--olga-gray-100);
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: normal;
-    border-bottom: 1px solid var(--olga-gray-100);
+    border-bottom: 1px solid var(--olga-gray-50);
+    max-width: 1920px;
     width: 100%;
 }
 
@@ -180,6 +184,7 @@
     gap: 10px;
     padding: 0;
     margin: 0;
+    max-width: 1920px;
     width: 100%;
     margin-top: 30px;
 }
