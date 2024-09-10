@@ -5,11 +5,16 @@ import logoOlgaBlack from '~/assets/logos/Logo Olga black.webp'
 import logoOlgaWhite from '~/assets/logos/Logo Olga white.webp'
 import { closeIcon, searchIcon } from '~/assets/icons/icons'
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
+import { useProductContext } from '~/hooks/ProductContext';
 
 export default function NavBar() {
 
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+    const { products } = useProductContext();
+
 
     const toggleSideBar = () => {
         setIsSideBarOpen(!isSideBarOpen);
@@ -40,6 +45,18 @@ export default function NavBar() {
         };
     }, []);
 
+    //Obtener productos y filtrarlos en tiempo real
+
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const term = event.target.value;
+        setSearchTerm(term);
+        
+        const filtered = products.filter(product => 
+            product && product.title && product.title.toLowerCase().includes(term.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+    };
 
     return (
         <header className='navbar'>
@@ -181,8 +198,22 @@ export default function NavBar() {
                 </div>
                 <div className={`searchOverlay ${isSearchOpen ? 'open' : ''}`} onClick={closeSearch}></div>
                 <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`} >
-                    <input className='SearchInput' type="text" placeholder="Buscar" />
-                    
+                    <input 
+                        className='SearchInput' 
+                        type="text" 
+                        placeholder="Buscar" 
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                    {searchTerm && (
+                        <ul className="SearchResults">
+                            {filteredProducts.map((product, index) => (
+                                <li key={`${product.id}-${index}`}>
+                                    <a href={`/producto/${product.id}`}>{product.title}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
         </header>
     );

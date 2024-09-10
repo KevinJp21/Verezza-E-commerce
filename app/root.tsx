@@ -7,7 +7,7 @@ import {
 } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import './styles.css'
-
+import { ProductProvider } from './hooks/ProductContext';
 export const links: LinksFunction = () => {
   return [
     { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap' },
@@ -25,7 +25,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ProductProvider>
+          {children}
+        </ProductProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
