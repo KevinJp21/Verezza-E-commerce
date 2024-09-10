@@ -4,10 +4,8 @@ import './SideBar.css'
 import logoOlgaBlack from '~/assets/logos/Logo Olga black.webp'
 import logoOlgaWhite from '~/assets/logos/Logo Olga white.webp'
 import { closeIcon, searchIcon } from '~/assets/icons/icons'
-
-
-
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
+
 export default function NavBar() {
 
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -143,6 +141,21 @@ export default function NavBar() {
                     </div>
                 </div>
             </div>
+
+            <div className="NavBarMobileContainer">
+                    <ul className='NavBarMobileList'>
+                        <li>
+                            <a href="/">{heartIcon()}</a>
+                        </li>
+                        <li>
+                            <button>{cartIcon()}</button>
+                        </li>
+                        <li>
+                            <a href="/">{userIcon()}</a>
+                        </li>
+
+                    </ul>
+                </div>
         </header>
     );
 }

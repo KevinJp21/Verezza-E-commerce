@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy } from 'react'
 
 import './WearHome.css'
 
@@ -11,23 +11,12 @@ import imgWearComplements4 from '~/assets/images/SectionWear/cinturonBeauty2.web
 
 export default function WearHome(){
 
-    const [isMobile, setIsMobile] = useState(false)
-
-    const handleResize = () => {
-        setIsMobile(window.innerWidth < 768)
-    }
-
-    useEffect(() => {
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
     return(
         <section className='WearHomeContainer'>
             <h2>Complementa tu look</h2>
             <div className='WearHomeWrapper'>
                 <div className='WearImg img1'>
-                    <img className='img1-1' src={imgWearComplements} alt="Imagen complementos olga lucia cortes" loading={isMobile ? 'lazy' : 'eager'} decoding={isMobile ? 'async' : 'auto'} width={780} height={1200} />
+                    <img className='img1-1' src={imgWearComplements} alt="Imagen complementos olga lucia cortes" loading="lazy" decoding="async" width={780} height={1200} />
                     <img className='img1-2' src={imgWearComplements2} alt="Imagen complementos olga lucia cortes" loading="lazy" decoding='async' width={780} height={1200} />
                     <div className='WearImgText'>
                         <h3>Hebilla Anfar</h3>
