@@ -8,11 +8,14 @@ export default function StartHome() {
 
   const [isMobile, setIsMobile] = useState(false)
 
-  const handleResize = () => {
-    setIsMobile(window.innerWidth < 768)
-  }
-
   useEffect(() => {
+    const checkIsMobile = () => window.innerWidth < 768
+    setIsMobile(checkIsMobile())
+
+    const handleResize = () => {
+      setIsMobile(checkIsMobile())
+    }
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -28,7 +31,6 @@ export default function StartHome() {
           <h2>¡Bienvenida a Olga Lucía Cortés!</h2>
           <a className='link_btn' href='#'>Explora ahora</a>
         </div>
-
       </div>
     </section>
   )
