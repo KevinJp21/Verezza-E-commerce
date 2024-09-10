@@ -181,16 +181,16 @@ export default function NavBar() {
             <div className="NavBarMobileContainer">
                 <ul className='NavBarMobileList'>
                     <li>
-                        <a href="/">{heartIcon()}</a>
+                        <a href="/" aria-label="Lista de deseos">{heartIcon()}</a>
                     </li>
                     <li>
-                        <button>{cartIcon()}</button>
+                        <button aria-label="Bolsa de compras">{cartIcon()}</button>
                     </li>
                     <li>
-                        <a href="/">{userIcon()}</a>
+                        <a href="/" aria-label="Usuario">{userIcon()}</a>
                     </li>
                     <li>
-                        <button onClick={toggleSearch}>{searchIcon()}</button>
+                        <button onClick={toggleSearch} aria-label="Buscar">{searchIcon()}</button>
                     </li>
                 </ul>
             </div>
