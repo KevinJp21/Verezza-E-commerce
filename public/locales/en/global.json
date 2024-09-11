@@ -1,12 +1,67 @@
 {
-    "header_links": {
+    "navbar": {
         "blouses": "BLOUSES",
         "pants": "PANTS",
-        "shirts": "SHIRTS",
         "dresses": "DRESSES",
         "sets": "SETS",
         "complements": "COMPLEMENTS",
         "atelier": "ATÉLIER",
-        "our_brand": "OUR BRAND"
+        "our_brand": "OUR BRAND",
+        "navbar_search":{
+            "placeholder": "Search olgaluciacortes.com"
+        }
+    },
+    "sidebar": {
+        "sidebar_title": "SHOP",
+        "blouses": "BLOUSES",
+        "jackets": "JACKETS",
+        "pants": "PANTS",
+        "dresses": "DRESSES",
+        "sets": "SETS",
+        "skirts": "SKIRTS",
+        "complements": "COMPLEMENTS",
+        "atelier": "ATÉLIER",
+        "our_brand": "OUR BRAND",
+        "user": "USER",
+        "login": "Login",
+        "create_account": "Sign up",
+        "shopping_bag": "Shopping bag",
+        "privacy_policy": "Privacy policy",
+        "returns": "Returns/Refunds"
+    },
+    "footer": {
+        "currency": {
+            "title": "CHOOSE YOUR CURRENCY",
+            "placeholder": "Choose your currency",
+            "options": {
+              "cop": "Pesos Colombianos",
+              "usd": "US Dollars"
+            }
+          },
+          "location": {
+            "title": "CHOOSE YOUR LOCATION/REGION",
+            "placeholder": "Choose your location",
+            "options": {
+              "colombia": "Colombia",
+              "usa": "United States"
+            }
+          },
+          "language": {
+            "title": "CHOOSE YOUR LANGUAGE",
+            "placeholder": "Choose your language",
+            "options": {
+              "spanish": "Español",
+              "english": "English"
+            }
+          },
+          "info": {
+            "title": "INFORMATION",
+            "links": {
+              "atelier": "Atelier",
+              "our_brand": "Our brand",
+              "privacy_policy": "Privacy policy",
+              "returns": "Returns/refunds"
+            }
+        }
     }
 }

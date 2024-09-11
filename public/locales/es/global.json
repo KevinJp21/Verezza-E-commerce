@@ -1,12 +1,66 @@
 {
-    "header_links": {
+    "navbar": {
         "blouses": "BLUSAS",
         "pants": "PANTALONES",
-        "shirts": "CAMISETAS",
         "dresses": "VESTIDOS",
         "sets": "CONJUNTOS",
         "complements": "COMPLEMENTOS",
         "atelier": "ATÉLIER",
-        "our_brand": "NUESTRA MARCA"
+        "our_brand": "NUESTRA MARCA",
+        "navbar_search":{
+            "placeholder": "Buscar en olgaluciacortes.com"
+        }
+    },
+    "sidebar": {
+        "blouses": "BLUSAS",
+        "jackets": "CHAQUETAS",
+        "pants": "PANTALONES",
+        "dresses": "VESTIDOS",
+        "sets": "CONJUNTOS",
+        "skirts": "FALDAS",
+        "complements": "COMPLEMENTOS",
+        "atelier": "ATÉLIER",
+        "our_brand": "NUESTRA MARCA",
+        "user": "USUARIO",
+        "login": "Inicia sesión",
+        "create_account": "Crea una cuenta",
+        "shopping_bag": "Bolsa de compras",
+        "privacy_policy": "Política de privacidad",
+        "returns": "Devoluciones/reembolsos"
+    },
+    "footer": {
+        "currency": {
+            "title": "ELIGE TU DIVISA",
+            "placeholder": "Elige tu divisa",
+            "options": {
+                "cop": "Pesos Colombianos",
+                "usd": "US Dollars"
+            }
+        },
+        "location": {
+            "title": "ELIGE TU UBICACIÓN/REGION",
+            "placeholder": "Elige tu ubicación",
+            "options": {
+                "colombia": "Colombia",
+                "usa": "United States"
+            }
+        },
+        "language": {
+            "title": "ELIGE TU LENGUAJE",
+            "placeholder": "Elige tu idioma",
+            "options": {
+                "spanish": "Español",
+                "english": "English"
+            }
+        },
+        "info": {
+            "title": "INFORMACIÓN",
+            "links": {
+                "atelier": "Atélier",
+                "our_brand": "Nuestra marca",
+                "privacy_policy": "Política de privacidad",
+                "returns": "Devoluciones/reembolsos"
+            }
+        }
     }
 }

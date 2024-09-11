@@ -6,6 +6,7 @@ import logoOlgaWhite from '~/assets/logos/Logo Olga white.webp'
 import { closeIcon, searchIcon } from '~/assets/icons/icons'
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 import { useProductContext } from '~/hooks/ProductContext';
+import { useTranslation } from "react-i18next";
 
 export default function NavBar() {
 
@@ -15,6 +16,9 @@ export default function NavBar() {
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
 
+    
+
+    const { t } = useTranslation();
 
     const toggleSideBar = () => {
         setIsSideBarOpen(!isSideBarOpen);
@@ -88,25 +92,25 @@ export default function NavBar() {
                 <div className='NavBar2'>
                     <ul className='NavbarListWrapper'>
                         <li>
-                            <a href="">BLUSAS</a>
+                            <a href="">{t("navbar.blouses")}</a>
                         </li>
                         <li>
-                            <a href="">PANTALONES</a>
+                            <a href="">{t("navbar.pants")}</a>
                         </li>
                         <li>
-                            <a href="">VESTIDOS</a>
+                            <a href="">{t("navbar.dresses")}</a>
                         </li>
                         <li>
-                            <a href="">CONJUNTOS</a>
+                            <a href="">{t("navbar.sets")}</a>
                         </li>
                         <li>
-                            <a href="">COMPLEMENTOS</a>
+                            <a href="">{t("navbar.complements")}</a>
                         </li>
                         <li>
-                            <a href="">ATÉLIER</a>
+                            <a href="">{t("navbar.atelier")}</a>
                         </li>
                         <li>
-                            <a href="" className='strongLink'>NUESTRA MARCA</a>
+                            <a href="" className='strongLink'>{t("navbar.our_brand")}</a>
                         </li>
                     </ul>
                 </div>
@@ -124,54 +128,51 @@ export default function NavBar() {
                     </div>
                     <div className="sidebarContent">
                         <div className="sidebarBody">
-                            <span>TIENDA</span>
+                            <span>{t("sidebar.sidebar_title")}</span>
                             <ul className='sidebarList'>
                                 <li>
-                                    <a href="">BLUSAS</a>
+                                    <a href="">{t("sidebar.blouses")}</a>
                                 </li>
                                 <li>
-                                    <a href="">CHAQUETAS</a>
+                                    <a href="">{t("sidebar.jackets")}</a>
                                 </li>
                                 <li>
-                                    <a href="">PANTALONES</a>
+                                    <a href="">{t("sidebar.pants")}</a>
                                 </li>
                                 <li>
-                                    <a href="">VESTIDOS</a>
+                                    <a href="">{t("sidebar.dresses")}</a>
                                 </li>
                                 <li>
-                                    <a href="">CONJUNTOS</a>
+                                    <a href="">{t("sidebar.sets")}</a>
                                 </li>
                                 <li>
-                                    <a href="">VESTIDOS</a>
+                                    <a href="">{t("sidebar.skirts")}</a>
                                 </li>
                                 <li>
-                                    <a href="">FALDAS</a>
+                                    <a href="">{t("sidebar.complements")}</a>
                                 </li>
                                 <li>
-                                    <a href="">COMPLEMENTOS</a>
+                                    <a href="">{t("sidebar.atelier")}</a>
                                 </li>
                                 <li>
-                                    <a href="">ATÉLIER</a>
-                                </li>
-                                <li>
-                                    <a href="" className='strongLink'>NUESTRA MARCA</a>
+                                    <a href="" className='strongLink'>{t("sidebar.our_brand")}</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="sidebarBody">
-                            <span>USUARIO</span>
+                            <span>{t("sidebar.user")}</span>
                             <ul className='sidebarList sidebarListOthers'>
                                 <li>
-                                    <a href=""><strong>Inicia sesión</strong> o <strong>Crea una cuenta</strong></a>
+                                    <a href=""><strong>{t("sidebar.login")}</strong> / <strong>{t("sidebar.create_account")}</strong></a>
                                 </li>
                                 <li>
-                                    <a href="">Bolsa de compras</a>
+                                    <a href="">{t("sidebar.shopping_bag")}</a>
                                 </li>
                                 <li>
-                                    <a href="">Politica de privacidad</a>
+                                    <a href="">{t("sidebar.privacy_policy")}</a>
                                 </li>
                                 <li>
-                                    <a href="">Devoluciones/reembolsos</a>
+                                    <a href="">{t("sidebar.returns")}</a>
                                 </li>
                             </ul>
                         </div>
@@ -201,7 +202,7 @@ export default function NavBar() {
                 <input
                     className='SearchInput'
                     type="search"
-                    placeholder="Buscar en olgaluciacortes.com"
+                    placeholder={t("navbar.navbar_search.placeholder")}
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />

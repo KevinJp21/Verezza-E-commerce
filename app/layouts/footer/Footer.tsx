@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Footer.css'
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
 
@@ -12,6 +13,7 @@ export default function Footer() {
 
   const [isSelectLanguageOpen, setIsSelectLanguageOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('Español');
+  const { t, i18n } = useTranslation();
 
   const currentYear = new Date().getFullYear();
 
@@ -57,10 +59,10 @@ export default function Footer() {
       } else {
         // Valores predeterminados si no hay nada en localStorage
         setSelectedCurrencySymbol('COP');
-        setSelectedCurrency('Pesos Colombianos');
+        setSelectedCurrency(t("footer.currency.options.cop"));
         setSelectedLanguage('Español')
         localStorage.setItem('selectedCurrencySymbol', 'COP');
-        localStorage.setItem('selectedCurrency', 'Pesos Colombianos');
+        localStorage.setItem('selectedCurrency', t("footer.currency.options.cop"));
         localStorage.setItem('selectedLanguage', 'Español')
       }
 
@@ -82,6 +84,14 @@ export default function Footer() {
     setSelectedLanguage(language);
     setIsSelectLanguageOpen(false);
     localStorage.setItem('selectedLanguage', language);
+
+
+    // Cambiar el idioma de i18next
+    const newLang = language === 'Español' ? 'es' : 'en';
+    i18n.changeLanguage(newLang);
+
+    // Actualizar el atributo lang del HTML
+    document.documentElement.lang = newLang;
     window.location.reload();
   }
 
@@ -91,24 +101,24 @@ export default function Footer() {
       <div className="FooterHeader">
         <div className="footerSelectorWrapper">
           <div className="FooterSelector CurrencySelector">
-            <h3>ELIGE TU DIVISA</h3>
+            <h3>{t("footer.currency.title")}</h3>
             <div className={`customSelect ${isSelectCurrencyOpen ? 'open' : ''}`}>
               <div className="selectHeader" onClick={toggleSelectCurrency}>
                 <div className="currencyWrapper">
                   <div className="currencyDetails">
-                    <span>{selectedCurrency || "Elige tu divisa"}</span>
+                    <span>{selectedCurrency || t("footer.currency.placeholder")}</span>
                     <span>{selectedCurrencySymbol || ""}</span>
                   </div>
                   <span className="arrow"></span>
                 </div>
               </div>
               <ul className="optionsList">
-                <li className="option" onClick={() => handleCurrencyClick('Pesos Colombianos', 'COP')}>
-                  <span>Pesos Colombianos</span>
+                <li className="option" onClick={() => handleCurrencyClick(t("footer.currency.options.cop"), 'COP')}>
+                  <span>{t("footer.currency.options.cop")}</span>
                   <span>COP</span>
                 </li>
-                <li className="option" onClick={() => handleCurrencyClick('Dólares', 'USD')}>
-                  <span>Dólares</span>
+                <li className="option" onClick={() => handleCurrencyClick(t("footer.currency.options.usd"), 'USD')}>
+                  <span>{t("footer.currency.options.usd")}</span>
                   <span>USD</span>
                 </li>
               </ul>
@@ -116,44 +126,44 @@ export default function Footer() {
           </div>
 
           <div className="FooterSelector LocationSelector">
-            <h3>ELIGE TU UBICACIÓN/REGION</h3>
+            <h3>{t("footer.location.title")}</h3>
             <div className={`customSelect ${isSelectLocationOpen ? 'open' : ''}`}>
               <div className="selectHeader" onClick={toggleSelectLocation}>
                 <div className="currencyWrapper">
                   <div className="currencyDetails">
-                    <span>{selectedLocation || "Elige tu ubicación"}</span>
+                    <span>{selectedLocation || t("footer.location.placeholder")}</span>
                   </div>
                   <span className="arrow"></span>
                 </div>
               </div>
               <ul className="optionsList">
-                <li className="option" onClick={() => handleLocationClick('Colombia')}>
-                  <span>Colombia</span>
+                <li className="option" onClick={() => handleLocationClick(t("footer.location.options.colombia"))}>
+                  <span>{t("footer.location.options.colombia")}</span>
                 </li>
-                <li className="option" onClick={() => handleLocationClick('Estados Unidos')}>
-                  <span>Estados Unidos</span>
+                <li className="option" onClick={() => handleLocationClick(t("footer.location.options.usa"))}>
+                  <span>{t("footer.location.options.usa")}</span>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="FooterSelector LanguajeSelector">
-            <h3>ELIGE TU LENGUAJE</h3>
+            <h3>{t("footer.language.title")}</h3>
             <div className={`customSelect ${isSelectLanguageOpen ? 'open' : ''}`}>
               <div className="selectHeader" onClick={toggleSelectLanguage}>
                 <div className="currencyWrapper">
                   <div className="currencyDetails">
-                    <span>{selectedLanguage || "Elige tu idioma"}</span>
+                    <span>{selectedLanguage || t("footer.language.placeholder")}</span>
                   </div>
                   <span className="arrow"></span>
                 </div>
               </div>
               <ul className="optionsList">
                 <li className="option" onClick={() => handleLanguageClick('Español')}>
-                  <span>Español</span>
+                  <span>{t("footer.language.options.spanish")}</span>
                 </li>
                 <li className="option" onClick={() => handleLanguageClick('English')}>
-                  <span>English</span>
+                  <span>{t("footer.language.options.english")}</span>
                 </li>
               </ul>
             </div>
@@ -161,19 +171,19 @@ export default function Footer() {
         </div>
 
         <div className="FooterInfoWrapper">
-          <h3>INFORMACIÓN</h3>
+          <h3>{t("footer.info.title")}</h3>
           <ul className='FooterInfoList'>
             <li className='FooterInfoItem'>
-              <a href=""><span>Atelier</span></a>
+              <a href=""><span>{t("footer.info.links.atelier")}</span></a>
             </li>
             <li className='FooterInfoItem'>
-              <a href=""><span>Nuestra marca</span></a>
+              <a href=""><span>{t("footer.info.links.our_brand")}</span></a>
             </li>
             <li className='FooterInfoItem'>
-              <a href=""><span>Politica de privacidad</span></a>
+              <a href=""><span>{t("footer.info.links.privacy_policy")}</span></a>
             </li>
             <li className='FooterInfoItem'>
-              <a href=""><span>Devoluciones/reembolsos</span></a>
+              <a href=""><span>{t("footer.info.links.returns")}</span></a>
             </li>
           </ul>
         </div>
