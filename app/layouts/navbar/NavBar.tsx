@@ -26,10 +26,12 @@ export default function NavBar() {
 
     const toggleSearch = () => {
         setIsSearchOpen(!isSearchOpen);
+        setSearchTerm('');
     }
 
     const closeSearch = () => {
         setIsSearchOpen(false);
+        setSearchTerm('');
     }
 
      //CloseSearch al hacer scorll
