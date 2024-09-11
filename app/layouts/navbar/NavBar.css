@@ -149,8 +149,6 @@
 }
 
 
-
-
 .SearhContainer .SearchInput{
     background: transparent;
     border: none;
@@ -162,6 +160,11 @@
     border-bottom: 1px solid var(--olga-gray-50);
     max-width: 1920px;
     width: 100%;
+    display: none;
+}
+
+.SearhContainer.open .SearchInput{
+    display: block;
 }
 
 .SearchResults{

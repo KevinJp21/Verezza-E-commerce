@@ -200,7 +200,7 @@ export default function NavBar() {
             <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`}>
                 <input
                     className='SearchInput'
-                    type="text"
+                    type="search"
                     placeholder="Buscar en olgaluciacortes.com"
                     value={searchTerm}
                     onChange={handleSearchChange}
@@ -211,7 +211,7 @@ export default function NavBar() {
                             <li key={`${product.id}-${index}`} className='searhResultWrapper'>
                                 
                                     <picture className='ResultImg'>
-                                        <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} />
+                                        <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} loading='lazy' decoding='async'/>
                                     </picture>
                                     <div className="resultDetails">
                                         <a href={`/producto/${product.id}`}>{product.title}</a>
