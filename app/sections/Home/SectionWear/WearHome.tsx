@@ -1,5 +1,4 @@
-import { useState, useEffect, lazy } from 'react'
-
+import { useTranslation } from 'react-i18next'
 import './WearHome.css'
 
 import imgWearComplements from '~/assets/images/SectionWear/complementos.webp'
@@ -10,17 +9,17 @@ import imgWearComplements4 from '~/assets/images/SectionWear/cinturonBeauty2.web
 
 
 export default function WearHome(){
-
+    const { t } = useTranslation()
     return(
         <section className='WearHomeContainer'>
-            <h2>Complementa tu look</h2>
+            <h2>{t("home.section_wear.title")}</h2>
             <div className='WearHomeWrapper'>
                 <div className='WearImg img1'>
                     <img className='img1-1' src={imgWearComplements} alt="Imagen complementos olga lucia cortes" loading="lazy" decoding="async" width={780} height={1200} />
                     <img className='img1-2' src={imgWearComplements2} alt="Imagen complementos olga lucia cortes" loading="lazy" decoding='async' width={780} height={1200} />
                     <div className='WearImgText'>
-                        <h3>Hebilla Anfar</h3>
-                        <a className="link_btn" href="#">Ver más</a>
+                        <h3>{t("home.section_wear.promo_1.title")}</h3>
+                        <a className="link_btn" href="#">{t("home.section_wear.button")}</a>
                     </div>
                 </div>
 
@@ -28,8 +27,8 @@ export default function WearHome(){
                     <img className='img1-1' src={imgWearComplements3} alt="Cinturon beauty Olga Lucia Cortes" loading='lazy' decoding='async' width={780} height={1200} />
                     <img className='img1-2' src={imgWearComplements4} alt="Cinturon beauty Olga Lucia Cortes" loading='lazy' decoding='async' width={780} height={1200} />
                     <div className='WearImgText'>
-                        <h3>Cinturón Beauty</h3>
-                        <a className="link_btn" href="#">Ver más</a>
+                        <h3>{t("home.section_wear.promo_2.title")}</h3>
+                        <a className="link_btn" href="#">{t("home.section_wear.button")}</a>
                     </div>
                 </div>
             </div>

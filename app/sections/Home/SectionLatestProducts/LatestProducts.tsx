@@ -1,8 +1,10 @@
 import CarouselSection from '~/components/carouselSection/CarouselSection';
 import './LatestProducts.css';
 import { useProductContext } from '~/hooks/ProductContext';
+import { useTranslation } from 'react-i18next';
 
 export default function LatestProducts() {
+    const { t } = useTranslation();
     const { products } = useProductContext();
 
     //Obtener los productos mas recientes segun su fecha de creacion
@@ -10,6 +12,6 @@ export default function LatestProducts() {
 
     
     return (
-        <CarouselSection title="RECIENTES" products={latestProducts} />
+        <CarouselSection title={t("home.section_latest_products.title")} products={latestProducts} />
     );
 }

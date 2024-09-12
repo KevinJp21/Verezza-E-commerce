@@ -62,5 +62,27 @@
                 "returns": "Devoluciones/reembolsos"
             }
         }
+    },
+    "home":{
+        "start_home":{
+            "title": "Descubre la moda que te hará sentir única",
+            "subtitle": "¡Bienvenida a Olga Lucía Cortés!",
+            "button": "Explora ahora"
+        },
+        "section_wear":{
+            "title": "Complementa tu look",
+            "button": "Ver más",
+            "promo_1":{
+                "title": "Hebilla Anfar",
+                "description": "Hebilla Anfar"
+            },
+            "promo_2":{
+                "title": "Cinturón Beauty",
+                "description": "Cinturón Beauty"
+            }
+        },
+        "section_latest_products":{
+            "title": "Productos recientes"
+        }
     }
 }

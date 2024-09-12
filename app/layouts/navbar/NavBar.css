@@ -167,6 +167,12 @@
     display: block;
 }
 
+.SearhContainer.open .SearchInput::-webkit-search-cancel-button,
+.SearhContainer.open .SearchInput::-webkit-search-decoration,
+.SearhContainer.open .SearchInput::-webkit-search-results-button{
+    display: none;
+}
+
 .SearchResults{
     list-style: none;
     display: flex;
