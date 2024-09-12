@@ -12,6 +12,7 @@
         }
     },
     "sidebar": {
+        "sidebar_title": "TIENDA",
         "blouses": "BLUSAS",
         "jackets": "CHAQUETAS",
         "pants": "PANTALONES",
