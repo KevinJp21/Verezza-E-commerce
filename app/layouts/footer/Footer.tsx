@@ -10,14 +10,22 @@ export default function Footer() {
   const [selectedCurrencySymbol, setSelectedCurrencySymbol] = useState('');
 
   const [isSelectLocationOpen, setIsSelectLocationOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState('Colombia');
+  const [selectedLocation, setSelectedLocation] = useState('');
 
   const [isSelectLanguageOpen, setIsSelectLanguageOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('Español');
+  const [selectedLanguage, setSelectedLanguage] = useState('');
 
   const { t, i18n } = useTranslation();
 
   const currentYear = new Date().getFullYear();
+
+  //Default values
+  useEffect(() => {
+    setSelectedCurrency(localStorage.getItem('selectedCurrency') || "");
+    setSelectedCurrencySymbol(localStorage.getItem('selectedCurrencySymbol') || "");
+    setSelectedLocation(localStorage.getItem('selectedLocation') || "");
+    setSelectedLanguage(localStorage.getItem('selectedLanguage') || "");
+  }, []);
 
   // Currency selector
   const toggleSelectCurrency = () => {
@@ -58,15 +66,7 @@ export default function Footer() {
         setSelectedCurrencySymbol(storedSymbol);
         setSelectedCurrency(storedCurrency);
         setSelectedLanguage(storedLanguaje);
-      } else {
-        // Valores predeterminados si no hay nada en localStorage
-        setSelectedCurrencySymbol('COP');
-        setSelectedCurrency(t("footer.currency.options.cop"));
-        setSelectedLanguage('Español')
-        localStorage.setItem('selectedCurrencySymbol', 'COP');
-        localStorage.setItem('selectedCurrency', t("footer.currency.options.cop"));
-        localStorage.setItem('selectedLanguage', 'Español')
-      }
+      } 
 
       const storedLocation = localStorage.getItem('selectedLocation');
       if (storedLocation) {
@@ -139,11 +139,11 @@ export default function Footer() {
                 </div>
               </div>
               <ul className="optionsList">
-                <li className="option" onClick={() => handleLocationClick(t("footer.location.options.colombia"))}>
-                  <span>{t("footer.location.options.colombia")}</span>
+                <li className="option" onClick={() => handleLocationClick("Colombia")}>
+                  <span>Colombia</span>
                 </li>
-                <li className="option" onClick={() => handleLocationClick(t("footer.location.options.usa"))}>
-                  <span>{t("footer.location.options.usa")}</span>
+                <li className="option" onClick={() => handleLocationClick("United States")}>
+                  <span>United States</span>
                 </li>
               </ul>
             </div>

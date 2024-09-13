@@ -40,11 +40,7 @@ export default {
     },
     "location": {
       "title": "CHOOSE YOUR LOCATION/REGION",
-      "placeholder": "Choose your location",
-      "options": {
-        "colombia": "Colombia",
-        "usa": "United States"
-      }
+      "placeholder": "Choose your location"
     },
     "language": {
       "title": "CHOOSE YOUR LANGUAGE",

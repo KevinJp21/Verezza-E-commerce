@@ -70,6 +70,7 @@ export default function App() {
       }
     }
   }, [initialLocale]);
+  
   useChangeLanguage(locale);
   return <Outlet />;
 }
