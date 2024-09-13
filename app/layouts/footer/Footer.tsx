@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Footer.css'
-import { useTranslation } from 'react-i18next';
+
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
 
@@ -13,6 +14,7 @@ export default function Footer() {
 
   const [isSelectLanguageOpen, setIsSelectLanguageOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('Español');
+
   const { t, i18n } = useTranslation();
 
   const currentYear = new Date().getFullYear();
