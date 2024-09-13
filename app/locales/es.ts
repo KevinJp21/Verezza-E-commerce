@@ -1,4 +1,4 @@
-{
+export default {
     "navbar": {
         "blouses": "BLUSAS",
         "pants": "PANTALONES",
