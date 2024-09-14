@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './StartHome.css'
 import { useTranslation } from 'react-i18next'
-import imgStartHome1 from '~/assets/images/StartSectionHome/banner01.webp'
+import imgStartHome1 from '~/assets/images/StartSectionHome/startHome.avif'
 import imgStartHome2 from '~/assets/images/StartSectionHome/banner04.webp'
 
 
@@ -25,7 +25,7 @@ export default function StartHome() {
   return (
     <section className="StartHomeContainer">
       <div className="StartHomeImg">
-        <img className='img1' src={isMobile ? imgStartHome2 : imgStartHome1} alt="Imagen modelo de Olga Lucía Cortes" loading='eager' decoding='async' width={800} height={430} />
+        <img className='img1' src={isMobile ? imgStartHome1 : imgStartHome1} alt="Imagen modelo de Olga Lucía Cortes" loading='eager' decoding='async' width={800} height={430} />
       </div>
       <div className="StartHomeWrapper">
         <div className="StartHomeContent">
