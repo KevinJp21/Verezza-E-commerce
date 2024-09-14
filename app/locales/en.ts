@@ -8,7 +8,7 @@ export default {
     "atelier": "ATÉLIER",
     "our_brand": "OUR BRAND",
     "navbar_search": {
-      "placeholder": "Search olgaluciacortes.com"
+      "placeholder": "Search on olgaluciacortes.com"
     }
   },
   "sidebar": {

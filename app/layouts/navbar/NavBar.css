@@ -1,14 +1,15 @@
 .navbar {
     width: 100%;
-    max-height: 120px;
-    height: fit-content;
-    background-color: var(--olga-black-primary);
-    padding: 20px 10px;
+    height: 40px;
+    background-color: var(--olga-white-primary);
+    padding-inline: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .NavBarContainer {
@@ -19,31 +20,36 @@
 
 .NavBar1 {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: fit-content;
     gap: 10px;
 }
 
-.NavBar1 img {
-    min-width: 140px;
-    max-width: 230px;
-    width: 100%;
-    height: 14px;
-    object-fit: contain;
-    padding-right: 10px;
+.NavBar1 .Logo_Olga {
+    text-decoration: none;
+    text-wrap: nowrap;
+    color: var(--olga-black-primary);
+    font-size: 1rem;
+    letter-spacing: 2.5px;
+    font-weight: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
 }
 
-.NavBar1-1 {
+.NavBar1-3 {
     display: flex;
-    justify-content: end;
+
     align-items: center;
     gap: 10px;
     width: fit-content
 }
 
-.NavBar1-1 a,
-.NavBar1-1 button {
+.NavBar1-3 a,
+.NavBar1-3 button {
     height: 30px;
     width: 20px;
     display: flex;
@@ -52,22 +58,22 @@
 }
 
 
-.NavBar1-1 .whishlistHeader,
-.NavBar1-1 .accoutHeader,
-.NavBar1-1 .BTNSearch {
-    color: var(--olga-gray-100);
+.NavBar1-3 .whishlistHeader,
+.NavBar1-3 .accoutHeader,
+.NavBar1-3 .BTNSearch {
+    color: var(--olga-black-primary);
     display: flex;
 
 }
 
-.NavBar1-1 .whishlistHeader:hover,
-.NavBar1-1 .accoutHeader:hover,
-.NavBar1-1 .BTNSearch:hover {
-    color: var(--olga-white-primary);
+.NavBar1-3 .whishlistHeader:hover,
+.NavBar1-3 .accoutHeader:hover,
+.NavBar1-3 .BTNSearch:hover {
+    color: var(--olga-black-secondary);
 }
 
 
-.NavBar1-1 .BTNSearch {
+.NavBar1-3 .BTNSearch {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -91,12 +97,12 @@
     width: 100%;
     height: 1px;
     margin: 3px 0;
-    background-color: var(--olga-white-primary);
+    background-color: var(--olga-black-primary);
     transition: .4s;
 }
 
 
-.NavBar2 {
+.NavBar1-2 {
     display: none;
 }
 
@@ -104,8 +110,9 @@
     display: none;
 }
 
-.searchOverlay{
+.searchOverlay {
     position: fixed;
+    margin-top: 40px;
     top: 0;
     left: 0;
     width: 100%;
@@ -123,11 +130,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 40px;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--olga-black-primary);
+    background-color: var(--olga-white-primary);
     height: 0;
     overflow: hidden;
     transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
@@ -135,45 +142,46 @@
     z-index: 101;
 }
 
-.searchOverlay.open{
+.searchOverlay.open {
     opacity: 1;
     height: 100%;
 }
+
 .SearhContainer.open {
     max-height: 400px;
     height: 400px;
     opacity: 1;
     padding: 32px 22px 80px;
     overflow-y: auto;
-    
+
 }
 
 
-.SearhContainer .SearchInput{
+.SearhContainer .SearchInput {
     background: transparent;
     border: none;
     outline: none;
     padding: 10px;
-    color: var(--olga-gray-100);
+    color: var(--olga-black-primary);
     font-size: 1.25rem;
     font-weight: normal;
-    border-bottom: 1px solid var(--olga-gray-50);
+    border-bottom: 1px solid var(--olga-black-tp);
     max-width: 1920px;
     width: 100%;
     display: none;
 }
 
-.SearhContainer.open .SearchInput{
+.SearhContainer.open .SearchInput {
     display: block;
 }
 
 .SearhContainer.open .SearchInput::-webkit-search-cancel-button,
 .SearhContainer.open .SearchInput::-webkit-search-decoration,
-.SearhContainer.open .SearchInput::-webkit-search-results-button{
+.SearhContainer.open .SearchInput::-webkit-search-results-button {
     display: none;
 }
 
-.SearchResults{
+.SearchResults {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -185,20 +193,20 @@
     margin-top: 30px;
 }
 
-.SearchResults .searhResultWrapper{
+.SearchResults .searhResultWrapper {
     padding: 10px;
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.SearchResults .searhResultWrapper .ResultImg{
+.SearchResults .searhResultWrapper .ResultImg {
     width: 50px;
     height: 50px;
 }
 
 
-.SearchResults .searhResultWrapper .ResultImg img{
+.SearchResults .searhResultWrapper .ResultImg img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -212,36 +220,28 @@
 
 .SearchResults .searhResultWrapper .resultDetails a {
     text-decoration: underline;
-    color: var(--olga-gray-100);
+    color: var(--olga-black-primary);
     font-size: 1rem;
     font-weight: normal;
 }
 
 .SearchResults .searhResultWrapper .resultDetails a:hover {
-    color: var(--olga-white-primary);
+    color: var(--olga-black-secondary);
 }
 
 .SearchResults .searhResultWrapper .resultDetails p {
     margin: 0;
     padding: 0;
     font-size: 0.8rem;
-    color: var(--olga-gray-100);
+    color: var(--olga-black-primary);
 }
 
-
-
-@media screen and (min-width: 768px) {
-    .navbar {
-        padding: 20px 64px;
-    }
-
-    .NavBar2 {
+@media screen and (min-width: 960px) {
+    .NavBar1-2 {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
         height: 40px;
-
     }
 
     .NavbarListWrapper {
@@ -258,36 +258,34 @@
     }
 
     .NavbarListWrapper>li .strongLink {
-        color: var(--olga-yellow-primary);
+        color: var(--olga-brown-primary);
     }
 
     .NavbarListWrapper>li .strongLink:hover {
-        color: var(--olga-yellow-primary);
+        color: var(--olga-brown-primary);
     }
 
     .NavbarListWrapper>li a {
         text-decoration: none;
-        font-size: 0.65rem;
-        color: var(--olga-gray-100);
+        font-size: .6875rem;
+        color: var(--olga-black-primary);
         font-weight: 900;
     }
 
     .NavbarListWrapper>li a:hover {
-        color: var(--olga-white-primary);
+        color: var(--olga-black-secondary);
     }
-
-    .SearhContainer{
-        margin-top: 110px;
-    }
-
-
 }
+
+
+
+@media screen and (min-width: 768px) {}
 
 @media screen and (max-width: 480px) {
 
-    .NavBar1-1 .whishlistHeader,
-    .NavBar1-1 .accoutHeader,
-    .NavBar1-1 .BTNSearch {
+    .NavBar1-3 .whishlistHeader,
+    .NavBar1-3 .accoutHeader,
+    .NavBar1-3 .BTNSearch {
         display: none;
     }
 
