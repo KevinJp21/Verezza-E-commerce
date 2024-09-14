@@ -16,7 +16,7 @@ export default function NavBar() {
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
 
-    
+
 
     const { t } = useTranslation();
 
@@ -38,7 +38,7 @@ export default function NavBar() {
         setSearchTerm('');
     }
 
-     //CloseSearch al hacer scorll
+    //CloseSearch al hacer scorll
     useEffect(() => {
         const handleScroll = () => {
             closeSearch();
@@ -50,7 +50,7 @@ export default function NavBar() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-   
+
     //Obtener productos y filtrarlos en tiempo real
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const term = event.target.value;
@@ -66,10 +66,35 @@ export default function NavBar() {
         <header className='navbar'>
             <nav className='NavBarContainer'>
                 <div className='NavBar1'>
-                    <a href="/">
-                        <img src={logoOlgaWhite} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} />
+                    <a className='Logo_Olga' href="/">
+                        OLGA LUCIA CORTES
                     </a>
-                    <div className='NavBar1-1'>
+                    <div className='NavBar1-2'>
+                        <ul className='NavbarListWrapper'>
+                            <li>
+                                <a href="">{t("navbar.blouses")}</a>
+                            </li>
+                            <li>
+                                <a href="">{t("navbar.pants")}</a>
+                            </li>
+                            <li>
+                                <a href="">{t("navbar.dresses")}</a>
+                            </li>
+                            <li>
+                                <a href="">{t("navbar.sets")}</a>
+                            </li>
+                            <li>
+                                <a href="">{t("navbar.complements")}</a>
+                            </li>
+                            <li>
+                                <a href="">{t("navbar.atelier")}</a>
+                            </li>
+                            <li>
+                                <a href="" className='strongLink'>{t("navbar.our_brand")}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='NavBar1-3'>
                         <a href="" className="accoutHeader" aria-label="Usuario">
                             {userIcon()}
                         </a>
@@ -88,31 +113,6 @@ export default function NavBar() {
                             <span className='bar bar3'></span>
                         </button>
                     </div>
-                </div>
-                <div className='NavBar2'>
-                    <ul className='NavbarListWrapper'>
-                        <li>
-                            <a href="">{t("navbar.blouses")}</a>
-                        </li>
-                        <li>
-                            <a href="">{t("navbar.pants")}</a>
-                        </li>
-                        <li>
-                            <a href="">{t("navbar.dresses")}</a>
-                        </li>
-                        <li>
-                            <a href="">{t("navbar.sets")}</a>
-                        </li>
-                        <li>
-                            <a href="">{t("navbar.complements")}</a>
-                        </li>
-                        <li>
-                            <a href="">{t("navbar.atelier")}</a>
-                        </li>
-                        <li>
-                            <a href="" className='strongLink'>{t("navbar.our_brand")}</a>
-                        </li>
-                    </ul>
                 </div>
             </nav>
             <div className={`overlay-sidebar ${isSideBarOpen ? 'open' : ''}`} onClick={closeSidebar}></div>
@@ -210,15 +210,15 @@ export default function NavBar() {
                     <ul className="SearchResults">
                         {filteredProducts.map((product, index) => (
                             <li key={`${product.id}-${index}`} className='searhResultWrapper'>
-                                
-                                    <picture className='ResultImg'>
-                                        <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} loading='lazy' decoding='async'/>
-                                    </picture>
-                                    <div className="resultDetails">
-                                        <a href={`/producto/${product.id}`}>{product.title}</a>
-                                        <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
-                                    </div>
-                              
+
+                                <picture className='ResultImg'>
+                                    <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
+                                </picture>
+                                <div className="resultDetails">
+                                    <a href={`/producto/${product.id}`}>{product.title}</a>
+                                    <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                                </div>
+
                             </li>
                         ))}
                     </ul>
