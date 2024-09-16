@@ -127,7 +127,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
                             onMouseDown={(e) => e.preventDefault()}
                             draggable="false"
-                        >
+                            >
                             <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} productId={product.id} productName={product.title} />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">
@@ -137,11 +137,17 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                     <p>{product.title}</p>
                                     <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
                                 </div>
-                                <div className="ProductSize">
+                                
+                            </div>
+                            <div className="ProductDetailsFooter">
+                            <div className="ProductSize">
                                     {product.variants.nodes.map(( size : any) => (
                                         <span key={size.id}>{size.title}</span>
                                     ))}
                                 </div>
+                                <button className='btn-secondary'>
+                                    <span>COMPRAR</span>
+                                </button>
                             </div>
                         </div>
                     ))}
