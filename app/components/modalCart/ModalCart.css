@@ -1,0 +1,277 @@
+.ModalCartContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: var(--olga-gra-tp);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+}
+
+.ModalCartWrapper{
+    max-width: 1300px;
+    width: 90%;
+    max-height: 80%;
+    border-radius: 15px;
+    background-color: var(--olga-gray-secondary);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    position: relative;
+}
+
+.ModalCartWrapper::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.ModalCartWrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ModalCartWrapper::-webkit-scrollbar {
+    width: 0px;
+}
+
+.ModalCartHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    background-color: var(--olga-gray-secondary);
+    z-index: 1000;
+}
+
+.ModalCartHeader::after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: var(--olga-black-tp);
+}
+
+.ModalCartHeader h2{
+    color: var(--olga-black-primary);
+    font-size: 1.25rem;
+}
+
+.ModalCartHeader button{
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    height: fit-content;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    color: var(--olga-black-primary);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ModalCartHeader button:hover{
+    color: var(--olga-black-secondary);
+}
+
+.ModalCartContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
+    
+}
+
+.ModalCartContent .ModalCartImgProduct{
+    max-width: 400px;
+    width: 100%;
+    height: 600px;
+
+}
+
+.ModalCartContent .ProductCarousel{
+    width: 100%;
+    height: 100%;
+}
+
+.ModalCartContent .ProductCarousel img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.ModalCartContent .ModalCartProductInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader h3{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--olga-black-primary);
+    font-weight: 900;
+}
+
+.ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader a{
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--olga-black-primary);
+}
+
+.ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader a:hover{
+    color: var(--olga-black-secondary);
+}
+
+.ModalCartContent .productDescription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.ModalCartContent .productDescription h4{
+    font-size: 0.875rem;
+    font-weight: 900;
+    color: var(--olga-black-primary);
+    padding: 8px 0;
+}
+.ModalCartContent .productDescription p{
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--olga-black-primary);
+    padding: 8px 0;
+}
+
+.ModalCartContent .productPrice{
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--olga-black-primary);
+    padding: 8px 0;
+}
+
+.ModalCartContent .ModalCartProductSize{
+    background-color: var(--olga-white-primary);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+
+.ModalCartContent .ModalCartProductSize .size-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.ModalCartContent .ModalCartProductSize .size-header span {
+    color: var(--olga-black-primary);
+    font-weight: 900;
+    font-size: 0.875rem;
+}
+
+.ModalCartContent .ModalCartProductSize .size-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ModalCartContent .ModalCartProductSize .size-button {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 10px 32px;
+    border: 1px solid var(--olga-black-tp);
+    border-radius: 20px;
+    background-color: var(--olga-white-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ModalCartContent .ModalCartProductSize .size-button.selected {
+    border-color: var(--olga-black-primary);
+}
+
+.ModalCartContent .ModalCartProductQuantity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--olga-white-primary);
+    padding: 10px;
+    border-radius: 15px;
+    width: fit-content;
+    font-size: .875rem;
+}
+
+.ModalCartContent .ModalCartProductQuantity .quantity-button {
+    margin: 0;
+    border: 1px solid var(--olga-black-tp);
+    cursor: pointer;
+    padding: 10px;
+    width: 60px;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.ModalCartContent .ModalCartProductQuantity .quantity-button:hover{
+    border-color: var(--olga-black-primary);
+}
+
+.ModalCartWrapper .ModalCartFooter{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    gap: 10px;
+    padding: 20px;
+    background-color: var(--olga-gray-secondary);
+    z-index: 1000;
+}
+
+.ModalCartWrapper .ModalCartFooter::after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: var(--olga-black-tp);
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+    .ModalCartContent{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .ModalCartContent .ModalCartProductSize .size-button {
+        
+    }
+}

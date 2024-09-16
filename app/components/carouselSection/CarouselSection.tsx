@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import './CarouselSection.css';
-
+import ModalCart from '../modalCart/ModalCart';
 interface CarouselSectionProps {
     title: string;
     products: any[];
@@ -15,8 +15,18 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
     const [transitionEnabled, setTransitionEnabled] = useState(true);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
     const extendedProducts = [...products, ...products, ...products];
+
+    //Modal cart const
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [productId, setProductId] = useState<number | null>(null);
+    const [productName, setProductName] = useState<string>('');
+    const [productCategory, setProductCategory] = useState<string>('');
+    const [productPrice, setProductPrice] = useState<number>(0);
+    const [productSizes, setProductSizes] = useState<string[]>([]);
+    const [productDescription, setProductDescription] = useState<string>('');
+    const [productImages, setProductImages] = useState<string[]>([]);
 
     const handleNavigation = (direction: 'next' | 'prev') => {
         if (isButtonDisabled) return;
@@ -98,6 +108,23 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         setAutoScrollEnabled(true);
     };
 
+    //Modal cart
+    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+        setIsModalOpen(true);
+        setSelectedProduct(productName);
+        setProductId(productId);
+        setProductName(productName);
+        setProductCategory(productCategory);
+        setProductPrice(productPrice);
+        setProductDescription(productDescription);
+        setProductImages(productImages);
+        setProductSizes(productSizes);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <section className="CarrouselContainer">
             <div className="CarrouselHeader">
@@ -128,7 +155,11 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             onMouseDown={(e) => e.preventDefault()}
                             draggable="false"
                             >
-                            <ProductCarousel images={product.images.edges.map(({ node }: any) => node)} productId={product.id} productName={product.title} />
+                            <ProductCarousel 
+                                productImages={product.images.edges.map(({ node }: any) => node)} 
+                                productId={product.id} 
+                                productName={product.title} 
+                            />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">
                                     <a href={`/collections/${product.collections.nodes[0].title.toLowerCase().replace(/\s+/g, '-')}`}>{product.collections.nodes[0].title}</a>
@@ -145,7 +176,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                         <span key={size.id}>{size.title}</span>
                                     ))}
                                 </div>
-                                <button className='btn-secondary'>
+                                <button className='btn-secondary' onClick={() => handleOpenModal(product.id, product.title, product.collections.nodes[0].title, product.priceRange.minVariantPrice.amount, product.variants.nodes, product.description, product.images.edges.map(({ node }: any) => node))}>
                                     <span>COMPRAR</span>
                                 </button>
                             </div>
@@ -153,6 +184,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     ))}
                 </div>
             </div>
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </section>
     );
 }

@@ -3,26 +3,26 @@ import './ProductCarousel.css';
 import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 
 interface ProductCarouselProps {
-  images: Array<{ src: string; altText: string }>;
-  productId: string;
-  productName: String;
+  productImages: Array<{ src: string; altText: string }>;
+  productId: number | null;
+  productName: string;
 }
 
-export default function ProductCarousel({ images, productId, productName}: ProductCarouselProps) {
+export default function ProductCarousel({ productImages, productId, productName}: ProductCarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productImages.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + productImages.length) % productImages.length);
   };
 
   return (
     <div className="ProductCarousel">
       <button onClick={prevImage} className="carrouselButton CarrouselButtonLeft"  aria-label="Botón Prev">{arrowLeftIcon()}</button>
-      {images.map((image, index) => (
+      {productImages.map((image, index) => (
         <div key={`${productId}-${index}`}>
           <img
           src={image.src}

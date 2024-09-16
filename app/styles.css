@@ -70,6 +70,27 @@ a{
 }
 
 
+.btn-secondary{
+    margin: 0;
+    border: 1px solid var(--olga-black-primary);
+    cursor: pointer;
+    color: var(--olga-black-primary);
+    background-color: transparent;
+    padding: 10px 32px;
+    font-size: .6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    color: var(--olga-white-primary);
+    background-color: var(--olga-black-primary);
+  }
+
+
 .CarrouselButtonLeft, .CarrouselButtonRight {
     all: unset;
     background-color: var(--olga-white-primary);
@@ -131,25 +152,6 @@ a{
     cursor: pointer;
 }
 
-.btn-secondary{
-    margin: 0;
-    border: 1px solid var(--olga-black-primary);
-    cursor: pointer;
-    color: var(--olga-black-primary);
-    background-color: transparent;
-    padding: 10px 32px;
-    font-size: .6875rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-    color: var(--olga-white-primary);
-    background-color: var(--olga-black-primary);
-  }
   
   
   
