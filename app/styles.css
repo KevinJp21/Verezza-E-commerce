@@ -117,5 +117,18 @@ a{
     background-color: var(--olga-black-secondary); 
 }
 
+.Logo_Olga {
+    text-decoration: none;
+    text-wrap: nowrap;
+    color: var(--olga-black-primary);
+    font-size: 1rem;
+    letter-spacing: 2.5px;
+    font-weight: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
   
   

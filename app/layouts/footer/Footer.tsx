@@ -192,7 +192,7 @@ export default function Footer() {
       </div>
 
       <div className="FooterBottom">
-        <span>© {currentYear} Olga Lucía Cortés.</span>
+        <a className='Logo_Olga' href="/"><span>© {currentYear} OLGA LUCIA CORTES</span></a>
       </div>
       </div>
     </footer>

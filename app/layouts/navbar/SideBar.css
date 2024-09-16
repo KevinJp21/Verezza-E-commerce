@@ -61,12 +61,6 @@
     padding-bottom: 24px;
 }
 
-.sidebarHeader img{
-    max-width: 290px;
-    width: 100%;
-    height: 14px;
-}
-
 .closeSidebar{
     background-color: transparent;
     border: none;

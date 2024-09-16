@@ -119,9 +119,7 @@ export default function NavBar() {
             <div className={`sidebar ${isSideBarOpen ? 'open' : ''}`}>
                 <div className='sidebarWrapper'>
                     <div className="sidebarHeader">
-                        <picture>
-                            <img src={logoOlgaBlack} alt='Logo de la marca Olga Lucía Cortes' width={290} height={20} decoding='async' loading='lazy' />
-                        </picture>
+                        <a className='Logo_Olga' href="/">OLGA LUCIA CORTES</a>
                         <button className='closeSidebar' onClick={closeSidebar} aria-label="Cerrar menu">
                             {closeIcon()}
                         </button>
