@@ -16,6 +16,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [transitionEnabled, setTransitionEnabled] = useState(true);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const extendedProducts = [...products, ...products, ...products];
+    const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
 
     //Modal cart const
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -124,6 +125,14 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+    
+//Selected currency
+    useEffect(() => {
+        let currency = localStorage.getItem('selectedCurrencySymbol');
+        if (currency) {
+            setSelectedCurrency(currency);
+        }
+    }, [])
 
     return (
         <section className="CarrouselContainer">
@@ -166,7 +175,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                 </div>
                                 <div className="ProductContent">
                                     <p>{product.title}</p>
-                                    <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                                    <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
                                 </div>
                                 
                             </div>

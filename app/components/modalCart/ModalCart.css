@@ -262,6 +262,9 @@
     background-color: var(--olga-black-tp);
 }
 
+.ModalCartWrapper .ModalCartFooter button{
+    -webkit-tap-highlight-color: transparent;
+}
 
 
 
@@ -270,8 +273,18 @@
         flex-direction: row;
         align-items: center;
     }
+}
 
-    .ModalCartContent .ModalCartProductSize .size-button {
-        
+@media screen and (max-width: 470px) {
+
+    .ModalCartWrapper .ModalCartFooter {
+        justify-content: center;
     }
+
+    .ModalCartWrapper .ModalCartFooter button{
+        padding: 10px 10px;
+        justify-self: center;
+        align-self: center;
+    }
+    
 }

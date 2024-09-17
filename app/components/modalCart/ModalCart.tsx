@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ModalCart.css'
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
@@ -19,6 +19,7 @@ interface ModalCartProps {
 const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productSizes, productDescription, productImages }) => {
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+    const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const handleClose = () => {
         onClose();
     }
@@ -34,6 +35,13 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
             setSelectedQuantity(1);
         }
     }
+
+    useEffect(() => {
+        let currency = localStorage.getItem('selectedCurrencySymbol');
+        if (currency) {
+            setSelectedCurrency(currency);
+        }
+    }, [])
 
     return (
         <div className='ModalCartContainer'>
@@ -57,7 +65,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                                 <p>{productDescription}</p>
                             </div>
                         }
-                        <p className='productPrice'>{parseFloat(productPrice.toString()).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })} COP</p>
+                        <p className='productPrice'>{parseFloat(productPrice.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
                         <div className='ModalCartProductSize'>
                             <div className='size-header'>
                                 <span>SIZE</span>
