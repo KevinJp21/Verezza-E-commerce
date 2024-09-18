@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './ModalCart.css'
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
+import { useTranslation } from 'react-i18next';
 interface ModalCartProps {
     isOpen: boolean;
     onClose: () => void;
@@ -20,6 +21,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
+    const { t } = useTranslation();
     const handleClose = () => {
         onClose();
     }
@@ -68,14 +70,16 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                         <p className='productPrice'>{parseFloat(productPrice.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
                         <div className='ModalCartProductSize'>
                             <div className='size-header'>
-                                <span>SIZE</span>
+                                <span>{t('modalCart.size_title')}</span>
                             </div>
                             <div className='size-buttons'>
                                 {productSizes.map((size) => (
+                                  
                                     <button
                                         key={size.id}
-                                        className={`size-button ${selectedSize === size.title ? 'selected' : ''}`}
+                                        className={`size-button ${selectedSize === size.title ? 'selected' : '' }`}
                                         onClick={() => handleSizeClick(size.title)}
+                                        disabled={!size.availableForSale}
                                     >
                                         {size.title}
                                     </button>
@@ -94,8 +98,8 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                     </div>
                 </div>
                 <footer className='ModalCartFooter'>
-                    <button className='btn-secondary'><span>Agregar al carrito</span></button>
-                    <button className='btn-secondary'><span>Comprar ahora</span></button>
+                    <button className='btn-secondary'><span>{t('modalCart.add_to_cart')}</span></button>
+                    <button className='btn-secondary'><span>{t('modalCart.buy_now')}</span></button>
                 </footer>
             </div>
         </div>

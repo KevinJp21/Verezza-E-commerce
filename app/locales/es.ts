@@ -68,18 +68,26 @@ export default {
         },
         "section_wear":{
             "title": "Complementa tu look",
-            "button": "Ver más",
+            "button": "Explora ahora",
             "promo_1":{
                 "title": "Hebilla Anfar",
-                "description": "Hebilla Anfar"
+                "description": "El toque final perfecto: un accesorio que transforma cualquier look en una declaración audaz."
             },
             "promo_2":{
                 "title": "Cinturón Beauty",
-                "description": "Cinturón Beauty"
+                "description": "El cinturón Beauty es la esencia de la sofisticación. Define tu estilo con su elegancia atemporal y realza cualquier atuendo con un toque de distinción."
             }
         },
         "section_latest_products":{
             "title": "Productos recientes"
         }
+    },
+    "carouselSection":{
+        "button": "Comprar"
+    },
+    "modalCart":{
+      "size_title": "Talla",
+      "add_to_cart": "Agregar al carrito",
+      "buy_now": "Comprar ahora"
     }
 }

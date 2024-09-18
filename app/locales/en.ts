@@ -68,18 +68,26 @@ export default {
     },
     "section_wear": {
       "title": "Complete your look",
-      "button": "See more",
+      "button": "Explore now",
       "promo_1": {
         "title": "Anfar Buckle",
-        "description": "Anfar Buckle"
+        "description": "The perfect finishing touch: an accessory that transforms any look into a bold statement."
       },
       "promo_2": {
         "title": "Beauty Belt",
-        "description": "Beauty Belt"
+        "description": "The Beauty Belt is the essence of sophistication. Define your style with its timeless elegance and enhance any outfit with a touch of distinction."
       }
     },
     "section_latest_products":{
       "title": "Recently Added"
     }
+  },
+  "carouselSection":{
+    "button": "Shop now"
+  },
+  "modalCart":{
+    "size_title": "Size",
+    "add_to_cart": "Add to cart",
+    "buy_now": "Shop now"
   }
 }

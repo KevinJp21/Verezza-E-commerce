@@ -188,6 +188,7 @@
     color: var(--olga-black-primary);
     font-weight: 900;
     font-size: 0.875rem;
+    text-transform: uppercase;
 }
 
 .ModalCartContent .ModalCartProductSize .size-buttons {
@@ -195,6 +196,7 @@
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .ModalCartContent .ModalCartProductSize .size-button {
@@ -212,6 +214,12 @@
 
 .ModalCartContent .ModalCartProductSize .size-button.selected {
     border-color: var(--olga-black-primary);
+}
+
+.ModalCartContent .ModalCartProductSize .size-button[disabled]:hover{
+    border-color: var(--olga-red-primary);
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .ModalCartContent .ModalCartProductQuantity {
@@ -266,8 +274,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-
-
 @media screen and (min-width: 768px) {
     .ModalCartContent{
         flex-direction: row;
@@ -285,6 +291,7 @@
         padding: 10px 10px;
         justify-self: center;
         align-self: center;
+        width: 50%;
     }
     
 }

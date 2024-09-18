@@ -24,6 +24,7 @@ body{
     --olga-white-primary: rgba(255, 255, 255, 1);
     --olga-white-tp: rgba(255, 255, 255, 0.5);
     --olga-yellow-primary: rgb(255, 230, 30);
+    --olga-red-primary: rgba(139, 0, 0, 0.9);;
 }
 h1,
 h2,

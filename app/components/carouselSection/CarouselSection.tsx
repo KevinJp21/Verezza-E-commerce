@@ -3,6 +3,7 @@ import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import './CarouselSection.css';
 import ModalCart from '../modalCart/ModalCart';
+import { useTranslation } from 'react-i18next';
 interface CarouselSectionProps {
     title: string;
     products: any[];
@@ -17,6 +18,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const extendedProducts = [...products, ...products, ...products];
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
+    const { t } = useTranslation();
 
     //Modal cart const
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -186,7 +188,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                     ))}
                                 </div>
                                 <button className='btn-secondary' onClick={() => handleOpenModal(product.id, product.title, product.collections.nodes[0].title, product.priceRange.minVariantPrice.amount, product.variants.nodes, product.description, product.images.edges.map(({ node }: any) => node))}>
-                                    <span>COMPRAR</span>
+                                    <span>{t("carouselSection.button")}</span>
                                 </button>
                             </div>
                         </div>

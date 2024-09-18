@@ -1,5 +1,5 @@
 import { createStorefrontApiClient } from "@shopify/storefront-api-client";
-
+import i18next from "i18next";
 const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as string;
 const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
 
@@ -32,6 +32,7 @@ export interface Product {
     nodes: Array<{
       id: string;
       title: string;
+      availableForSale: boolean;
     }>;
   };
 }
@@ -82,9 +83,10 @@ export async function fetchShopify(query: string, variables = {}): Promise<Produ
 }
 
 export async function getAllProducts(): Promise<Product[]> {
+  const currentLanguage = i18next.language;
   let currency = localStorage.getItem('selectedCurrencySymbol') || 'COP';
   let countryCode = 'CO';
-  let language = localStorage.getItem('selectedLanguage') || 'ES';
+  let language = localStorage.getItem('selectedLanguage') || currentLanguage;
 
   if (currency === 'COP') {
     countryCode = 'CO';
@@ -92,9 +94,9 @@ export async function getAllProducts(): Promise<Product[]> {
     countryCode = 'US';
   }
 
-  if (language === 'Español') {
+  if (language === 'Español' || language === 'es') {
     language = 'ES';
-  } else if (language === 'English') {
+  } else if (language === 'English' || language === 'en') {
     language = 'EN';
   }
 
@@ -135,6 +137,7 @@ export async function getAllProducts(): Promise<Product[]> {
               nodes {
                 id
                 title
+                availableForSale
               }
             }
           }
