@@ -199,6 +199,7 @@ export default function NavBar() {
             <div className={`SearhContainer ${isSearchOpen ? 'open' : ''}`}>
                 <input
                     className='SearchInput'
+                    id='SearchInput'
                     type="search"
                     placeholder={t("navbar.navbar_search.placeholder")}
                     value={searchTerm}

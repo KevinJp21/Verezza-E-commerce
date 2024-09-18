@@ -1,3 +1,5 @@
+import { createStorefrontApiClient } from "@shopify/storefront-api-client";
+
 const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as string;
 const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
 
@@ -10,45 +12,73 @@ export interface Product {
     minVariantPrice: {
       amount: string;
       currencyCode: string;
-    }
+    };
   };
   images: {
     edges: Array<{
       node: {
         src: string;
         altText: string | null;
-      }
-    }>
+      };
+    }>;
   };
   collections: {
     nodes: Array<{
       id: string;
       title: string;
-    }>
+    }>;
   };
   variants: {
     nodes: Array<{
       id: string;
       title: string;
-    }>
+    }>;
   };
 }
 
-export async function fetchShopify(query: string, variables = {}) {
-  const res = await fetch(SHOPIFY_STOREFRONT_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_API_TOKEN,
-    },
-    body: JSON.stringify({ query, variables }),
-  });
+interface ProductsResponse {
+  products: {
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string | null;
+    };
+    edges: Array<{
+      node: Product;
+    }>;
+  };
+}
 
-  const json = await res.json();
-  if (json.errors) {
-    throw new Error(json.errors[0].message);
+interface GraphQLResponse {
+  data?: ProductsResponse;
+  errors?: Array<{ message: string }>; // Ajustado para manejar una lista de errores
+}
+
+const client = createStorefrontApiClient({
+  storeDomain: SHOPIFY_STOREFRONT_API_URL,
+  apiVersion: '2024-07',
+  publicAccessToken: SHOPIFY_STOREFRONT_API_TOKEN,
+});
+
+export async function fetchShopify(query: string, variables = {}): Promise<ProductsResponse> {
+  try {
+    const response = await client.request<GraphQLResponse>(query, variables);
+
+    if (response.errors && Array.isArray(response.errors)) {
+      // Manejo de errores si response.errors es un array
+      const errorMessages = response.errors.map((error) => error.message).join(', ');
+      throw new Error(`GraphQL errors: ${errorMessages}`);
+    }
+
+    if (!response.data) {
+      throw new Error('No data returned from Shopify');
+    }
+
+    return response.data as ProductsResponse; // Asegurarse de que el tipo sea ProductsResponse
+  } catch (error) {
+    // Manejo de errores en el bloque catch
+    console.error('Error en la consulta a Shopify:', error);
+    throw error;
   }
-  return json.data;
 }
 
 export async function getAllProducts(): Promise<Product[]> {
@@ -101,8 +131,8 @@ export async function getAllProducts(): Promise<Product[]> {
                 title
               }
             } 
-            variants(first: 10){
-              nodes{
+            variants(first: 10) {
+              nodes {
                 id
                 title
               }
@@ -120,9 +150,10 @@ export async function getAllProducts(): Promise<Product[]> {
   while (hasNextPage) {
     const variables = { cursor };
     const data = await fetchShopify(query, variables);
-    allProducts = [...allProducts, ...data.products.edges.map(({ node }: { node: Product }) => node)];
-    hasNextPage = data.products.pageInfo.hasNextPage;
-    cursor = data.products.pageInfo.endCursor;
+    const productsData = data.products; // Acceso a la propiedad products
+    allProducts = [...allProducts, ...productsData.edges.map(({ node }) => node)];
+    hasNextPage = productsData.pageInfo.hasNextPage;
+    cursor = productsData.pageInfo.endCursor;
 
     // Opcional: agregar un límite de seguridad
     if (allProducts.length > 1000) {
