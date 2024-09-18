@@ -5,6 +5,11 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [
     remix({
+      routes(defineRoutes) {
+        return defineRoutes((route) => {
+          route("/api/products/getInventoryById/:id", "routes/api/products/getInventoryById.ts");
+        });
+      },
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
