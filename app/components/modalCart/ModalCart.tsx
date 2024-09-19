@@ -3,6 +3,7 @@ import './ModalCart.css'
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
 import { useTranslation } from 'react-i18next';
+import { useProductContext } from '~/hooks/ProductContext';
 interface ModalCartProps {
     isOpen: boolean;
     onClose: () => void;
@@ -22,6 +23,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const { t } = useTranslation();
+    const { addToBag } = useProductContext();
     const handleClose = () => {
         onClose();
     }
@@ -44,6 +46,39 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
             setSelectedCurrency(currency);
         }
     }, [])
+
+    //Agregar producto a la bolsa
+    const handleAddToBag = () => {
+        const productToAdd = {
+            id: productId?.toString() || '',
+            title: productName || '',
+            description: productDescription,
+            createdAt: new Date().toISOString(), // Añadir createdAt
+            priceRange: {
+                minVariantPrice: {
+                    amount: productPrice.toString(),
+                    currencyCode: selectedCurrency
+                }
+            },
+            images: {
+                edges: productImages.map((image) => ({
+                    node: { src: image.src, altText: image.altText }
+                }))
+            },
+            collections: {
+                nodes: [] // Añadir collections vacío o con datos reales si están disponibles
+            },
+            variants: {
+                nodes: productSizes.map((size) => ({
+                    id: size.id,
+                    title: size.title,
+                    availableForSale: size.availableForSale
+                }))
+            }
+        };
+
+        addToBag(productToAdd, selectedQuantity); // Pasar ambos argumentos
+    }
 
     return (
         <div className='ModalCartContainer'>
@@ -98,7 +133,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                     </div>
                 </div>
                 <footer className='ModalCartFooter'>
-                    <button className='btn-secondary'><span>{t('modalCart.add_to_cart')}</span></button>
+                    <button className='btn-secondary' onClick={handleAddToBag}><span>{t('modalCart.add_to_cart')}</span></button>
                     <button className='btn-secondary'><span>{t('modalCart.buy_now')}</span></button>
                 </footer>
             </div>

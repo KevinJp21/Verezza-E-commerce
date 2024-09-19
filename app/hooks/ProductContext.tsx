@@ -52,6 +52,7 @@ export interface Product {
     nodes: Array<{
       id: string;
       title: string;
+      availableForSale: boolean;
     }>;
   };
 }
@@ -63,7 +64,7 @@ interface CartItem extends Product {
 interface ProductContextType {
   products: Product[];
   cartItems: CartItem[];
-  addToCart: (product: Product) => void;
+  addToBag: (product: Product, quantity: number) => void;
   removeFromCart: (productId: string) => void;
   loading: boolean;
   error: string | null;
@@ -92,15 +93,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     fetchProducts();
   }, []);
 
-  const addToCart = (product: Product) => {
+  const addToBag = (product: Product, quantity: number) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
         return prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
         );
       }
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, quantity: quantity }];
     });
   };
 
@@ -109,7 +110,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   return (
-    <ProductContext.Provider value={{ products, cartItems, addToCart, removeFromCart, loading, error }}>
+    <ProductContext.Provider value={{ products, cartItems, addToBag, removeFromCart, loading, error }}>
       {children}
     </ProductContext.Provider>
   );
