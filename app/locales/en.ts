@@ -87,6 +87,7 @@ export default {
   },
   "modalCart":{
     "size_title": "Size",
+    "size_warning": "Select a size",
     "add_to_cart": "Add to cart",
     "buy_now": "Shop now"
   }

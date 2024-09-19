@@ -199,6 +199,13 @@
     position: relative;
 }
 
+.ModalCartContent .ModalCartProductSize .size-warning{
+    color: var(--olga-red-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+
+}
+
 .ModalCartContent .ModalCartProductSize .size-button {
     flex: 1;
     font-size: 0.875rem;

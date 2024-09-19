@@ -22,6 +22,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
+    const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const { t } = useTranslation();
     const { addToBag } = useProductContext();
     const handleClose = () => {
@@ -30,6 +31,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
 
     const handleSizeClick = (size: string) => {
         setSelectedSize(size);
+        setIsSizeSelected(false);
     }
 
     const handleQuantityClick = (quantity: number) => {
@@ -49,6 +51,10 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
 
     //Agregar producto a la bolsa
     const handleAddToBag = () => {
+        if (!selectedSize) {
+            setIsSizeSelected(true);
+            return;
+        }
         const productToAdd = {
             id: productId?.toString() || '',
             title: productName || '',
@@ -66,18 +72,16 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 }))
             },
             collections: {
-                nodes: [] // Añadir collections vacío o con datos reales si están disponibles
+                nodes: [{ title: productCategory }]
             },
             variants: {
-                nodes: productSizes.map((size) => ({
-                    id: size.id,
-                    title: size.title,
-                    availableForSale: size.availableForSale
-                }))
+                nodes: [{ title: selectedSize }]
             }
         };
 
-        addToBag(productToAdd, selectedQuantity); // Pasar ambos argumentos
+        addToBag(productToAdd, selectedQuantity, selectedSize); // Pasar ambos argumentos
+        onClose();
+        setIsSizeSelected(false);
     }
 
     return (
@@ -120,6 +124,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                                     </button>
                                 ))}
                             </div>
+                            {isSizeSelected && <span className='size-warning'>{t('modalCart.size_warning')}</span>}
                         </div>
                         <div className='ModalCartProductQuantity'>
                             <button className='quantity-button btn-primary' onClick={() => handleQuantityClick(selectedQuantity - 1)}>

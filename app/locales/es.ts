@@ -87,6 +87,7 @@ export default {
     },
     "modalCart":{
       "size_title": "Talla",
+      "size_warning": "Selecciona una talla",
       "add_to_cart": "Agregar al carrito",
       "buy_now": "Comprar ahora"
     }

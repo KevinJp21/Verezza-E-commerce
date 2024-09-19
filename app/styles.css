@@ -24,7 +24,9 @@ body{
     --olga-white-primary: rgba(255, 255, 255, 1);
     --olga-white-tp: rgba(255, 255, 255, 0.5);
     --olga-yellow-primary: rgb(255, 230, 30);
-    --olga-red-primary: rgba(139, 0, 0, 0.9);;
+    --olga-red-primary: rgba(139, 0, 0, 0.9);
+    --olga-green-primary: rgba(0, 107, 84, 1);
+    
 }
 h1,
 h2,
@@ -48,6 +50,11 @@ a{
     text-underline-offset: 3px;
 }
 
+button{
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
 .btn-primary{
     background-color: var(--olga-white-primary);
     width: fit-content;
@@ -64,6 +71,7 @@ a{
     padding: 10px 32px;
     margin-top: 20px;
     transition: opacity 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-primary:hover{

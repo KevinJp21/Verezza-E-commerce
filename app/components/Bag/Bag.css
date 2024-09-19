@@ -19,27 +19,45 @@
     opacity: 1;
     pointer-events: auto;
     z-index: 1000;
-    
 }
 
 .BagContainer{
     position: fixed;
-    padding: 24px 24px 104px;
-    background-color: var(--olga-white-primary);
-    max-width: 100%;
+    background-color: var(--olga-gray-primary);
+    max-width: 560px;
     width: 100%;
     height: 100vh;
     right: -100%;
     top: 0;
-    transition: all .7s cubic-bezier(0.55, 0.09, 0.68, 0.53);
+    transition: right .7s cubic-bezier(0.55, 0.09, 0.68, 0.53), max-width .7s cubic-bezier(0.55, 0.09, 0.68, 0.53);
     z-index: 1000;
 }
 
 .BagContainer.open{
     top: 0;
     right: 0;
-    transition: all .3s cubic-bezier(0.55, 0.09, 0.68, 0.53);
+    transition: right .3s cubic-bezier(0.55, 0.09, 0.68, 0.53), max-width .3s cubic-bezier(0.55, 0.09, 0.68, 0.53);
 }
+
+.BagWrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--olga-gray-secondary);
+    z-index: 1000;
+    transition: .3s ease;
+    padding: 24px 24px 104px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.BagContent{
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
 
 .BagHeader{
     position: relative;
@@ -82,15 +100,135 @@
     color: var(--olga-black-secondary);
 }
 
-.BagContent .cartEmpty p{
+.BagContent .bagEmpty p{
     font-size: 0.875rem;
     font-weight: normal;
     color: var(--olga-black-primary);
 }
 
+.bagItem{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--olga-black-tp);
+}
+
+.bagItemImage{
+    align-self: center;
+    width: 100px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.bagItemImage img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.itemDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.itemDetails a{
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--olga-black-primary);
+    text-decoration: none;
+    padding: 2px 0;
+}
+
+.bagPriceIrem{
+    display: flex;
+    align-items: center;
+    margin: 8px 0 18px;
+}
+
+.bagPriceIrem .priceWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.bagPriceIrem .priceWrapper .productPrice{
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--olga-green-primary);
+}
+
+.itemVariants p{
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--olga-black-primary);
+}
+
+.itemQuantity{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    background-color: var(--olga-white-primary);
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 15px;
+    font-size: .875rem;
+}
+
+.itemQuantity button{
+    padding: 10px;
+    margin: 0;
+    border: none;
+    background-color: var(--olga-white-primary);
+}
+
+.removeItem{
+    display: flex;
+    all: unset;
+    margin-left: auto;
+    cursor: pointer;
+    color: var(--olga-black-primary);
+}
+
+.BagFooter {
+    flex-shrink: 0;
+    padding: 24px 0;
+    justify-self: end;
+    align-self: end;
+    width: 100%;
+}
+
+.BagFooterWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--olga-black-tp);
+}
+
+.BagFooterWrapper p{
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.BagFooterWrapper .btn-secondary{
+    margin-top: 16px;
+    width: 100%;
+    border-radius: 0;
+    height: 56px;
+}
 
 @media screen and (min-width: 768px) {
-    .BagContainer.open{
-        max-width: 600px;
-    }
+   
 }

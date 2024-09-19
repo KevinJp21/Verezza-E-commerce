@@ -1,28 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getAllProducts } from '~/utils/GetAllProducts';
 
-interface PriceRange {
-  minVariantPrice: {
-    amount: string;
-    currencyCode: string;
-  };
-}
-
-interface Image {
-  src: string;
-  altText: string | null;
-}
-
-interface Collection {
-  title: string;
-  id: string;
-}
-
-interface Variant {
-  id: string;
-  title: string;
-}
-
 export interface Product {
   id: string;
   title: string;
@@ -50,9 +28,9 @@ export interface Product {
   };
   variants: {
     nodes: Array<{
-      id: string;
+      id?: string;
       title: string;
-      availableForSale: boolean;
+      availableForSale?: boolean;
     }>;
   };
 }
@@ -64,8 +42,9 @@ interface CartItem extends Product {
 interface ProductContextType {
   products: Product[];
   cartItems: CartItem[];
-  addToBag: (product: Product, quantity: number) => void;
-  removeFromCart: (productId: string) => void;
+  addToBag: (product: Product, quantity: number, size: string) => void;
+  removeFromCart: (productId: string, size: string) => void;
+  updateCartItemQuantity: (productId: string, quantity: number, size: string) => void;
   loading: boolean;
   error: string | null;
 }
@@ -93,24 +72,38 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     fetchProducts();
   }, []);
 
-  const addToBag = (product: Product, quantity: number) => {
+  const addToBag = (product: Product, quantity: number, size: string) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      const existingItem = prevItems.find(item => item.id === product.id && item.variants.nodes.some(variant => variant.title === size));
       if (existingItem) {
         return prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+          item.id === product.id && item.variants.nodes.some(variant => variant.title === size) 
+            ? { ...item, quantity: item.quantity + quantity } 
+            : item
         );
       }
-      return [...prevItems, { ...product, quantity: quantity }];
+      return [...prevItems, { ...product, quantity: quantity, variants: { nodes: [{ ...product.variants.nodes[0], title: size }] } }];
     });
   };
-
-  const removeFromCart = (productId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+  
+  const removeFromCart = (productId: string, size: string) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== productId || !item.variants.nodes.some(variant => variant.title === size)));
+  };
+  
+  const updateCartItemQuantity = (productId: string, quantity: number, size: string) => {
+    setCartItems(prevItems => 
+      quantity < 1 
+        ? prevItems.filter(item => item.id !== productId || !item.variants.nodes.some(variant => variant.title === size)) 
+        : prevItems.map(item => 
+            item.id === productId && item.variants.nodes.some(variant => variant.title === size) 
+              ? { ...item, quantity: quantity } 
+              : item
+          )
+    );
   };
 
   return (
-    <ProductContext.Provider value={{ products, cartItems, addToBag, removeFromCart, loading, error }}>
+    <ProductContext.Provider value={{ products, cartItems, addToBag, removeFromCart, updateCartItemQuantity, loading, error }}>
       {children}
     </ProductContext.Provider>
   );
