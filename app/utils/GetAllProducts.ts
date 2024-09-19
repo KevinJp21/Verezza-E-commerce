@@ -92,6 +92,8 @@ export async function getAllProducts(): Promise<Product[]> {
     countryCode = 'CO';
   } else if (currency === 'USD') {
     countryCode = 'US';
+  } else if (currency === 'EUR') {
+    countryCode = 'ES';
   }
 
   if (language === 'Español' || language === 'es') {

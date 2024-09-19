@@ -33,22 +33,14 @@ export default {
         "currency": {
             "title": "ELIGE TU DIVISA",
             "placeholder": "Elige tu divisa",
-            "options": {
-                "cop": "Pesos Colombianos",
-                "usd": "US Dollars"
-            }
         },
         "location": {
-            "title": "ELIGE TU UBICACIÓN/REGION",
-            "placeholder": "Elige tu ubicación"
+            "title": "ELIGE TU PAÍS/REGION",
+            "placeholder": "Elige tu país/región"
         },
         "language": {
             "title": "ELIGE TU LENGUAJE",
             "placeholder": "Elige tu idioma",
-            "options": {
-                "spanish": "Español",
-                "english": "English"
-            }
         },
         "info": {
             "title": "INFORMACIÓN",

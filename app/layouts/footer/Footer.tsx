@@ -115,13 +115,17 @@ export default function Footer() {
                 </div>
               </div>
               <ul className="optionsList">
-                <li className="option" onClick={() => handleCurrencyClick(t("footer.currency.options.cop"), 'COP')}>
-                  <span>{t("footer.currency.options.cop")}</span>
+                <li className="option" onClick={() => handleCurrencyClick("Pesos Colombianos", 'COP')}>
+                  <span>Pesos Colombianos</span>
                   <span>COP</span>
                 </li>
-                <li className="option" onClick={() => handleCurrencyClick(t("footer.currency.options.usd"), 'USD')}>
-                  <span>{t("footer.currency.options.usd")}</span>
+                <li className="option" onClick={() => handleCurrencyClick("US Dollars", 'USD')}>
+                  <span>US Dollars</span>
                   <span>USD</span>
+                </li>
+                <li className="option" onClick={() => handleCurrencyClick("Euros", 'EUR')}>
+                  <span>Euros</span>
+                  <span>EUR</span>
                 </li>
               </ul>
             </div>
@@ -145,6 +149,9 @@ export default function Footer() {
                 <li className="option" onClick={() => handleLocationClick("United States")}>
                   <span>United States</span>
                 </li>
+                <li className="option" onClick={() => handleLocationClick("Europe")}>
+                  <span>Europe</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -162,10 +169,10 @@ export default function Footer() {
               </div>
               <ul className="optionsList">
                 <li className="option" onClick={() => handleLanguageClick('Español')}>
-                  <span>{t("footer.language.options.spanish")}</span>
+                  <span>Español</span>
                 </li>
                 <li className="option" onClick={() => handleLanguageClick('English')}>
-                  <span>{t("footer.language.options.english")}</span>
+                  <span>English</span>
                 </li>
               </ul>
             </div>
