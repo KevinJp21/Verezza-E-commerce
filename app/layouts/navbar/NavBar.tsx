@@ -98,12 +98,12 @@ export default function NavBar() {
                         <a href="" className="accoutHeader" aria-label="Usuario">
                             {userIcon()}
                         </a>
-                        <a href="/" className="whishlistHeader" aria-label="Lista de deseos">
+                        <button className="whishlistHeader" aria-label="Lista de deseos">
                             {heartIcon()}
-                        </a>
-                        <a href="/" className="whishlistHeader" aria-label="Bolsa de compras">
+                        </button>
+                        <button className="whishlistHeader" aria-label="Bolsa de compras">
                             {cartIcon()}
-                        </a>
+                        </button>
                         <button className='BTNSearch' aria-label="Buscar" onClick={toggleSearch}>
                             {searchIcon()}
                         </button>

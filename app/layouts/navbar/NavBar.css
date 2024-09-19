@@ -51,6 +51,9 @@
 .NavBar1-3 .BTNSearch {
     color: var(--olga-black-primary);
     display: flex;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 
 }
 
@@ -287,8 +290,11 @@
         align-items: center;
         height: 50px;
         width: 90%;
-        background-color: var(--olga-black-primary);
+        background-color: var(--olga-white-primary);
+        opacity: .95;
         border-radius: 20px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
+        padding: 10px;
     }
 
     .NavBarMobileContainer ul {
@@ -307,12 +313,12 @@
     }
 
     .NavBarMobileContainer ul li a {
-        color: var(--olga-gray-100);
+        color: var(--olga-black-primary);
     }
 
     .NavBarMobileContainer ul li button {
         all: unset;
-        color: var(--olga-gray-100);
+        color: var(--olga-black-primary);
     }
 
 

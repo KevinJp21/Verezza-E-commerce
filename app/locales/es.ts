@@ -83,7 +83,7 @@ export default {
         }
     },
     "carouselSection":{
-        "button": "Comprar"
+        "button": "Comprar ahora"
     },
     "modalCart":{
       "size_title": "Talla",
