@@ -7,6 +7,7 @@ import { closeIcon, searchIcon } from '~/assets/icons/icons'
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 import { useProductContext } from '~/hooks/ProductContext';
 import { useTranslation } from "react-i18next";
+import Bag from '~/components/Bag/Bag';
 
 export default function NavBar() {
 
@@ -15,6 +16,7 @@ export default function NavBar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
+    const [isBagOpen, setIsBagOpen] = useState(false);
 
 
 
@@ -62,13 +64,22 @@ export default function NavBar() {
         setFilteredProducts(filtered);
     };
 
+    //Bag Button 
+    const toggleBag = () => {
+        setIsBagOpen(!isBagOpen);
+    }
+
+    const closeBag = () => {
+        setIsBagOpen(false);
+    }
+
     return (
         <header className='navbar'>
             <nav className='NavBarContainer'>
                 <div className='NavBar1'>
-                    <a className='Logo_Olga' href="/">
-                        OLGA LUCIA CORTES
-                    </a>
+                    <h1 className='title-primary'>
+                        <a href="/">OLGA LUCIA CORTES</a>
+                    </h1>
                     <div className='NavBar1-2'>
                         <ul className='NavbarListWrapper'>
                             <li>
@@ -101,7 +112,7 @@ export default function NavBar() {
                         <button className="whishlistHeader" aria-label="Lista de deseos">
                             {heartIcon()}
                         </button>
-                        <button className="whishlistHeader" aria-label="Bolsa de compras">
+                        <button className="whishlistHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
                         </button>
                         <button className='BTNSearch' aria-label="Buscar" onClick={toggleSearch}>
@@ -119,7 +130,7 @@ export default function NavBar() {
             <div className={`sidebar ${isSideBarOpen ? 'open' : ''}`}>
                 <div className='sidebarWrapper'>
                     <div className="sidebarHeader">
-                        <a className='Logo_Olga' href="/">OLGA LUCIA CORTES</a>
+                        <a className='title-primary' href="/">OLGA LUCIA CORTES</a>
                         <button className='closeSidebar' onClick={closeSidebar} aria-label="Cerrar menu">
                             {closeIcon()}
                         </button>
@@ -185,7 +196,7 @@ export default function NavBar() {
                         <a href="/" aria-label="Lista de deseos">{heartIcon()}</a>
                     </li>
                     <li>
-                        <button aria-label="Bolsa de compras">{cartIcon()}</button>
+                        <button aria-label="Bolsa de compras" onClick={toggleBag}>{cartIcon()}</button>
                     </li>
                     <li>
                         <a href="/" aria-label="Usuario">{userIcon()}</a>
@@ -223,6 +234,7 @@ export default function NavBar() {
                     </ul>
                 )}
             </div>
+            <Bag isOpen={isBagOpen} onClose={closeBag} />
         </header>
     );
 }

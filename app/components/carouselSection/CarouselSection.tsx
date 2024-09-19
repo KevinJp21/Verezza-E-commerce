@@ -139,7 +139,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     return (
         <section className="CarrouselContainer">
             <div className="CarrouselHeader">
-                <h2>{title}</h2>
+                <h2 className='title-primary'>{title}</h2>
                 <div className="CarrouselButtons" onMouseEnter={handlePause} onMouseLeave={handleResume}>
                     <button onClick={prev} className="carrouselButton CarrouselButtonLeft" disabled={isButtonDisabled} aria-label="Botón Prev">{arrowLeftIcon()}</button>
                     <button onClick={next} className="carrouselButton CarrouselButtonRight" disabled={isButtonDisabled} aria-label="Botón Next">{arrowRightIcon()}</button>

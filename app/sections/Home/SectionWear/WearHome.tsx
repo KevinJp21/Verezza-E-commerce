@@ -12,7 +12,7 @@ export default function WearHome(){
     const { t } = useTranslation()
     return(
         <section className='WearHomeContainer'>
-            <h2>{t("home.section_wear.title")}</h2>
+            <h2 className='title-primary'>{t("home.section_wear.title")}</h2>
             <div className='WearHomeWrapper'>
                 <div className='WearImg img1'>
                     <img className='img1-1' src={imgWearComplements} alt="Imagen complementos olga lucia cortes" loading="lazy" decoding="async" width={780} height={1200} />

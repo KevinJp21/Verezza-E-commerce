@@ -139,7 +139,7 @@ a{
     background-color: var(--olga-black-secondary); 
 }
 
-.Logo_Olga {
+.title-primary {
     text-decoration: none;
     text-wrap: nowrap;
     color: var(--olga-black-primary);

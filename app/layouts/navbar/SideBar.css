@@ -28,7 +28,7 @@
     max-width: 100%;
     width: 100%;
     height: 100vh;
-    right: -100%;
+    left: -100%;
     top: 0;
     transition: all .7s cubic-bezier(0.55, 0.09, 0.68, 0.53);
     z-index: 1000;
@@ -36,7 +36,7 @@
 
 .sidebar.open {
     top: 0;
-    right: 0;
+    left: 0;
     transition: all .3s cubic-bezier(0.55, 0.09, 0.68, 0.53);
 }
 
