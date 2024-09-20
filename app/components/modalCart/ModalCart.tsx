@@ -84,7 +84,14 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
         setIsSizeSelected(false);
     }
 
+    //desplazar scroll suavemente
+    const handleScroll = () => {
+        const element = document.getElementById('ModalCartProductInfo');
+        element?.scrollIntoView({ behavior: 'smooth' });
+    }
+
     return (
+
         <div className='ModalCartContainer'>
             <div className="ModalCartWrapper">
                 <header className='ModalCartHeader'>
@@ -94,13 +101,20 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 <div className="ModalCartContent">
                     <div className="ModalCartImgProduct">
                         <ProductCarousel productImages={productImages} productId={productId} productName={productName} />
+                        <div id="ScrollElement" className="ScrollElement">
+                            <button className='btn-primary' onClick={handleScroll}><span></span>Scroll</button>
+                        </div>
+
+
                     </div>
-                    <div className='ModalCartProductInfo'>
+
+
+                    <div className='ModalCartProductInfo' id="ModalCartProductInfo">
                         <div className='ModalCartProductInfoHeader'>
                             <h3>{productName}</h3>
                             <a href={`/collections/${productCategory.toLowerCase().replace(/\s+/g, '-')}`}>{productCategory}</a>
                         </div>
-                        {productDescription && 
+                        {productDescription &&
                             <div className='productDescription'>
                                 <h4>Description</h4>
                                 <p>{productDescription}</p>
@@ -113,10 +127,10 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                             </div>
                             <div className='size-buttons'>
                                 {productSizes.map((size) => (
-                                  
+
                                     <button
                                         key={size.id}
-                                        className={`size-button ${selectedSize === size.title ? 'selected' : '' }`}
+                                        className={`size-button ${selectedSize === size.title ? 'selected' : ''}`}
                                         onClick={() => handleSizeClick(size.title)}
                                         disabled={!size.availableForSale}
                                     >
