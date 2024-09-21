@@ -1,10 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import './WearHome.css'
 
-import imgWearComplements from '~/assets/images/SectionWear/complementos.webp'
-import imgWearComplements2 from '~/assets/images/SectionWear/Complementos2.webp'
-import imgWearComplements3 from '~/assets/images/SectionWear/cinturonBeauty1.webp'
-import imgWearComplements4 from '~/assets/images/SectionWear/cinturonBeauty2.webp'
+import imgWearComplements from '~/assets/images/SectionWear/MEHTAP 1.webp'
+import imgWearComplements2 from '~/assets/images/SectionWear/MEHTAP 2.webp'
+import imgWearComplements3 from '~/assets/images/SectionWear/ESEN 1.webp'
+
+import imgWearComplements4 from '~/assets/images/SectionWear/ESEN 2.webp'
+
 
 
 

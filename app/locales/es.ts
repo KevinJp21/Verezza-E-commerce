@@ -62,12 +62,12 @@ export default {
             "title": "Complementa tu look",
             "button": "Explora ahora",
             "promo_1":{
-                "title": "Hebilla Anfar",
-                "description": "El toque final perfecto: un accesorio que transforma cualquier look en una declaración audaz."
+                "title": "Mehtap",
+                "description": "Blusa en olan de hilo blanco con escote en V y mangas de gran volumen que aportan un toque elegante y sofisticado."
             },
             "promo_2":{
-                "title": "Cinturón Beauty",
-                "description": "El cinturón Beauty es la esencia de la sofisticación. Define tu estilo con su elegancia atemporal y realza cualquier atuendo con un toque de distinción."
+                "title": "Esen",
+                "description": "Blusa en algodón tono baby blue con cuello camisero y mangas largas.\nDestaca por un detalle distintivo de una maxi flor."
             }
         },
         "section_latest_products":{

@@ -62,14 +62,15 @@ export default {
       "title": "Complete your look",
       "button": "Explore now",
       "promo_1": {
-        "title": "Anfar Buckle",
-        "description": "The perfect finishing touch: an accessory that transforms any look into a bold statement."
+        "title": "Mehtap",
+        "description": "Blouse in white yarn olan with V-neckline and large volume sleeves that provide an elegant and sophisticated touch."
       },
       "promo_2": {
-        "title": "Beauty Belt",
-        "description": "The Beauty Belt is the essence of sophistication. Define your style with its timeless elegance and enhance any outfit with a touch of distinction."
+        "title": "Esen",
+        "description": "Baby blue cotton blouse with shirt collar and long sleeves.\nIt features a distinctive maxi flower detail."
       }
     },
+
     "section_latest_products":{
       "title": "Recently Added"
     }
