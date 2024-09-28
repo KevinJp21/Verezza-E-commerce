@@ -288,6 +288,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
+    text-transform: uppercase;
 }
 
 .ModalCartContent .ModalCartProductSize .size-button.selected {

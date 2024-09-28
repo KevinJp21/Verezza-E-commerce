@@ -95,10 +95,11 @@
   text-align: start;
 }
 .ProductDetails .ProductDetailsHeader a {
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   font-weight: 800;
   color: var(--olga-black-primary);
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .ProductContent{
@@ -127,6 +128,7 @@
   font-size: 0.75rem;
   font-weight: normal;
   color: var(--olga-black-primary);
+  text-transform: uppercase;
 }
 
 .ProductDetailsFooter {
