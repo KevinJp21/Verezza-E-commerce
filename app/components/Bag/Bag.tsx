@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './Bag.css';
 import { closeIcon, trashIcon } from '~/assets/icons/icons';
 import { fetchCartItems } from '~/api/getCartItems';
+import { updateCartItemQuantity } from '~/api/updateCartItem';
 
 interface BagProps {
     isOpen: boolean;
@@ -11,7 +12,6 @@ interface BagProps {
 export default function Bag({ isOpen, onClose }: BagProps) {
     const [cartItems, setCartItems] = useState([]);
     const [selectedCurrency, setSelectedCurrency] = useState('');
-    const [selectedQuantity, setSelectedQuantity] = useState(0);
 
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
@@ -24,12 +24,19 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         const checkoutId = localStorage.getItem('checkoutId');
         if (checkoutId) {
             fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
-            console.log(cartItems);
         }
     }, []);
 
-    const updateCartItemQuantity = async (itemId: string, quantity: number) => {
-        // Implementar la lógica para actualizar la cantidad del artículo en el carrito
+    const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
+        const checkoutId = localStorage.getItem('checkoutId');
+        if (checkoutId) {
+            try {
+                const updatedCheckout = await updateCartItemQuantity(checkoutId, itemId, quantity);
+                setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
+            } catch (error) {
+                console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
+            }
+        }
     };
 
     const removeFromCart = async (itemId: string) => {
@@ -63,25 +70,24 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                             <p>Talla: {item.variant.title}</p>
                                         </div>
                                         <div className="itemQuantity">
-                                            <button className='quantity-button btn-primary' onClick={() => updateCartItemQuantity(item.id, item.quantity - 1)}>
+                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)}>
                                                 <span>-</span>
                                             </button>
                                             <span>{item.quantity}</span>
-                                            <button className='quantity-button btn-primary' onClick={() => updateCartItemQuantity(item.id, item.quantity + 1)}>
+                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity + 1)}>
                                                 <span>+</span>
                                             </button>
                                         </div>
                                     </div>
                                     <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id)}>
-                                           {trashIcon()}
-                                        </button>
+                                        {trashIcon()}
+                                    </button>
                                 </div>
                             ))
                         ) : (
                             <div className="bagEmpty">
                                 <p>La bolsa está vacía</p>
                             </div>
-
                         )}
                     </div>
                     {cartItems.length > 0 && (
@@ -95,5 +101,5 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                 </div>
             </div>
         </>
-    )
+    );
 }

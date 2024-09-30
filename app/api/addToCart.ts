@@ -1,7 +1,6 @@
 import { gql } from 'graphql-request';
 
-const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as string;
-const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
+import { SHOPIFY_STOREFRONT_API_URL, SHOPIFY_STOREFRONT_API_TOKEN } from './tokenShopify';
 
 const CREATE_CHECKOUT_MUTATION = gql`
   mutation checkoutCreate($input: CheckoutCreateInput!) {
