@@ -4,15 +4,16 @@ import { closeIcon, trashIcon } from '~/assets/icons/icons';
 import { fetchCartItems } from '~/api/getCartItems';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
-
+import { fetchWebUrl } from '~/api/getCartItems';
 interface BagProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
 export default function Bag({ isOpen, onClose }: BagProps) {
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState<any[]>([]);
     const [selectedCurrency, setSelectedCurrency] = useState('');
+    const [webUrl, setWebUrl] = useState('');
 
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
@@ -25,7 +26,10 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         const checkoutId = localStorage.getItem('checkoutId');
         if (checkoutId) {
             fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
+            fetchWebUrl(checkoutId).then(setWebUrl).catch(console.error);
         }
+
+        
     }, []);
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
@@ -52,6 +56,10 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         }
     };
 
+    const handleCheckout = () => {
+        window.open(webUrl, '_blank');
+    };
+
     return (
         <>
             <div className={`overlay-bag ${isOpen ? 'open' : ''}`} onClick={onClose}></div>
@@ -63,7 +71,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                     </div>
                     <div className="BagContent">
                         {cartItems.length > 0 ? (
-                            cartItems.map((item: any) => (
+                            cartItems.map((item) => (
                                 <div key={item.id} className="bagItem">
                                     <picture className="bagItemImage">
                                         <img src={item.variant.image.src} alt={item.title} />
@@ -103,7 +111,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                         <footer className="BagFooter">
                             <div className="BagFooterWrapper">
                                 <p><span>Total</span> <span>{cartItems.reduce((total, item: any) => total + item.quantity * parseFloat(item.variant.priceV2.amount), 0).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span></p>
-                                <button className='btn-secondary'>Comprar</button>
+                                <button className='btn-secondary' onClick={handleCheckout}>Comprar</button>
                             </div>
                         </footer>
                     )}
