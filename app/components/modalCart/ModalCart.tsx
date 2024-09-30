@@ -114,7 +114,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                                 {productSizes.map((size) => (
                                     <button
                                         key={size.id}
-                                        className={`size-button ${selectedSize === size.title ? 'selected' : ''}`}
+                                        className={`size-button ${selectedSize === size.id ? 'selected' : ''}`}
                                         onClick={() => handleSizeClick(size.id)}
                                         disabled={!size.availableForSale}
                                     >
