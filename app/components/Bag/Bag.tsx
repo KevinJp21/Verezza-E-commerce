@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Bag.css';
 import { closeIcon, trashIcon } from '~/assets/icons/icons';
-import { useProductContext } from '~/hooks/ProductContext';
+import { fetchCartItems } from '~/api/getCartItems';
 
 interface BagProps {
     isOpen: boolean;
@@ -9,7 +9,7 @@ interface BagProps {
 }
 
 export default function Bag({ isOpen, onClose }: BagProps) {
-    const { cartItems, updateCartItemQuantity, removeFromCart } = useProductContext();
+    const [cartItems, setCartItems] = useState([]);
     const [selectedCurrency, setSelectedCurrency] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState(0);
 
@@ -20,8 +20,21 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         } else {
             setSelectedCurrency('COP');
         }
+
+        const checkoutId = localStorage.getItem('checkoutId');
+        if (checkoutId) {
+            fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
+            console.log(cartItems);
+        }
     }, []);
 
+    const updateCartItemQuantity = async (itemId: string, quantity: number) => {
+        // Implementar la lógica para actualizar la cantidad del artículo en el carrito
+    };
+
+    const removeFromCart = async (itemId: string) => {
+        // Implementar la lógica para eliminar el artículo del carrito
+    };
 
     return (
         <>
@@ -34,33 +47,32 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                     </div>
                     <div className="BagContent">
                         {cartItems.length > 0 ? (
-                            cartItems.map((item) => (
-                                <div key={item.id + item.variants.nodes[0].title} className="bagItem">
+                            cartItems.map((item: any) => (
+                                <div key={item.id} className="bagItem">
                                     <picture className="bagItemImage">
-                                        <img src={item.images.edges[0].node.src} alt={item.title} />
+                                        <img src={item.variant.image.src} alt={item.title} />
                                     </picture>
                                     <div className="itemDetails">
-                                        <a href={`/collections/${item.collections.nodes[0]?.title?.toLowerCase().replace(/\s+/g, '-') || ''}`}>{item.collections.nodes[0]?.title || 'Sin categoría'}</a>
                                         <a href={`/product/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>{item.title}</a>
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
-                                                <p className='productPrice'>{parseFloat(item.priceRange.minVariantPrice.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
+                                                <p className='productPrice'>{parseFloat(item.variant.priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
                                             </div>
                                         </section>
                                         <div className="itemVariants">
-                                            <p>Talla: {item.variants.nodes[0].title}</p>
+                                            <p>Talla: {item.variant.title}</p>
                                         </div>
                                         <div className="itemQuantity">
-                                            <button className='quantity-button btn-primary' onClick={() => updateCartItemQuantity(item.id, item.quantity - 1, item.variants.nodes[0].title)}>
+                                            <button className='quantity-button btn-primary' onClick={() => updateCartItemQuantity(item.id, item.quantity - 1)}>
                                                 <span>-</span>
                                             </button>
                                             <span>{item.quantity}</span>
-                                            <button className='quantity-button btn-primary' onClick={() => updateCartItemQuantity(item.id, item.quantity + 1, item.variants.nodes[0].title)}>
+                                            <button className='quantity-button btn-primary' onClick={() => updateCartItemQuantity(item.id, item.quantity + 1)}>
                                                 <span>+</span>
                                             </button>
                                         </div>
                                     </div>
-                                    <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id, item.variants.nodes[0].title)}>
+                                    <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id)}>
                                            {trashIcon()}
                                         </button>
                                 </div>
@@ -75,7 +87,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                     {cartItems.length > 0 && (
                         <footer className="BagFooter">
                             <div className="BagFooterWrapper">
-                                <p><span>Total</span> <span>{cartItems.reduce((total, item) => total + item.quantity * parseFloat(item.priceRange.minVariantPrice.amount.toString()), 0).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span></p>
+                                <p><span>Total</span> <span>{cartItems.reduce((total, item: any) => total + item.quantity * parseFloat(item.variant.priceV2.amount), 0).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span></p>
                                 <button className='btn-secondary'>Comprar</button>
                             </div>
                         </footer>

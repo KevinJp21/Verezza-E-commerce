@@ -56,7 +56,7 @@ interface GraphQLResponse {
 
 const client = createStorefrontApiClient({
   storeDomain: SHOPIFY_STOREFRONT_API_URL,
-  apiVersion: '2024-07',
+  apiVersion: '2024-04',
   publicAccessToken: SHOPIFY_STOREFRONT_API_TOKEN,
 });
 

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import './ModalCart.css'
+import './ModalCart.css';
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
 import { useTranslation } from 'react-i18next';
-import { useProductContext } from '~/hooks/ProductContext';
+import { addToCart } from '~/api/addToCart';
+
 interface ModalCartProps {
     isOpen: boolean;
     onClose: () => void;
@@ -15,7 +16,6 @@ interface ModalCartProps {
     productSizes: any[];
     productDescription: string;
     productImages: any[];
-
 }
 
 const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productSizes, productDescription, productImages }) => {
@@ -24,7 +24,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const { t } = useTranslation();
-    const { addToBag } = useProductContext();
+
     const handleClose = () => {
         onClose();
     }
@@ -35,63 +35,49 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     }
 
     const handleQuantityClick = (quantity: number) => {
-        setSelectedQuantity(quantity);
-        //evitar que sea menor a 0
-        if (quantity < 1) {
-            setSelectedQuantity(1);
-        }
+        setSelectedQuantity(quantity < 1 ? 1 : quantity);
     }
 
     useEffect(() => {
-        let currency = localStorage.getItem('selectedCurrencySymbol');
+        const currency = localStorage.getItem('selectedCurrencySymbol');
         if (currency) {
             setSelectedCurrency(currency);
         }
-    }, [])
+    }, []);
 
-    //Agregar producto a la bolsa
-    const handleAddToBag = () => {
+    // Función para agregar producto al carrito
+    const handleAddToBag = async () => {
         if (!selectedSize) {
             setIsSizeSelected(true);
             return;
         }
-        const productToAdd = {
-            id: productId?.toString() || '',
-            title: productName || '',
-            description: productDescription,
-            createdAt: new Date().toISOString(), // Añadir createdAt
-            priceRange: {
-                minVariantPrice: {
-                    amount: productPrice.toString(),
-                    currencyCode: selectedCurrency
-                }
-            },
-            images: {
-                edges: productImages.map((image) => ({
-                    node: { src: image.src, altText: image.altText }
-                }))
-            },
-            collections: {
-                nodes: [{ title: productCategory }]
-            },
-            variants: {
-                nodes: [{ title: selectedSize }]
-            }
-        };
 
-        addToBag(productToAdd, selectedQuantity, selectedSize); // Pasar ambos argumentos
+        try {
+            const selectedVariant = productSizes.find(size => size.id === selectedSize);
+            if (!selectedVariant) {
+                throw new Error('Variant not found for the selected size');
+            }
+
+            const variantId = selectedVariant.id;
+            console.log('Variant ID:', variantId);
+            const checkout = await addToCart(variantId, selectedQuantity);
+            console.log('Producto agregado al carrito:', checkout);
+            localStorage.setItem('checkoutId', checkout.id);
+        } catch (error) {
+            console.error('Error al agregar el producto al carrito:', error);
+        }
+
         onClose();
         setIsSizeSelected(false);
+        window.location.reload();
     }
 
-    //desplazar scroll suavemente
     const handleScroll = () => {
         const element = document.getElementById('ModalCartProductInfo');
         element?.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (
-
         <div className='ModalCartContainer'>
             <div className="ModalCartWrapper">
                 <header className='ModalCartHeader'>
@@ -104,10 +90,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                         <div id="ScrollElement" className="ScrollElement">
                             <button className='btn-primary' onClick={handleScroll}><span></span>Scroll</button>
                         </div>
-
-
                     </div>
-
 
                     <div className='ModalCartProductInfo' id="ModalCartProductInfo">
                         <div className='ModalCartProductInfoHeader'>
@@ -120,18 +103,19 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                                 <p>{productDescription}</p>
                             </div>
                         }
-                        <p className='productPrice'>{parseFloat(productPrice.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
+                        <p className='productPrice'>
+                            {parseFloat(productPrice.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                        </p>
                         <div className='ModalCartProductSize'>
                             <div className='size-header'>
                                 <span>{t('modalCart.size_title')}</span>
                             </div>
                             <div className='size-buttons'>
                                 {productSizes.map((size) => (
-
                                     <button
                                         key={size.id}
                                         className={`size-button ${selectedSize === size.title ? 'selected' : ''}`}
-                                        onClick={() => handleSizeClick(size.title)}
+                                        onClick={() => handleSizeClick(size.id)}
                                         disabled={!size.availableForSale}
                                     >
                                         {size.title}
@@ -157,7 +141,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 </footer>
             </div>
         </div>
-    )
+    );
 }
 
 export default ModalCart;

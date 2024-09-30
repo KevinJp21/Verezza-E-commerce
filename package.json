@@ -16,6 +16,7 @@
     "@remix-run/serve": "^2.12.1",
     "@shopify/storefront-api-client": "^1.0.2",
     "axios": "^1.7.7",
+    "graphql-request": "^7.1.0",
     "i18next": "^23.15.1",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-fs-backend": "^2.3.2",
