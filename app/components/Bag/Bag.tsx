@@ -3,6 +3,7 @@ import './Bag.css';
 import { closeIcon, trashIcon } from '~/assets/icons/icons';
 import { fetchCartItems } from '~/api/getCartItems';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
+import { removeCartItem } from '~/api/removeCartItem';
 
 interface BagProps {
     isOpen: boolean;
@@ -40,7 +41,15 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     };
 
     const removeFromCart = async (itemId: string) => {
-        // Implementar la lógica para eliminar el artículo del carrito
+        const checkoutId = localStorage.getItem('checkoutId');
+        if (checkoutId) {
+            try {
+                const updatedCheckout = await removeCartItem(checkoutId, itemId);
+                setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
+            } catch (error) {
+                console.error('Error al eliminar el artículo del carrito:', error);
+            }
+        }
     };
 
     return (
