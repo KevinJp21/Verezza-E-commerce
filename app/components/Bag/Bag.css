@@ -136,8 +136,8 @@
 }
 
 .itemDetails a{
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: .9375rem;
+    font-weight: bold;
     color: var(--olga-black-primary);
     text-decoration: none;
     padding: 2px 0;
@@ -164,7 +164,7 @@
 
 .itemVariants p{
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--olga-black-primary);
 }
 
@@ -219,7 +219,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .BagFooterWrapper .btn-secondary{
