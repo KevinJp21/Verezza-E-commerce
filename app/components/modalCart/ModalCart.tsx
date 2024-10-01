@@ -77,6 +77,22 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
         element?.scrollIntoView({ behavior: 'smooth' });
     }
 
+    //Ocultar ScrollElement al scrollear hacia abajo
+    useEffect(() => {
+        const scrollElement = document.getElementById('ScrollElement');
+        const modalCartWrapper = document.querySelector('.ModalCartWrapper');
+
+        if (scrollElement && modalCartWrapper) {
+            modalCartWrapper.addEventListener('scroll', () => {
+                const scrollPosition = modalCartWrapper.scrollTop;
+                const opacity = 1 - Math.min(scrollPosition / 100, 1);
+                scrollElement.style.opacity = opacity.toString();
+            });
+        }
+    }, []);
+
+    
+
     return (
         <div className='ModalCartContainer'>
             <div className="ModalCartWrapper">
@@ -87,9 +103,6 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 <div className="ModalCartContent">
                     <div className="ModalCartImgProduct">
                         <ProductCarousel productImages={productImages} productId={productId} productName={productName} />
-                        <div id="ScrollElement" className="ScrollElement">
-                            <button className='btn-primary' onClick={handleScroll}><span></span>Scroll</button>
-                        </div>
                     </div>
 
                     <div className='ModalCartProductInfo' id="ModalCartProductInfo">
@@ -139,6 +152,10 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                     <button className='btn-secondary' onClick={handleAddToBag}><span>{t('modalCart.add_to_cart')}</span></button>
                     <button className='btn-secondary'><span>{t('modalCart.buy_now')}</span></button>
                 </footer>
+
+                <div id="ScrollElement" className="ScrollElement">
+                        <button className='btn-primary' onClick={handleScroll}><span></span></button>
+                    </div>
             </div>
         </div>
     );
