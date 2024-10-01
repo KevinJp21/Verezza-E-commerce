@@ -187,7 +187,14 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                         <span key={size.id}>{size.title}</span>
                                     ))}
                                 </div>
-                                <button className='btn-secondary' onClick={() => handleOpenModal(product.id, product.title, product.collections.nodes[0].title, product.priceRange.minVariantPrice.amount, product.variants.nodes, product.description, product.images.edges.map(({ node }: any) => node))}>
+                                <button className='btn-secondary' onClick={() => handleOpenModal(
+                                    product.id, 
+                                    product.title, 
+                                    product.collections.nodes[0].title, 
+                                    product.priceRange.minVariantPrice.amount, 
+                                    product.variants.nodes, product.description, 
+                                    product.images.edges.map(({ node }: any) => node
+                                ))}>
                                     <span>{t("carouselSection.button")}</span>
                                 </button>
                             </div>

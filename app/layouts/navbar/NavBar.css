@@ -213,6 +213,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    cursor: pointer;
 }
 
 .SearchResults .searhResultWrapper .ResultImg {

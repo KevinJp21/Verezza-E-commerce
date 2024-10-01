@@ -9,6 +9,7 @@ import { useProductContext } from '~/hooks/ProductContext';
 import { useTranslation } from "react-i18next";
 import Bag from '~/components/Bag/Bag';
 import { useCart } from '~/hooks/Cart';
+import ModalCart from '~/components/modalCart/ModalCart';
 
 export default function NavBar() {
 
@@ -18,9 +19,18 @@ export default function NavBar() {
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
     const [isBagOpen, setIsBagOpen] = useState(false);
-
     //Obtener productos del carrito
     const { cartItems, setCartItems, webUrl, updateCart } = useCart();
+    //Obtener datosa al seleccionarlo en la busqueda
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [productId, setProductId] = useState<number | null>(null);
+    const [productName, setProductName] = useState<string>('');
+    const [productCategory, setProductCategory] = useState<string>('');
+    const [productPrice, setProductPrice] = useState<number>(0);
+    const [productSizes, setProductSizes] = useState<string[]>([]);
+    const [productDescription, setProductDescription] = useState<string>('');
+    const [productImages, setProductImages] = useState<string[]>([]);
 
     useEffect(() => {
         // Suscribirse al evento de actualización del carrito
@@ -36,7 +46,7 @@ export default function NavBar() {
     const getTotalQuantity = () => {
         return cartItems.reduce((total, item) => total + item.quantity, 0);
     };
-    
+
 
     const { t } = useTranslation();
 
@@ -90,6 +100,27 @@ export default function NavBar() {
     const closeBag = () => {
         setIsBagOpen(false);
     }
+
+    const closeModalCart = () => {
+        setIsModalOpen(false);
+    }
+
+    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+        setIsModalOpen(true);
+        setSelectedProduct(productName);
+        setProductId(productId);
+        setProductName(productName);
+        setProductCategory(productCategory);
+        setProductPrice(productPrice);
+        setProductDescription(productDescription);
+        setProductImages(productImages);
+        setProductSizes(productSizes);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
 
     return (
         <header className='navbar'>
@@ -241,14 +272,21 @@ export default function NavBar() {
                 {searchTerm && (
                     <ul className="SearchResults">
                         {filteredProducts.map((product, index) => (
-                            <li key={`${product.id}-${index}`} className='searhResultWrapper'>
+                            <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(
+                                product.id, 
+                                    product.title, 
+                                    product.collections.nodes[0].title, 
+                                    product.priceRange.minVariantPrice.amount, 
+                                    product.variants.nodes, product.description, 
+                                    product.images.edges.map(({ node }: any) => node
+                                ))}>
 
                                 <picture className='ResultImg'>
                                     <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
                                 </picture>
-                                <div className="resultDetails">
-                                    <a href={`/producto/${product.id}`}>{product.title}</a>
-                                    <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</p>
+                                <div className="resultDetails" >
+                                    <span>{product.title}</span>
+                                    <span>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</span>
                                 </div>
 
                             </li>
@@ -257,6 +295,7 @@ export default function NavBar() {
                 )}
             </div>
             <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''} />
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </header>
     );
 }
