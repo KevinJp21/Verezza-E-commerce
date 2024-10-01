@@ -283,7 +283,7 @@
         text-decoration: none;
         font-size: .6875rem;
         color: var(--olga-black-primary);
-        font-weight: bold;
+        font-weight: 600;
     }
 
     .NavbarListWrapper>li a:hover {

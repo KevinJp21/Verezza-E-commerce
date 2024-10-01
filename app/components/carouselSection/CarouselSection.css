@@ -16,7 +16,7 @@
 
 .CarrouselHeader h2 {
   font-size: min(max(0.8125rem, 5vw), 1rem);
-  font-weight: 900;
+  font-weight: 600;
   color: var(--olga-black-primary);
   text-align: start;
   text-transform: uppercase;
@@ -95,8 +95,8 @@
   text-align: start;
 }
 .ProductDetails .ProductDetailsHeader a {
-  font-size: 0.6rem;
-  font-weight: 800;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--olga-black-primary);
   text-decoration: none;
   text-transform: uppercase;
@@ -111,7 +111,7 @@
 
 .ProductContent p{
   font-size: 0.8125rem;
-  font-weight: normal;
+  font-weight: 600;
   color: var(--olga-black-primary);
 }
 
@@ -126,7 +126,7 @@
 
 .ProductSize span{
   font-size: 0.75rem;
-  font-weight: normal;
+  font-weight: 600;
   color: var(--olga-black-primary);
   text-transform: uppercase;
 }

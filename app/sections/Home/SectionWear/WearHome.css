@@ -6,7 +6,7 @@
 
 .WearHomeContainer h2{
     font-size: min(max(0.8125rem, 5vw), 1rem);
-    font-weight: 900;
+    font-weight: 600;
     color: var(--olga-black-primary);
     text-align: center;
     text-transform: uppercase;
@@ -90,14 +90,14 @@
     color: var(--olga-white-primary);
     opacity: 0.8;
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .WearImgText p{
     color: var(--olga-white-primary);
     opacity: 0.8;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: normal;
 }
 
 
