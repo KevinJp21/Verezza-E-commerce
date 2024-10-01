@@ -85,7 +85,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     useEffect(() => {
         function handleResize() {
             setAutoScrollEnabled(false);
-            if (window.innerWidth < 600) {
+            if (window.innerWidth < 450) {
                 setItemsPerView(1);
             } else if (window.innerWidth < 900) {
                 setItemsPerView(2);
@@ -94,7 +94,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             } else {
                 setItemsPerView(4);
             }
-            setCurrentIndex(products.length);
+            
             setTimeout(() => setAutoScrollEnabled(true), 1000);
         }
 
