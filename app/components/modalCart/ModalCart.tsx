@@ -13,12 +13,13 @@ interface ModalCartProps {
     productName: string;
     productCategory: string;
     productPrice: number;
+    productDiscountPrice: number;
     productSizes: any[];
     productDescription: string;
     productImages: any[];
 }
 
-const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productSizes, productDescription, productImages }) => {
+const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productDiscountPrice, productSizes, productDescription, productImages }) => {
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
@@ -91,7 +92,6 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
         }
     }, []);
 
-    
 
     return (
         <div className='ModalCartContainer'>
@@ -117,6 +117,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                             </div>
                         }
                         <p className='productPrice'>
+                            {productDiscountPrice && <span className='productDiscountPrice'>{parseFloat(productDiscountPrice.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>}
                             {parseFloat(productPrice.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                         </p>
                         <div className='ModalCartProductSize'>
@@ -154,8 +155,8 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 </footer>
 
                 <div id="ScrollElement" className="ScrollElement">
-                        <button className='btn-primary' onClick={handleScroll}><span></span></button>
-                    </div>
+                    <button className='btn-primary' onClick={handleScroll}><span></span></button>
+                </div>
             </div>
         </div>
     );

@@ -8,12 +8,6 @@ export interface Product {
   title: string;
   description: string;
   createdAt: string;
-  priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
   images: {
     edges: Array<{
       node: {
@@ -33,6 +27,15 @@ export interface Product {
       id: string;
       title: string;
       availableForSale: boolean;
+      compareAtPriceV2: {
+        amount: string;
+        currencyCode: string;
+      };
+      priceV2: {
+        amount: string;
+        currencyCode: string;
+      };
+
     }>;
   };
 }
@@ -140,6 +143,14 @@ export async function getAllProducts(): Promise<Product[]> {
                 id
                 title
                 availableForSale
+                priceV2 {
+                  amount
+                  currencyCode
+                }
+                compareAtPriceV2 {
+                  amount
+                  currencyCode
+                }
               }
             }
           }

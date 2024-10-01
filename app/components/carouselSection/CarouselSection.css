@@ -141,7 +141,17 @@
   height: 50px;
 }
 
+.ProductPriceDiscount{
+  text-decoration: line-through;
+  color: var(--olga-red-primary);
+  margin-right: 5px;
+}
 
+@media screen and (min-width: 450px) and (max-width: 768px) {
+  .btn-secondary{
+    padding: 10px 10px;
+  }
+}
 
 @media (min-width: 768px) {
   .ProductDetailsFooter {

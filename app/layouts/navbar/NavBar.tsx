@@ -19,6 +19,7 @@ export default function NavBar() {
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
     const [isBagOpen, setIsBagOpen] = useState(false);
+    const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     //Obtener productos del carrito
     const { cartItems, setCartItems, webUrl, updateCart } = useCart();
     //Obtener datosa al seleccionarlo en la busqueda
@@ -28,6 +29,7 @@ export default function NavBar() {
     const [productName, setProductName] = useState<string>('');
     const [productCategory, setProductCategory] = useState<string>('');
     const [productPrice, setProductPrice] = useState<number>(0);
+    const [productDiscountPrice, setProductDiscountPrice] = useState<number>(0);
     const [productSizes, setProductSizes] = useState<string[]>([]);
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
@@ -105,13 +107,14 @@ export default function NavBar() {
         setIsModalOpen(false);
     }
 
-    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
         setIsModalOpen(true);
         setSelectedProduct(productName);
         setProductId(productId);
         setProductName(productName);
         setProductCategory(productCategory);
         setProductPrice(productPrice);
+        setProductDiscountPrice(productDiscountPrice);
         setProductDescription(productDescription);
         setProductImages(productImages);
         setProductSizes(productSizes);
@@ -120,6 +123,15 @@ export default function NavBar() {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+
+    //Selected currency
+    useEffect(() => {
+        let currency = localStorage.getItem('selectedCurrencySymbol');
+        if (currency) {
+            setSelectedCurrency(currency);
+        }
+    }, [])
+
 
 
     return (
@@ -273,12 +285,13 @@ export default function NavBar() {
                     <ul className="SearchResults">
                         {filteredProducts.map((product, index) => (
                             <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(
-                                product.id, 
-                                    product.title, 
-                                    product.collections.nodes[0].title, 
-                                    product.priceRange.minVariantPrice.amount, 
-                                    product.variants.nodes, product.description, 
-                                    product.images.edges.map(({ node }: any) => node
+                                product.id,
+                                product.title,
+                                product.collections.nodes[0].title,
+                                product.variants.nodes[0].priceV2.amount,
+                                product.variants.nodes[0].compareAtPriceV2?.amount || null,
+                                product.variants.nodes, product.description,
+                                product.images.edges.map(({ node }: any) => node
                                 ))}>
 
                                 <picture className='ResultImg'>
@@ -286,7 +299,17 @@ export default function NavBar() {
                                 </picture>
                                 <div className="resultDetails" >
                                     <span>{product.title}</span>
-                                    <span>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 })}</span>
+                                    <p>
+                                        {product.variants.nodes[0].compareAtPriceV2 && (
+                                            <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPriceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
+                                        )}
+
+                                        <span>{parseFloat(product.variants.nodes[0].priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+
+                                        </span>
+
+                                    </p>
+
                                 </div>
 
                             </li>
@@ -295,7 +318,7 @@ export default function NavBar() {
                 )}
             </div>
             <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''} />
-            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </header>
     );
 }

@@ -27,6 +27,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [productName, setProductName] = useState<string>('');
     const [productCategory, setProductCategory] = useState<string>('');
     const [productPrice, setProductPrice] = useState<number>(0);
+    const [productDiscountPrice, setProductDiscountPrice] = useState<number>(0);
     const [productSizes, setProductSizes] = useState<string[]>([]);
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
@@ -94,7 +95,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
             } else {
                 setItemsPerView(4);
             }
-            
+
             setTimeout(() => setAutoScrollEnabled(true), 1000);
         }
 
@@ -112,13 +113,14 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     };
 
     //Modal cart
-    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
         setIsModalOpen(true);
         setSelectedProduct(productName);
         setProductId(productId);
         setProductName(productName);
         setProductCategory(productCategory);
         setProductPrice(productPrice);
+        setProductDiscountPrice(productDiscountPrice);
         setProductDescription(productDescription);
         setProductImages(productImages);
         setProductSizes(productSizes);
@@ -127,8 +129,8 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
-    
-//Selected currency
+
+    //Selected currency
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
         if (currency) {
@@ -165,11 +167,11 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
                             onMouseDown={(e) => e.preventDefault()}
                             draggable="false"
-                            >
-                            <ProductCarousel 
-                                productImages={product.images.edges.map(({ node }: any) => node)} 
-                                productId={product.id} 
-                                productName={product.title} 
+                        >
+                            <ProductCarousel
+                                productImages={product.images.edges.map(({ node }: any) => node)}
+                                productId={product.id}
+                                productName={product.title}
                             />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">
@@ -177,24 +179,35 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                 </div>
                                 <div className="ProductContent">
                                     <p>{product.title}</p>
-                                    <p>{parseFloat(product.priceRange.minVariantPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
+                                    <p>
+                                        {product.variants.nodes[0].compareAtPriceV2 && (
+                                            <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPriceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
+                                        )}
+
+                                        <span>{parseFloat(product.variants.nodes[0].priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+
+                                        </span>
+
+                                    </p>
                                 </div>
-                                
+
                             </div>
                             <div className="ProductDetailsFooter">
-                            <div className="ProductSize">
-                                    {product.variants.nodes.map(( size : any) => (
+                                <div className="ProductSize">
+                                    {product.variants.nodes.map((size: any) => (
                                         <span key={size.id}>{size.title}</span>
                                     ))}
                                 </div>
                                 <button className='btn-secondary' onClick={() => handleOpenModal(
-                                    product.id, 
-                                    product.title, 
-                                    product.collections.nodes[0].title, 
-                                    product.priceRange.minVariantPrice.amount, 
-                                    product.variants.nodes, product.description, 
+                                    product.id,
+                                    product.title,
+                                    product.collections.nodes[0].title,
+                                    product.variants.nodes[0].priceV2.amount,
+                                    product.variants.nodes[0].compareAtPriceV2?.amount || null,
+                                    product.variants.nodes,
+                                    product.description,
                                     product.images.edges.map(({ node }: any) => node
-                                ))}>
+                                    ))}>
                                     <span>{t("carouselSection.button")}</span>
                                 </button>
                             </div>
@@ -202,7 +215,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     ))}
                 </div>
             </div>
-            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </section>
     );
 }
