@@ -32,6 +32,12 @@ export default function NavBar() {
         };
     }, [updateCart]);
 
+    //Funcion para mostrar la cantidad de productos en el carrito
+    const getTotalQuantity = () => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+    };
+    
+
     const { t } = useTranslation();
 
     const toggleSideBar = () => {
@@ -126,7 +132,7 @@ export default function NavBar() {
                         </button>
                         <button className="CartHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
-                            {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+                            {getTotalQuantity() > 0 && <span className="cart-count">{getTotalQuantity()}</span>}
                         </button>
                         <button className='BTNSearch' aria-label="Buscar" onClick={toggleSearch}>
                             {searchIcon()}
@@ -211,7 +217,7 @@ export default function NavBar() {
                     <li>
                         <button className='CartHeader' aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
-                            {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+                            {getTotalQuantity() > 0 && <span className="cart-count">{getTotalQuantity()}</span>}
                         </button>
                     </li>
                     <li>
