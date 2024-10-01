@@ -211,6 +211,7 @@
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--olga-black-primary);
+    text-transform: uppercase;
 }
 
 .ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader a:hover{
