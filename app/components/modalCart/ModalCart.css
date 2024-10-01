@@ -369,13 +369,15 @@
 
     .ModalCartWrapper .ModalCartFooter {
         justify-content: center;
+        flex-direction: column;
     }
 
     .ModalCartWrapper .ModalCartFooter button{
+
         padding: 10px 10px;
         justify-self: center;
         align-self: center;
-        width: 50%;
+        width: 100%;
     }
     
 }
