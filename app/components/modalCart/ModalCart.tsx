@@ -69,7 +69,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
 
         onClose();
         setIsSizeSelected(false);
-        window.location.reload();
+        window.dispatchEvent(new Event('cartUpdated'));
     }
 
     const handleScroll = () => {

@@ -8,7 +8,7 @@ import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 import { useProductContext } from '~/hooks/ProductContext';
 import { useTranslation } from "react-i18next";
 import Bag from '~/components/Bag/Bag';
-import { fetchCartItems, fetchWebUrl } from '~/api/getCartItems';
+import { useCart } from '~/hooks/Cart';
 
 export default function NavBar() {
 
@@ -18,17 +18,19 @@ export default function NavBar() {
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
     const [isBagOpen, setIsBagOpen] = useState(false);
-    const [cartItems, setCartItems] = useState<any[]>([]);
-    const [webUrl, setWebUrl] = useState<string | null>(null);
 
     //Obtener productos del carrito
+    const { cartItems, setCartItems, webUrl, updateCart } = useCart();
+
     useEffect(() => {
-        const checkoutId = localStorage.getItem('checkoutId');
-        if (checkoutId) {
-            fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
-            fetchWebUrl(checkoutId).then(setWebUrl).catch(console.error);
-        }
-    }, []);
+        // Suscribirse al evento de actualización del carrito
+        window.addEventListener('cartUpdated', updateCart);
+
+        // Limpiar el evento al desmontar el componente
+        return () => {
+            window.removeEventListener('cartUpdated', updateCart);
+        };
+    }, [updateCart]);
 
     const { t } = useTranslation();
 
@@ -248,7 +250,7 @@ export default function NavBar() {
                     </ul>
                 )}
             </div>
-            <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''}/>
+            <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''} />
         </header>
     );
 }
