@@ -52,21 +52,41 @@
 
 .NavBar1-3 .whishlistHeader,
 .NavBar1-3 .accoutHeader,
-.NavBar1-3 .BTNSearch {
+.NavBar1-3 .BTNSearch,
+.NavBar1-3 .CartHeader {
     color: var(--olga-black-primary);
     display: flex;
     border: none;
     background-color: transparent;
     cursor: pointer;
-
 }
+
 
 .NavBar1-3 .whishlistHeader:hover,
 .NavBar1-3 .accoutHeader:hover,
-.NavBar1-3 .BTNSearch:hover {
+.NavBar1-3 .BTNSearch:hover,
+.NavBar1-3 .CartHeader:hover {
     color: var(--olga-black-secondary);
 }
 
+.NavBar1-3 .CartHeader, .NavBarMobileContainer .CartHeader {
+    position: relative;
+}
+.CartHeader .cart-count {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    background-color: var(--olga-white-primary);
+    color: var(--olga-black-primary);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    box-shadow: 0 0 10px #0006;
+}
 
 .NavBar1-3 .BTNSearch {
     background-color: transparent;
@@ -279,7 +299,8 @@
 
     .NavBar1-3 .whishlistHeader,
     .NavBar1-3 .accoutHeader,
-    .NavBar1-3 .BTNSearch {
+    .NavBar1-3 .BTNSearch,
+    .NavBar1-3 .CartHeader {
         display: none;
     }
 
@@ -325,5 +346,9 @@
         color: var(--olga-black-primary);
     }
 
+    .NavBarMobileContainer .CartHeader .cart-count {
+        bottom: 15px;
+        left: 13px;
+    }
 
 }

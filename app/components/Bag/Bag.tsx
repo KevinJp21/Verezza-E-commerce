@@ -8,12 +8,13 @@ import { fetchWebUrl } from '~/api/getCartItems';
 interface BagProps {
     isOpen: boolean;
     onClose: () => void;
+    cartItems: any[];
+    setCartItems: (items: any[]) => void;
+    webUrl: string;
 }
 
-export default function Bag({ isOpen, onClose }: BagProps) {
-    const [cartItems, setCartItems] = useState<any[]>([]);
+export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }: BagProps) {
     const [selectedCurrency, setSelectedCurrency] = useState('');
-    const [webUrl, setWebUrl] = useState('');
 
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
@@ -26,7 +27,6 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         const checkoutId = localStorage.getItem('checkoutId');
         if (checkoutId) {
             fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
-            fetchWebUrl(checkoutId).then(setWebUrl).catch(console.error);
         }
 
         

@@ -8,6 +8,7 @@ import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 import { useProductContext } from '~/hooks/ProductContext';
 import { useTranslation } from "react-i18next";
 import Bag from '~/components/Bag/Bag';
+import { fetchCartItems, fetchWebUrl } from '~/api/getCartItems';
 
 export default function NavBar() {
 
@@ -17,8 +18,17 @@ export default function NavBar() {
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
     const { products } = useProductContext();
     const [isBagOpen, setIsBagOpen] = useState(false);
+    const [cartItems, setCartItems] = useState<any[]>([]);
+    const [webUrl, setWebUrl] = useState<string | null>(null);
 
-
+    //Obtener productos del carrito
+    useEffect(() => {
+        const checkoutId = localStorage.getItem('checkoutId');
+        if (checkoutId) {
+            fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
+            fetchWebUrl(checkoutId).then(setWebUrl).catch(console.error);
+        }
+    }, []);
 
     const { t } = useTranslation();
 
@@ -112,8 +122,9 @@ export default function NavBar() {
                         <button className="whishlistHeader" aria-label="Lista de deseos">
                             {heartIcon()}
                         </button>
-                        <button className="whishlistHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
+                        <button className="CartHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
+                            {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
                         </button>
                         <button className='BTNSearch' aria-label="Buscar" onClick={toggleSearch}>
                             {searchIcon()}
@@ -196,7 +207,10 @@ export default function NavBar() {
                         <a href="/" aria-label="Lista de deseos">{heartIcon()}</a>
                     </li>
                     <li>
-                        <button aria-label="Bolsa de compras" onClick={toggleBag}>{cartIcon()}</button>
+                        <button className='CartHeader' aria-label="Bolsa de compras" onClick={toggleBag}>
+                            {cartIcon()}
+                            {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+                        </button>
                     </li>
                     <li>
                         <a href="/" aria-label="Usuario">{userIcon()}</a>
@@ -234,7 +248,7 @@ export default function NavBar() {
                     </ul>
                 )}
             </div>
-            <Bag isOpen={isBagOpen} onClose={closeBag} />
+            <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''}/>
         </header>
     );
 }
