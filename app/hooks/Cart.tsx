@@ -6,7 +6,11 @@ export function useCart() {
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [webUrl, setWebUrl] = useState<string | null>(null);
     const [productDetails, setProductDetails] = useState<{[key: string]: any}>({});
-    const [selectedCurrency, setSelectedCurrency] = useState('COP');
+    const [selectedCurrency, setSelectedCurrency] = useState('');
+
+    const getTotalQuantity = useCallback(() => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+    }, [cartItems]);
 
     const updateCart = useCallback(async () => {
         const checkoutId = localStorage.getItem('checkoutId');
@@ -55,5 +59,5 @@ export function useCart() {
         updateCart();
     }, [updateCart]);
 
-    return { cartItems, setCartItems, webUrl, productDetails, updateCart };
+    return { cartItems, setCartItems, webUrl, productDetails, updateCart, getTotalQuantity };
 }

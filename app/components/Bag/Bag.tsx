@@ -38,7 +38,8 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             try {
                 const updatedCheckout = await updateCartItemQuantity(checkoutId, itemId, quantity);
                 setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
-                await updateCart(); // Llamar a updateCart después de actualizar la cantidad
+                await updateCart();
+                window.dispatchEvent(new Event('cartUpdated'));
             } catch (error) {
                 console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
             }
@@ -52,6 +53,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                 const updatedCheckout = await removeCartItem(checkoutId, itemId);
                 setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
                 await updateCart();
+                window.dispatchEvent(new Event('cartUpdated'));
             } catch (error) {
                 console.error('Error al eliminar el artículo del carrito:', error);
             }
