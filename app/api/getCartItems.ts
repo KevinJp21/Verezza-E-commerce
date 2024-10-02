@@ -20,6 +20,10 @@ const GET_CART_ITEMS_QUERY = gql`
                   amount
                   currencyCode
                 }
+                compareAtPriceV2 {
+                  amount
+                  currencyCode
+                }
                 image {
                   src
                 }

@@ -229,6 +229,9 @@
     height: 56px;
 }
 
-@media screen and (min-width: 768px) {
-   
+@media screen and (max-width: 450px) {
+   .bagPriceIrem .priceWrapper .productPrice{
+    display: flex;
+    flex-direction: column;
+   }
 }

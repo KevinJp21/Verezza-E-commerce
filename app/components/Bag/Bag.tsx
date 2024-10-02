@@ -29,7 +29,7 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
             fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
         }
 
-        
+
     }, []);
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
@@ -80,7 +80,15 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                                         <a href={`/product/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>{item.title}</a>
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
-                                                <p className='productPrice'>{parseFloat(item.variant.priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</p>
+                                                <p className='productPrice'>
+                                                    {item.variant.compareAtPriceV2 && (
+                                                        <span className='ProductPriceDiscount'>{parseFloat(item.variant.compareAtPriceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
+                                                    )}
+                                                    <span>
+                                                        {parseFloat(item.variant.priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                    </span>
+                                                </p>
+
                                             </div>
                                         </section>
                                         <div className="itemVariants">

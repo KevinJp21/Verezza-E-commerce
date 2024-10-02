@@ -20,6 +20,10 @@ const UPDATE_CART_ITEM_MUTATION = gql`
                   amount
                   currencyCode
                 }
+                compareAtPriceV2 {
+                  amount
+                  currencyCode
+                }
                 image {
                   src
                 }
