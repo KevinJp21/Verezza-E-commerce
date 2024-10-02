@@ -11,7 +11,7 @@ interface BagProps {
 }
 
 export default function Bag({ isOpen, onClose }: BagProps) {
-    const [selectedCurrency, setSelectedCurrency] = useState('');
+    const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const { cartItems, setCartItems, webUrl, productDetails, updateCart } = useCart();
 
     useEffect(() => {
