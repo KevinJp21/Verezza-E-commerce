@@ -6,62 +6,34 @@ import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
 import { fetchWebUrl } from '~/api/getCartItems';
 import { getProductsByIds } from '~/api/getCartItemsByIds';
+import { useCart } from '~/hooks/Cart';
+
 interface BagProps {
     isOpen: boolean;
     onClose: () => void;
-    cartItems: any[];
-    setCartItems: (items: any[]) => void;
-    webUrl: string;
 }
 
-export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }: BagProps) {
+export default function Bag({ isOpen, onClose }: BagProps) {
     const [selectedCurrency, setSelectedCurrency] = useState('');
-    const [productDetails, setProductDetails] = useState<{[key: string]: any}>({});
+    const { cartItems, setCartItems, webUrl, productDetails, updateCart } = useCart();
 
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
-        const language = localStorage.getItem('selectedLanguage');
-        let country = '';
-        let languageCode = '';
-
         if (currency) {
             setSelectedCurrency(currency);
-            if (currency === 'COP') {
-                country = 'CO';
-            } else if (currency === 'USD') {
-                country = 'US';
-            } else {
-                country = 'ES';
-            }
-
-        } 
-
-        if (language) {
-            if (language === 'Español') {
-                languageCode = 'ES';
-            } else {
-                languageCode = 'EN';
-            }
-        }
-
-        const checkoutId = localStorage.getItem('checkoutId');
-        if (checkoutId && country && languageCode) {
-            fetchCartItems(checkoutId).then(async (items) => {
-                setCartItems(items);
-                const productIds = items.map((item: any) => item.productId);
-                try {
-                    const products = await getProductsByIds(productIds, country, languageCode);
-                    const details: {[key: string]: any} = {};
-                    products.forEach((product: any) => {
-                        details[product.id] = product;
-                    });
-                    setProductDetails(details);
-                } catch (error) {
-                    console.error('Error al obtener detalles de los productos:', error);
-                }
-            }).catch(console.error);
         }
     }, []);
+
+    useEffect(() => {
+        const handleCartUpdated = () => {
+            updateCart();
+        };
+
+        window.addEventListener('cartUpdated', handleCartUpdated);
+        return () => {
+            window.removeEventListener('cartUpdated', handleCartUpdated);
+        };
+    }, [updateCart]);
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
         const checkoutId = localStorage.getItem('checkoutId');
@@ -88,7 +60,9 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
     };
 
     const handleCheckout = () => {
-        window.open(webUrl, '_blank');
+        if (webUrl) {
+            window.open(webUrl, '_blank');
+        }
     };
 
     return (

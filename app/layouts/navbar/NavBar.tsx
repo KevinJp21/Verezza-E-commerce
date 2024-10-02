@@ -317,7 +317,7 @@ export default function NavBar() {
                     </ul>
                 )}
             </div>
-            <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''} />
+            <Bag isOpen={isBagOpen} onClose={closeBag} />
             {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </header>
     );
