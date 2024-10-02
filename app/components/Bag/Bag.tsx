@@ -5,6 +5,7 @@ import { fetchCartItems } from '~/api/getCartItems';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
 import { fetchWebUrl } from '~/api/getCartItems';
+import { getProductById } from '~/api/getCartItems';
 interface BagProps {
     isOpen: boolean;
     onClose: () => void;
@@ -15,21 +16,54 @@ interface BagProps {
 
 export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }: BagProps) {
     const [selectedCurrency, setSelectedCurrency] = useState('');
-
+    const [productDetails, setProductDetails] = useState<{[key: string]: any}>({});
+    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedLanguage, setSelectedLanguage] = useState('');
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
+        const language = localStorage.getItem('selectedLanguage');
+        let country = '';
+        let languageCode = '';
+
         if (currency) {
             setSelectedCurrency(currency);
-        } else {
-            setSelectedCurrency('COP');
+            if (currency === 'COP') {
+                country = 'CO';
+            } else if (currency === 'USD') {
+                country = 'US';
+            } else {
+                country = 'ES';
+            }
+            setSelectedCountry(country);
+        } 
+
+        if (language) {
+            if (language === 'Español') {
+                languageCode = 'ES';
+            } else {
+                languageCode = 'EN';
+            }
+            setSelectedLanguage(languageCode);
         }
 
         const checkoutId = localStorage.getItem('checkoutId');
-        if (checkoutId) {
-            fetchCartItems(checkoutId).then(setCartItems).catch(console.error);
+        if (checkoutId && country && languageCode) {
+            fetchCartItems(checkoutId).then(async (items) => {
+                setCartItems(items);
+                const details: {[key: string]: any} = {};
+                for (const item of items) {
+                    if (typeof item.productId === 'string') {
+                        try {
+                            const product = await getProductById(item.productId, country, languageCode);
+                            details[item.id] = product;
+                        } catch (error) {
+                            console.error(`Error al obtener detalles del producto ${item.productId}:`, error);
+                        }
+                    }
+                }
+                setProductDetails(details);
+            }).catch(console.error);
         }
-
-
     }, []);
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
@@ -81,14 +115,15 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
                                                 <p className='productPrice'>
-                                                    {item.variant.compareAtPrice && (
-                                                        <span className='ProductPriceDiscount'>{parseFloat(item.variant.compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
+                                                    {productDetails[item.id]?.variants.edges[0].node.compareAtPrice && (
+                                                        <span className='ProductPriceDiscount'>
+                                                            {parseFloat(productDetails[item.id].variants.edges[0].node.compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                        </span>
                                                     )}
                                                     <span>
-                                                        {parseFloat(item.variant.price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                        {parseFloat(productDetails[item.id]?.variants.edges[0].node.price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                                                     </span>
                                                 </p>
-
                                             </div>
                                         </section>
                                         <div className="itemVariants">
@@ -118,7 +153,22 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                     {cartItems.length > 0 && (
                         <footer className="BagFooter">
                             <div className="BagFooterWrapper">
-                                <p><span>Total</span> <span>{cartItems.reduce((total, item: any) => total + item.quantity * parseFloat(item.variant.price.amount), 0).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span></p>
+                                <p>
+                                    <span>Total</span> 
+                                    <span>
+                                        {cartItems.reduce((total, item: any) => {
+                                            const itemPrice = productDetails[item.id]?.variants.edges[0].node.price.amount || item.variant.price.amount;
+                                            return total + item.quantity * parseFloat(itemPrice);
+                                        }, 0).toLocaleString(
+                                            selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', 
+                                            { 
+                                                style: 'currency', 
+                                                currency: selectedCurrency, 
+                                                minimumFractionDigits: 0 
+                                            }
+                                        )}
+                                    </span>
+                                </p>
                                 <button className='btn-secondary' onClick={handleCheckout}>Comprar</button>
                             </div>
                         </footer>
