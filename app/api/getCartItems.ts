@@ -49,24 +49,26 @@ const GET_WEB_URL_QUERY = gql`
   }
 `;
 
-const GET_PRODUCT_BY_ID_QUERY = gql`
-  query getProductById($id: ID!, $country: CountryCode!, $language: LanguageCode!) @inContext(country: $country, language: $language) {
-    product(id: $id) {
-      id
-      title
-      description
-      variants(first: 1) {
-        edges {
-          node {
-            id
-            title
-            price {
-              amount
-              currencyCode
-            }
-            compareAtPrice {
-              amount
-              currencyCode
+const GET_PRODUCTS_BY_IDS_QUERY = gql`
+  query getProductsByIds($ids: [ID!]!, $country: CountryCode!, $language: LanguageCode!) @inContext(country: $country, language: $language) {
+    nodes(ids: $ids) {
+      ... on Product {
+        id
+        title
+        description
+        variants(first: 1) {
+          edges {
+            node {
+              id
+              title
+              price {
+                amount
+                currencyCode
+              }
+              compareAtPrice {
+                amount
+                currencyCode
+              }
             }
           }
         }
@@ -138,12 +140,9 @@ export const fetchWebUrl = async (checkoutId: string) => {
   }
 };
 
-export const getProductById = async (productId: string, country: string, language: string) => {
+export const getProductsByIds = async (productIds: string[], country: string, language: string) => {
   try {
-    // Convertir el país a CountryCode
     const countryCode = country.toUpperCase() as CountryCode;
-    
-    // Convertir el idioma a LanguageCode
     const languageCode = language.toUpperCase() as LanguageCode;
 
     const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
@@ -153,9 +152,9 @@ export const getProductById = async (productId: string, country: string, languag
         'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
       },
       body: JSON.stringify({
-        query: GET_PRODUCT_BY_ID_QUERY,
+        query: GET_PRODUCTS_BY_IDS_QUERY,
         variables: { 
-          id: productId, 
+          ids: productIds, 
           country: countryCode, 
           language: languageCode 
         },
@@ -171,9 +170,9 @@ export const getProductById = async (productId: string, country: string, languag
       throw new Error(`Error en la respuesta de GraphQL: ${data.errors.map((error: any) => error.message).join(', ')}`);
     }
 
-    return data.data.product;
+    return data.data.nodes;
   } catch (error) {
-    console.error('Error al obtener los detalles del producto:', error);
+    console.error('Error al obtener los detalles de los productos:', error);
     throw error;
   }
 };

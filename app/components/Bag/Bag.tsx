@@ -5,7 +5,7 @@ import { fetchCartItems } from '~/api/getCartItems';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
 import { fetchWebUrl } from '~/api/getCartItems';
-import { getProductById } from '~/api/getCartItems';
+import { getProductsByIds } from '~/api/getCartItems';
 interface BagProps {
     isOpen: boolean;
     onClose: () => void;
@@ -50,18 +50,17 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
         if (checkoutId && country && languageCode) {
             fetchCartItems(checkoutId).then(async (items) => {
                 setCartItems(items);
-                const details: {[key: string]: any} = {};
-                for (const item of items) {
-                    if (typeof item.productId === 'string') {
-                        try {
-                            const product = await getProductById(item.productId, country, languageCode);
-                            details[item.id] = product;
-                        } catch (error) {
-                            console.error(`Error al obtener detalles del producto ${item.productId}:`, error);
-                        }
-                    }
+                const productIds = items.map((item: any) => item.productId);
+                try {
+                    const products = await getProductsByIds(productIds, country, languageCode);
+                    const details: {[key: string]: any} = {};
+                    products.forEach((product: any) => {
+                        details[product.id] = product;
+                    });
+                    setProductDetails(details);
+                } catch (error) {
+                    console.error('Error al obtener detalles de los productos:', error);
                 }
-                setProductDetails(details);
             }).catch(console.error);
         }
     }, []);
@@ -115,13 +114,13 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
                                                 <p className='productPrice'>
-                                                    {productDetails[item.id]?.variants.edges[0].node.compareAtPrice && (
+                                                    {productDetails[item.productId]?.variants.edges[0].node.compareAtPrice && (
                                                         <span className='ProductPriceDiscount'>
-                                                            {parseFloat(productDetails[item.id].variants.edges[0].node.compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                            {parseFloat(productDetails[item.productId].variants.edges[0].node.compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                                                         </span>
                                                     )}
                                                     <span>
-                                                        {parseFloat(productDetails[item.id]?.variants.edges[0].node.price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                        {parseFloat(productDetails[item.productId]?.variants.edges[0].node.price.amount || '0').toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                                                     </span>
                                                 </p>
                                             </div>
@@ -157,7 +156,7 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                                     <span>Total</span> 
                                     <span>
                                         {cartItems.reduce((total, item: any) => {
-                                            const itemPrice = productDetails[item.id]?.variants.edges[0].node.price.amount || item.variant.price.amount;
+                                            const itemPrice = productDetails[item.productId]?.variants.edges[0].node.price.amount || item.variant.price.amount;
                                             return total + item.quantity * parseFloat(itemPrice);
                                         }, 0).toLocaleString(
                                             selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', 
