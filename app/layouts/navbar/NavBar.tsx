@@ -13,6 +13,7 @@ import ModalCart from '~/components/modalCart/ModalCart';
 
 export default function NavBar() {
 
+    const { cartItems, updateCart, getTotalQuantity } = useCart();
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +22,6 @@ export default function NavBar() {
     const [isBagOpen, setIsBagOpen] = useState(false);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     //Obtener productos del carrito
-    const { cartItems, setCartItems, webUrl, updateCart } = useCart();
     //Obtener datosa al seleccionarlo en la busqueda
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -43,12 +43,6 @@ export default function NavBar() {
             window.removeEventListener('cartUpdated', updateCart);
         };
     }, [updateCart]);
-
-    //Funcion para mostrar la cantidad de productos en el carrito
-    const getTotalQuantity = () => {
-        return cartItems.reduce((total, item) => total + item.quantity, 0);
-    };
-
 
     const { t } = useTranslation();
 
@@ -317,7 +311,7 @@ export default function NavBar() {
                     </ul>
                 )}
             </div>
-            <Bag isOpen={isBagOpen} onClose={closeBag} cartItems={cartItems} setCartItems={setCartItems} webUrl={webUrl || ''} />
+            <Bag isOpen={isBagOpen} onClose={closeBag} />
             {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </header>
     );

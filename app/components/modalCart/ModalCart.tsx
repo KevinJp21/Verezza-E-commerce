@@ -4,6 +4,7 @@ import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
 import { useTranslation } from 'react-i18next';
 import { addToCart } from '~/api/addToCart';
+import { useCart } from '~/hooks/Cart';
 
 interface ModalCartProps {
     isOpen: boolean;
@@ -25,6 +26,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const { t } = useTranslation();
+    const { updateCart } = useCart();
 
     const handleClose = () => {
         onClose();
@@ -62,6 +64,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
             const variantId = selectedVariant.id;
             const checkout = await addToCart(variantId, selectedQuantity);
             localStorage.setItem('checkoutId', checkout.id);
+            await updateCart(); // Llamar a updateCart después de agregar al carrito
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);
         }

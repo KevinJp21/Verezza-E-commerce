@@ -27,6 +27,9 @@ const GET_CART_ITEMS_QUERY = gql`
                 image {
                   src
                 }
+                product {
+                  id
+                }
               }
             }
           }
@@ -45,6 +48,7 @@ const GET_WEB_URL_QUERY = gql`
     }
   }
 `;
+
 
 export const fetchCartItems = async (checkoutId: string) => {
   try {
@@ -69,7 +73,10 @@ export const fetchCartItems = async (checkoutId: string) => {
       throw new Error(`Error en la respuesta de GraphQL: ${data.errors.map((error: any) => error.message).join(', ')}`);
     }
 
-    return data.data.node.lineItems.edges.map((edge: any) => edge.node);
+    return data.data.node.lineItems.edges.map((edge: any) => ({
+      ...edge.node,
+      productId: edge.node.variant.product.id
+    }));
   } catch (error) {
     console.error('Error al obtener los artículos del carrito:', error);
     throw error;
