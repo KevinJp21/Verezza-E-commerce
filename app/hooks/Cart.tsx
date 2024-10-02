@@ -45,13 +45,17 @@ export function useCart() {
             const url = await fetchWebUrl(checkoutId);
             setWebUrl(url);
 
-            const productIds = items.map((item: any) => item.productId);
-            const details = await getProductsByIds(productIds, country, languageCode);
-            const detailsMap: {[key: string]: any} = {};
-            details.forEach((product: any) => {
-                detailsMap[product.id] = product;
-            });
-            setProductDetails(detailsMap);
+            if (items.length > 0) {
+                const productIds = items.map((item: any) => item.productId);
+                const details = await getProductsByIds(productIds, country, languageCode);
+                const detailsMap: {[key: string]: any} = {};
+                details.forEach((product: any) => {
+                    detailsMap[product.id] = product;
+                });
+                setProductDetails(detailsMap);
+            } else {
+                setProductDetails({});
+            }
         }
     }, []);
 
