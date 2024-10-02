@@ -25,7 +25,6 @@ export function useCart() {
             } else {
                 country = 'ES';
             }
-
         } 
 
         if (language) {
@@ -35,7 +34,6 @@ export function useCart() {
                 languageCode = 'EN';
             }
         }
-
 
         if (checkoutId) {
             const items = await fetchCartItems(checkoutId);

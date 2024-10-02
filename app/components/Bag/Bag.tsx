@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Bag.css';
 import { closeIcon, trashIcon } from '~/assets/icons/icons';
-import { fetchCartItems } from '~/api/getCartItems';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
-import { fetchWebUrl } from '~/api/getCartItems';
-import { getProductsByIds } from '~/api/getCartItemsByIds';
 import { useCart } from '~/hooks/Cart';
 
 interface BagProps {
@@ -41,6 +38,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             try {
                 const updatedCheckout = await updateCartItemQuantity(checkoutId, itemId, quantity);
                 setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
+                await updateCart(); // Llamar a updateCart después de actualizar la cantidad
             } catch (error) {
                 console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
             }
@@ -53,6 +51,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             try {
                 const updatedCheckout = await removeCartItem(checkoutId, itemId);
                 setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
+                await updateCart();
             } catch (error) {
                 console.error('Error al eliminar el artículo del carrito:', error);
             }
