@@ -5,7 +5,7 @@ import { fetchCartItems } from '~/api/getCartItems';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
 import { fetchWebUrl } from '~/api/getCartItems';
-import { getProductsByIds } from '~/api/getCartItems';
+import { getProductsByIds } from '~/api/getCartItemsByIds';
 interface BagProps {
     isOpen: boolean;
     onClose: () => void;
@@ -17,8 +17,7 @@ interface BagProps {
 export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }: BagProps) {
     const [selectedCurrency, setSelectedCurrency] = useState('');
     const [productDetails, setProductDetails] = useState<{[key: string]: any}>({});
-    const [selectedCountry, setSelectedCountry] = useState('');
-    const [selectedLanguage, setSelectedLanguage] = useState('');
+
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
         const language = localStorage.getItem('selectedLanguage');
@@ -34,7 +33,7 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
             } else {
                 country = 'ES';
             }
-            setSelectedCountry(country);
+
         } 
 
         if (language) {
@@ -43,7 +42,6 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
             } else {
                 languageCode = 'EN';
             }
-            setSelectedLanguage(languageCode);
         }
 
         const checkoutId = localStorage.getItem('checkoutId');
