@@ -27,11 +27,11 @@ export interface Product {
       id: string;
       title: string;
       availableForSale: boolean;
-      compareAtPriceV2: {
+      compareAtPrice: {
         amount: string;
         currencyCode: string;
       };
-      priceV2: {
+      price: {
         amount: string;
         currencyCode: string;
       };
@@ -143,11 +143,11 @@ export async function getAllProducts(): Promise<Product[]> {
                 id
                 title
                 availableForSale
-                priceV2 {
+                price {
                   amount
                   currencyCode
                 }
-                compareAtPriceV2 {
+                compareAtPrice {
                   amount
                   currencyCode
                 }

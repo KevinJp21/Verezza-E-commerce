@@ -180,11 +180,11 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                 <div className="ProductContent">
                                     <p>{product.title}</p>
                                     <p>
-                                        {product.variants.nodes[0].compareAtPriceV2 && (
-                                            <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPriceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
+                                        {product.variants.nodes[0].compareAtPrice && (
+                                            <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
                                         )}
 
-                                        <span>{parseFloat(product.variants.nodes[0].priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                        <span>{parseFloat(product.variants.nodes[0].price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
 
                                         </span>
 
@@ -202,8 +202,8 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                     product.id,
                                     product.title,
                                     product.collections.nodes[0].title,
-                                    product.variants.nodes[0].priceV2.amount,
-                                    product.variants.nodes[0].compareAtPriceV2?.amount || null,
+                                    product.variants.nodes[0].price.amount,
+                                    product.variants.nodes[0].compareAtPrice?.amount || null,
                                     product.variants.nodes,
                                     product.description,
                                     product.images.edges.map(({ node }: any) => node
