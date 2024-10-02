@@ -60,9 +60,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
             }
 
             const variantId = selectedVariant.id;
-            console.log('Variant ID:', variantId);
             const checkout = await addToCart(variantId, selectedQuantity);
-            console.log('Producto agregado al carrito:', checkout);
             localStorage.setItem('checkoutId', checkout.id);
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);

@@ -16,11 +16,11 @@ const GET_CART_ITEMS_QUERY = gql`
               variant {
                 id
                 title
-                priceV2 {
+                price {
                   amount
                   currencyCode
                 }
-                compareAtPriceV2 {
+                compareAtPrice {
                   amount
                   currencyCode
                 }

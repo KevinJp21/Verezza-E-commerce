@@ -32,7 +32,7 @@ const ADD_TO_CART_MUTATION = gql`
               variant {
                 id
                 title
-                priceV2 {
+                price {
                   amount
                   currencyCode
                 }
@@ -116,8 +116,6 @@ export async function addToCart(variantId: string, quantity: number) {
     }
 
     const data = await response.json();
-
-    console.log('Respuesta completa de la API:', data);
 
     if (data.errors || !data.data || !data.data.checkoutLineItemsAdd || data.data.checkoutLineItemsAdd.userErrors.length > 0) {
       const userErrors = data.data?.checkoutLineItemsAdd?.userErrors || [];

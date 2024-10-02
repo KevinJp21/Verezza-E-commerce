@@ -16,11 +16,11 @@ const UPDATE_CART_ITEM_MUTATION = gql`
               variant {
                 id
                 title
-                priceV2 {
+                price {
                   amount
                   currencyCode
                 }
-                compareAtPriceV2 {
+                compareAtPrice {
                   amount
                   currencyCode
                 }

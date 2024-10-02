@@ -81,11 +81,11 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
                                                 <p className='productPrice'>
-                                                    {item.variant.compareAtPriceV2 && (
-                                                        <span className='ProductPriceDiscount'>{parseFloat(item.variant.compareAtPriceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
+                                                    {item.variant.compareAtPrice && (
+                                                        <span className='ProductPriceDiscount'>{parseFloat(item.variant.compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
                                                     )}
                                                     <span>
-                                                        {parseFloat(item.variant.priceV2.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                        {parseFloat(item.variant.price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                                                     </span>
                                                 </p>
 
@@ -118,7 +118,7 @@ export default function Bag({ isOpen, onClose, cartItems, setCartItems, webUrl }
                     {cartItems.length > 0 && (
                         <footer className="BagFooter">
                             <div className="BagFooterWrapper">
-                                <p><span>Total</span> <span>{cartItems.reduce((total, item: any) => total + item.quantity * parseFloat(item.variant.priceV2.amount), 0).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span></p>
+                                <p><span>Total</span> <span>{cartItems.reduce((total, item: any) => total + item.quantity * parseFloat(item.variant.price.amount), 0).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span></p>
                                 <button className='btn-secondary' onClick={handleCheckout}>Comprar</button>
                             </div>
                         </footer>
