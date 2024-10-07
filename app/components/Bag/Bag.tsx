@@ -4,6 +4,7 @@ import { closeIcon, trashIcon } from '~/assets/icons/icons';
 import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
 import { useCart } from '~/hooks/Cart';
+import { useTranslation } from 'react-i18next';
 
 interface BagProps {
     isOpen: boolean;
@@ -11,6 +12,7 @@ interface BagProps {
 }
 
 export default function Bag({ isOpen, onClose }: BagProps) {
+    const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const [isLoading, setIsLoading] = useState(false);
     const { cartItems, setCartItems, webUrl, productDetails, updateCart } = useCart();
@@ -79,7 +81,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             <div className={`BagContainer ${isOpen ? 'open' : ''}`}>
                 <div className='BagWrapper'>
                     <div className="BagHeader">
-                        <h2 className='BagTitle title-primary'>Bolsa de compras</h2>
+                        <h2 className='BagTitle title-primary'>{t('bag.title')}</h2>
                         <button className='BagClose' onClick={onClose}>{closeIcon()}</button>
                     </div>
                     <div className="BagContent">
@@ -117,7 +119,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                             </div>
                                         </section>
                                         <div className="itemVariants">
-                                            <p>Talla: {item.variant.title}</p>
+                                            <p>{t('bag.size_title')}: {item.variant.title}</p>
                                         </div>
                                         <div className="itemQuantity">
                                             <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)}>
@@ -136,7 +138,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                             ))
                         ) : (
                             <div className="bagEmpty">
-                                <p>La bolsa está vacía</p>
+                                <p>{t('bag.bag_empty')}</p>
                             </div>
                         )}
                     </div>
@@ -144,7 +146,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                         <footer className="BagFooter">
                             <div className="BagFooterWrapper">
                                 <p>
-                                    <span>Total</span>
+                                    <span>{t('bag.subtotal')}</span>
                                     {isLoading
                                         ? <span>0</span>
                                         : <span>
@@ -162,7 +164,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                         </span>
                                     }
                                 </p>
-                                <button className='btn-secondary' onClick={handleCheckout}>Comprar</button>
+                                <button className='btn-secondary' onClick={handleCheckout}>{t('bag.buy_now')}</button>
                             </div>
                         </footer>
                     )}

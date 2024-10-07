@@ -52,6 +52,13 @@ export default {
             }
         }
     },
+    "bag":{
+        "title": "Bolsa de compras",
+        "bag_empty": "La bolsa está vacía",
+        "size_title": "Talla",
+        "buy_now": "Comprar ahora",
+        "subtotal": "Subtotal"
+    },
     "home":{
         "start_home":{
             "title": "Descubre la moda que te hará sentir única",

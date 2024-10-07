@@ -52,6 +52,13 @@ export default {
       }
     }
   },
+  "bag":{
+    "title": "Shopping bag",
+    "bag_empty": "Your bag is empty",
+    "size_title": "Size",
+    "buy_now": "Shop now",
+    "subtotal": "Subtotal",
+  },
   "home": {
     "start_home": {
       "title": "Discover the fashion that will make you feel unique",

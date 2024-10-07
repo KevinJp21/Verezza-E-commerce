@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getAllProducts } from '~/utils/GetAllProducts';
+import { getAllProducts } from '~/api/GetAllProducts';
 
 export interface Product {
   id: string;
