@@ -16,6 +16,7 @@ export interface Product {
       };
     }>;
   };
+  productType: string;
   collections: {
     nodes: Array<{
       id: string;
@@ -132,6 +133,7 @@ export async function getAllProducts(): Promise<Product[]> {
                 }
               }
             }
+            productType
             collections(first: 1) {
               nodes {
                 id

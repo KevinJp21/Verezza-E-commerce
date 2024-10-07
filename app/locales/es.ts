@@ -1,7 +1,7 @@
 export default {
     "navbar": {
+        "shop": "TIENDA",
         "blouses": "BLUSAS",
-        "pants": "PANTALONES",
         "dresses": "VESTIDOS",
         "sets": "CONJUNTOS",
         "complements": "COMPLEMENTOS",
@@ -13,6 +13,7 @@ export default {
     },
     "sidebar": {
         "sidebar_title": "TIENDA",
+        "shop": "TIENDA",
         "blouses": "BLUSAS",
         "jackets": "CHAQUETAS",
         "pants": "PANTALONES",

@@ -138,10 +138,10 @@ export default function NavBar() {
                     <div className='NavBar1-2'>
                         <ul className='NavbarListWrapper'>
                             <li>
-                                <a href="">{t("navbar.blouses")}</a>
+                                <a href="">{t("navbar.shop")}</a>
                             </li>
                             <li>
-                                <a href="">{t("navbar.pants")}</a>
+                                <a href="">{t("navbar.blouses")}</a>
                             </li>
                             <li>
                                 <a href="">{t("navbar.dresses")}</a>
@@ -164,9 +164,6 @@ export default function NavBar() {
                         <a href="" className="accoutHeader" aria-label="Usuario">
                             {userIcon()}
                         </a>
-                        <button className="whishlistHeader" aria-label="Lista de deseos">
-                            {heartIcon()}
-                        </button>
                         <button className="CartHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
                             {getTotalQuantity() > 0 && <span className="cart-count">{getTotalQuantity()}</span>}
@@ -195,6 +192,9 @@ export default function NavBar() {
                         <div className="sidebarBody">
                             <span>{t("sidebar.sidebar_title")}</span>
                             <ul className='sidebarList'>
+                                <li>
+                                    <a href="">{t("sidebar.shop")}</a>
+                                </li>
                                 <li>
                                     <a href="">{t("sidebar.blouses")}</a>
                                 </li>
@@ -248,9 +248,6 @@ export default function NavBar() {
 
             <div className="NavBarMobileContainer">
                 <ul className='NavBarMobileList'>
-                    <li>
-                        <a href="/" aria-label="Lista de deseos">{heartIcon()}</a>
-                    </li>
                     <li>
                         <button className='CartHeader' aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}

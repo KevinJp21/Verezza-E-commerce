@@ -1,7 +1,7 @@
 export default {
   "navbar": {
+    "shop": "SHOP",
     "blouses": "BLOUSES",
-    "pants": "PANTS",
     "dresses": "DRESSES",
     "sets": "SETS",
     "complements": "COMPLEMENTS",
@@ -13,6 +13,7 @@ export default {
   },
   "sidebar": {
     "sidebar_title": "SHOP",
+    "shop": "SHOP",
     "blouses": "BLOUSES",
     "jackets": "JACKETS",
     "pants": "PANTS",

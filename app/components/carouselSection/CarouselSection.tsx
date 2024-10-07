@@ -175,7 +175,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                             />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">
-                                    <a href={`/collections/${product.collections.nodes[0].title.toLowerCase().replace(/\s+/g, '-')}`}>{product.collections.nodes[0].title}</a>
+                                    <a href={`/collections/${product.productType.toLowerCase().replace(/\s+/g, '-')}`}>{product.productType}</a>
                                 </div>
                                 <div className="ProductContent">
                                     <p>{product.title}</p>
