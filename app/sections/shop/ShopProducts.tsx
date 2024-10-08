@@ -8,6 +8,7 @@ export default function ShopProducts() {
     const TotalProducts = products.length;
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [itemsPerRow, setItemsPerRow] = useState<number>(4);
+    const [specialItems, setSpecialItems] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
@@ -32,6 +33,40 @@ export default function ShopProducts() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        // Generar elementos especiales
+        const generateSpecialItems = () => {
+            const items = [
+                <div key="promo" className="ShopProductsItem SpecialItem videoFashionOfPower">
+                    <video src="https://cdn.shopify.com/videos/c/o/v/4716a587e6094175a493f8e84a26ceef.mp4" autoPlay muted loop playsInline></video>
+                </div>
+            ];
+            setSpecialItems(items);
+        };
+
+        generateSpecialItems();
+    }, []);
+
+    const insertSpecialItems = (items: JSX.Element[]) => {
+        const result = [...items];
+        const positions = new Set<number>();
+
+        // Determinar posiciones aleatorias para insertar elementos especiales
+        while (positions.size < specialItems.length) {
+            const pos = Math.floor(Math.random() * (items.length + specialItems.length));
+            if (!positions.has(pos)) positions.add(pos);
+        }
+
+        // Insertar elementos especiales en las posiciones determinadas
+        let specialItemIndex = 0;
+        positions.forEach(pos => {
+            result.splice(pos, 0, specialItems[specialItemIndex]);
+            specialItemIndex++;
+        });
+
+        return result;
+    };
+
     return (
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
@@ -53,7 +88,7 @@ export default function ShopProducts() {
                 display: 'grid',
                 gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`
             }}>
-                {products.map((product: any, index: number) =>
+                {insertSpecialItems(products.map((product: any, index: number) =>
                     <div className="ShopProductsItem" key={`${product.id}-${index}`}>
                         <ProductCarousel
                             productImages={product.images.edges.map(({ node }: any) => node)}
@@ -82,17 +117,17 @@ export default function ShopProducts() {
                         </div>
 
                         <div className="ProductDetailsFooter">
-                                <div className="ProductSize">
-                                    {product.variants.nodes.map((size: any) => (
-                                        <span key={size.id}>{size.title}</span>
-                                    ))}
-                                </div>
-                                <button className='btn-secondary'>
-                                    <span>VER PRODUCTO</span>
-                                </button>
+                            <div className="ProductSize">
+                                {product.variants.nodes.map((size: any) => (
+                                    <span key={size.id}>{size.title}</span>
+                                ))}
                             </div>
+                            <button className='btn-secondary'>
+                                <span>VER PRODUCTO</span>
+                            </button>
+                        </div>
                     </div>
-                )}
+                ))}
             </div>
         </section>
     )
