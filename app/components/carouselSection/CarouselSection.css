@@ -110,7 +110,7 @@
 }
 
 .ProductContent p{
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   font-weight: 600;
   color: var(--olga-black-primary);
 }
@@ -151,6 +151,13 @@
   .btn-secondary{
     padding: 10px 10px;
   }
+}
+
+@media screen and (max-width: 450px) {
+  .ProductContent p{
+      font-size: .875rem;
+    }
+  
 }
 
 @media (min-width: 768px) {
