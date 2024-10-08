@@ -8,6 +8,12 @@ export interface Product {
   title: string;
   description: string;
   createdAt: string;
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
   images: {
     edges: Array<{
       node: {
@@ -19,24 +25,15 @@ export interface Product {
   productType: string;
   collections: {
     nodes: Array<{
-      id: string;
       title: string;
+      id?: string;
     }>;
   };
   variants: {
     nodes: Array<{
-      id: string;
+      id?: string;
       title: string;
-      availableForSale: boolean;
-      compareAtPrice: {
-        amount: string;
-        currencyCode: string;
-      };
-      price: {
-        amount: string;
-        currencyCode: string;
-      };
-
+      availableForSale?: boolean;
     }>;
   };
 }

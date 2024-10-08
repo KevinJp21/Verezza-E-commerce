@@ -6,6 +6,12 @@ export interface Product {
   title: string;
   description: string;
   createdAt: string;
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
   images: {
     edges: Array<{
       node: {
@@ -14,27 +20,17 @@ export interface Product {
       };
     }>;
   };
-  productType: string;
   collections: {
     nodes: Array<{
-      id: string;
       title: string;
+      id?: string; // Hacemos el id opcional
     }>;
   };
   variants: {
     nodes: Array<{
-      id: string;
+      id?: string;
       title: string;
-      availableForSale: boolean;
-      compareAtPrice: {
-        amount: string;
-        currencyCode: string;
-      };
-      price: {
-        amount: string;
-        currencyCode: string;
-      };
-
+      availableForSale?: boolean;
     }>;
   };
 }
@@ -81,28 +77,28 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       const existingItem = prevItems.find(item => item.id === product.id && item.variants.nodes.some(variant => variant.title === size));
       if (existingItem) {
         return prevItems.map(item =>
-          item.id === product.id && item.variants.nodes.some(variant => variant.title === size)
-            ? { ...item, quantity: item.quantity + quantity }
+          item.id === product.id && item.variants.nodes.some(variant => variant.title === size) 
+            ? { ...item, quantity: item.quantity + quantity } 
             : item
         );
       }
       return [...prevItems, { ...product, quantity: quantity, variants: { nodes: [{ ...product.variants.nodes[0], title: size }] } }];
     });
   };
-
+  
   const removeFromCart = (productId: string, size: string) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== productId || !item.variants.nodes.some(variant => variant.title === size)));
   };
-
+  
   const updateCartItemQuantity = (productId: string, quantity: number, size: string) => {
-    setCartItems(prevItems =>
-      quantity < 1
-        ? prevItems.filter(item => item.id !== productId || !item.variants.nodes.some(variant => variant.title === size))
-        : prevItems.map(item =>
-          item.id === productId && item.variants.nodes.some(variant => variant.title === size)
-            ? { ...item, quantity: quantity }
-            : item
-        )
+    setCartItems(prevItems => 
+      quantity < 1 
+        ? prevItems.filter(item => item.id !== productId || !item.variants.nodes.some(variant => variant.title === size)) 
+        : prevItems.map(item => 
+            item.id === productId && item.variants.nodes.some(variant => variant.title === size) 
+              ? { ...item, quantity: quantity } 
+              : item
+          )
     );
   };
 

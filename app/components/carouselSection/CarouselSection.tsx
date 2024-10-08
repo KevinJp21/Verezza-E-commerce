@@ -113,17 +113,17 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     };
 
     //Modal cart
-    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+    const handleOpenModal = (product: any) => {
         setIsModalOpen(true);
-        setSelectedProduct(productName);
-        setProductId(productId);
-        setProductName(productName);
-        setProductCategory(productCategory);
-        setProductPrice(productPrice);
-        setProductDiscountPrice(productDiscountPrice);
-        setProductDescription(productDescription);
-        setProductImages(productImages);
-        setProductSizes(productSizes);
+        setSelectedProduct(product.title);
+        setProductId(product.id);
+        setProductName(product.title);
+        setProductCategory(product.productType || 'Sin categoría');
+        setProductPrice(product.variants?.nodes?.[0]?.price?.amount || 0);
+        setProductDiscountPrice(product.variants?.nodes?.[0]?.compareAtPrice?.amount || null);
+        setProductSizes(product.variants?.nodes || []);
+        setProductDescription(product.description || '');
+        setProductImages(product.images?.edges?.map(({ node }: any) => node) || []);
     };
 
     const handleCloseModal = () => {
@@ -198,16 +198,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                         <span key={size.id}>{size.title}</span>
                                     ))}
                                 </div>
-                                <button className='btn-secondary' onClick={() => handleOpenModal(
-                                    product.id,
-                                    product.title,
-                                    product.collections.nodes[0].title,
-                                    product.variants.nodes[0].price.amount,
-                                    product.variants.nodes[0].compareAtPrice?.amount || null,
-                                    product.variants.nodes,
-                                    product.description,
-                                    product.images.edges.map(({ node }: any) => node
-                                    ))}>
+                                <button className='btn-secondary' onClick={() => handleOpenModal(product)}>
                                     <span>{t("carouselSection.button")}</span>
                                 </button>
                             </div>
