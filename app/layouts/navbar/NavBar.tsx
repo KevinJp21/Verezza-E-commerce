@@ -138,7 +138,7 @@ export default function NavBar() {
                     <div className='NavBar1-2'>
                         <ul className='NavbarListWrapper'>
                             <li>
-                                <a href="">{t("navbar.shop")}</a>
+                                <a href="/shop">{t("navbar.shop")}</a>
                             </li>
                             <li>
                                 <a href="">{t("navbar.blouses")}</a>
@@ -193,7 +193,7 @@ export default function NavBar() {
                             <span>{t("sidebar.sidebar_title")}</span>
                             <ul className='sidebarList'>
                                 <li>
-                                    <a href="">{t("sidebar.shop")}</a>
+                                    <a href="/shop">{t("sidebar.shop")}</a>
                                 </li>
                                 <li>
                                     <a href="">{t("sidebar.blouses")}</a>

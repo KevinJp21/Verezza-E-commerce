@@ -1,13 +1,6 @@
-import { Link } from "@remix-run/react";
-import Layout from "~/layouts/layout";
-export default function Shop() {
+import Shop from "~/pages/shop/shop";
+export default function ShopIndex() {
   return (
-    <Layout>
-    <div>
-      <h1>Shop</h1>
-      <Link to="/">inicio</Link>
-        <Link to="/shop/products">productos</Link>
-      </div>
-    </Layout>
+      <Shop />
   );
 }
