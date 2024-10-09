@@ -162,6 +162,12 @@
     color: var(--olga-green-primary);
 }
 
+.productPrice .ProductPriceDiscount{
+    text-decoration: line-through;
+    color: var(--olga-red-primary);
+    margin-right: 5px;
+  }
+
 .itemVariants p{
     font-size: 0.875rem;
     font-weight: 600;

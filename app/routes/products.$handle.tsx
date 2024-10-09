@@ -5,6 +5,7 @@ import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
 import ProductsHandle from "~/sections/productsHandle/ProductsHandle";
 import { MetaFunction } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
+import { Product } from "~/api/GetAllProducts";
 
 // Esta es la función `meta` por defecto si no se encuentra el producto
 export const meta: MetaFunction = () => {
@@ -58,6 +59,6 @@ export default function ProductDetail() {
     const product = products.find(product => product.handle === handle);
 
     return (
-        <ProductsHandle products={product} />
+        <ProductsHandle products={product as Product} />
     );
 }

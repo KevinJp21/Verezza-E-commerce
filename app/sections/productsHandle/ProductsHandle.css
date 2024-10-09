@@ -1,0 +1,212 @@
+.ProductsHandleContainer{
+
+    width: 100%;
+    min-height: 100vh;
+}
+
+.ProductsHandleWprapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.HandleProductImg{
+    width: 100%;
+    min-height:100vh;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.HandleProductDetailsWrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin: 48px auto;
+}
+
+.HandleProductDetails{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.HandleProductDetails .HandleProductDetailsHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.HandleProductDetails .HandleProductDetailsHeader h3{
+    font-size: 1.25rem;
+    color: var(--olga-black-primary);
+    font-weight: bold;
+}
+
+.HandleProductDetails .HandleProductDetailsHeader a{
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--olga-black-primary);
+    text-transform: uppercase;
+}
+
+.HandleProductDetails .HandleProductDetailsHeader a:hover{
+    color: var(--olga-black-secondary);
+}
+
+.HandleProductDetails .productDescription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.HandleProductDetails .productDescription h4{
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: var(--olga-black-primary);
+    padding: 8px 0;
+}
+.HandleProductDetails .productDescription p{
+    font-size: 0.875rem;
+    font-weight: normal;
+    color: var(--olga-black-primary);
+    padding: 8px 0;
+}
+
+.HandleProductDetails .productPrice{
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--olga-black-primary);
+    padding: 8px 0;
+}
+
+
+.HandleProductDetails .ModalCartProductSize{
+    background-color: var(--olga-white-primary);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.HandleProductDetails .ModalCartProductSize .size-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.HandleProductDetails .ModalCartProductSize .size-header span {
+    color: var(--olga-black-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.HandleProductDetails .ModalCartProductSize .size-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.HandleProductDetails .ModalCartProductSize .size-warning{
+    color: var(--olga-red-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+
+}
+
+.HandleProductDetails .ModalCartProductSize .size-button {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: normal;
+    padding: 10px 32px;
+    border: 1px solid var(--olga-black-tp);
+    border-radius: 20px;
+    background-color: var(--olga-white-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    text-transform: uppercase;
+}
+
+.HandleProductDetails .ModalCartProductSize .size-button.selected {
+    border-color: var(--olga-black-primary);
+}
+
+.HandleProductDetails .ModalCartProductSize .size-button[disabled]:hover{
+    border-color: var(--olga-red-primary);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.HandleProductDetails .HandleProductQuantity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--olga-white-primary);
+    padding: 10px;
+    border-radius: 15px;
+    width: fit-content;
+    font-size: .875rem;
+}
+
+.HandleProductDetails .HandleProductQuantity .quantity-button {
+    margin: 0;
+    border: 1px solid var(--olga-black-tp);
+    cursor: pointer;
+    padding: 10px;
+    width: 60px;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.HandleProductDetails .HandleProductQuantity .quantity-button:hover{
+    border-color: var(--olga-black-primary);
+}
+
+
+.HandleProductDetails .ProductsHandleFooter{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    gap: 10px;
+    padding: 20px;
+    background-color: var(--olga-gray-secondary);
+}
+
+.HandleProductDetails .ProductsHandleFooter button{
+    -webkit-tap-highlight-color: transparent;
+    flex: 1 0 100%;
+    width: 100%;
+    border-radius: 0;
+    height: 56px;
+}
+
+@media screen and (min-width: 768px) {
+    .ProductsHandleWprapper{
+        flex-direction: row;
+    }
+    .HandleProductImg{
+        width: 50%;
+    }
+
+    .HandleProductDetailsWrapper{
+        width: 50%;
+        min-height: 100vh;
+        margin-top: 0;
+        padding: 0 64px;
+        max-width: 672px;
+    }
+  
+}

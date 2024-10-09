@@ -35,6 +35,14 @@ export interface Product {
       id?: string;
       title: string;
       availableForSale?: boolean;
+      price: {
+        amount: string;
+        currencyCode: string;
+      };
+      compareAtPrice: {
+        amount: string;
+        currencyCode: string;
+      };
     }>;
   };
 }

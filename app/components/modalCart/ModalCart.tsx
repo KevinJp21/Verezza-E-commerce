@@ -10,7 +10,7 @@ interface ModalCartProps {
     isOpen: boolean;
     onClose: () => void;
     selectedProduct: string | null;
-    productId: number | null;
+    productId: string | null;
     productName: string;
     productCategory: string;
     productPrice: number;

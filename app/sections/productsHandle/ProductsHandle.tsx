@@ -1,11 +1,116 @@
+import { useState, useEffect } from 'react';
+import ProductCarousel from '~/components/productCarousel/ProductCarousel';
+import { addToCart } from '~/api/addToCart';
+import { useCart } from '~/hooks/Cart';
 import './ProductsHandle.css'
-export default function ProductsHandle({ products }: { products: any }) {
+import { t } from 'i18next';
 
+export default function ProductsHandle({ products }: any) {
+    const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
+    const [selectedSize, setSelectedSize] = useState<string>('');
+    const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
+    const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+    const { updateCart } = useCart();
+    //Selected currency
+    useEffect(() => {
+        let currency = localStorage.getItem('selectedCurrencySymbol');
+        if (currency) {
+            setSelectedCurrency(currency);
+        }
+    }, [])
+
+    const handleSizeClick = (size: string) => {
+        setSelectedSize(size);
+        setIsSizeSelected(false);
+    }
+
+    const handleQuantityClick = (quantity: number) => {
+        setSelectedQuantity(quantity < 1 ? 1 : quantity);
+    }
+
+    // Función para agregar producto al carrito
+    const handleAddToBag = async () => {
+        if (!selectedSize) {
+            setIsSizeSelected(true);
+            return;
+        }
+
+        try {
+            const selectedVariant = products.variants.nodes.find((size: any) => size.id === selectedSize);
+            if (!selectedVariant) {
+                throw new Error('Variant not found for the selected size');
+            }
+
+            const variantId = selectedVariant.id;
+            const checkout = await addToCart(variantId, selectedQuantity);
+            localStorage.setItem('checkoutId', checkout.id);
+            await updateCart(); // Llamar a updateCart después de agregar al carrito
+        } catch (error) {
+            console.error('Error al agregar el producto al carrito:', error);
+        }
+        setIsSizeSelected(false);
+        window.dispatchEvent(new Event('cartUpdated'));
+    }
     return (
-        <section>
-            <h2>Detalles del Producto</h2>
-            <p>ID del producto: {products?.title}</p>
-            {/* Aquí puedes agregar más detalles del producto */}
+        <section className='ProductsHandleContainer'>
+            <div className='ProductsHandleWprapper'>
+                <div className="HandleProductImg">
+                    <ProductCarousel
+                        productImages={products.images.edges.map(({ node }: any) => node)}
+                        productId={products.id}
+                        productName={products.title}
+                    />
+                </div>
+                <div className="HandleProductDetailsWrapper">
+                    <div className="HandleProductDetails">
+                        <div className='HandleProductDetailsHeader'>
+                            <h3>{products.title}</h3>
+                            <a href={`/categories/${products.productType.toLowerCase().replace(/\s+/g, '-')}`}>{products.productType}</a>
+                        </div>
+                        {products.description &&
+                            <div className='productDescription'>
+                                <h4>Description</h4>
+                                <p>{products.description}</p>
+                            </div>
+                        }
+                        <p className='productPrice'>
+                            {products.variants.nodes[0].compareAtPrice && <span className='productDiscountPrice'>{parseFloat(products.variants.nodes[0].compareAtPrice.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>}
+                            {parseFloat(products.variants.nodes[0].price.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                        </p>
+                        <div className='ModalCartProductSize'>
+                            <div className='size-header'>
+                                <span>{t('modalCart.size_title')}</span>
+                            </div>
+                            <div className='size-buttons'>
+                                {products.variants.nodes.map((size: any) => (
+                                    <button
+                                        key={size.id}
+                                        className={`size-button ${selectedSize === size.id ? 'selected' : ''}`}
+                                        onClick={() => handleSizeClick(size.id)}
+                                        disabled={!size.availableForSale}
+                                    >
+                                        {size.title}
+                                    </button>
+                                ))}
+                            </div>
+                            {isSizeSelected && <span className='size-warning'>{t('modalCart.size_warning')}</span>}
+                        </div>
+                        <div className='HandleProductQuantity'>
+                            <button className='quantity-button btn-primary' onClick={() => handleQuantityClick(selectedQuantity - 1)}>
+                                <span>-</span>
+                            </button>
+                            <span>{selectedQuantity}</span>
+                            <button className='quantity-button btn-primary' onClick={() => handleQuantityClick(selectedQuantity + 1)}>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <footer className='ProductsHandleFooter'>
+                            <button className='btn-secondary' onClick={handleAddToBag}><span>{t('modalCart.add_to_cart')}</span></button>
+                            <button className='btn-secondary'><span>{t('modalCart.buy_now')}</span></button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 }

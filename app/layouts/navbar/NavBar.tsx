@@ -25,7 +25,7 @@ export default function NavBar() {
     //Obtener datosa al seleccionarlo en la busqueda
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
-    const [productId, setProductId] = useState<number | null>(null);
+    const [productId, setProductId] = useState<string | null>(null);
     const [productName, setProductName] = useState<string>('');
     const [productCategory, setProductCategory] = useState<string>('');
     const [productPrice, setProductPrice] = useState<number>(0);
@@ -97,7 +97,7 @@ export default function NavBar() {
         setIsBagOpen(false);
     }
 
-    const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+    const handleOpenModal = (productId: string, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
         setIsModalOpen(true);
         setSelectedProduct(productName);
         setProductId(productId);

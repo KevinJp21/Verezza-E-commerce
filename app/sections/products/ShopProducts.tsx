@@ -16,7 +16,7 @@ export default function ShopProducts() {
     //Modal cart props
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
-    const [productId, setProductId] = useState<number | null>(null);
+    const [productId, setProductId] = useState<string | null>(null);
     const [productName, setProductName] = useState<string>('');
     const [productCategory, setProductCategory] = useState<string>('');
     const [productPrice, setProductPrice] = useState<number>(0);
