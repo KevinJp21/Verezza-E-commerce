@@ -112,3 +112,41 @@ export const fetchWebUrl = async (checkoutId: string) => {
     throw error;
   }
 };
+
+export const getCheckoutStatus = async (checkoutId: string) => {
+  try {
+    const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
+      },
+      body: JSON.stringify({
+        query: `
+          query getCheckoutStatus($checkoutId: ID!) {
+            node(id: $checkoutId) {
+              ... on Checkout {
+                completedAt
+              }
+            }
+          }
+        `,
+        variables: { checkoutId },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    if (data.errors) {
+      throw new Error(`Error en la respuesta de GraphQL: ${data.errors.map((error: any) => error.message).join(', ')}`);
+    }
+
+    return data.data.node.completedAt ? 'COMPLETED' : 'ACTIVE';
+  } catch (error) {
+    console.error('Error al obtener el estado del checkout:', error);
+    throw error;
+  }
+};

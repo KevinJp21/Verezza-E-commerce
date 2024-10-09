@@ -71,7 +71,20 @@ export default function Bag({ isOpen, onClose }: BagProps) {
 
     const handleCheckout = () => {
         if (webUrl) {
-            window.open(webUrl, '_blank');
+            // Abre la URL de pago en una nueva ventana
+            const checkoutWindow = window.open(webUrl, '_blank');
+
+            // Verifica periódicamente si la ventana de pago se ha cerrado
+            const checkWindowClosed = setInterval(() => {
+                if (checkoutWindow?.closed) {
+                    clearInterval(checkWindowClosed);
+                    // La ventana se cerró, asumimos que el pago se completó
+                    // Limpiamos el carrito
+                    localStorage.removeItem('checkoutId');
+                    setCartItems([]);
+                    updateCart();
+                }
+            }, 1000);
         }
     };
 

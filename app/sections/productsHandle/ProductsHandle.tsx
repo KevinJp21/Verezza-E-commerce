@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ProductCarousel from '~/components/productCarousel/ProductCarousel';
 import { addToCart } from '~/api/addToCart';
 import { useCart } from '~/hooks/Cart';
+import { getCheckoutStatus } from '~/api/getCartItems';
 import './ProductsHandle.css'
 import { t } from 'i18next';
 
@@ -10,7 +11,7 @@ export default function ProductsHandle({ products }: any) {
     const [selectedSize, setSelectedSize] = useState<string>('');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
-    const { updateCart } = useCart();
+    const { updateCart, webUrl, setCartItems } = useCart();
     //Selected currency
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
@@ -51,6 +52,47 @@ export default function ProductsHandle({ products }: any) {
         setIsSizeSelected(false);
         window.dispatchEvent(new Event('cartUpdated'));
     }
+
+// Función para comprar ahora
+const handleBuyNow = async () => {
+    if (!selectedSize) {
+        setIsSizeSelected(true);
+        return;
+    }
+
+    try {
+        const selectedVariant = products.variants.nodes.find((size: any) => size.id === selectedSize);
+        if (!selectedVariant) {
+            throw new Error('Variante no encontrada para el tamaño seleccionado');
+        }
+
+        const variantId = selectedVariant.id;
+
+        // Agregar el producto
+        const checkout = await addToCart(variantId, selectedQuantity);
+
+        if(checkout.webUrl){
+            // Redirigir a la página de pago
+            const checkoutWindow = window.open(checkout.webUrl, '_blank');
+            const checkWindowClosed = setInterval(async () => {
+                if (checkoutWindow?.closed) {
+                    clearInterval(checkWindowClosed);
+                    // La ventana se cerró, verificamos el estado del checkout
+                    const checkoutStatus = await getCheckoutStatus(checkout.id);
+                    if (checkoutStatus === 'COMPLETED') {
+                        // El pago se completó, limpiamos el carrito
+                        localStorage.removeItem('checkoutId');
+                        setCartItems([]);
+                        updateCart();
+                    }
+                }
+            }, 1000);
+        }
+
+    } catch (error) {
+        console.error('Error al procesar la compra:', error);
+    }
+}
     return (
         <section className='ProductsHandleContainer'>
             <div className='ProductsHandleWprapper'>
@@ -106,7 +148,7 @@ export default function ProductsHandle({ products }: any) {
                         </div>
                         <footer className='ProductsHandleFooter'>
                             <button className='btn-secondary' onClick={handleAddToBag}><span>{t('modalCart.add_to_cart')}</span></button>
-                            <button className='btn-secondary'><span>{t('modalCart.buy_now')}</span></button>
+                            <button className='btn-secondary' onClick={handleBuyNow}><span>{t('modalCart.buy_now')}</span></button>
                         </footer>
                     </div>
                 </div>

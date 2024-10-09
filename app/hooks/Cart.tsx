@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { fetchCartItems, fetchWebUrl } from '~/api/getCartItems';
 import { getProductsByIds } from '~/api/getCartItemsByIds';
-
+import { getCheckoutStatus } from '~/api/getCartItems';
 export function useCart() {
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [webUrl, setWebUrl] = useState<string | null>(null);
@@ -40,20 +40,40 @@ export function useCart() {
         }
 
         if (checkoutId) {
-            const items = await fetchCartItems(checkoutId);
-            setCartItems(items);
-            const url = await fetchWebUrl(checkoutId);
-            setWebUrl(url);
+            try {
+                const checkoutStatus = await getCheckoutStatus(checkoutId);
+                if (checkoutStatus === 'COMPLETED') {
+                    // El checkout se completó, limpiamos el carrito
+                    localStorage.removeItem('checkoutId');
+                    setCartItems([]);
+                    setWebUrl(null);
+                    setProductDetails({});
+                    window.dispatchEvent(new Event('cartUpdated'));
+                    return;
+                }
 
-            if (items.length > 0) {
-                const productIds = items.map((item: any) => item.productId);
-                const details = await getProductsByIds(productIds, country, languageCode);
-                const detailsMap: {[key: string]: any} = {};
-                details.forEach((product: any) => {
-                    detailsMap[product.id] = product;
-                });
-                setProductDetails(detailsMap);
-            } else {
+                const items = await fetchCartItems(checkoutId);
+                setCartItems(items);
+                const url = await fetchWebUrl(checkoutId);
+                setWebUrl(url);
+
+                if (items.length > 0) {
+                    const productIds = items.map((item: any) => item.productId);
+                    const details = await getProductsByIds(productIds, country, languageCode);
+                    const detailsMap: {[key: string]: any} = {};
+                    details.forEach((product: any) => {
+                        detailsMap[product.id] = product;
+                    });
+                    setProductDetails(detailsMap);
+                } else {
+                    setProductDetails({});
+                }
+            } catch (error) {
+                console.error('Error al actualizar el carrito:', error);
+                // Si hay un error, asumimos que el checkout ya no es válido
+                localStorage.removeItem('checkoutId');
+                setCartItems([]);
+                setWebUrl(null);
                 setProductDetails({});
             }
         }
