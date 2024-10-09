@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import './NavBar.css'
 import './SideBar.css'
-import logoOlgaBlack from '~/assets/logos/Logo Olga black.webp'
-import logoOlgaWhite from '~/assets/logos/Logo Olga white.webp'
 import { closeIcon, searchIcon } from '~/assets/icons/icons'
 import { heartIcon, userIcon, cartIcon } from '~/assets/icons/icons';
 import { useProductContext } from '~/hooks/ProductContext';

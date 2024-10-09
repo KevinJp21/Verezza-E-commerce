@@ -5,6 +5,7 @@ import { updateCartItemQuantity } from '~/api/updateCartItem';
 import { removeCartItem } from '~/api/removeCartItem';
 import { useCart } from '~/hooks/Cart';
 import { useTranslation } from 'react-i18next';
+import { getCheckoutStatus } from '~/api/getCartItems';
 
 interface BagProps {
     isOpen: boolean;
@@ -73,19 +74,23 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         if (webUrl) {
             // Abre la URL de pago en una nueva ventana
             const checkoutWindow = window.open(webUrl, '_blank');
-
+            const checkoutId = localStorage.getItem('checkoutId');
             // Verifica periódicamente si la ventana de pago se ha cerrado
-            const checkWindowClosed = setInterval(() => {
+            const checkWindowClosed = setInterval(async () => {
                 if (checkoutWindow?.closed) {
                     clearInterval(checkWindowClosed);
-                    // La ventana se cerró, asumimos que el pago se completó
-                    // Limpiamos el carrito
-                    localStorage.removeItem('checkoutId');
-                    setCartItems([]);
-                    updateCart();
-                    window.dispatchEvent(new Event('cartUpdated'));
+                    // La ventana se cerró, verificamos el estado del checkout
+                    const checkoutStatus = await getCheckoutStatus(checkoutId || '');
+                    if (checkoutStatus === 'COMPLETED') {
+                        // El pago se completó, limpiamos el carrito
+                        localStorage.removeItem('checkoutId');
+                        setCartItems([]);
+                        updateCart();
+
+                    }
                 }
             }, 1000);
+            window.dispatchEvent(new Event('cartUpdated'));
         }
     };
 

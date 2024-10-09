@@ -84,10 +84,11 @@ const handleBuyNow = async () => {
                         localStorage.removeItem('checkoutId');
                         setCartItems([]);
                         updateCart();
-                        window.dispatchEvent(new Event('cartUpdated'));
+                        
                     }
                 }
             }, 1000);
+            window.dispatchEvent(new Event('cartUpdated'));
         }
 
     } catch (error) {
