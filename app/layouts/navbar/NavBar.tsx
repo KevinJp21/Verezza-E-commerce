@@ -278,7 +278,7 @@ export default function NavBar() {
                             <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(
                                 product.id,
                                 product.title,
-                                product.collections.nodes[0].title,
+                                product.productType,
                                 product.variants.nodes[0].price.amount,
                                 product.variants.nodes[0].compareAtPrice?.amount || null,
                                 product.variants.nodes, product.description,
