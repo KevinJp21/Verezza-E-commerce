@@ -6,50 +6,6 @@ import ProductsHandle from "~/sections/productsHandle/ProductsHandle";
 import { MetaFunction } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 
-type Product = {
-    id: string;
-    title: string;
-    description: string;
-    createdAt: string;
-    handle: string;
-    priceRange: {
-      minVariantPrice: {
-        amount: string;
-        currencyCode: string;
-      };
-    };
-    images: {
-      edges: Array<{
-        node: {
-          src: string;
-          altText: string | null;
-        };
-      }>;
-    };
-    productType: string;
-    collections: {
-      nodes: Array<{
-        title: string;
-        id?: string;
-      }>;
-    };
-    variants: {
-      nodes: Array<{
-        id?: string;
-        title: string;
-        availableForSale?: boolean;
-        price: {
-          amount: string;
-          currencyCode: string;
-        };
-        compareAtPrice: {
-          amount: string;
-          currencyCode: string;
-        } | null;
-      }>;
-    };
-  }
-
 // Esta es la función `meta` por defecto si no se encuentra el producto
 export const meta: MetaFunction = () => {
     const { products } = useProductContext();
@@ -70,15 +26,6 @@ export const meta: MetaFunction = () => {
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: `${product?.title}` },
         { name: "twitter:description", content: `${product?.description}` }
-    ];
-};
-
-export const links: LinksFunction = () => {
-    const { products } = useProductContext();
-    const { handle } = useParams();
-    const product = products.find(product => product.handle === handle);
-    return [
-        { rel: "canonical", href: `https://olga-lucia-cortes.vercel.app/products/${handle}` },
     ];
 };
 
