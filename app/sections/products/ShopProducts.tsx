@@ -3,15 +3,15 @@ import { useProductContext } from "~/hooks/ProductContext";
 import ProductCarousel from "~/components/productCarousel/ProductCarousel";
 import { useTranslation } from "react-i18next";
 import ModalCart from "~/components/modalCart/ModalCart";
+import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
 import "./ShopProducts.css";
 
 export default function ShopProducts() {
     const { t } = useTranslation();
-    const { products } = useProductContext();
-    const TotalProducts = products.length;
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [itemsPerRow, setItemsPerRow] = useState<number>(4);
     const [specialItems, setSpecialItems] = useState<JSX.Element[]>([]);
+    const [isLoading, setLoading] = useState<boolean>(true);
 
     //Modal cart props
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +24,18 @@ export default function ShopProducts() {
     const [productSizes, setProductSizes] = useState<string[]>([]);
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
+    
+    //Products
+    const { products } = useProductContext();
+    const TotalProducts = products.length;
+
+
+    useEffect(() => {
+        if (products.length > 0) {
+            setLoading(false);
+        }
+    }, [products]);
+
 
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
@@ -121,6 +133,12 @@ export default function ShopProducts() {
             }
         });
     };
+
+    //Cargar loading spinner al iniciar
+    if (isLoading) {
+        return <LoadingSpinner isLoading={isLoading} />;
+    }
+
     return (
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">

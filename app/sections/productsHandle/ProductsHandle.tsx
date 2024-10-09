@@ -46,11 +46,11 @@ export default function ProductsHandle({ products }: any) {
             const checkout = await addToCart(variantId, selectedQuantity);
             localStorage.setItem('checkoutId', checkout.id);
             await updateCart(); // Llamar a updateCart después de agregar al carrito
+            window.dispatchEvent(new Event('cartUpdated'));
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);
         }
         setIsSizeSelected(false);
-        window.dispatchEvent(new Event('cartUpdated'));
     }
 
 // Función para comprar ahora
@@ -84,6 +84,7 @@ const handleBuyNow = async () => {
                         localStorage.removeItem('checkoutId');
                         setCartItems([]);
                         updateCart();
+                        window.dispatchEvent(new Event('cartUpdated'));
                     }
                 }
             }, 1000);

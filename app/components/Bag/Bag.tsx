@@ -83,6 +83,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                     localStorage.removeItem('checkoutId');
                     setCartItems([]);
                     updateCart();
+                    window.dispatchEvent(new Event('cartUpdated'));
                 }
             }, 1000);
         }
