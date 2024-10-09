@@ -13,9 +13,9 @@ export const meta: MetaFunction = () => {
     const product = products.find(product => product.handle === handle);
     return [
         { title: product ? `${product.title} | Olga Lucia Cortes` : "Olga Lucia Cortes | Productos" },
-        { name: "description", content: `${product?.description}`},
+        { name: "description", content: `${product?.description}` },
         { name: "og:site_name", content: "Olga Lucia Cortes" },
-        { name: "og:url", content: `https://olga-lucia-cortes.vercel.app/products/${handle}` },
+        { name: "og:url", content: `https://olga-lucia-cortes.vercel.app/products/${product?.handle}` },
         { name: "og:title", content: `${product?.title}` },
         { name: "og:type", content: "product" },
         { name: "og:image", content: `${product?.images.edges[0].node.src}` },
@@ -32,20 +32,19 @@ export const meta: MetaFunction = () => {
 export default function ProductDetail() {
     const { handle } = useParams();
     const { products } = useProductContext();
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
     const [productExists, setProductExists] = useState(true);
+
     const navigate = useNavigate();
-
-    // Actualiza los metadatos dinámicamente
     useEffect(() => {
-        const product = products.find(product => product.handle === handle);
-        
-       if (!products) {
-            setProductExists(false);
-            navigate("/404"); // Redirige si no encuentra el producto
+        if (products.length > 0) {
+            const product = products.find(product => product.handle === handle);
+            if (!product) {
+                setProductExists(false);
+                navigate("/404"); // Redirigimos solo si el producto no existe
+            }
+            setLoading(false); // Terminamos de cargar una vez encontramos el producto
         }
-
-        setLoading(false); // Terminamos de cargar una vez encontramos el producto
     }, [products, handle, navigate]);
 
     if (loading) {
