@@ -155,7 +155,10 @@ export default function ShopProducts() {
                                 <a href={`/collections/${product.productType.toLowerCase().replace(/\s+/g, '-')}`}>{product.productType}</a>
                             </div>
                             <div className="ProductContent">
-                                <p>{product.title}</p>
+                                <a href={`/products/${product.handle}`}>
+                                    <p>{product.title}</p>
+                                </a>
+
                                 <p>
                                     {product.variants.nodes[0].compareAtPrice && (
                                         <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>

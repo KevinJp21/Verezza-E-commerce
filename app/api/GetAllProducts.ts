@@ -8,6 +8,7 @@ export interface Product {
   title: string;
   description: string;
   createdAt: string;
+  handle: string;
   priceRange: {
     minVariantPrice: {
       amount: string;
@@ -116,6 +117,7 @@ export async function getAllProducts(): Promise<Product[]> {
             title
             description
             createdAt
+            handle
             priceRange {
               minVariantPrice {
                 amount

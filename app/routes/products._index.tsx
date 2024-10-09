@@ -11,6 +11,8 @@ export const meta: MetaFunction = () => {
 
 export default function ShopIndex() {
   return (
+    <>
       <Shop />
+    </>
   );
 }

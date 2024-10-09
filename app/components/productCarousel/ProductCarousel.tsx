@@ -4,7 +4,7 @@ import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 
 interface ProductCarouselProps {
   productImages: Array<{ src: string; altText: string }>;
-  productId: number | null;
+  productId: string | null;
   productName: string;
 }
 

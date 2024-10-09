@@ -97,10 +97,6 @@ export default function NavBar() {
         setIsBagOpen(false);
     }
 
-    const closeModalCart = () => {
-        setIsModalOpen(false);
-    }
-
     const handleOpenModal = (productId: number, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
         setIsModalOpen(true);
         setSelectedProduct(productName);
