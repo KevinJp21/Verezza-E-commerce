@@ -16,7 +16,7 @@ import { createInstance } from "i18next";
 import i18nServer from "./modules/i18n.server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import * as i18n from "~/i18n";
-
+import { ProductProvider } from "~/hooks/ProductContext";
 const ABORT_DELAY = 5_000;
 
 export default function handleRequest(
@@ -65,11 +65,13 @@ async function handleBotRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
 		<I18nextProvider i18n={instance}>
+			<ProductProvider>
       <RemixServer
         context={remixContext}
         url={request.url}
         abortDelay={ABORT_DELAY}
       />
+	  </ProductProvider>
 	  </I18nextProvider>,
       {
         onAllReady() {
@@ -128,11 +130,13 @@ async function handleBrowserRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
 		<I18nextProvider i18n={instance}>
+			<ProductProvider>
       <RemixServer
         context={remixContext}
         url={request.url}
         abortDelay={ABORT_DELAY}
       />
+	  </ProductProvider>
 	  </I18nextProvider>,
       {
         onShellReady() {

@@ -13,6 +13,7 @@ import i18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { getInitialNamespaces } from "remix-i18next/client";
 import * as i18n from "~/i18n";
+import { ProductProvider } from "./hooks/ProductContext";
 
 async function main() {
 	await i18next
@@ -26,14 +27,16 @@ async function main() {
 }
 
 startTransition(() => {
-  hydrateRoot(
-    document,
-	<I18nextProvider i18n={i18next}>
-    <StrictMode>
-      <RemixBrowser />
-    </StrictMode>
-	</I18nextProvider>
-  );
+	hydrateRoot(
+		document,
+		<I18nextProvider i18n={i18next}>
+			<ProductProvider>
+				<StrictMode>
+					<RemixBrowser />
+				</StrictMode>
+			</ProductProvider>
+		</I18nextProvider>
+	);
 });
 
 main().catch((error) => console.error("Error initializing i18n", error));

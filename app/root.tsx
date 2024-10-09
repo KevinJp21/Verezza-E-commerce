@@ -28,7 +28,7 @@ export const links: LinksFunction = () => {
   return [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'use-credentials' },
-    { rel:"stylesheet", href:"https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"},
+    { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" },
     { rel: 'stylesheet', href: NimbusSans }
   ]
 }
@@ -46,9 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ProductProvider>
-          {children}
-        </ProductProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -62,10 +60,10 @@ export default function App() {
 
 
   useEffect(() => {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       const storedLanguage = localStorage.getItem('selectedLanguage');
-      if(storedLanguage) {
-        if(storedLanguage === 'Español') {
+      if (storedLanguage) {
+        if (storedLanguage === 'Español') {
           setLocale('es');
         } else {
           setLocale('en');
@@ -73,7 +71,7 @@ export default function App() {
       }
     }
   }, [initialLocale]);
-  
+
   useChangeLanguage(locale);
   return <Outlet />;
 }
