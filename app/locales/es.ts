@@ -61,6 +61,9 @@ export default {
         "subtotal": "Subtotal"
     },
     "home":{
+        "home_seo":{
+            "title": "Olga Lucía Cortes | Moda exclusiva para mujeres reales"
+        },
         "start_home":{
             "title": "Descubre la moda que te hará sentir única",
             "subtitle": "¡Bienvenida a Olga Lucía Cortés!",
@@ -92,12 +95,14 @@ export default {
       "buy_now": "Comprar ahora"
     },
     "products":{
+        "products_seo":{
+            "title": "Olga Lucía Cortes | Tienda"
+        },
         "products_quantity": "PRODUCTOS",
         "products_filters": "FILTROS",
         "products_default": "PREDETERMINADO",
         "products_sort_by": "ORDENAR POR",
-        "products_more_sold": "MÁS VENDIDOS",
-        "products_newest": "MÁS NUEVOS",
+        "products_oldest": "MÁS ANTIGUOS",
         "products_price_asc": "PRECIO: MENOR A MAYOR",
         "products_price_desc": "PRECIO: MAYOR A MENOR",
         "buy_now": "Comprar ahora"

@@ -100,6 +100,27 @@ export default function ShopProducts() {
         setIsModalOpen(false);
     };
 
+    //Products filters
+    const [sortBy, setSortBy] = useState<string>('1');
+
+    const handleSortBy = (value: string) => {
+        setSortBy(value);
+    };
+
+    const sortProducts = (products: any[]) => {
+        return [...products].sort((a, b) => {
+            switch (sortBy) {
+                case '1': // Más Viejos (asumiendo que hay un campo 'createdAt')
+                    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+                case '2': // Precio ascendente
+                    return a.variants.nodes[0].price.amount - b.variants.nodes[0].price.amount;
+                case '3': // Precio descendente
+                    return b.variants.nodes[0].price.amount - a.variants.nodes[0].price.amount;
+                default: // Por defecto, no se ordena
+                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();;
+            }
+        });
+    };
     return (
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
@@ -108,12 +129,11 @@ export default function ShopProducts() {
                     <div className="ShopHeaderFiltersItem">
                         <p>{t('products.products_filters')}</p>
                         <span>|</span>
-                        <select className="ShopHeaderFiltersItemSelect" role="listbox" title="Ordenar por">
-                            <option value="1">{t('products.products_default')}</option>
-                            <option value="2">{t('products.products_more_sold')}</option>
-                            <option value="3">{t('products.products_newest')}</option>
-                            <option value="4">{t('products.products_price_asc')}</option>
-                            <option value="5">{t('products.products_price_desc')}</option>
+                        <select className="ShopHeaderFiltersItemSelect" role="listbox" title={t('products.products_sort_by')} onChange={(e) => handleSortBy(e.target.value)}>
+                            <option value="0">{t('products.products_default')}</option>
+                            <option value="1">{t('products.products_oldest')}</option>
+                            <option value="2">{t('products.products_price_asc')}</option>
+                            <option value="3">{t('products.products_price_desc')}</option>
                         </select>
                     </div>
                 </div>
@@ -122,7 +142,7 @@ export default function ShopProducts() {
                 display: 'grid',
                 gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`
             }}>
-                {insertSpecialItems(products.map((product: any, index: number) =>
+                {insertSpecialItems(sortProducts(products).map((product: any, index: number) =>
                     <div className="ShopProductsItem" key={`${product.id}-${index}`}>
                         <ProductCarousel
                             productImages={product.images.edges.map(({ node }: any) => node)}
@@ -147,7 +167,6 @@ export default function ShopProducts() {
 
                                 </p>
                             </div>
-
                         </div>
 
                         <div className="ProductDetailsFooter">

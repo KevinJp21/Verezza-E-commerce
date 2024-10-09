@@ -61,6 +61,9 @@ export default {
     "subtotal": "Subtotal",
   },
   "home": {
+    "home_seo":{
+      "title": "Olga Lucía Cortes | Exclusive fashion for real women"
+    },
     "start_home": {
       "title": "Discover the fashion that will make you feel unique",
       "subtitle": "Welcome to Olga Lucía Cortés!",
@@ -93,12 +96,14 @@ export default {
     "buy_now": "Shop now"
   },
   "products":{
+    "products_seo":{
+      "title": "Olga Lucía Cortes | Shop",
+    },
     "products_quantity": "PRODUCTS",
     "products_filters": "FILTERS",
     "products_default": "DEFAULT",
     "products_sort_by": "SORT BY",
-    "products_more_sold": "MORE SOLD",
-    "products_newest": "NEWEST",
+    "products_oldest": "OLDEST",
     "products_price_asc": "PRICE: LOW TO HIGH",
     "products_price_desc": "PRICE: HIGH TO LOW",
     "buy_now": "Shop now"

@@ -1,14 +1,16 @@
 import type { MetaFunction } from "@remix-run/node";
 
 import Home from "~/pages/home/home";
+import { useTranslation } from "react-i18next";
 
 export const meta: MetaFunction = () => {
+  const { t } = useTranslation();
   const baseUrl = "https://olga-lucia-cortes.vercel.app";
   return [
-    { title: "Olga Lucía Cortes – Moda exclusiva para mujeres reales" },
+    { title: t("home.home_seo.title") },
     { name: "description", content: "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas." },
     { name: "keywords", content: "moda, ropa de mujer, blusas, pantalones, vestidos, accesorios, moda colombiana, talla s, talla m, talla l, talla xl, talla xxl, complementos" },
-    { name: "og:title", content: "Olga Lucía Cortes - Moda exclusiva para mujeres reales" },
+    { name: "og:title", content: "Olga Lucía Cortes | Moda exclusiva para mujeres reales" },
     { name: "og:description", content: "Descubre nuestra colección de moda diseñada para resaltar la belleza de todas las mujeres. Prendas únicas y elegantes para cada ocasión." },
     { name: "og:image", content: `${baseUrl}/seo/HomeScreen.png` },
     { name: "og:image:alt", content: "Página de inicio de Olga Lucía Cortés" },
@@ -17,7 +19,7 @@ export const meta: MetaFunction = () => {
     { name: "og:type", content: "website" },
     { name: "og:url", content: `${baseUrl}` },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: "Olga Lucía Cortes – Moda exclusiva para mujeres reales" },
+    { name: "twitter:title", content: "Olga Lucía Cortes | Moda exclusiva para mujeres reales" },
     { name: "twitter:description", content: "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas." },
     { name: "twitter:image", content: `${baseUrl}/seo/HomeScreen.png` },
     { name: "og:updated_time", content: "2024-08-18T14:59:00Z" },
