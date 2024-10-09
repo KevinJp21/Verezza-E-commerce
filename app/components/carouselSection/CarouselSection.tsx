@@ -31,7 +31,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [productSizes, setProductSizes] = useState<string[]>([]);
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
-
+    const [productHandle, setProductHandle] = useState<string>('');
     const handleNavigation = (direction: 'next' | 'prev') => {
         if (isButtonDisabled) return;
 
@@ -124,6 +124,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         setProductSizes(product.variants?.nodes || []);
         setProductDescription(product.description || '');
         setProductImages(product.images?.edges?.map(({ node }: any) => node) || []);
+        setProductHandle(product.handle || '');
     };
 
     const handleCloseModal = () => {
@@ -206,7 +207,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     ))}
                 </div>
             </div>
-            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} productHandle={productHandle} />}
         </section>
     );
 }

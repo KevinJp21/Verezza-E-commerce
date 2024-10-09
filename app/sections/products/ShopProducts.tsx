@@ -24,7 +24,7 @@ export default function ShopProducts() {
     const [productSizes, setProductSizes] = useState<string[]>([]);
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
-    
+    const [productHandle, setProductHandle] = useState<string>('');
     //Products
     const { products } = useProductContext();
     const TotalProducts = products.length;
@@ -106,6 +106,7 @@ export default function ShopProducts() {
         setProductSizes(product.variants?.nodes || []);
         setProductDescription(product.description || '');
         setProductImages(product.images?.edges?.map(({ node }: any) => node) || []);
+        setProductHandle(product.handle || '');
     };
 
     const handleCloseModal = () => {
@@ -173,10 +174,7 @@ export default function ShopProducts() {
                                 <a href={`/collections/${product.productType.toLowerCase().replace(/\s+/g, '-')}`}>{product.productType}</a>
                             </div>
                             <div className="ProductContent">
-                                <a href={`/products/${product.handle}`}>
-                                    <p>{product.title}</p>
-                                </a>
-
+                                <p>{product.title}</p>
                                 <p>
                                     {product.variants.nodes[0].compareAtPrice && (
                                         <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
@@ -203,7 +201,7 @@ export default function ShopProducts() {
                     </div>
                 ))}
             </div>
-            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} productHandle={productHandle} />}
         </section>
     )
 }

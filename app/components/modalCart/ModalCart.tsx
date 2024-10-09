@@ -18,9 +18,10 @@ interface ModalCartProps {
     productSizes: any[];
     productDescription: string;
     productImages: any[];
+    productHandle: string;
 }
 
-const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productDiscountPrice, productSizes, productDescription, productImages }) => {
+const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productDiscountPrice, productSizes, productDescription, productImages, productHandle }) => {
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
@@ -108,7 +109,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
 
                     <div className='ModalCartProductInfo' id="ModalCartProductInfo">
                         <div className='ModalCartProductInfoHeader'>
-                            <h3>{productName}</h3>
+                            <h3><a href={`/products/${productHandle}`}>{productName}</a></h3>
                             <a href={`/collections/${productCategory.toLowerCase().replace(/\s+/g, '-')}`}>{productCategory}</a>
                         </div>
                         {productDescription &&

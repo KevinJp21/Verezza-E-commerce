@@ -31,7 +31,7 @@ export default function NavBar() {
     const [productSizes, setProductSizes] = useState<string[]>([]);
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
-
+    const [productHandle, setProductHandle] = useState<string>('');
     useEffect(() => {
         // Suscribirse al evento de actualización del carrito
         window.addEventListener('cartUpdated', updateCart);
@@ -95,17 +95,18 @@ export default function NavBar() {
         setIsBagOpen(false);
     }
 
-    const handleOpenModal = (productId: string, productName: string, productCategory: string, productPrice: number, productDiscountPrice: number, productSizes: string[], productDescription: string, productImages: string[]) => {
+    const handleOpenModal = (product: any) => {
         setIsModalOpen(true);
-        setSelectedProduct(productName);
-        setProductId(productId);
-        setProductName(productName);
-        setProductCategory(productCategory);
-        setProductPrice(productPrice);
-        setProductDiscountPrice(productDiscountPrice);
-        setProductDescription(productDescription);
-        setProductImages(productImages);
-        setProductSizes(productSizes);
+        setSelectedProduct(product.title);
+        setProductId(product.id);
+        setProductName(product.title);
+        setProductCategory(product.productType || 'Sin categoría');
+        setProductPrice(product.variants?.nodes?.[0]?.price?.amount || 0);
+        setProductDiscountPrice(product.variants?.nodes?.[0]?.compareAtPrice?.amount || null);
+        setProductSizes(product.variants?.nodes || []);
+        setProductDescription(product.description || '');
+        setProductImages(product.images?.edges?.map(({ node }: any) => node) || []);
+        setProductHandle(product.handle || '');
     };
 
     const handleCloseModal = () => {
@@ -269,15 +270,7 @@ export default function NavBar() {
                 {searchTerm && (
                     <ul className="SearchResults">
                         {filteredProducts.map((product, index) => (
-                            <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(
-                                product.id,
-                                product.title,
-                                product.productType,
-                                product.variants.nodes[0].price.amount,
-                                product.variants.nodes[0].compareAtPrice?.amount || null,
-                                product.variants.nodes, product.description,
-                                product.images.edges.map(({ node }: any) => node
-                                ))}>
+                            <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(product)}>
 
                                 <picture className='ResultImg'>
                                     <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
@@ -303,7 +296,7 @@ export default function NavBar() {
                 )}
             </div>
             <Bag isOpen={isBagOpen} onClose={closeBag} />
-            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} productHandle={productHandle} />}
         </header>
     );
 }
