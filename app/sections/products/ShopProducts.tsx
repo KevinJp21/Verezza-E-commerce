@@ -1,14 +1,29 @@
 import { useState, useEffect } from "react";
 import { useProductContext } from "~/hooks/ProductContext";
 import ProductCarousel from "~/components/productCarousel/ProductCarousel";
+import { useTranslation } from "react-i18next";
+import ModalCart from "~/components/modalCart/ModalCart";
 import "./ShopProducts.css";
 
 export default function ShopProducts() {
+    const { t } = useTranslation();
     const { products } = useProductContext();
     const TotalProducts = products.length;
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [itemsPerRow, setItemsPerRow] = useState<number>(4);
     const [specialItems, setSpecialItems] = useState<JSX.Element[]>([]);
+
+    //Modal cart props
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [productId, setProductId] = useState<number | null>(null);
+    const [productName, setProductName] = useState<string>('');
+    const [productCategory, setProductCategory] = useState<string>('');
+    const [productPrice, setProductPrice] = useState<number>(0);
+    const [productDiscountPrice, setProductDiscountPrice] = useState<number>(0);
+    const [productSizes, setProductSizes] = useState<string[]>([]);
+    const [productDescription, setProductDescription] = useState<string>('');
+    const [productImages, setProductImages] = useState<string[]>([]);
 
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
@@ -67,19 +82,38 @@ export default function ShopProducts() {
         return result;
     };
 
+    //Modal cart
+    const handleOpenModal = (product: any) => {
+        setIsModalOpen(true);
+        setSelectedProduct(product.title);
+        setProductId(product.id);
+        setProductName(product.title);
+        setProductCategory(product.productType || 'Sin categoría');
+        setProductPrice(product.variants?.nodes?.[0]?.price?.amount || 0);
+        setProductDiscountPrice(product.variants?.nodes?.[0]?.compareAtPrice?.amount || null);
+        setProductSizes(product.variants?.nodes || []);
+        setProductDescription(product.description || '');
+        setProductImages(product.images?.edges?.map(({ node }: any) => node) || []);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
                 <div className="ShopHeaderContent">
-                    <p className="ProductsQuantity">{TotalProducts} PRODUCTOS</p>
+                    <p className="ProductsQuantity">{t('products.products_quantity')} {TotalProducts}</p>
                     <div className="ShopHeaderFiltersItem">
-                        <p>FILTROS</p>
+                        <p>{t('products.products_filters')}</p>
                         <span>|</span>
                         <select className="ShopHeaderFiltersItemSelect" role="listbox" title="Ordenar por">
-                            <option value="1">MÁS VENDIDOS</option>
-                            <option value="2">MÁS NUEVOS</option>
-                            <option value="3">PRECIO: MENOR A MAYOR</option>
-                            <option value="4">PRECIO: MAYOR A MENOR</option>
+                            <option value="1">{t('products.products_default')}</option>
+                            <option value="2">{t('products.products_more_sold')}</option>
+                            <option value="3">{t('products.products_newest')}</option>
+                            <option value="4">{t('products.products_price_asc')}</option>
+                            <option value="5">{t('products.products_price_desc')}</option>
                         </select>
                     </div>
                 </div>
@@ -122,13 +156,14 @@ export default function ShopProducts() {
                                     <span key={size.id}>{size.title}</span>
                                 ))}
                             </div>
-                            <button className='btn-secondary'>
-                                <span>VER PRODUCTO</span>
+                            <button className='btn-secondary' onClick={() => handleOpenModal(product)}>
+                                <span>{t('products.buy_now')}</span>
                             </button>
                         </div>
                     </div>
                 ))}
             </div>
+            {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} />}
         </section>
     )
 }

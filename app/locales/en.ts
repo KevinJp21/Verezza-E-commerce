@@ -91,5 +91,16 @@ export default {
     "size_warning": "Select a size",
     "add_to_cart": "Add to cart",
     "buy_now": "Shop now"
+  },
+  "products":{
+    "products_quantity": "PRODUCTS",
+    "products_filters": "FILTERS",
+    "products_default": "DEFAULT",
+    "products_sort_by": "SORT BY",
+    "products_more_sold": "MORE SOLD",
+    "products_newest": "NEWEST",
+    "products_price_asc": "PRICE: LOW TO HIGH",
+    "products_price_desc": "PRICE: HIGH TO LOW",
+    "buy_now": "Shop now"
   }
 }

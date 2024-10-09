@@ -90,5 +90,16 @@ export default {
       "size_warning": "Selecciona una talla",
       "add_to_cart": "Agregar al carrito",
       "buy_now": "Comprar ahora"
+    },
+    "products":{
+        "products_quantity": "PRODUCTOS",
+        "products_filters": "FILTROS",
+        "products_default": "PREDETERMINADO",
+        "products_sort_by": "ORDENAR POR",
+        "products_more_sold": "MÁS VENDIDOS",
+        "products_newest": "MÁS NUEVOS",
+        "products_price_asc": "PRECIO: MENOR A MAYOR",
+        "products_price_desc": "PRECIO: MAYOR A MENOR",
+        "buy_now": "Comprar ahora"
     }
 }

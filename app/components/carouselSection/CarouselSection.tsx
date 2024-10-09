@@ -20,7 +20,7 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const { t } = useTranslation();
 
-    //Modal cart const
+    //Modal cart props
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
     const [productId, setProductId] = useState<number | null>(null);

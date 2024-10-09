@@ -1,4 +1,4 @@
-import ShopProducts from "~/sections/shop/ShopProducts";
+import ShopProducts from "~/sections/products/ShopProducts";
 import Layout from "~/layouts/layout";
 export default function Shop() {
     return (
