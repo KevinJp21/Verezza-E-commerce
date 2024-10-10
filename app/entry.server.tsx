@@ -28,7 +28,19 @@ export default function handleRequest(
   // free to delete this parameter in your app if you're not using it!
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext
-) {
+){
+
+  responseHeaders.set(
+    "Content-Security-Policy",
+    "default-src 'self'; " +
+    "connect-src 'self' https://d0a712-45.myshopify.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "font-src 'self' https://fonts.gstatic.com; " +
+    "img-src 'self' data: https:; " +
+    "script-src 'self' 'unsafe-inline' https://cdn.shopify.com; " +
+    "upgrade-insecure-requests"
+  );
+
 	return isbot(request.headers.get("user-agent") || "")
     ? handleBotRequest(
         request,
