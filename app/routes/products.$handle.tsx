@@ -6,12 +6,29 @@ import ProductsHandle from "~/sections/productsHandle/ProductsHandle";
 import { MetaFunction } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import { Product } from "~/api/GetAllProducts";
+import { useLoaderData } from "@remix-run/react";
+import { json, LoaderFunction } from "@remix-run/node";
+import { getProductByHandle } from "~/api/getProductByHandle";
+
+export let loader: LoaderFunction = async ({ params }) => {
+    try {
+        const product = await getProductByHandle(params.handle as string);
+        
+        if (!product) {
+            console.log(`No se encontró ningún producto con el handle: ${params.handle}`);
+            throw new Response("Producto no encontrado", { status: 404 });
+        }
+        
+        return json({ product });
+    } catch (error) {
+        console.error('Error al obtener el producto:', error);
+        throw new Response("Error al obtener el producto", { status: 500 });
+    }
+};
 
 // Esta es la función `meta` por defecto si no se encuentra el producto
-export const meta: MetaFunction = () => {
-    const { products } = useProductContext();
-    const { handle } = useParams();
-    const product = products.find(product => product.handle === handle);
+export const meta: MetaFunction = ({ data }) => {
+    const { product } = data as { product: Product };
     return [
         { title: product ? `${product.title} | Olga Lucia Cortes` : "Olga Lucia Cortes | Productos" },
         { name: "description", content: `${product?.description}` },

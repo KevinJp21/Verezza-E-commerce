@@ -54,13 +54,16 @@ const client = createStorefrontApiClient({
   publicAccessToken: SHOPIFY_STOREFRONT_API_TOKEN,
 });
 
-export async function getProductByHandle(handle: string): Promise<Product | null> {
-  const currentLanguage = i18next.language;
-  
-  let currency = 'COP';
-  let countryCode = 'CO';
-  let language = currentLanguage;
+export async function getProductByHandle(handle: string): Promise<Product[]> {
+  let currency = '';
+  let language = '';
+  if(typeof window !== 'undefined'){
+    currency = window.localStorage.getItem('selectedCurrencySymbol') || 'EUR';
+    language = window.localStorage.getItem('selectedLanguage') || 'English';
+  }
 
+  let countryCode = 'CO';
+  let languageCode = 'ES';
   if (currency === 'COP') {
     countryCode = 'CO';
   } else if (currency === 'USD') {
@@ -70,13 +73,13 @@ export async function getProductByHandle(handle: string): Promise<Product | null
   }
 
   if (language === 'Español' || language === 'es') {
-    language = 'ES';
+    languageCode = 'ES';
   } else if (language === 'English' || language === 'en') {
-    language = 'EN';
+    languageCode = 'EN';
   }
 
   const query = `
-    query getProductByHandle($handle: String!) @inContext(country: ${countryCode}, language: ${language}) {
+    query getProductByHandle($handle: String!) @inContext(country: ${countryCode}, language: ${languageCode}) {
       product(handle: $handle) {
         id
         title
@@ -125,9 +128,9 @@ export async function getProductByHandle(handle: string): Promise<Product | null
 
   try {
     const response = await client.request(query, { variables: { handle } });
-    return response.data.product || null;
+    return response.data.product || [];
   } catch (error) {
     console.error('Error al obtener el producto por handle:', error);
-    return null;
+    return [];
   }
 }
