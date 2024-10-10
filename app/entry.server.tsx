@@ -38,6 +38,7 @@ export default function handleRequest(
     "font-src 'self' https://fonts.gstatic.com; " +
     "img-src 'self' data: https:; " +
     "script-src 'self' 'unsafe-inline' https://cdn.shopify.com; " +
+    "media-src 'self' https://cdn.shopify.com; " +
     "upgrade-insecure-requests"
   );
 
