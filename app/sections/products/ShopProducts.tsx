@@ -65,7 +65,7 @@ export default function ShopProducts() {
         const generateSpecialItems = () => {
             const items = [
                 <div key="promo" className="ShopProductsItem SpecialItem videoFashionOfPower">
-                    <video src="https://cdn.shopify.com/videos/c/o/v/4716a587e6094175a493f8e84a26ceef.mp4" autoPlay muted loop playsInline></video>
+                    <video src="https://cdn.shopify.com/videos/c/o/v/4716a587e6094175a493f8e84a26ceef.mp4" autoPlay muted loop></video>
                 </div>
             ];
             setSpecialItems(items);
@@ -148,7 +148,7 @@ export default function ShopProducts() {
                     <div className="ShopHeaderFiltersItem">
                         <p>{t('products.products_filters')}</p>
                         <span>|</span>
-                        <select className="ShopHeaderFiltersItemSelect" role="listbox" title={t('products.products_sort_by')} onChange={(e) => handleSortBy(e.target.value)}>
+                        <select className="ShopHeaderFiltersItemSelect" role="listbox" id="products-sort-by" title={t('products.products_sort_by')} onChange={(e) => handleSortBy(e.target.value)}>
                             <option value="0">{t('products.products_default')}</option>
                             <option value="1">{t('products.products_oldest')}</option>
                             <option value="2">{t('products.products_price_asc')}</option>

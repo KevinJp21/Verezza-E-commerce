@@ -101,7 +101,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                 <div className='BagWrapper'>
                     <div className="BagHeader">
                         <h2 className='BagTitle title-primary'>{t('bag.title')}</h2>
-                        <button className='BagClose' onClick={onClose}>{closeIcon()}</button>
+                        <button className='BagClose' title='Close' onClick={onClose}>{closeIcon()}</button>
                     </div>
                     <div className="BagContent">
                         {cartItems.length > 0 ? (
