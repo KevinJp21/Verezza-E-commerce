@@ -37,8 +37,9 @@ export default function handleRequest(
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
     "img-src 'self' data: https:; " +
-    "script-src 'self' 'unsafe-inline' https://cdn.shopify.com; " +
+    "script-src 'self' 'unsafe-inline' https://cdn.shopify.com https://vercel.live; " +
     "media-src 'self' https://cdn.shopify.com; " +
+    "frame-src 'self' https://vercel.live; " +
     "upgrade-insecure-requests"
   );
 
