@@ -33,6 +33,7 @@ export const meta: MetaFunction = ({ data }) => {
         { title: product ? `${product.title} | Olga Lucia Cortes` : "Olga Lucia Cortes | Productos" },
         { name: "description", content: `${product?.description}` },
         { name: "og:site_name", content: "Olga Lucia Cortes" },
+        { name: "og:description", content: `${product?.description}` },
         { name: "og:url", content: `https://olga-lucia-cortes.vercel.app/products/${product?.handle}` },
         { name: "og:title", content: `${product?.title}` },
         { name: "og:type", content: "product" },
@@ -42,6 +43,7 @@ export const meta: MetaFunction = ({ data }) => {
         { name: "og:price:amount", content: `${product?.priceRange.minVariantPrice.amount}` },
         { name: "og:price:currency", content: `${product?.priceRange.minVariantPrice.currencyCode}` },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: `${product?.images.edges[0].node.src}` },
         { name: "twitter:title", content: `${product?.title}` },
         { name: "twitter:description", content: `${product?.description}` }
     ];
