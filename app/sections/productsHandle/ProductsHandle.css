@@ -18,6 +18,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+#ScrollElement{
+    bottom: 170px;
+}
+
+.HandleProductImg .ProductCarousel button{
+    opacity: 1;
 }
 
 .HandleProductDetailsWrapper{
@@ -200,10 +209,14 @@
         width: 50%;
     }
 
+    .HandleProductImg .ProductCarousel button{
+        opacity: 0;
+    }    
+
     .HandleProductDetailsWrapper{
         width: 50%;
         min-height: 100vh;
-        margin-top: 0;
+        margin: 0 auto;
         padding: 0 64px;
         max-width: 672px;
     }

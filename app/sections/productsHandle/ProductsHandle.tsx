@@ -53,48 +53,73 @@ export default function ProductsHandle({ products }: any) {
         setIsSizeSelected(false);
     }
 
-// Función para comprar ahora
-const handleBuyNow = async () => {
-    if (!selectedSize) {
-        setIsSizeSelected(true);
-        return;
-    }
-
-    try {
-        const selectedVariant = products.variants.nodes.find((size: any) => size.id === selectedSize);
-        if (!selectedVariant) {
-            throw new Error('Variante no encontrada para el tamaño seleccionado');
+    // Función para comprar ahora
+    const handleBuyNow = async () => {
+        if (!selectedSize) {
+            setIsSizeSelected(true);
+            return;
         }
 
-        const variantId = selectedVariant.id;
+        try {
+            const selectedVariant = products.variants.nodes.find((size: any) => size.id === selectedSize);
+            if (!selectedVariant) {
+                throw new Error('Variante no encontrada para el tamaño seleccionado');
+            }
 
-        // Agregar el producto
-        const checkout = await addToCart(variantId, selectedQuantity);
+            const variantId = selectedVariant.id;
 
-        if(checkout.webUrl){
-            // Redirigir a la página de pago
-            const checkoutWindow = window.open(checkout.webUrl, '_blank');
-            const checkWindowClosed = setInterval(async () => {
-                if (checkoutWindow?.closed) {
-                    clearInterval(checkWindowClosed);
-                    // La ventana se cerró, verificamos el estado del checkout
-                    const checkoutStatus = await getCheckoutStatus(checkout.id);
-                    if (checkoutStatus === 'COMPLETED') {
-                        // El pago se completó, limpiamos el carrito
-                        localStorage.removeItem('checkoutId');
-                        setCartItems([]);
-                        updateCart();
-                        
+            // Agregar el producto
+            const checkout = await addToCart(variantId, selectedQuantity);
+
+            if (checkout.webUrl) {
+                // Redirigir a la página de pago
+                const checkoutWindow = window.open(checkout.webUrl, '_blank');
+                const checkWindowClosed = setInterval(async () => {
+                    if (checkoutWindow?.closed) {
+                        clearInterval(checkWindowClosed);
+                        // La ventana se cerró, verificamos el estado del checkout
+                        const checkoutStatus = await getCheckoutStatus(checkout.id);
+                        if (checkoutStatus === 'COMPLETED') {
+                            // El pago se completó, limpiamos el carrito
+                            localStorage.removeItem('checkoutId');
+                            setCartItems([]);
+                            updateCart();
+
+                        }
                     }
-                }
-            }, 1000);
-            window.dispatchEvent(new Event('cartUpdated'));
-        }
+                }, 1000);
+                window.dispatchEvent(new Event('cartUpdated'));
+            }
 
-    } catch (error) {
-        console.error('Error al procesar la compra:', error);
+        } catch (error) {
+            console.error('Error al procesar la compra:', error);
+        }
     }
-}
+
+    const handleScroll = () => {
+        const element = document.getElementById('ModalCartProductInfo');
+        element?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+      //Ocultar ScrollElement al scrollear hacia abajo
+      useEffect(() => {
+        const scrollElement = document.getElementById('ScrollElement');
+    
+        if (scrollElement) {
+            const handleScroll = () => {
+                const scrollPosition = window.scrollY;
+                const opacity = 1 - Math.min(scrollPosition / 100, 1);
+                scrollElement.style.opacity = opacity.toString();
+            };
+    
+            window.addEventListener('scroll', handleScroll);
+    
+            // Limpieza del event listener
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
+    }, []);
     return (
         <section className='ProductsHandleContainer'>
             <div className='ProductsHandleWprapper'>
@@ -104,8 +129,11 @@ const handleBuyNow = async () => {
                         productId={products.id}
                         productName={products.title}
                     />
+                    <div id="ScrollElement" className="ScrollElement">
+                        <button className='btn-primary' onClick={handleScroll}><span></span></button>
+                    </div>
                 </div>
-                <div className="HandleProductDetailsWrapper">
+                <div className="HandleProductDetailsWrapper" id='ModalCartProductInfo'>
                     <div className="HandleProductDetails">
                         <div className='HandleProductDetailsHeader'>
                             <h3>{products.title}</h3>
