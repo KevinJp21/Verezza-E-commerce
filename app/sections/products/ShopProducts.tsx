@@ -29,6 +29,9 @@ export default function ShopProducts() {
     const { products } = useProductContext();
     const TotalProducts = products.length;
 
+    //Ordenar productos por los mas nuevos
+
+
 
     useEffect(() => {
         if (products.length > 0) {
@@ -114,7 +117,7 @@ export default function ShopProducts() {
     };
 
     //Products filters
-    const [sortBy, setSortBy] = useState<string>('1');
+    const [sortBy, setSortBy] = useState<string>('0');
 
     const handleSortBy = (value: string) => {
         setSortBy(value);
@@ -123,14 +126,14 @@ export default function ShopProducts() {
     const sortProducts = (products: any[]) => {
         return [...products].sort((a, b) => {
             switch (sortBy) {
-                case '1': // Más Viejos (asumiendo que hay un campo 'createdAt')
+                case '1': // Más antiguos
                     return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
                 case '2': // Precio ascendente
                     return a.variants.nodes[0].price.amount - b.variants.nodes[0].price.amount;
                 case '3': // Precio descendente
                     return b.variants.nodes[0].price.amount - a.variants.nodes[0].price.amount;
                 default: // Por defecto, no se ordena
-                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();;
+                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
             }
         });
     };
@@ -144,7 +147,7 @@ export default function ShopProducts() {
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
                 <div className="ShopHeaderContent">
-                    <p className="ProductsQuantity">{t('products.products_quantity')} {TotalProducts}</p>
+                    <p className="ProductsQuantity">{TotalProducts} {t('products.products_quantity')}</p>
                     <div className="ShopHeaderFiltersItem">
                         <p>{t('products.products_filters')}</p>
                         <span>|</span>

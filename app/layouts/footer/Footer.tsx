@@ -201,13 +201,13 @@ export default function Footer() {
             <div className="FooterSocial">
               <ul className='FooterSocialList'>
                 <li className='FooterSocialItem'>
-                  <a href="">{facebookIcon()}</a>
+                  <a href="https://www.facebook.com/olgaluciacorteshautecouture">{facebookIcon()}</a>
                 </li>
                 <li className='FooterSocialItem'>
-                  <a href="">{instagramIcon()}</a>
+                  <a href="https://www.instagram.com/olgaluciacorteshc/" target='_blank'>{instagramIcon()}</a>
                 </li>
                 <li className='FooterSocialItem'>
-                  <a href="">{tiktokIcon()}</a>
+                  <a href="#">{tiktokIcon()}</a>
                 </li>
               </ul>
             </div>
