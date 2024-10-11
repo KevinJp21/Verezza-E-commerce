@@ -137,7 +137,7 @@ export default function ProductsHandle({ products }: any) {
                     <div className="HandleProductDetails">
                         <div className='HandleProductDetailsHeader'>
                             <h3>{products.title}</h3>
-                            <a href={`/categories/${products.productType.toLowerCase().replace(/\s+/g, '-')}`}>{products.productType}</a>
+                            <a href={`/category/${products.productType.toLowerCase().replace(/\s+/g, '-')}`}>{products.productType}</a>
                         </div>
                         {products.description &&
                             <div className='productDescription'>
