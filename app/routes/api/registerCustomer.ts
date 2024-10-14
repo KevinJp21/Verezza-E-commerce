@@ -52,7 +52,7 @@ export const action: ActionFunction = async ({ request }) => {
           email: customerData.email,
           emailMarketingConsent: {
             marketingState: "SUBSCRIBED",
-            consentUpdatedAt: new Date().toISOString(),
+            consentUpdatedAt: new Date(),
             marketingOptInLevel: "CONFIRMED_OPT_IN",
           },
           addresses: [
@@ -77,8 +77,8 @@ export const action: ActionFunction = async ({ request }) => {
             },
             {
               namespace: 'facts',
-              key: 'birthday',
-              type: 'single_line_text_field',
+              key: 'birth_date',
+              type: 'date',
               value: customerData.birthday,
             },
           ],

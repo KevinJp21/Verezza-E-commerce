@@ -38,12 +38,8 @@ export default function AccountRegister() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formattedData = {
-      ...customerData,
-      birthday: customerData.birthday ? new Date(customerData.birthday).toISOString().split('T')[0] : '',
-    };
     fetcher.submit(
-      { json: JSON.stringify(formattedData) },
+      { json: JSON.stringify(customerData) },
       { 
         method: "post", 
         action: "/api/registerCustomer",
@@ -98,6 +94,7 @@ export default function AccountRegister() {
             onChange={handleChange}
             autoComplete="on"
           />
+          
         </div>
         <div>
           <label>Identification Type:</label>
