@@ -1,40 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getAllProducts } from '~/api/GetAllProducts';
+import { Product } from '~/utils/typeProducts';
 
-export interface Product {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: string;
-  handle: string;
-  priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-  };
-  images: {
-    edges: Array<{
-      node: {
-        src: string;
-        altText: string | null;
-      };
-    }>;
-  };
-  collections: {
-    nodes: Array<{
-      title: string;
-      id?: string; // Hacemos el id opcional
-    }>;
-  };
-  variants: {
-    nodes: Array<{
-      id?: string;
-      title: string;
-      availableForSale?: boolean;
-    }>;
-  };
-}
 
 interface CartItem extends Product {
   quantity: number;

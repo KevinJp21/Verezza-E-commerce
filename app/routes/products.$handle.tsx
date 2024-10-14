@@ -5,7 +5,7 @@ import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
 import ProductsHandle from "~/sections/productsHandle/ProductsHandle";
 import { MetaFunction } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
-import { Product } from "~/api/GetAllProducts";
+import { Product } from "~/utils/typeProducts";
 import { useLoaderData } from "@remix-run/react";
 import { json, LoaderFunction } from "@remix-run/node";
 import { getProductByHandle } from "~/api/getProductByHandle";
