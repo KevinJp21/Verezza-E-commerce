@@ -1,6 +1,6 @@
-import { gql } from 'graphql-request';
+import { gql } from '@apollo/client/core';
+import client from '~/lib/apolloClient';
 
-import { SHOPIFY_STOREFRONT_API_URL, SHOPIFY_STOREFRONT_API_TOKEN } from './tokenShopify';
 
 const CREATE_CHECKOUT_MUTATION = gql`
   mutation checkoutCreate($input: CheckoutCreateInput!) {
@@ -53,33 +53,27 @@ const ADD_TO_CART_MUTATION = gql`
 `;
 
 async function createCheckout() {
-  const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
-    },
-    body: JSON.stringify({
-      query: CREATE_CHECKOUT_MUTATION,
+  const response = await client.mutate({
+    mutation: CREATE_CHECKOUT_MUTATION,
+    variables: {
       variables: {
         input: {},
       },
-    }),
+    },
+    fetchPolicy: "network-only",
   });
 
-  if (!response.ok) {
-    throw new Error(`Error en la solicitud: ${response.statusText}`);
+  if (response.errors) {
+    throw new Error(`Error en la solicitud: ${response.errors.map((error) => error.message).join(', ')}`);
   }
 
-  const data = await response.json();
-
-  if (data.errors || !data.data || !data.data.checkoutCreate || data.data.checkoutCreate.userErrors.length > 0) {
-    const userErrors = data.data?.checkoutCreate?.userErrors || [];
+  if (response.data.checkoutCreate.userErrors.length > 0) {
+    const userErrors = response.data?.checkoutCreate?.userErrors || [];
     const errorMessages = userErrors.map((error: any) => error.message).join(', ');
     throw new Error(`Error en la respuesta de GraphQL: ${errorMessages}`);
   }
 
-  return data.data.checkoutCreate.checkout.id;
+  return response.data.checkoutCreate.checkout.id;
 }
 
 export async function addToCart(variantId: string, quantity: number) {
@@ -91,39 +85,32 @@ export async function addToCart(variantId: string, quantity: number) {
       localStorage.setItem('checkoutId', checkoutId || '');
     }
 
-    const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
+    const response = await client.mutate({
+      mutation: ADD_TO_CART_MUTATION,
+      variables: {
+        checkoutId,
+        lineItems: [
+          {
+            variantId,
+            quantity,
+          },
+        ],
       },
-      body: JSON.stringify({
-        query: ADD_TO_CART_MUTATION,
-        variables: {
-          checkoutId,
-          lineItems: [
-            {
-              variantId,
-              quantity,
-            },
-          ],
-        },
-      }),
+      fetchPolicy: "network-only",
     });
 
-    if (!response.ok) {
-      throw new Error(`Error en la solicitud: ${response.statusText}`);
+
+    if (response.errors) {
+      throw new Error(`Error en la solicitud: ${response.errors.map((error) => error.message).join(', ')}`);
     }
 
-    const data = await response.json();
-
-    if (data.errors || !data.data || !data.data.checkoutLineItemsAdd || data.data.checkoutLineItemsAdd.userErrors.length > 0) {
-      const userErrors = data.data?.checkoutLineItemsAdd?.userErrors || [];
+    if (response.data.checkoutLineItemsAdd.userErrors.length > 0) {
+      const userErrors = response.data?.checkoutLineItemsAdd?.userErrors || [];
       const errorMessages = userErrors.map((error: any) => error.message).join(', ');
       throw new Error(`Error en la respuesta de GraphQL: ${errorMessages}`);
     }
 
-    return data.data.checkoutLineItemsAdd.checkout;
+    return response.data.checkoutLineItemsAdd.checkout;
   } catch (error) {
     console.error('Error al agregar producto al carrito:', error);
     throw error;
