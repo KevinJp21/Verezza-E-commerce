@@ -1,10 +1,7 @@
-import { createStorefrontApiClient } from "@shopify/storefront-api-client";
+import { gql } from "@apollo/client/core";
+import client from "~/lib/apolloClient";
 import i18next from "i18next";
 import { Product } from "~/utils/TypeProducts";
-const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as string;
-const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
-
-
 
 interface ProductsResponse {
   products: {
@@ -18,20 +15,13 @@ interface ProductsResponse {
   };
 }
 
-interface GraphQLResponse {
-  data?: ProductsResponse;
-  errors?: Array<{ message: string }>; // Ajustado para manejar una lista de errores
-}
-
-const client = createStorefrontApiClient({
-  storeDomain: SHOPIFY_STOREFRONT_API_URL,
-  apiVersion: '2024-04',
-  publicAccessToken: SHOPIFY_STOREFRONT_API_TOKEN,
-});
-
 export async function fetchShopify(query: string, variables = {}): Promise<ProductsResponse> {
   try {
-    const response = await client.request<GraphQLResponse>(query, variables);
+    const response = await client.query({
+      query: gql`${query}`,
+      variables,
+      fetchPolicy: "cache-first"
+    })
 
     if (response.errors && Array.isArray(response.errors)) {
       // Manejo de errores si response.errors es un array
