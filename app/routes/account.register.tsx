@@ -1,7 +1,18 @@
 import { useState } from 'react';
-import registerCustomer from '~/api/RegisterCustomer';
+import { useFetcher } from "@remix-run/react";
+
+// Definimos una interfaz para la respuesta
+interface CustomerCreateResponse {
+  customerCreate: {
+    customer: {
+      id: string;
+    };
+    userErrors: Array<{ message: string }>;
+  };
+}
 
 export default function AccountRegister() {
+  const fetcher = useFetcher<CustomerCreateResponse>();
   const [customerData, setCustomerData] = useState({
     firstName: '',
     lastName: '',
@@ -17,7 +28,7 @@ export default function AccountRegister() {
     acceptsMarketing: false,
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setCustomerData({
       ...customerData,
@@ -25,25 +36,26 @@ export default function AccountRegister() {
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-        const formattedData = {
-            ...customerData,
-            birthday: customerData.birthday ? new Date(customerData.birthday).toISOString().split('T')[0] : '',
-          };
-      const customer = await registerCustomer(formattedData);
-      alert('Customer registered successfully: ' + customer.id); // O muestra la info que quieras
-    } catch (error) {
-      console.error(error);
-      alert('Error registering customer: ' + error);
-    }
+    const formattedData = {
+      ...customerData,
+      birthday: customerData.birthday ? new Date(customerData.birthday).toISOString().split('T')[0] : '',
+    };
+    fetcher.submit(
+      { json: JSON.stringify(formattedData) },
+      { 
+        method: "post", 
+        action: "/api/registerCustomer",
+        encType: "application/json"
+      }
+    );
   };
 
   return (
     <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Registro</h1>
+      <fetcher.Form onSubmit={handleSubmit}>
         <div>
           <label>First Name:</label>
           <input
@@ -141,8 +153,15 @@ export default function AccountRegister() {
             Accepts Marketing
           </label>
         </div>
-        <button type="submit">Register</button>
-      </form>
+        <button type="submit">Registrar</button>
+      </fetcher.Form>
+      {fetcher.state === "submitting" && <p>Registrando cliente...</p>}
+      {fetcher.data && 'customerCreate' in fetcher.data && (
+        <p>Cliente registrado con éxito: {fetcher.data.customerCreate.customer.id}</p>
+      )}
+      {fetcher.data && 'customerCreate' in fetcher.data && fetcher.data.customerCreate.userErrors.length > 0 && (
+        <p>Error: {fetcher.data.customerCreate.userErrors[0].message}</p>
+      )}
     </div>
   );
 }

@@ -1,10 +1,10 @@
+import type { ActionFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import clientAdmin from "~/lib/apolloClientAdmin";
 import { gql } from "@apollo/client/core";
-const SHOPIFY_ADMIN_API_URL = process.env.SHOPIFY_ADMIN_API_URL;
-const SHOPIFY_ADMIN_API_TOKEN = process.env.SHOPIFY_ADMIN_API_TOKEN;
 
 const REGISTER_USER_MUTATION = gql`
-mutation createCustomerMetafields($input: CustomerInput!) {
+  mutation createCustomerMetafields($input: CustomerInput!) {
     customerCreate(input: $input) {
       customer {
         id
@@ -25,9 +25,23 @@ mutation createCustomerMetafields($input: CustomerInput!) {
       }
     }
   }
-`
+`;
 
-export default async function registerCustomer(customerData: any) {
+export const action: ActionFunction = async ({ request }) => {
+  if (request.method !== "POST") {
+    return json({ message: "Método no permitido" }, { status: 405 });
+  }
+
+  const body = await request.text();
+  let customerData;
+  try {
+    const { json } = JSON.parse(body);
+    customerData = JSON.parse(json);
+  } catch (error) {
+    console.error('Error parsing request body:', error);
+    return json({ message: 'Error al procesar los datos del cliente' }, { status: 400 });
+  }
+
   try {
     const response = await clientAdmin.mutate({
       mutation: REGISTER_USER_MUTATION,
@@ -64,7 +78,7 @@ export default async function registerCustomer(customerData: any) {
             {
               namespace: 'facts',
               key: 'birthday',
-              type: 'single_line_text_field', // Almacenar como string "YYYY-MM-DD"
+              type: 'single_line_text_field',
               value: customerData.birthday,
             },
           ],
@@ -82,19 +96,15 @@ export default async function registerCustomer(customerData: any) {
       throw new Error('No data returned from Shopify');
     }
 
-    const data = await response.data;
+    const data = response.data;
 
-    if (data.errors || data.data.customerCreate.userErrors.length > 0) {
-      throw new Error(
-        data.errors
-          ? data.errors[0].message
-          : data.data.customerCreate.userErrors[0].message
-      );
+    if (data.customerCreate.userErrors.length > 0) {
+      throw new Error(data.customerCreate.userErrors[0].message);
     }
 
-    return data.data.customerCreate.customer;
+    return json(data.customerCreate.customer);
   } catch (error) {
     console.error('Error en la consulta a Shopify:', error);
-    throw error;
+    return json({ message: 'Error al registrar el cliente' }, { status: 500 });
   }
-}
+};
