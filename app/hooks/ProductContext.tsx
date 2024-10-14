@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getAllProducts } from '~/api/GetAllProducts';
-import { Product } from '~/utils/typeProducts';
+import { Product } from '~/utils/TypeProducts';
 
 
 interface CartItem extends Product {

@@ -1,6 +1,6 @@
 import { createStorefrontApiClient } from "@shopify/storefront-api-client";
 import i18next from "i18next";
-import { Product } from "~/utils/typeProducts";
+import { Product } from "~/utils/TypeProducts";
 const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as string;
 const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
 
