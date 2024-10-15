@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useFetcher } from "@remix-run/react";
+import { useTranslation } from 'react-i18next';
 import './RegisterPage.css';
 
 interface CustomerCreateResponse {
@@ -12,6 +13,7 @@ interface CustomerCreateResponse {
 }
 
 export default function RegisterPage() {
+  const { t } = useTranslation();
   const fetcher = useFetcher<CustomerCreateResponse>();
   const [customerData, setCustomerData] = useState({
     firstName: '',
@@ -52,10 +54,10 @@ export default function RegisterPage() {
   return (
     <section className='ContainerRegister'>
       <fetcher.Form onSubmit={handleSubmit} className='FormRegister'>
-        <h1>Registrarse</h1>
+        <h1>{t("register.title")}</h1>
         <div className="formGroup">
           <div className='InputContainer'>
-            <label>Nombre</label>
+            <label>{t("register.name")}</label>
             <input
               type="text"
               name="firstName"
@@ -66,7 +68,7 @@ export default function RegisterPage() {
             />
           </div>
           <div className='InputContainer'>
-            <label>Apellido</label>
+            <label>{t("register.last_name")}</label>
             <input
               type="text"
               name="lastName"
@@ -79,7 +81,7 @@ export default function RegisterPage() {
         </div>
 
         <div className='InputContainer'>
-          <label>Correo</label>
+          <label>{t("register.email")}</label>
           <input
             type="email"
             name="email"
@@ -92,7 +94,7 @@ export default function RegisterPage() {
         </div>
         <div className="formGroup">
           <div className='InputContainer'>
-            <label>Tipo de Identificación</label>
+            <label>{t("register.identification_type")}</label>
             <input
               type="text"
               name="identificationType"
@@ -100,11 +102,11 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               autoComplete="on"
-              placeholder='Ej: CC (Colombia), DNI (Argentina), RUT (Chile), INE (México)'
+              placeholder={t("register.identification_type_placeholder")}
             />
           </div>
           <div className='InputContainer'>
-            <label>Número de Identificación</label>
+            <label>{t("register.identification_number")}</label>
             <input
               type="text"
               name="identificationNumber"
@@ -116,7 +118,7 @@ export default function RegisterPage() {
           </div>
         </div>
         <div className='InputContainer'>
-          <label>Teléfono</label>
+          <label>{t("register.phone")}</label>
           <input
             type="text"
             name="phone"
@@ -124,11 +126,11 @@ export default function RegisterPage() {
             onChange={handleChange}
             required
             autoComplete="on"
-            placeholder='Ej: +573123456789 (Prefijo primero sin simbolo +)'
+            placeholder={t("register.phone_placeholder")}
           />
         </div>
         <div className='InputContainer'>
-          <label>Fecha de Nacimiento</label>
+          <label>{t("register.birthday")}</label>
           <input
             type="date"
             name="birthday"
@@ -140,7 +142,7 @@ export default function RegisterPage() {
         </div>
         <div className="formGroup">
           <div className='InputContainer'>
-            <label>País</label>
+            <label>{t("register.country")}</label>
             <input
               type="text"
               name="country"
@@ -148,12 +150,12 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               autoComplete="on"
-              placeholder='Ej: Colombia, United States, Canada, etc.'
+              placeholder={t("register.country_placeholder")}
             />
           </div>
 
           <div className='InputContainer'>
-            <label>Ciudad</label>
+            <label>{t("register.city")}</label>
             <input
               type="text"
               name="city"
@@ -161,12 +163,12 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               autoComplete="on"
-              placeholder='Ej: Barranquilla, New York, Toronto, etc.'
+              placeholder={t("register.city_placeholder")}
             />
           </div>
 
           <div className='InputContainer'>
-            <label>Provincia</label>
+            <label>{t("register.province")}</label>
             <input
               type="text"
               name="province"
@@ -174,13 +176,13 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               autoComplete="on"
-              placeholder='Ej: Atlántico, New York, Toronto, etc.'
+              placeholder={t("register.province_placeholder")}
             />
           </div>
         </div>
         <div className="formGroup">
           <div className='InputContainer'>
-            <label>Dirección</label>
+            <label>{t("register.address")}</label>
             <input
               type="text"
               name="address1"
@@ -192,7 +194,7 @@ export default function RegisterPage() {
           </div>
 
           <div className='InputContainer'>
-            <label>Código Postal</label>
+            <label>{t("register.zip")}</label>
             <input
               type="text"
               name="zip"
@@ -213,10 +215,10 @@ export default function RegisterPage() {
             onChange={handleChange}
           />
           <label>
-            ¿Desea recibir promociones, cupones exclusivos y novedades?
+            {t("register.accepts_marketing")}
           </label>
         </div>
-        <button className='btn-secondary' type="submit"><span>Registrar</span></button>
+        <button className='btn-secondary' type="submit"><span>{t("register.button")}</span></button>
       </fetcher.Form>
       {fetcher.state === "submitting" && <p>Registrando cliente...</p>}
       {fetcher.data && 'customerCreate' in fetcher.data && (
