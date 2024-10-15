@@ -11,6 +11,7 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas." },
     { name: "keywords", content: "moda, ropa de mujer, blusas, pantalones, vestidos, accesorios, moda colombiana, talla s, talla m, talla l, talla xl, talla xxl, complementos" },
     { name: "og:title", content: "Olga Lucía Cortes | Moda exclusiva para mujeres reales" },
+    { name: "og:site_name", content: "Olga Lucía Cortes"},
     { name: "og:description", content: "Descubre nuestra colección de moda diseñada para resaltar la belleza de todas las mujeres. Prendas únicas y elegantes para cada ocasión." },
     { name: "og:image", content: `${baseUrl}/seo/HomeScreen.png` },
     { name: "og:image:alt", content: "Página de inicio de Olga Lucía Cortés" },

@@ -60,6 +60,32 @@ export default {
     "buy_now": "Shop now",
     "subtotal": "Subtotal",
   },
+  "register":{
+    "seo":{
+      "title": "Olga Lucía Cortés | Create your account",
+      "description": "Create your account in Olga Lucía Cortés to enjoy our exclusive benefits."
+    },
+    "title": "Create your account",
+    "name": "Name",
+    "last_name": "Last name",
+    "email": "Email",
+    "identification_type": "Identification type",
+    "identification_type_placeholder": "e.g: CC (Colombia), DNI (Argentina), RUT (Chile), INE (México)",
+    "identification_number": "Identification number",
+    "phone": "Phone",
+    "phone_placeholder": "e.g: +13123456789 (Prefix first without symbol +)",
+    "birthday": "Birthday",
+    "country": "Country",
+    "country_placeholder": "e.g: Colombia, Argentina, Chile, México, etc.",
+    "city": "City",
+    "city_placeholder": "e.g: Barranquilla, New York, Toronto, etc.",
+    "address": "Address",
+    "zip": "Zip code",
+    "province": "Province",
+    "province_placeholder": "e.g: Atlántico, New York, Toronto, etc.",
+    "accepts_marketing": "Do you want to receive promotions, exclusive coupons and news?",
+    "button": "Register"
+  },
   "home": {
     "home_seo":{
       "title": "Olga Lucía Cortes | Exclusive fashion for real women"

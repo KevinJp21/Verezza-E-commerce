@@ -33,16 +33,16 @@ export default function handleRequest(
   responseHeaders.set(
     "Content-Security-Policy",
     "default-src 'self'; " +
-    "connect-src 'self' https://d0a712-45.myshopify.com; " +
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-    "font-src 'self' https://fonts.gstatic.com; " +
-    "img-src 'self' data: https:; " +
+    "connect-src 'self' https://d0a712-45.myshopify.com https://vercel.live wss://ws-us3.pusher.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://vercel.live; " +
+    "font-src 'self' https://fonts.gstatic.com https://vercel.live https://assets.vercel.com; " +
+    "img-src 'self' data: https: https://vercel.live https://vercel.com blob:; " +
     "script-src 'self' 'unsafe-inline' https://cdn.shopify.com https://vercel.live; " +
     "media-src 'self' https://cdn.shopify.com; " +
     "frame-src 'self' https://vercel.live; " +
     "upgrade-insecure-requests"
   );
-
+  
 	return isbot(request.headers.get("user-agent") || "")
     ? handleBotRequest(
         request,

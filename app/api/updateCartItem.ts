@@ -1,5 +1,6 @@
-import { gql } from 'graphql-request';
-import { SHOPIFY_STOREFRONT_API_URL, SHOPIFY_STOREFRONT_API_TOKEN } from './tokenShopify';
+import { gql } from '@apollo/client/core';
+import client from '~/lib/apolloClient';
+
 
 const UPDATE_CART_ITEM_MUTATION = gql`
   mutation checkoutLineItemsUpdate($checkoutId: ID!, $lineItems: [CheckoutLineItemUpdateInput!]!) {
@@ -42,39 +43,31 @@ const UPDATE_CART_ITEM_MUTATION = gql`
 
 export const updateCartItemQuantity = async (checkoutId: string, itemId: string, quantity: number) => {
   try {
-    const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
+    const response = await client.mutate({
+      mutation: UPDATE_CART_ITEM_MUTATION,
+      variables: {
+        checkoutId,
+        lineItems: [
+          {
+            id: itemId,
+            quantity,
+          },
+        ],
       },
-      body: JSON.stringify({
-        query: UPDATE_CART_ITEM_MUTATION,
-        variables: {
-          checkoutId,
-          lineItems: [
-            {
-              id: itemId,
-              quantity,
-            },
-          ],
-        },
-      }),
+      fetchPolicy: "network-only",
     });
 
-    if (!response.ok) {
-      throw new Error(`Error en la solicitud: ${response.statusText}`);
+    if (response.errors) {
+      throw new Error(`Error en la solicitud: ${response.errors.map((error) => error.message).join(', ')}`);
     }
 
-    const data = await response.json();
-
-    if (data.errors || !data.data || !data.data.checkoutLineItemsUpdate || data.data.checkoutLineItemsUpdate.userErrors.length > 0) {
-      const userErrors = data.data?.checkoutLineItemsUpdate?.userErrors || [];
+    if (response.data.checkoutLineItemsUpdate.userErrors.length > 0) {
+      const userErrors = response.data?.checkoutLineItemsUpdate?.userErrors || [];
       const errorMessages = userErrors.map((error: any) => error.message).join(', ');
       throw new Error(`Error en la respuesta de GraphQL: ${errorMessages}`);
     }
 
-    return data.data.checkoutLineItemsUpdate.checkout;
+    return response.data.checkoutLineItemsUpdate.checkout;
   } catch (error) {
     console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
     throw error;

@@ -1,0 +1,93 @@
+.ContainerRegister{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 46px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FormRegister{
+    padding: 32px;
+    max-width: 1440px;
+    width: 90%;
+    background: var(--olga-white-primary);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.FormRegister h1{
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: var(--olga-black-primary);
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.FormRegister .formGroup{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+}
+
+.FormRegister .InputContainer{
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+
+.FormRegister .InputContainer label{
+    margin-bottom: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--olga-black-primary);
+}
+
+.FormRegister .InputContainer input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid var(--olga-gray-100);
+    border-radius: 6px;
+    padding: 0 8px;
+}
+
+.FormRegister .CheckboxContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.FormRegister .InputContainer .CheckboxContainer input{
+    width: 16px;
+    height: 16px;
+}
+
+
+.FormRegister .InputContainer input:focus{
+    outline: none;
+    border: 1px solid var(--olga-black-primary);
+}
+
+.FormRegister .btn-secondary{
+    margin-top: 16px;
+    width: 100%;
+    border-radius: 0;
+    height: 56px;
+}
+
+@media (min-width: 768px) {
+    .FormRegister .formGroup{
+        flex-direction: row;
+    }
+}
+

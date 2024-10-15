@@ -110,7 +110,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                     <div className='ModalCartProductInfo' id="ModalCartProductInfo">
                         <div className='ModalCartProductInfoHeader'>
                             <h3><a href={`/products/${productHandle}`}>{productName}</a></h3>
-                            <a href={`/collections/${productCategory.toLowerCase().replace(/\s+/g, '-')}`}>{productCategory}</a>
+                            <a href={`/category/${productCategory.toLowerCase().replace(/\s+/g, '-')}`}>{productCategory}</a>
                         </div>
                         {productDescription &&
                             <div className='productDescription'>

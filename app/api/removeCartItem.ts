@@ -1,5 +1,5 @@
-import { gql } from 'graphql-request';
-import { SHOPIFY_STOREFRONT_API_URL, SHOPIFY_STOREFRONT_API_TOKEN } from './tokenShopify';
+import { gql } from '@apollo/client/core';
+import client from '~/lib/apolloClient';
 
 const REMOVE_CART_ITEM_MUTATION = gql`
   mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
@@ -42,34 +42,26 @@ const REMOVE_CART_ITEM_MUTATION = gql`
 
 export const removeCartItem = async (checkoutId: string, lineItemId: string) => {
   try {
-    const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
-      },
-      body: JSON.stringify({
-        query: REMOVE_CART_ITEM_MUTATION,
-        variables: {
-          checkoutId,
+    const response = await client.mutate({
+      mutation: REMOVE_CART_ITEM_MUTATION,
+      variables: {
+        checkoutId,
           lineItemIds: [lineItemId],
-        },
-      }),
+      },
+      fetchPolicy: "network-only",
     });
 
-    if (!response.ok) {
-      throw new Error(`Error en la solicitud: ${response.statusText}`);
+    if (response.errors) {
+      throw new Error(`Error en la solicitud: ${response.errors.map((error) => error.message).join(', ')}`);
     }
 
-    const data = await response.json();
-
-    if (data.errors || !data.data || !data.data.checkoutLineItemsRemove || data.data.checkoutLineItemsRemove.userErrors.length > 0) {
-      const userErrors = data.data?.checkoutLineItemsRemove?.userErrors || [];
+    if (response.data.checkoutLineItemsRemove.userErrors.length > 0) {
+      const userErrors = response.data?.checkoutLineItemsRemove?.userErrors || [];
       const errorMessages = userErrors.map((error: any) => error.message).join(', ');
       throw new Error(`Error en la respuesta de GraphQL: ${errorMessages}`);
     }
 
-    return data.data.checkoutLineItemsRemove.checkout;
+    return response.data.checkoutLineItemsRemove.checkout;
   } catch (error) {
     console.error('Error al eliminar el artículo del carrito:', error);
     throw error;

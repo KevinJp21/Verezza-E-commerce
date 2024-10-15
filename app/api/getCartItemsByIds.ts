@@ -1,5 +1,5 @@
-import { gql } from 'graphql-request';
-import { SHOPIFY_STOREFRONT_API_URL, SHOPIFY_STOREFRONT_API_TOKEN } from './tokenShopify';
+import { gql } from '@apollo/client/core';
+import client from '~/lib/apolloClient';
 
 const GET_PRODUCTS_BY_IDS_QUERY = gql`
   query getProductsByIds($ids: [ID!]!, $country: CountryCode!, $language: LanguageCode!) @inContext(country: $country, language: $language) {
@@ -34,32 +34,26 @@ export const getProductsByIds = async (productIds: string[], country: string, la
       const countryCode = country.toUpperCase() as CountryCode;
       const languageCode = language.toUpperCase() as LanguageCode;
   
-      const response = await fetch(SHOPIFY_STOREFRONT_API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_API_TOKEN,
+      const response = await client.query({
+        query: GET_PRODUCTS_BY_IDS_QUERY,
+        variables: { 
+          ids: productIds, 
+          country: countryCode, 
+          language: languageCode 
         },
-        body: JSON.stringify({
-          query: GET_PRODUCTS_BY_IDS_QUERY,
-          variables: { 
-            ids: productIds, 
-            country: countryCode, 
-            language: languageCode 
-          },
-        }),
+        fetchPolicy: "cache-first",
       });
   
-      if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      if (response.errors && Array.isArray(response.errors)) {
+        const errorMessages = response.errors.map((error) => error.message).join(', ');
+        throw new Error(`GraphQL errors: ${errorMessages}`);
       }
   
-      const data = await response.json();
-      if (data.errors) {
-        throw new Error(`Error en la respuesta de GraphQL: ${data.errors.map((error: any) => error.message).join(', ')}`);
+      if (!response.data || !response.data.nodes) {
+        throw new Error('No se encontraron los nodos en la respuesta.');
       }
   
-      return data.data.nodes;
+      return response.data.nodes;
     } catch (error) {
       console.error('Error al obtener los detalles de los productos:', error);
       throw error;
