@@ -19,6 +19,7 @@ export default function RegisterPage() {
     firstName: '',
     lastName: '',
     email: '',
+    password: '',
     phone: '',
     birthday: '',
     identificationType: '',
@@ -79,18 +80,30 @@ export default function RegisterPage() {
             />
           </div>
         </div>
-
-        <div className='InputContainer'>
-          <label>{t("register.email")}</label>
-          <input
-            type="email"
-            name="email"
-            value={customerData.email}
-            onChange={handleChange}
-            required
-            autoComplete="on"
-            placeholder='example@gmail.com'
-          />
+        <div className="formGroup">
+          <div className='InputContainer'>
+            <label>{t("register.email")}</label>
+            <input
+              type="email"
+              name="email"
+              value={customerData.email}
+              onChange={handleChange}
+              required
+              autoComplete="on"
+              placeholder='example@gmail.com'
+            />
+          </div>
+          <div className='InputContainer'>
+            <label>contraseña</label>
+            <input
+              type="password"
+              name="password"
+              value={customerData.password}
+              onChange={handleChange}
+              required
+              autoComplete="on"
+            />
+          </div>
         </div>
         <div className="formGroup">
           <div className='InputContainer'>

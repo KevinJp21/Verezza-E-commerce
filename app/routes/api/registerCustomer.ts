@@ -1,11 +1,29 @@
 import type { ActionFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import clientAdmin from "~/lib/apolloClientAdmin";
+import client from "~/lib/apolloClient";
 import { gql } from "@apollo/client/core";
 
+// Storefront API mutation to create a customer
+const CUSTOMER_CREATE_MUTATION = gql`
+  mutation customerCreate($input: CustomerCreateInput!) {
+    customerCreate(input: $input) {
+      customer {
+        id
+        email
+      }
+      customerUserErrors {
+        message
+        field
+      }
+    }
+  }
+`;
+
+// Admin API mutation to update customer with metafields
 const REGISTER_USER_MUTATION = gql`
   mutation createCustomerMetafields($input: CustomerInput!) {
-    customerCreate(input: $input) {
+    customerUpdate(input: $input) {
       customer {
         id
         metafields(first: 3) {
@@ -27,6 +45,28 @@ const REGISTER_USER_MUTATION = gql`
   }
 `;
 
+// Admin API mutation to update SMS marketing consent
+const UPDATE_SMS_MARKETING_CONSENT_MUTATION = gql`
+  mutation customerSmsMarketingConsentUpdate($input: CustomerSmsMarketingConsentUpdateInput!) {
+  customerSmsMarketingConsentUpdate(input: $input) {
+    userErrors {
+      field
+      message
+    }
+    customer {
+      id
+      phone
+      smsMarketingConsent {
+        marketingState
+        marketingOptInLevel
+        consentUpdatedAt
+        consentCollectedFrom
+      }
+    }
+  }
+}
+`;
+
 export const action: ActionFunction = async ({ request }) => {
   if (request.method !== "POST") {
     return json({ message: "Método no permitido" }, { status: 405 });
@@ -43,28 +83,41 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   try {
-
-    const consentDate = new Date();
-    consentDate.setMinutes(consentDate.getMinutes() - 1); 
-
-    const response = await clientAdmin.mutate({
-      mutation: REGISTER_USER_MUTATION,
+    // 1. Crear cliente con la Storefront API
+    const customerCreateResponse = await client.mutate({
+      mutation: CUSTOMER_CREATE_MUTATION,
       variables: {
         input: {
           firstName: customerData.firstName,
           lastName: customerData.lastName,
           email: customerData.email,
+          password: customerData.password,
+        },
+      },
+      fetchPolicy: 'network-only',
+    });
+
+    const customerCreateData = customerCreateResponse.data.customerCreate;
+
+    // Manejo de errores de la Storefront API
+    if (customerCreateData.customerUserErrors.length > 0) {
+      throw new Error(customerCreateData.customerUserErrors[0].message);
+    }
+
+    const customerId = customerCreateData.customer.id;
+
+    // 2. Agregar detalles adicionales con la Admin API
+    const consentDate = new Date();
+    consentDate.setMinutes(consentDate.getMinutes() - 1); 
+
+
+    // 3. Actualizar los detalles adicionales (metafields y direcciones)
+    const customerUpdateResponse  = await clientAdmin.mutate({
+      mutation: REGISTER_USER_MUTATION,
+      variables: {
+        input: {
+          id: customerId,
           phone: customerData.phone,
-          emailMarketingConsent: {
-            marketingState: customerData.acceptsMarketing ? "SUBSCRIBED" : "NOT_SUBSCRIBED",
-            consentUpdatedAt: consentDate.toISOString(),
-            marketingOptInLevel: "CONFIRMED_OPT_IN",
-          },
-          smsMarketingConsent: {
-            marketingState: customerData.acceptsMarketing ? "SUBSCRIBED" : "NOT_SUBSCRIBED",
-            consentUpdatedAt: consentDate.toISOString(),
-            marketingOptInLevel: "CONFIRMED_OPT_IN",
-          },
           addresses: [
             {
               countryCode: customerData.country,
@@ -100,22 +153,13 @@ export const action: ActionFunction = async ({ request }) => {
       fetchPolicy: 'network-only',
     });
 
-    if (response.errors && Array.isArray(response.errors)) {
-      const errorMessages = response.errors.map((error) => error.message).join(', ');
-      throw new Error(`GraphQL errors: ${errorMessages}`);
+    const customerUpdateData = customerUpdateResponse.data.customerUpdate;
+    
+    if (customerUpdateData.userErrors.length > 0) {
+      throw new Error(customerUpdateData.userErrors[0].message);
     }
 
-    if (!response.data) {
-      throw new Error('No data returned from Shopify');
-    }
-
-    const data = response.data;
-
-    if (data.customerCreate.userErrors.length > 0) {
-      throw new Error(data.customerCreate.userErrors[0].message);
-    }
-
-    return json(data.customerCreate.customer);
+    return json({ customerId });
   } catch (error) {
     console.error('Error en la consulta a Shopify:', error);
     return json({ message: 'Error al registrar el cliente' }, { status: 500 });
