@@ -43,6 +43,10 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   try {
+
+    const consentDate = new Date();
+    consentDate.setMinutes(consentDate.getMinutes() - 1); 
+
     const response = await clientAdmin.mutate({
       mutation: REGISTER_USER_MUTATION,
       variables: {
@@ -53,14 +57,14 @@ export const action: ActionFunction = async ({ request }) => {
           phone: customerData.phone,
           emailMarketingConsent: {
             marketingState: "SUBSCRIBED",
-            consentUpdatedAt: new Date(),
+            consentUpdatedAt: consentDate.toISOString(),
             marketingOptInLevel: "CONFIRMED_OPT_IN",
           },
           addresses: [
             {
               country: customerData.country,
               city: customerData.city,
-              province: customerData.province,
+              provinceCode: customerData.province,
               address1: customerData.address1,
               phone: customerData.phone,
               zip: customerData.zip,
