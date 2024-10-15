@@ -17,6 +17,7 @@ export default function AccountRegister() {
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     birthday: '',
     identificationType: '',
     identificationNumber: '',
@@ -86,6 +87,17 @@ export default function AccountRegister() {
           />
         </div>
         <div>
+          <label>Phone:</label>
+          <input
+            type="text"
+            name="phone"
+            value={customerData.phone}
+            onChange={handleChange}
+            required
+            autoComplete="on"
+          />
+        </div>
+        <div>
           <label>Birthday:</label>
           <input
             type="date"
@@ -113,6 +125,39 @@ export default function AccountRegister() {
             type="text"
             name="identificationNumber"
             value={customerData.identificationNumber}
+            onChange={handleChange}
+            required
+            autoComplete="on"
+          />
+        </div>
+        <div>
+          <label>Country:</label>
+          <input
+            type="text"
+            name="country"
+            value={customerData.country}
+            onChange={handleChange}
+            required
+            autoComplete="on"
+          />
+        </div>
+        <div>
+          <label>City:</label>
+          <input
+            type="text"
+            name="city"
+            value={customerData.city}
+            onChange={handleChange}
+            required
+            autoComplete="on"
+          />
+        </div>
+        <div>
+          <label>Province:</label>
+          <input
+            type="text"
+            name="province"
+            value={customerData.province}
             onChange={handleChange}
             required
             autoComplete="on"

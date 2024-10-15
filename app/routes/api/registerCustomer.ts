@@ -50,6 +50,7 @@ export const action: ActionFunction = async ({ request }) => {
           firstName: customerData.firstName,
           lastName: customerData.lastName,
           email: customerData.email,
+          phone: customerData.phone,
           emailMarketingConsent: {
             marketingState: "SUBSCRIBED",
             consentUpdatedAt: new Date(),
@@ -57,8 +58,11 @@ export const action: ActionFunction = async ({ request }) => {
           },
           addresses: [
             {
-              address1: customerData.address1,
+              country: customerData.country,
               city: customerData.city,
+              province: customerData.province,
+              address1: customerData.address1,
+              phone: customerData.phone,
               zip: customerData.zip,
             },
           ],
