@@ -56,9 +56,7 @@ async function createCheckout() {
   const response = await client.mutate({
     mutation: CREATE_CHECKOUT_MUTATION,
     variables: {
-      variables: {
-        input: {},
-      },
+      input: {},
     },
     fetchPolicy: "network-only",
   });
