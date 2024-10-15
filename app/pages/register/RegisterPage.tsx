@@ -207,15 +207,15 @@ export default function RegisterPage() {
         </div>
 
 
-        <div className='InputContainer CheckboxContainer'>
-          <input
-            type="checkbox"
-            name="acceptsMarketing"
-            checked={customerData.acceptsMarketing}
-            onChange={handleChange}
-          />
-          <label>
-            {t("register.accepts_marketing")}
+        <div className='InputContainer '>
+          <label className='CheckboxContainer'>
+            <input
+              type="checkbox"
+              name="acceptsMarketing"
+              checked={customerData.acceptsMarketing}
+              onChange={handleChange}
+            />
+            <span>{t("register.accepts_marketing")}</span>
           </label>
         </div>
         <button className='btn-secondary' type="submit"><span>{t("register.button")}</span></button>

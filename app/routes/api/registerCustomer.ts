@@ -56,7 +56,12 @@ export const action: ActionFunction = async ({ request }) => {
           email: customerData.email,
           phone: customerData.phone,
           emailMarketingConsent: {
-            marketingState: "SUBSCRIBED",
+            marketingState: customerData.acceptsMarketing ? "SUBSCRIBED" : "NOT_SUBSCRIBED",
+            consentUpdatedAt: consentDate.toISOString(),
+            marketingOptInLevel: "CONFIRMED_OPT_IN",
+          },
+          smsMarketingConsent: {
+            marketingState: customerData.acceptsMarketing ? "SUBSCRIBED" : "NOT_SUBSCRIBED",
             consentUpdatedAt: consentDate.toISOString(),
             marketingOptInLevel: "CONFIRMED_OPT_IN",
           },
