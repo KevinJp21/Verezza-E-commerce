@@ -45,27 +45,6 @@ const REGISTER_USER_MUTATION = gql`
   }
 `;
 
-// Admin API mutation to update SMS marketing consent
-const UPDATE_SMS_MARKETING_CONSENT_MUTATION = gql`
-  mutation customerSmsMarketingConsentUpdate($input: CustomerSmsMarketingConsentUpdateInput!) {
-  customerSmsMarketingConsentUpdate(input: $input) {
-    userErrors {
-      field
-      message
-    }
-    customer {
-      id
-      phone
-      smsMarketingConsent {
-        marketingState
-        marketingOptInLevel
-        consentUpdatedAt
-        consentCollectedFrom
-      }
-    }
-  }
-}
-`;
 
 export const action: ActionFunction = async ({ request }) => {
   if (request.method !== "POST") {
@@ -91,6 +70,7 @@ export const action: ActionFunction = async ({ request }) => {
           firstName: customerData.firstName,
           lastName: customerData.lastName,
           email: customerData.email,
+          acceptsMarketing: customerData.acceptsMarketing,
           password: customerData.password,
         },
       },
@@ -106,12 +86,12 @@ export const action: ActionFunction = async ({ request }) => {
 
     const customerId = customerCreateData.customer.id;
 
-    // 2. Agregar detalles adicionales con la Admin API
+    
     const consentDate = new Date();
     consentDate.setMinutes(consentDate.getMinutes() - 1); 
 
 
-    // 3. Actualizar los detalles adicionales (metafields y direcciones)
+    // 2. Actualizar los detalles adicionales (metafields y direcciones)
     const customerUpdateResponse  = await clientAdmin.mutate({
       mutation: REGISTER_USER_MUTATION,
       variables: {
