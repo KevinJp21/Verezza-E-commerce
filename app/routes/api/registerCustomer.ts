@@ -62,7 +62,7 @@ export const action: ActionFunction = async ({ request }) => {
           },
           addresses: [
             {
-              country: customerData.country,
+              countryCode: customerData.country,
               city: customerData.city,
               provinceCode: customerData.province,
               address1: customerData.address1,
