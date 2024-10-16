@@ -156,7 +156,7 @@ export default function NavBar() {
                         </ul>
                     </div>
                     <div className='NavBar1-3'>
-                        <a href="" className="accoutHeader" aria-label="Usuario">
+                        <a href="/account/auth/login" className="accoutHeader" aria-label="Usuario">
                             {userIcon()}
                         </a>
                         <button className="CartHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
@@ -223,7 +223,7 @@ export default function NavBar() {
                             <span>{t("sidebar.user")}</span>
                             <ul className='sidebarList sidebarListOthers'>
                                 <li>
-                                    <a href=""><strong>{t("sidebar.login")}</strong> / <strong>{t("sidebar.create_account")}</strong></a>
+                                    <a href="/account/auth/login"><strong>{t("sidebar.login")}</strong> / <strong>{t("sidebar.create_account")}</strong></a>
                                 </li>
                                 <li>
                                     <a href="">{t("sidebar.shopping_bag")}</a>
@@ -250,7 +250,7 @@ export default function NavBar() {
                         </button>
                     </li>
                     <li>
-                        <a href="/" aria-label="Usuario">{userIcon()}</a>
+                        <a href="/account/auth/login" aria-label="Usuario">{userIcon()}</a>
                     </li>
                     <li>
                         <button onClick={toggleSearch} aria-label="Buscar">{searchIcon()}</button>

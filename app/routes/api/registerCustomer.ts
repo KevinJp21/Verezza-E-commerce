@@ -48,7 +48,7 @@ const REGISTER_USER_MUTATION = gql`
 
 export const action: ActionFunction = async ({ request }) => {
   if (request.method !== "POST") {
-    return json({ message: "Método no permitido" }, { status: 405 });
+    return json({ message: "Method not allowed" }, { status: 405 });
   }
 
   const body = await request.text();
