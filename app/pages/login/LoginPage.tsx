@@ -78,6 +78,9 @@ export default function LoginPage() {
                         autoComplete="on"
                     />
                 </div>
+                <div className='RecoveryPassword'>
+                    <a href='/account/recover'>{t("login.recoveryPassword")}</a>
+                </div>
                 <button className='btn-secondary' type="submit"><span>{t("login.button")}</span></button>
             </fetcher.Form>
             {fetcher.state === "submitting" && <p>{t("login.submitting")}</p>}
@@ -87,9 +90,7 @@ export default function LoginPage() {
             {fetcher.data && 'customerAccessTokenCreate' in fetcher.data && fetcher.data.customerAccessTokenCreate.customerUserErrors.length > 0 && (
                 <p>Error: {fetcher.data.customerAccessTokenCreate.customerUserErrors[0].message}</p>
             )}
-
-            {/*Boton cerrar sesión */}
-            <button onClick={handleLogout} className='btn-secondary' type="submit"><span>{t("login.button")}</span></button>
+            {/*Boton cerrar sesión <button onClick={handleLogout} className='btn-secondary' type="submit"><span>Cerrar sesion</span></button> */}
         </section>
     );
 }

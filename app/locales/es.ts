@@ -7,7 +7,7 @@ export default {
         "complements": "COMPLEMENTOS",
         "atelier": "ATÉLIER",
         "our_brand": "NUESTRA MARCA",
-        "navbar_search":{
+        "navbar_search": {
             "placeholder": "Buscar en olgaluciacortes.com"
         }
     },
@@ -53,15 +53,22 @@ export default {
             }
         }
     },
-    "bag":{
+    "bag": {
         "title": "Bolsa de compras",
         "bag_empty": "La bolsa está vacía",
         "size_title": "Talla",
         "buy_now": "Comprar ahora",
         "subtotal": "Subtotal"
     },
-    "register":{
-        "seo":{
+    "login": {
+        "title": "Iniciar sesion",
+        "email": "Correo",
+        "password": "Contraseña",
+        "recoveryPassword": "¿Olvidaste tu contraseña?",
+        "button": "Iniciar sesion"
+    },
+    "register": {
+        "seo": {
             "title": "Olga Lucía Cortés | Crear cuenta",
             "description": "Crea tu cuenta en Olga Lucía Cortés para disfrutar de nuestros beneficios exclusivos."
         },
@@ -86,42 +93,42 @@ export default {
         "accepts_marketing": "¿Desea recibir promociones, cupones exclusivos y novedades?",
         "button": "Registrar"
     },
-    "home":{
-        "home_seo":{
+    "home": {
+        "home_seo": {
             "title": "Olga Lucía Cortes | Moda exclusiva para mujeres reales"
         },
-        "start_home":{
+        "start_home": {
             "title": "Descubre la moda que te hará sentir única",
             "subtitle": "¡Bienvenida a Olga Lucía Cortés!",
             "button": "Explora ahora"
         },
-        "section_wear":{
+        "section_wear": {
             "title": "Complementa tu look",
             "button": "Explora ahora",
-            "promo_1":{
+            "promo_1": {
                 "title": "Mehtap",
                 "description": "Blusa en olan de hilo blanco con escote en V y mangas de gran volumen que aportan un toque elegante y sofisticado."
             },
-            "promo_2":{
+            "promo_2": {
                 "title": "Esen",
                 "description": "Blusa en algodón tono baby blue con cuello camisero y mangas largas.\nDestaca por un detalle distintivo de una maxi flor."
             }
         },
-        "section_latest_products":{
+        "section_latest_products": {
             "title": "Productos recientes"
         }
     },
-    "carouselSection":{
+    "carouselSection": {
         "button": "Comprar ahora"
     },
-    "modalCart":{
-      "size_title": "Talla",
-      "size_warning": "Selecciona una talla",
-      "add_to_cart": "Agregar al carrito",
-      "buy_now": "Comprar ahora"
+    "modalCart": {
+        "size_title": "Talla",
+        "size_warning": "Selecciona una talla",
+        "add_to_cart": "Agregar al carrito",
+        "buy_now": "Comprar ahora"
     },
-    "products":{
-        "products_seo":{
+    "products": {
+        "products_seo": {
             "title": "Olga Lucía Cortes | Tienda"
         },
         "products_quantity": "PRODUCTOS",

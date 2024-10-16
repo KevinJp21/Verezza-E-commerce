@@ -60,6 +60,13 @@ export default {
     "buy_now": "Shop now",
     "subtotal": "Subtotal",
   },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "recoveryPassword": "Forgot your password?",
+    "button": "Login"
+  },
   "register":{
     "seo":{
       "title": "Olga Lucía Cortés | Create your account",
