@@ -69,6 +69,10 @@
     color: var(--olga-black-secondary);
 }
 
+.NavBar1-3 .accoutHeader{
+    position: relative;
+}
+
 .NavBar1-3 .CartHeader, .NavBarMobileContainer .CartHeader {
     position: relative;
 }

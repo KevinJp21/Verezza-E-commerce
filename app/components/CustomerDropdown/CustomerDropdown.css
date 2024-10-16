@@ -1,0 +1,58 @@
+.customerDropdownContainer{
+    position: absolute;
+    top:40px;
+    left: unset;
+    min-width: 200px;
+    background-color: var(--olga-white-primary);
+    z-index: 1000;
+    border-radius: 6px;
+    box-shadow: 0px 8px 24px #0006;
+}
+
+.customerDropdownContent{
+    padding: 2rem 1rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.customerDropdownContent .customerDropdownItem{
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.customerDropdownContent .customerDropdownItem a{
+    text-decoration: none;
+    color: var(--olga-black-primary);
+    width: 100%;
+    text-align: start;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.customerDropdownContent .customerDropdownItem a:hover{
+    text-decoration: underline;
+}
+
+.customerDropdownContent .customerDropdownItem button{
+    background-color: transparent;
+    color: var(--olga-black-primary);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: start;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: .875rem;
+    font-weight: 500;
+    text-underline-offset: 3px;
+}
+
+.customerDropdownContent .customerDropdownItem button:hover{
+    text-decoration: underline;
+}
+

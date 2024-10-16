@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import Bag from '~/components/Bag/Bag';
 import { useCart } from '~/hooks/Cart';
 import ModalCart from '~/components/modalCart/ModalCart';
+import CustomerDropdown from '~/components/CustomerDropdown/CustomerDropdown';
 
 export default function NavBar() {
 
@@ -156,9 +157,10 @@ export default function NavBar() {
                         </ul>
                     </div>
                     <div className='NavBar1-3'>
-                        <a href="/account/auth/login" className="accoutHeader" aria-label="Usuario">
+                        <button className="accoutHeader" aria-label="Usuario">
                             {userIcon()}
-                        </a>
+                            <CustomerDropdown />
+                        </button>
                         <button className="CartHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
                             {getTotalQuantity() > 0 && <span className="cart-count">{getTotalQuantity()}</span>}
