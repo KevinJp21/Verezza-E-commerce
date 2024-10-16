@@ -11,6 +11,7 @@ export default defineConfig({
           route("/api/registerCustomer", "routes/api/registerCustomer.ts");
           route("/api/loginCustomer", "routes/api/loginCustomer.ts");
           route("/api/logOutCustomer", "routes/api/logOutCustomer.ts");
+          route("/api/authStatus", "routes/api/authStatus.ts");
         });
       },
       future: {

@@ -15,7 +15,7 @@ import { ProductProvider } from './hooks/ProductContext';
 import i18nServer from "./modules/i18n.server";
 import { useChangeLanguage } from "remix-i18next/react";
 import NimbusSans from '~/assets/fonts/fonts.css?url';
-
+import { AuthProvider } from "./hooks/authStatus";
 export const handle = { i18n: ["translation"] }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -46,7 +46,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
