@@ -15,6 +15,8 @@ query getAllOrders($customerAccessToken: String!, $cursor: String) {
           id
           name
           processedAt
+          fulfillmentStatus
+          canceledAt
           totalPrice {
             amount
             currencyCode
@@ -31,6 +33,12 @@ query getAllOrders($customerAccessToken: String!, $cursor: String) {
                   }
                   product {
                     title
+                    images(first: 1) {
+                      nodes {
+                        id
+                        url
+                      }
+                    }
                   }
                 }
               }
