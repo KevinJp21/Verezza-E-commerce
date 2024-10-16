@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import Bag from '~/components/Bag/Bag';
 import { useCart } from '~/hooks/Cart';
 import ModalCart from '~/components/modalCart/ModalCart';
-import CustomerDropdown from '~/components/CustomerDropdown/CustomerDropdown';
+import { CustomerDropdown } from '~/components/CustomerDropdown/CustomerDropdown';
 
 export default function NavBar() {
 
@@ -33,6 +33,9 @@ export default function NavBar() {
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
     const [productHandle, setProductHandle] = useState<string>('');
+    //Dropdown
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     useEffect(() => {
         // Suscribirse al evento de actualización del carrito
         window.addEventListener('cartUpdated', updateCart);
@@ -122,6 +125,10 @@ export default function NavBar() {
         }
     }, [])
 
+    //Dropdown
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    }
 
 
     return (
@@ -157,10 +164,13 @@ export default function NavBar() {
                         </ul>
                     </div>
                     <div className='NavBar1-3'>
-                        <button className="accoutHeader" aria-label="Usuario">
-                            {userIcon()}
-                            <CustomerDropdown />
-                        </button>
+                        <div className="CustomerContainer">
+                            <button className="accoutHeader" aria-label="Usuario" onClick={toggleDropdown}>
+                                {userIcon()}
+                            </button>
+                            <CustomerDropdown isDropdownOpen={isDropdownOpen} />
+                        </div>
+
                         <button className="CartHeader" aria-label="Bolsa de compras" onClick={toggleBag}>
                             {cartIcon()}
                             {getTotalQuantity() > 0 && <span className="cart-count">{getTotalQuantity()}</span>}
