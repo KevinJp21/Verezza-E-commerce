@@ -13,15 +13,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 
     // Obtener la cookie de la solicitud
     const cookieHeader = request.headers.get("Cookie");
-    console.log("Cookie header recibido:", cookieHeader); // Log para depurar el encabezado de la cookie
 
     const session = cookieHeader ? await sessionCookie.parse(cookieHeader) : null;
-    console.log("Session parseada:", session); // Log para verificar la sesión parseada
+    //console.log("Session parseada:", session); // Log para verificar la sesión parseada
   
     // Verificar si existe una sesión activa
     const isLogged = !!(session && session.accessToken);
-
-    console.log("Estado de sesión:", isLogged); // Log para depuración del estado de sesión
 
     return json({ isLogged });
 };

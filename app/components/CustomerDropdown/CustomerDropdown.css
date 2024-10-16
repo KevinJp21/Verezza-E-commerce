@@ -57,6 +57,11 @@
     text-decoration: underline;
 }
 
+.customerDropdownContent .customerDropdownItem button:disabled{
+    opacity: .5;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
 
 }

@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useAuthStatus } from '~/hooks/authStatus';
+import { useFetcher } from '@remix-run/react';
 import './CustomerDropdown.css';
 
 interface CustomerDropdownProps {
@@ -7,6 +9,27 @@ interface CustomerDropdownProps {
 
 export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOpen }) => {
     const isLogged = useAuthStatus();
+    const fetcher = useFetcher();
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLogout = () => {
+        setIsLoading(true);
+        fetcher.submit(
+            null,
+            {
+                method: "post",
+                action: "/api/logOutCustomer",
+                encType: "application/json"
+            }
+        );
+    };
+
+    useEffect(() => {
+        if (fetcher.state === "idle" && fetcher.data) {
+            setIsLoading(false);
+            window.location.reload();
+        }
+    }, [fetcher.state, fetcher.data]);
 
     return (
         (isDropdownOpen) ? (
@@ -29,7 +52,7 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
                             </a>
                         </li>
                         <li className="customerDropdownItem">
-                            <button className="customerDropdownLogout">
+                            <button className="customerDropdownLogout" onClick={handleLogout} disabled={isLoading}>
                                 <span>CERRAR SESIÓN</span>
                             </button>
                         </li>

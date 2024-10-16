@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from 'react-i18next';
+import LoadingSpinner from '~/components/loadingSpinner/loadingSpinner';
 import './LoginPage.css';
 
 interface CustomerLoginResponse {
@@ -21,6 +22,9 @@ export default function LoginPage() {
         password: '',
     });
 
+    const [isLoading, setIsLoading] = useState(false);
+
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginData({
@@ -31,6 +35,7 @@ export default function LoginPage() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
         fetcher.submit(
             { json: JSON.stringify(loginData) },
             {
@@ -41,16 +46,16 @@ export default function LoginPage() {
         );
     };
 
-    const handleLogout = () => {
-        fetcher.submit(
-            null,
-            {
-                method: "post",
-                action: "/api/logOutCustomer",
-                encType: "application/json"
+    useEffect(() => {
+        if (fetcher.state === "idle" && fetcher.data) {
+            if (typeof window !== "undefined") {
+                setIsLoading(false);
+                window.location.href = '/';
             }
-        );
-    };
+        }
+    }, [fetcher.state, fetcher.data]);
+
+
     return (
         <section className='ContainerLogin'>
             <fetcher.Form onSubmit={handleSubmit} className='FormLogin'>
@@ -90,7 +95,7 @@ export default function LoginPage() {
             {fetcher.data && 'customerAccessTokenCreate' in fetcher.data && fetcher.data.customerAccessTokenCreate.customerUserErrors.length > 0 && (
                 <p>Error: {fetcher.data.customerAccessTokenCreate.customerUserErrors[0].message}</p>
             )}
-            {/*Boton cerrar sesión <button onClick={handleLogout} className='btn-secondary' type="submit"><span>Cerrar sesion</span></button> */}
+            {isLoading && <LoadingSpinner isLoading={isLoading}/>}
         </section>
     );
 }
