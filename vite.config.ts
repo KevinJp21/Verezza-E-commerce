@@ -10,6 +10,7 @@ export default defineConfig({
           route("/api/products/getInventoryById/:id", "routes/api/products/getInventoryById.ts");
           route("/api/registerCustomer", "routes/api/registerCustomer.ts");
           route("/api/loginCustomer", "routes/api/loginCustomer.ts");
+          route("/api/logOutCustomer", "routes/api/logOutCustomer.ts");
         });
       },
       future: {
