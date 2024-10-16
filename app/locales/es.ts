@@ -61,11 +61,11 @@ export default {
         "subtotal": "Subtotal"
     },
     "login": {
-        "title": "Iniciar sesion",
+        "title": "Iniciar sesión",
         "email": "Correo",
         "password": "Contraseña",
         "recoveryPassword": "¿Olvidaste tu contraseña?",
-        "button": "Iniciar sesion"
+        "button": "Iniciar sesión"
     },
     "register": {
         "seo": {
