@@ -64,8 +64,8 @@ export default function CustomerOrders({ data }: { data: CustomerData }) {
                     <li className="orderItem" key={order.id}>
                         <div className="orderItemContent">
                             <div className="orderStatus">
-                                {order.fulfillmentStatus === 'FULFILLED' ? truckIcon() : order.canceledAt ? cancelIcon() : pendingIcon()}
-                                <span>{order.fulfillmentStatus === 'FULFILLED' ? 'En camino' : order.canceledAt ? 'Cancelado' : 'Pendiente'} - {new Date(order.processedAt).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}</span>
+                                {order.canceledAt !== null ? cancelIcon() : order.fulfillmentStatus === 'FULFILLED' ? truckIcon() : pendingIcon()}
+                                <span>{order.canceledAt !== null ? 'Cancelado' : order.fulfillmentStatus === 'FULFILLED' ? 'En camino' : 'Pendiente'} - {new Date(order.processedAt).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}</span>
                             </div>
                             <picture className='orderItemImage'>
                                 <img src={order.lineItems.edges[0].node.variant.product.images.nodes[0].url} alt={order.fulfillmentStatus} height={300} />

@@ -76,7 +76,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   try {
     const { data } = await client.query({
       query: GET_CUSTOMER_ORDERS,
-      variables: { customerAccessToken: session.accessToken },
+      variables: { customerAccessToken: session.accessToken, cursor: null },
+      fetchPolicy: 'network-only'
     });
 
     return json(data);

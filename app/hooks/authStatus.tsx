@@ -12,7 +12,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const data = await response.json();
             setIsLogged(data.isLogged);
         } catch (error) {
-            console.error('Error al obtener el estado de autenticación:', error);
+            //console.error('Error al obtener el estado de autenticación:', error);
             setIsLogged(false);
         }
     };
