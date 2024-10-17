@@ -24,10 +24,17 @@
 
 .orderList .orderItem{
     flex: 1 1 100%;
-  
+    min-height: 600px;
     background-color: var(--olga-white-primary);
     padding: 16px;
     border-radius: 6px;
+}
+
+.orderItem .orderItemContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .orderItem .orderItemContent .orderStatus{
@@ -44,14 +51,39 @@
     font-size: 1rem;
     font-weight: 600;
 }
+.orderItem .orderItemContent .orderImages {
+    display: flex;
+    gap: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+}
 
-.orderItem .orderItemContent .orderItemImage img{
+.orderItem .orderItemContent .orderImages .orderItemImage {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.orderItem .orderItemContent .orderImages .orderItemImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 6px;
 }
 
+/* Estilos para cuando hay más de una imagen */
+.orderItem .orderItemContent .orderImages:has(.orderItemImage:nth-child(2)) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    aspect-ratio: 16 / 9;
+    height: 100%;
+}
+
+.orderItem .orderItemContent .orderImages:has(.orderItemImage:nth-child(2)) .orderItemImage:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+}
 .orderItem .orderItemContent .orderDetails{
     display: flex;
     flex-direction: column;
