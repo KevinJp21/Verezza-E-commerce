@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client/core";
 import client from "~/lib/apolloClient";
-import { json, type ActionFunction } from "@remix-run/node";
+import { json, redirect, type ActionFunction } from "@remix-run/node";
 import { createCookie } from "@remix-run/node";
 
 // Mutación para eliminar el token de acceso del cliente en Shopify
@@ -63,7 +63,7 @@ export const action: ActionFunction = async ({ request }) => {
       })
     );
 
-    return json({ message: "Cierre de sesión exitoso" }, { status: 200, headers });
+    return redirect("/", { headers });
   } catch (error) {
     console.error("Error en el cierre de sesión:", error);
     return json({ message: "Error al cerrar sesión" }, { status: 500 });
