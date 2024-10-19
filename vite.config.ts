@@ -13,6 +13,7 @@ export default defineConfig({
           route("/api/logOutCustomer", "routes/api/logOutCustomer.ts");
           route("/api/authStatus", "routes/api/authStatus.ts");
           route("/api/getCustomerOrders", "routes/api/getCustomerOrders.ts");
+          route("/api/cart/addToCart", "routes/api/cart/addToCart.ts");
         });
       },
       future: {

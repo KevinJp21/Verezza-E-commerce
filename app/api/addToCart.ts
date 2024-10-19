@@ -2,12 +2,33 @@ import { gql } from '@apollo/client/core';
 import client from '~/lib/apolloClient';
 
 
-const CREATE_CHECKOUT_MUTATION = gql`
-  mutation checkoutCreate($input: CheckoutCreateInput!) {
-    checkoutCreate(input: $input) {
-      checkout {
+const CART_CREATE_MUTATION = gql`
+  mutation cartCreate($input: CartInput!) {
+    cartCreate(input: $input) {
+      cart {
         id
-        webUrl
+        checkoutUrl
+        lines(first: 10) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  image {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       userErrors {
         field
@@ -52,11 +73,13 @@ const ADD_TO_CART_MUTATION = gql`
   }
 `;
 
-async function createCheckout() {
+async function createCart() {
   const response = await client.mutate({
-    mutation: CREATE_CHECKOUT_MUTATION,
+    mutation: CART_CREATE_MUTATION,
     variables: {
-      input: {},
+      input: {
+        
+      },
     },
     fetchPolicy: "network-only",
   });
@@ -71,7 +94,7 @@ async function createCheckout() {
     throw new Error(`Error en la respuesta de GraphQL: ${errorMessages}`);
   }
 
-  return response.data.checkoutCreate.checkout.id;
+  return response.data.cartCreate.cart.id;
 }
 
 export async function addToCart(variantId: string, quantity: number) {
@@ -79,7 +102,7 @@ export async function addToCart(variantId: string, quantity: number) {
     let checkoutId = localStorage.getItem('checkoutId');
 
     if (!checkoutId) {
-      checkoutId = await createCheckout();
+      checkoutId = await createCart();
       localStorage.setItem('checkoutId', checkoutId || '');
     }
 
