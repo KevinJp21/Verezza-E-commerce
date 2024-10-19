@@ -12,11 +12,13 @@ interface BagProps {
     onClose: () => void;
 }
 
+
+
 export default function Bag({ isOpen, onClose }: BagProps) {
     const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const [isLoading, setIsLoading] = useState(false);
-    const { cartItems, setCartItems, webUrl, productDetails, updateCart } = useCart();
+    const { cartItems, setCartItems, webUrl, updateCart, getTotalQuantity } = useCart();
 
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
@@ -108,7 +110,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                             cartItems.map((item) => (
                                 <div key={item.id} className="bagItem">
                                     <picture className="bagItemImage">
-                                        <img src={item.variant.image.src} alt={item.title} />
+                                        <img src={item.imageUrl} alt={item.title} />
                                     </picture>
                                     <div className="itemDetails">
                                         <a href={`/product/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>{item.title}</a>
@@ -119,17 +121,17 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                                         ? <span>0</span>
                                                         :
                                                         <>
-                                                            {productDetails[item.productId]?.variants.edges[0].node.compareAtPrice && (
+                                                            {item.compareAtPrice && (
 
                                                                 <span className='ProductPriceDiscount'>
-                                                                    {parseFloat(productDetails[item.productId].variants.edges[0].node.compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                                    {parseFloat(item.compareAtPrice).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                                                                 </span>
 
 
                                                             )}
 
                                                             <span>
-                                                                {parseFloat(productDetails[item.productId]?.variants.edges[0].node.price.amount || '0').toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                                                {parseFloat(item.price).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                                                             </span>
                                                         </>
                                                     }
@@ -138,7 +140,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                             </div>
                                         </section>
                                         <div className="itemVariants">
-                                            <p>{t('bag.size_title')}: {item.variant.title}</p>
+                                            <p>{t('bag.size_title')}: {item.title}</p>
                                         </div>
                                         <div className="itemQuantity">
                                             <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)}>
@@ -170,7 +172,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                         ? <span>0</span>
                                         : <span>
                                             {cartItems.reduce((total, item: any) => {
-                                                const itemPrice = productDetails[item.productId]?.variants.edges[0].node.price.amount || item.variant.price.amount;
+                                                const itemPrice = item.price;
                                                 return total + item.quantity * parseFloat(itemPrice);
                                             }, 0).toLocaleString(
                                                 selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES',

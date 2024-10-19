@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client/core";
 import client from "~/lib/apolloClient";
 
-import { SHOPIFY_STOREFRONT_API_URL, SHOPIFY_STOREFRONT_API_TOKEN } from './tokenShopify';
 const GET_CART_ITEMS_QUERY = gql`
 query ($checkoutId: ID!) {
   node(id: $checkoutId) {

@@ -296,6 +296,7 @@
 }
 #ScrollElement{
     bottom: 180px;
+    display: flex;
 }
 @media screen and (min-width: 768px) {
     .ModalCartContent{
@@ -304,7 +305,7 @@
     }
 
     #ScrollElement{
-        display: flex;
+        display: none;
     }
 
     .ModalCartContent .ProductCarousel button{

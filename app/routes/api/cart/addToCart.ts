@@ -9,7 +9,6 @@ mutation createCart($lines: [CartLineInput!]) {
     cartCreate(input: { lines: $lines }) {
       cart {
         id
-        checkoutUrl
       }
     }
   }
@@ -21,7 +20,6 @@ mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart {
         id
-        checkoutUrl
       }
     }
   }
@@ -69,10 +67,10 @@ export const action: ActionFunction = async ({ request }) => {
       cart = data.cartCreate.cart;
     }
 
-    const { id: cartId, checkoutUrl } = cart;
-    const newCartCookie = await cartCookie.serialize({ cartId, checkoutUrl });
+    const { id: cartId } = cart;
+    const newCartCookie = await cartCookie.serialize({ cartId });
 
-    return json({ cartId, checkoutUrl }, {
+    return json({ cartId }, {
       headers: {
         "Set-Cookie": newCartCookie,
       },

@@ -1,87 +1,60 @@
 import { useState, useCallback, useEffect } from 'react';
-import { fetchCartItems, fetchWebUrl } from '~/api/getCartItems';
-import { getProductsByIds } from '~/api/getCartItemsByIds';
-import { getCheckoutStatus } from '~/api/getCartItems';
+import { useFetcher } from '@remix-run/react';
+
+interface CartItem {
+    id: string;
+    quantity: number;
+    title: string;
+    productTitle: string;
+    price: string;
+    currency: string;
+    compareAtPrice?: string;
+    imageUrl?: string;
+    productHandle: string;
+}
+
+interface CartData {
+    cartItems: CartItem[];
+    totalQuantity: number;
+    checkoutUrl: string;
+    error?: string;
+}
+
 export function useCart() {
-    const [cartItems, setCartItems] = useState<any[]>([]);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [webUrl, setWebUrl] = useState<string | null>(null);
-    const [productDetails, setProductDetails] = useState<{[key: string]: any}>({});
+    const [totalQuantity, setTotalQuantity] = useState(0);
     const [selectedCurrency, setSelectedCurrency] = useState('');
+    const fetcher = useFetcher<CartData>();
 
-    const getTotalQuantity = useCallback(() => {
-        return cartItems.reduce((total, item) => total + item.quantity, 0);
-    }, [cartItems]);
-
-    const updateCart = useCallback(async () => {
-        const checkoutId = localStorage.getItem('checkoutId');
+    const updateCart = useCallback(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol') || 'COP';
-        const language = localStorage.getItem('selectedLanguage') || 'Español';
+        setSelectedCurrency(currency);
 
-        let country = '';
-        let languageCode = '';
-
-        if (currency) {
-            setSelectedCurrency(currency);
-            if (currency === 'COP') {
-                country = 'CO';
-            } else if (currency === 'USD') {
-                country = 'US';
-            } else {
-                country = 'ES';
-            }
-        } 
-
-        if (language) {
-            if (language === 'Español') {
-                languageCode = 'ES';
-            } else {
-                languageCode = 'EN';
-            }
+        if (fetcher.state === 'idle' && !fetcher.data) {
+            fetcher.load('/api/cart/getCartItems');
         }
-
-        if (checkoutId) {
-            try {
-                const checkoutStatus = await getCheckoutStatus(checkoutId);
-                if (checkoutStatus === 'COMPLETED') {
-                    // El checkout se completó, limpiamos el carrito
-                    localStorage.removeItem('checkoutId');
-                    setCartItems([]);
-                    setWebUrl(null);
-                    setProductDetails({});
-                    window.dispatchEvent(new Event('cartUpdated'));
-                    return;
-                }
-
-                const items = await fetchCartItems(checkoutId);
-                setCartItems(items);
-                const url = await fetchWebUrl(checkoutId);
-                setWebUrl(url);
-
-                if (items.length > 0) {
-                    const productIds = items.map((item: any) => item.productId);
-                    const details = await getProductsByIds(productIds, country, languageCode);
-                    const detailsMap: {[key: string]: any} = {};
-                    details.forEach((product: any) => {
-                        detailsMap[product.id] = product;
-                    });
-                    setProductDetails(detailsMap);
-                } else {
-                    setProductDetails({});
-                }
-            } catch (error) {
-                console.error('Error al actualizar el carrito:', error);
-                // Si hay un error, asumimos que el checkout ya no es válido
-                localStorage.removeItem('checkoutId');
-                setCartItems([]);
-                setWebUrl(null);
-                setProductDetails({});
-            }
-        }
-    }, []);
+    }, [fetcher]);
 
     useEffect(() => {
         updateCart();
     }, [updateCart]);
 
-    return { cartItems, setCartItems, webUrl, productDetails, updateCart, getTotalQuantity };
+    useEffect(() => {
+        if (fetcher.data) {
+            if (fetcher.data.error) {
+                console.error('Error al obtener los productos del carrito:', fetcher.data.error);
+            } else {
+                setCartItems(fetcher.data.cartItems);
+                setTotalQuantity(fetcher.data.totalQuantity);
+                setWebUrl(fetcher.data.checkoutUrl);
+            }
+        }
+    }, [fetcher.data]);
+
+    const getTotalQuantity = useCallback(() => {
+        return totalQuantity;
+    }, [totalQuantity]);
+
+    return { cartItems, setCartItems, webUrl, updateCart, getTotalQuantity };
 }
