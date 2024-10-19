@@ -41,18 +41,19 @@ export default function Bag({ isOpen, onClose }: BagProps) {
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
         setIsLoading(true);
-        const checkoutId = localStorage.getItem('checkoutId');
-        if (checkoutId) {
-            try {
-                const updatedCheckout = await updateCartItemQuantity(checkoutId, itemId, quantity);
-                setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
-                await updateCart();
-                window.dispatchEvent(new Event('cartUpdated'));
-            } catch (error) {
-                console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
-            } finally {
-                setIsLoading(false);
-            }
+        try {
+            const formData = new FormData();
+            formData.append('lineItemId', itemId);
+            formData.append('quantity', quantity.toString());
+
+            fetcher.submit(formData, {
+                method: 'POST',
+                action: '/api/cart/updateCartItem',
+            });
+        } catch (error) {
+            console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
