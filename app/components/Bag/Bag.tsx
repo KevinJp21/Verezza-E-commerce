@@ -110,10 +110,10 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                             cartItems.map((item) => (
                                 <div key={item.id} className="bagItem">
                                     <picture className="bagItemImage">
-                                        <img src={item.imageUrl} alt={item.title} />
+                                        <img src={item.imageUrl} alt={item.productTitle} />
                                     </picture>
                                     <div className="itemDetails">
-                                        <a href={`/product/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>{item.title}</a>
+                                        <a href={`/products/${item.productHandle.toLowerCase().replace(/\s+/g, '-')}`}>{item.productTitle}</a>
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
                                                 <p className='productPrice'>
