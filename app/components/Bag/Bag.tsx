@@ -5,6 +5,18 @@ import { useCart } from '~/hooks/Cart';
 import { useTranslation } from 'react-i18next';
 import { getCheckoutStatus } from '~/api/getCartItems';
 import { useFetcher } from '@remix-run/react';
+import { Cookie, createCookie } from '@remix-run/node';
+
+// Definimos una interfaz para el tipo de respuesta
+interface CheckoutResponse {
+    status: 'COMPLETED' | 'PENDING' | 'ERROR';
+    message?: string;
+}
+
+// Función para verificar si la respuesta es del tipo CheckoutResponse
+function isCheckoutResponse(data: any): data is CheckoutResponse {
+    return data && typeof data.status === 'string';
+}
 
 interface BagProps {
     isOpen: boolean;
@@ -17,7 +29,8 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const { cartItems, setCartItems, webUrl, updateCart } = useCart();
-    const fetcher = useFetcher();
+    const fetcher = useFetcher<CheckoutResponse>();
+
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
         if (currency) {
@@ -29,7 +42,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
 
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
-     
+
         try {
             const formData = new FormData();
             formData.append('lineItemId', itemId);
@@ -41,7 +54,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             });
         } catch (error) {
             console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
-        } 
+        }
     };
 
     const removeFromCart = (itemId: string) => {
@@ -66,24 +79,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     const handleCheckout = () => {
         if (webUrl) {
             // Abre la URL de pago en una nueva ventana
-            const checkoutWindow = window.open(webUrl, '_blank');
-            const checkoutId = localStorage.getItem('checkoutId');
-            // Verifica periódicamente si la ventana de pago se ha cerrado
-            const checkWindowClosed = setInterval(async () => {
-                if (checkoutWindow?.closed) {
-                    clearInterval(checkWindowClosed);
-                    // La ventana se cerró, verificamos el estado del checkout
-                    const checkoutStatus = await getCheckoutStatus(checkoutId || '');
-                    if (checkoutStatus === 'COMPLETED') {
-                        // El pago se completó, limpiamos el carrito
-                        localStorage.removeItem('checkoutId');
-                        setCartItems([]);
-                        updateCart();
-
-                    }
-                }
-            }, 1000);
-            window.dispatchEvent(new Event('cartUpdated'));
+            window.open(webUrl, '_blank');
         }
     };
 

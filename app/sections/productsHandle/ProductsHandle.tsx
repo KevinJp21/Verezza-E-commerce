@@ -11,7 +11,7 @@ export default function ProductsHandle({ products }: any) {
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const fetcher = useFetcher();
-    const { loading } = useCart();
+    const { loading, webUrl, cartItems, setCartItems, updateCart } = useCart();
 
     const isLoading = fetcher.state === 'submitting';
     //Selected currency
@@ -60,64 +60,68 @@ export default function ProductsHandle({ products }: any) {
     }
 
     // Función para comprar ahora
-    /*
+
     const handleBuyNow = async () => {
         if (!selectedSize) {
             setIsSizeSelected(true);
             return;
         }
-
+    
         try {
             const selectedVariant = products.variants.nodes.find((size: any) => size.id === selectedSize);
             if (!selectedVariant) {
                 throw new Error('Variante no encontrada para el tamaño seleccionado');
             }
-
-            const variantId = selectedVariant.id;
-
-            if (fetcher.data?.checkoutUrl) {
-                // Redirigir a la página de pago
-                const checkoutWindow = window.open(fetcher.data.checkoutUrl, '_blank');
-                const checkWindowClosed = setInterval(async () => {
-                    if (checkoutWindow?.closed) {
-                        clearInterval(checkWindowClosed);
-                        // La ventana se cerró, verificamos el estado del checkout
-                        const checkoutStatus = await getCheckoutStatus(fetcher.data.checkoutId);
-                        if (checkoutStatus === 'COMPLETED') {
-                            // El pago se completó, limpiamos el carrito
-                            localStorage.removeItem('checkoutId');
-                            setCartItems([]);
-                            updateCart();
-
-                        }
+    
+            // Crear formData para agregar el producto al carrito
+            const formData = new FormData();
+            formData.append('merchandiseId', selectedVariant.id);
+            formData.append('quantity', selectedQuantity.toString());
+    
+            // Usar fetcher.submit para agregar el producto al carrito
+            fetcher.submit(formData, {
+                method: 'POST',
+                action: '/api/cart/addToCart',
+            });
+    
+            // Aquí esperas hasta que el carrito esté actualizado, verificando si el producto se agregó
+            setTimeout(async () => {
+                // Verificar si el carrito tiene productos
+                if (cartItems.length > 0) {
+                    // Si `webUrl` tiene el link de checkout, redirigir al usuario a la página de checkout
+                    if (webUrl) {
+                        window.location.href = webUrl;
+                    } else {
+                        console.error('No se encontró la URL del checkout');
                     }
-                }, 1000);
-                window.dispatchEvent(new Event('cartUpdated'));
-            }
-
+                } else {
+                    console.error('El producto no se agregó al carrito.');
+                }
+            }, 1000); // Esperar un segundo para asegurar que el producto fue agregado
+    
         } catch (error) {
             console.error('Error al procesar la compra:', error);
         }
-    }
-*/
+    };
+
     const handleScroll = () => {
         const element = document.getElementById('ModalCartProductInfo');
         element?.scrollIntoView({ behavior: 'smooth' });
     }
 
-      //Ocultar ScrollElement al scrollear hacia abajo
-      useEffect(() => {
+    //Ocultar ScrollElement al scrollear hacia abajo
+    useEffect(() => {
         const scrollElement = document.getElementById('ScrollElement');
-    
+
         if (scrollElement) {
             const handleScroll = () => {
                 const scrollPosition = window.scrollY;
                 const opacity = 1 - Math.min(scrollPosition / 100, 1);
                 scrollElement.style.opacity = opacity.toString();
             };
-    
+
             window.addEventListener('scroll', handleScroll);
-    
+
             // Limpieza del event listener
             return () => {
                 window.removeEventListener('scroll', handleScroll);
@@ -182,7 +186,7 @@ export default function ProductsHandle({ products }: any) {
                         </div>
                         <footer className='ProductsHandleFooter'>
                             <button className='btn-secondary' onClick={handleAddToBag} disabled={loading || isLoading}><span>{t('modalCart.add_to_cart')}</span></button>
-                            {/*<button className='btn-secondary' onClick={handleBuyNow}><span>{t('modalCart.buy_now')}</span></button>*/}
+                            {<button className='btn-secondary' onClick={handleBuyNow}><span>{t('modalCart.buy_now')}</span></button>}
                         </footer>
                     </div>
                 </div>
