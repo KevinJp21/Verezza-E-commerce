@@ -1,4 +1,4 @@
-import apolloClient from '~/lib/apolloClient';
+import client from '~/lib/apolloClient';
 import { gql } from '@apollo/client/core';
 import { json, type ActionFunction } from "@remix-run/node";
 import { createCookie } from "@remix-run/node";
@@ -47,7 +47,7 @@ export const action: ActionFunction = async ({ request }) => {
     let cart;
     if (existingCartData && existingCartData.cartId) {
       // Usar el carrito existente
-      const { data } = await apolloClient.mutate({
+      const { data } = await client.mutate({
         mutation: ADD_TO_CART_MUTATION,
         variables: {
           cartId: existingCartData.cartId,
@@ -58,7 +58,7 @@ export const action: ActionFunction = async ({ request }) => {
       cart = data.cartLinesAdd.cart;
     } else {
       // Crear un nuevo carrito solo si no existe
-      const { data } = await apolloClient.mutate({
+      const { data } = await client.mutate({
         mutation: CREATE_CART_MUTATION,
         variables: {
           lines: [{ quantity, merchandiseId }]

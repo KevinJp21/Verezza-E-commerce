@@ -6,6 +6,7 @@ import { removeCartItem } from '~/api/removeCartItem';
 import { useCart } from '~/hooks/Cart';
 import { useTranslation } from 'react-i18next';
 import { getCheckoutStatus } from '~/api/getCartItems';
+import { useFetcher } from '@remix-run/react';
 
 interface BagProps {
     isOpen: boolean;
@@ -19,7 +20,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const [isLoading, setIsLoading] = useState(false);
     const { cartItems, setCartItems, webUrl, updateCart, getTotalQuantity } = useCart();
-
+    const fetcher = useFetcher();
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
         if (currency) {
@@ -55,23 +56,28 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         }
     };
 
-    const removeFromCart = async (itemId: string) => {
+    const removeFromCart = (itemId: string) => {
         setIsLoading(true);
-        const checkoutId = localStorage.getItem('checkoutId');
-        if (checkoutId) {
-            try {
-                const updatedCheckout = await removeCartItem(checkoutId, itemId);
-                setCartItems(updatedCheckout.lineItems.edges.map((edge: any) => edge.node));
-                await updateCart();
-                window.dispatchEvent(new Event('cartUpdated'));
-            } catch (error) {
-                console.error('Error al eliminar el artículo del carrito:', error);
-            } finally {
-                setIsLoading(false);
-            }
+        try {
+            const formData = new FormData();
+            formData.append('lineItemId', itemId);
+
+            fetcher.submit(formData, {
+                method: 'POST',
+                action: '/api/cart/removeCartItem',
+            });
+
+            // Actualizar el estado local del carrito
+            const updatedCartItems = cartItems.filter(item => item.id !== itemId);
+            setCartItems(updatedCartItems);
+            updateCart();
+            window.dispatchEvent(new Event('cartUpdated'));
+        } catch (error) {
+            console.error('Error al eliminar el artículo del carrito:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
-
     const handleCheckout = () => {
         if (webUrl) {
             // Abre la URL de pago en una nueva ventana
