@@ -4,6 +4,7 @@ import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
 import { useTranslation } from 'react-i18next';
 import { useFetcher } from '@remix-run/react';
+import { useCart } from '~/hooks/Cart';
 
 interface ModalCartProps {
     isOpen: boolean;
@@ -21,12 +22,16 @@ interface ModalCartProps {
 }
 
 const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, productId, productName, productCategory, productPrice, productDiscountPrice, productSizes, productDescription, productImages, productHandle }) => {
-    const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const [selectedSize, setSelectedSize] = useState<string>('');
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const { t } = useTranslation();
     const fetcher = useFetcher();
+    const { cartItems, webUrl } = useCart();
+    
+    const loading = fetcher.state === 'submitting';
+
     const handleClose = () => {
         onClose();
     }
@@ -77,6 +82,51 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
             onClose();
         }
     }
+
+    // Función para comprar ahora
+
+    const handleBuyNow = async () => {
+        if (!selectedSize) {
+            setIsSizeSelected(true);
+                return;
+            }
+        
+            try {
+                const selectedVariant = productSizes.find((size: any) => size.id === selectedSize);
+                if (!selectedVariant) {
+                    throw new Error('Variante no encontrada para el tamaño seleccionado');
+                }
+        
+                // Crear formData para agregar el producto al carrito
+                const formData = new FormData();
+                formData.append('merchandiseId', selectedVariant.id);
+                formData.append('quantity', selectedQuantity.toString());
+        
+                // Usar fetcher.submit para agregar el producto al carrito
+                fetcher.submit(formData, {
+                    method: 'POST',
+                    action: '/api/cart/addToCart',
+                });
+        
+                // Aquí esperas hasta que el carrito esté actualizado, verificando si el producto se agregó
+                setTimeout(async () => {
+                    // Verificar si el carrito tiene productos
+                    if (!loading) {
+                        // Si `webUrl` tiene el link de checkout, redirigir al usuario a la página de checkout
+                        if (webUrl) {
+                            window.location.href = webUrl;
+                        } else {
+                            console.error('No se encontró la URL del checkout');
+                        }
+                    } else {
+                        console.error('El producto no se agregó al carrito.');
+                    }
+                }, 1000); // Esperar un segundo para asegurar que el producto fue agregado
+        
+            } catch (error) {
+                console.error('Error al procesar la compra:', error);
+            }
+        };
 
     const handleScroll = () => {
         const element = document.getElementById('ModalCartProductInfo');
@@ -155,8 +205,8 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                     </div>
                 </div>
                 <footer className='ModalCartFooter'>
-                    <button className='btn-secondary' onClick={handleAddToBag} disabled={isLoading}><span>{t('modalCart.add_to_cart')}</span></button>
-                    <button className='btn-secondary' disabled={isLoading}><span>{t('modalCart.buy_now')}</span></button>
+                    <button className='btn-secondary' onClick={handleAddToBag} disabled={loading}><span>{t('modalCart.add_to_cart')}</span></button>
+                    <button className='btn-secondary' onClick={handleBuyNow} disabled={loading}><span>{t('modalCart.buy_now')}</span></button>
                 </footer>
 
                 <div id="ScrollElement" className="ScrollElement">

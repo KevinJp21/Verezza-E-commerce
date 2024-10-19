@@ -79,7 +79,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     const handleCheckout = () => {
         if (webUrl) {
             // Abre la URL de pago en una nueva ventana
-            window.open(webUrl, '_blank');
+            window.location.href = webUrl;
         }
     };
 

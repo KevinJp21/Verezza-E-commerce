@@ -11,7 +11,7 @@ export default function ProductsHandle({ products }: any) {
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
     const fetcher = useFetcher();
-    const { loading, webUrl, cartItems, setCartItems, updateCart } = useCart();
+    const { loading, webUrl, cartItems } = useCart();
 
     const isLoading = fetcher.state === 'submitting';
     //Selected currency
