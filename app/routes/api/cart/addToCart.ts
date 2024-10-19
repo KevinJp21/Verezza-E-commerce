@@ -41,7 +41,9 @@ export const action: ActionFunction = async ({ request }) => {
   const cookieHeader = request.headers.get("Cookie");
   const existingCartData = cookieHeader ? await cartCookie.parse(cookieHeader) : null;
 
-  const { merchandiseId, quantity } = await request.json();
+  const formData = await request.formData();
+  const merchandiseId = formData.get('merchandiseId');
+  const quantity = parseInt(formData.get('quantity') as string);
 
   try {
     let cart;

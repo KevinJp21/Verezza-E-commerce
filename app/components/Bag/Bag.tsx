@@ -28,16 +28,6 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         }
     }, []);
 
-    useEffect(() => {
-        const handleCartUpdated = () => {
-            updateCart();
-        };
-
-        window.addEventListener('cartUpdated', handleCartUpdated);
-        return () => {
-            window.removeEventListener('cartUpdated', handleCartUpdated);
-        };
-    }, [updateCart]);
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
         setIsLoading(true);

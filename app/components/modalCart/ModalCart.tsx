@@ -3,9 +3,9 @@ import './ModalCart.css';
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
 import { useTranslation } from 'react-i18next';
-import { addToCart } from '~/api/addToCart';
 import { useCart } from '~/hooks/Cart';
 import { useNavigate } from '@remix-run/react';
+import { useFetcher } from '@remix-run/react';
 
 interface ModalCartProps {
     isOpen: boolean;
@@ -30,7 +30,7 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const { t } = useTranslation();
     const { updateCart } = useCart();
     const navigate = useNavigate();
-
+    const fetcher = useFetcher();
     const handleClose = () => {
         onClose();
     }
@@ -64,31 +64,16 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 throw new Error('Variante no encontrada para el tamaño seleccionado');
             }
 
-            const response = await fetch('/api/cart/addToCart', {
+            const formData = new FormData();
+            formData.append('merchandiseId', selectedVariant.id);
+            formData.append('quantity', selectedQuantity.toString());
+
+            fetcher.submit(formData, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    merchandiseId: selectedVariant.id,
-                    quantity: selectedQuantity,
-                }),
+                action: '/api/cart/addToCart',
             });
-
-            if (!response.ok) {
-                throw new Error('Error al crear o actualizar el carrito');
-            }
-
-            const data = await response.json();
-            console.log('Carrito creado/actualizado:', data);
-
-            await updateCart();
             onClose();
             setIsSizeSelected(false);
-            window.dispatchEvent(new Event('cartUpdated'));
-            
-            // Opcional: redirigir al checkout
-            // navigate(data.checkoutUrl);
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);
         }
