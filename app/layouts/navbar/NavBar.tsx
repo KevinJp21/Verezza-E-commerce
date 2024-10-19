@@ -12,7 +12,7 @@ import { CustomerDropdown } from '~/components/CustomerDropdown/CustomerDropdown
 
 export default function NavBar() {
 
-    const { cartItems, updateCart, getTotalQuantity } = useCart();
+    const { updateCart, getTotalQuantity } = useCart();
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');

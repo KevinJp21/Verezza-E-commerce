@@ -19,7 +19,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const [isLoading, setIsLoading] = useState(false);
-    const { cartItems, setCartItems, webUrl, updateCart, getTotalQuantity } = useCart();
+    const { cartItems, setCartItems, webUrl, updateCart } = useCart();
     const fetcher = useFetcher();
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');

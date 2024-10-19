@@ -3,8 +3,6 @@ import './ModalCart.css';
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import { closeIcon } from '~/assets/icons/icons';
 import { useTranslation } from 'react-i18next';
-import { useCart } from '~/hooks/Cart';
-import { useNavigate } from '@remix-run/react';
 import { useFetcher } from '@remix-run/react';
 
 interface ModalCartProps {
@@ -28,8 +26,6 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const { t } = useTranslation();
-    const { updateCart } = useCart();
-    const navigate = useNavigate();
     const fetcher = useFetcher();
     const handleClose = () => {
         onClose();

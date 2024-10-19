@@ -11,7 +11,7 @@ export default function ProductsHandle({ products }: any) {
     const [selectedSize, setSelectedSize] = useState<string>('');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
-    const { updateCart, webUrl, setCartItems } = useCart();
+    const { updateCart, setCartItems } = useCart();
     //Selected currency
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
