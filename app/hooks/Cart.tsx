@@ -17,6 +17,7 @@ interface CartData {
     cartItems: CartItem[];
     totalQuantity: number;
     checkoutUrl: string;
+    subtotal: string;
     error?: string;
 }
 
@@ -24,6 +25,7 @@ interface CartContextType {
     cartItems: CartItem[];
     webUrl: string | null;
     totalQuantity: number;
+    subtotal: string;
     loading: boolean;
     error: string | null;
     updateCart: () => void;
@@ -37,7 +39,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [webUrl, setWebUrl] = useState<string | null>(null);
     const [totalQuantity, setTotalQuantity] = useState(0);
- 
+    const [subtotal, setSubtotal] = useState<string>('0');
     const [error, setError] = useState<string | null>(null);
     const fetcher = useFetcher<CartData>();
 
@@ -61,6 +63,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 setCartItems(fetcher.data.cartItems);
                 setTotalQuantity(fetcher.data.totalQuantity);
                 setWebUrl(fetcher.data.checkoutUrl);
+                setSubtotal(fetcher.data.subtotal);
                 setError(null);
             }
     
@@ -76,6 +79,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setCartItems,
         webUrl,
         totalQuantity,
+        subtotal,
         loading,
         error,
         updateCart,

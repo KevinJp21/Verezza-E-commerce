@@ -8,6 +8,12 @@ query cart($id: ID!) {
   cart(id: $id) {
     totalQuantity
     checkoutUrl
+    cost {
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
     lines(first: 10) {
       edges {
         node {
@@ -79,10 +85,11 @@ export const loader: LoaderFunction = async ({ request }) => {
             productHandle: node.merchandise.product.handle,
         }));
 
-        return json({ 
+        return json({
             cartItems,
             totalQuantity: data.cart.totalQuantity,
-            checkoutUrl: data.cart.checkoutUrl
+            checkoutUrl: data.cart.checkoutUrl,
+            subtotal: data.cart.cost.subtotalAmount.amount
         });
     } catch (error) {
         console.error("Error al obtener los productos del carrito:", error);

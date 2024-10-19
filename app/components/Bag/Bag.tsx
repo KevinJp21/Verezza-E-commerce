@@ -8,15 +8,7 @@ import { useFetcher } from '@remix-run/react';
 import { Cookie, createCookie } from '@remix-run/node';
 
 // Definimos una interfaz para el tipo de respuesta
-interface CheckoutResponse {
-    status: 'COMPLETED' | 'PENDING' | 'ERROR';
-    message?: string;
-}
 
-// Función para verificar si la respuesta es del tipo CheckoutResponse
-function isCheckoutResponse(data: any): data is CheckoutResponse {
-    return data && typeof data.status === 'string';
-}
 
 interface BagProps {
     isOpen: boolean;
@@ -28,8 +20,8 @@ interface BagProps {
 export default function Bag({ isOpen, onClose }: BagProps) {
     const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
-    const { cartItems, setCartItems, webUrl, updateCart } = useCart();
-    const fetcher = useFetcher<CheckoutResponse>();
+    const { cartItems, setCartItems, webUrl, updateCart, subtotal } = useCart();
+    const fetcher = useFetcher();
 
     useEffect(() => {
         const currency = localStorage.getItem('selectedCurrencySymbol');
@@ -158,17 +150,11 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                     {loading
                                         ? <span>0</span>
                                         : <span>
-                                            {cartItems.reduce((total, item: any) => {
-                                                const itemPrice = item.price;
-                                                return total + item.quantity * parseFloat(itemPrice);
-                                            }, 0).toLocaleString(
-                                                selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES',
-                                                {
-                                                    style: 'currency',
-                                                    currency: selectedCurrency,
-                                                    minimumFractionDigits: 0
-                                                }
-                                            )}
+                                            {parseFloat(subtotal).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', {
+                                                style: 'currency',
+                                                currency: selectedCurrency,
+                                                minimumFractionDigits: 0
+                                            })}
                                         </span>
                                     }
                                 </p>
