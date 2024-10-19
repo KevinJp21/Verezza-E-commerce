@@ -37,9 +37,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [webUrl, setWebUrl] = useState<string | null>(null);
     const [totalQuantity, setTotalQuantity] = useState(0);
-    const [loading, setLoading] = useState(true);
+ 
     const [error, setError] = useState<string | null>(null);
     const fetcher = useFetcher<CartData>();
+
+    const loading = fetcher.state === 'submitting';
 
     const updateCart = useCallback(() => {
         if (fetcher.state === 'idle' && !fetcher.data) {
@@ -61,7 +63,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 setWebUrl(fetcher.data.checkoutUrl);
                 setError(null);
             }
-            setLoading(false);
+    
         }
     }, [fetcher.data]);
 

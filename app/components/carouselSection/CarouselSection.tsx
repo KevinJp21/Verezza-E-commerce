@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 import ProductCarousel from '../productCarousel/ProductCarousel';
+import { useCart } from '~/hooks/Cart';
 import './CarouselSection.css';
 import ModalCart from '../modalCart/ModalCart';
 import { useTranslation } from 'react-i18next';

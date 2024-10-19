@@ -47,6 +47,8 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
         }
     }, []);
 
+    const isLoading = fetcher.state === 'submitting';
+
     // Función refactorizada para agregar producto al carrito
     const handleAddToBag = async () => {
         if (!selectedSize) {
@@ -68,10 +70,11 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                 method: 'POST',
                 action: '/api/cart/addToCart',
             });
-            onClose();
-            setIsSizeSelected(false);
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);
+        } finally {
+            setIsSizeSelected(false);
+            onClose();
         }
     }
 
@@ -152,8 +155,8 @@ const ModalCart: React.FC<ModalCartProps> = ({ onClose, selectedProduct, product
                     </div>
                 </div>
                 <footer className='ModalCartFooter'>
-                    <button className='btn-secondary' onClick={handleAddToBag}><span>{t('modalCart.add_to_cart')}</span></button>
-                    <button className='btn-secondary'><span>{t('modalCart.buy_now')}</span></button>
+                    <button className='btn-secondary' onClick={handleAddToBag} disabled={isLoading}><span>{t('modalCart.add_to_cart')}</span></button>
+                    <button className='btn-secondary' disabled={isLoading}><span>{t('modalCart.buy_now')}</span></button>
                 </footer>
 
                 <div id="ScrollElement" className="ScrollElement">

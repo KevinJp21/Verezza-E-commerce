@@ -201,6 +201,7 @@
     height: 56px;
 }
 
+
 @media screen and (min-width: 768px) {
     .ProductsHandleWprapper{
         flex-direction: row;

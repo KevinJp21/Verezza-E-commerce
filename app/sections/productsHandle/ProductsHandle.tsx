@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProductCarousel from '~/components/productCarousel/ProductCarousel';
-import { addToCart } from '~/api/addToCart';
+import { useFetcher } from '@remix-run/react';
 import { useCart } from '~/hooks/Cart';
-import { getCheckoutStatus } from '~/api/getCartItems';
 import './ProductsHandle.css'
 import { t } from 'i18next';
 
@@ -11,7 +10,10 @@ export default function ProductsHandle({ products }: any) {
     const [selectedSize, setSelectedSize] = useState<string>('');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
-    const { updateCart, setCartItems } = useCart();
+    const fetcher = useFetcher();
+    const { loading } = useCart();
+
+    const isLoading = fetcher.state === 'submitting';
     //Selected currency
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
@@ -39,14 +41,18 @@ export default function ProductsHandle({ products }: any) {
         try {
             const selectedVariant = products.variants.nodes.find((size: any) => size.id === selectedSize);
             if (!selectedVariant) {
-                throw new Error('Variant not found for the selected size');
+                throw new Error('Variante no encontrada para el tamaño seleccionado');
             }
 
-            const variantId = selectedVariant.id;
-            const checkout = await addToCart(variantId, selectedQuantity);
-            localStorage.setItem('checkoutId', checkout.id);
-            await updateCart(); // Llamar a updateCart después de agregar al carrito
-            window.dispatchEvent(new Event('cartUpdated'));
+            const formData = new FormData();
+            formData.append('merchandiseId', selectedVariant.id);
+            formData.append('quantity', selectedQuantity.toString());
+
+            fetcher.submit(formData, {
+                method: 'POST',
+                action: '/api/cart/addToCart',
+            });
+            setIsSizeSelected(false);
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);
         }
@@ -54,6 +60,7 @@ export default function ProductsHandle({ products }: any) {
     }
 
     // Función para comprar ahora
+    /*
     const handleBuyNow = async () => {
         if (!selectedSize) {
             setIsSizeSelected(true);
@@ -68,17 +75,14 @@ export default function ProductsHandle({ products }: any) {
 
             const variantId = selectedVariant.id;
 
-            // Agregar el producto
-            const checkout = await addToCart(variantId, selectedQuantity);
-
-            if (checkout.webUrl) {
+            if (fetcher.data?.checkoutUrl) {
                 // Redirigir a la página de pago
-                const checkoutWindow = window.open(checkout.webUrl, '_blank');
+                const checkoutWindow = window.open(fetcher.data.checkoutUrl, '_blank');
                 const checkWindowClosed = setInterval(async () => {
                     if (checkoutWindow?.closed) {
                         clearInterval(checkWindowClosed);
                         // La ventana se cerró, verificamos el estado del checkout
-                        const checkoutStatus = await getCheckoutStatus(checkout.id);
+                        const checkoutStatus = await getCheckoutStatus(fetcher.data.checkoutId);
                         if (checkoutStatus === 'COMPLETED') {
                             // El pago se completó, limpiamos el carrito
                             localStorage.removeItem('checkoutId');
@@ -95,7 +99,7 @@ export default function ProductsHandle({ products }: any) {
             console.error('Error al procesar la compra:', error);
         }
     }
-
+*/
     const handleScroll = () => {
         const element = document.getElementById('ModalCartProductInfo');
         element?.scrollIntoView({ behavior: 'smooth' });
@@ -177,8 +181,8 @@ export default function ProductsHandle({ products }: any) {
                             </button>
                         </div>
                         <footer className='ProductsHandleFooter'>
-                            <button className='btn-secondary' onClick={handleAddToBag}><span>{t('modalCart.add_to_cart')}</span></button>
-                            <button className='btn-secondary' onClick={handleBuyNow}><span>{t('modalCart.buy_now')}</span></button>
+                            <button className='btn-secondary' onClick={handleAddToBag} disabled={loading || isLoading}><span>{t('modalCart.add_to_cart')}</span></button>
+                            {/*<button className='btn-secondary' onClick={handleBuyNow}><span>{t('modalCart.buy_now')}</span></button>*/}
                         </footer>
                     </div>
                 </div>

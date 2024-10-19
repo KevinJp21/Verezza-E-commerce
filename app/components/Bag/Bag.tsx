@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Bag.css';
 import { closeIcon, trashIcon } from '~/assets/icons/icons';
-import { updateCartItemQuantity } from '~/api/updateCartItem';
-import { removeCartItem } from '~/api/removeCartItem';
 import { useCart } from '~/hooks/Cart';
 import { useTranslation } from 'react-i18next';
 import { getCheckoutStatus } from '~/api/getCartItems';
@@ -18,7 +16,6 @@ interface BagProps {
 export default function Bag({ isOpen, onClose }: BagProps) {
     const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
-    const [isLoading, setIsLoading] = useState(false);
     const { cartItems, setCartItems, webUrl, updateCart } = useCart();
     const fetcher = useFetcher();
     useEffect(() => {
@@ -28,9 +25,11 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         }
     }, []);
 
+    const loading = fetcher.state === 'submitting';
+
 
     const handleUpdateCartItemQuantity = async (itemId: string, quantity: number) => {
-        setIsLoading(true);
+     
         try {
             const formData = new FormData();
             formData.append('lineItemId', itemId);
@@ -42,13 +41,10 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             });
         } catch (error) {
             console.error('Error al actualizar la cantidad del artículo en el carrito:', error);
-        } finally {
-            setIsLoading(false);
-        }
+        } 
     };
 
     const removeFromCart = (itemId: string) => {
-        setIsLoading(true);
         try {
             const formData = new FormData();
             formData.append('lineItemId', itemId);
@@ -65,8 +61,6 @@ export default function Bag({ isOpen, onClose }: BagProps) {
             window.dispatchEvent(new Event('cartUpdated'));
         } catch (error) {
             console.error('Error al eliminar el artículo del carrito:', error);
-        } finally {
-            setIsLoading(false);
         }
     };
     const handleCheckout = () => {
@@ -114,7 +108,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                         <section aria-label='price' className='bagPriceIrem'>
                                             <div className="priceWrapper">
                                                 <p className='productPrice'>
-                                                    {isLoading
+                                                    {loading
                                                         ? <span>0</span>
                                                         :
                                                         <>
@@ -140,16 +134,16 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                             <p>{t('bag.size_title')}: {item.title}</p>
                                         </div>
                                         <div className="itemQuantity">
-                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)}>
+                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)} disabled={loading} >
                                                 <span>-</span>
                                             </button>
                                             <span>{item.quantity}</span>
-                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity + 1)}>
+                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity + 1)} disabled={loading}>
                                                 <span>+</span>
                                             </button>
                                         </div>
                                     </div>
-                                    <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id)}>
+                                    <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id)} disabled={loading}>
                                         {trashIcon()}
                                     </button>
                                 </div>
@@ -165,7 +159,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                             <div className="BagFooterWrapper">
                                 <p>
                                     <span>{t('bag.subtotal')}</span>
-                                    {isLoading
+                                    {loading
                                         ? <span>0</span>
                                         : <span>
                                             {cartItems.reduce((total, item: any) => {
