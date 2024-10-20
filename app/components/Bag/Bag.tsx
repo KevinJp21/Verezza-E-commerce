@@ -106,13 +106,21 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                                             <span>0</span>
                                                         ) : (
                                                             <>
-                                                                {fullProduct.priceRange.minVariantPrice && (
+                                                                {fullProduct.variants.nodes[0].compareAtPrice && (
                                                                     <span className='ProductPriceDiscount'>
-                                                                        {fullProduct.priceRange.minVariantPrice.amount} {fullProduct.priceRange.minVariantPrice.currencyCode}
+                                                                        {parseFloat(fullProduct.variants.nodes[0].compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', {
+                                                                            style: 'currency',
+                                                                            currency: fullProduct.variants.nodes[0].compareAtPrice.currencyCode,
+                                                                            minimumFractionDigits: 0
+                                                                        })}
                                                                     </span>
                                                                 )}
                                                                 <span>
-                                                                    {fullProduct.priceRange.minVariantPrice.amount} {fullProduct.priceRange.minVariantPrice.currencyCode}
+                                                                    {parseFloat(fullProduct.priceRange.minVariantPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', {
+                                                                            style: 'currency',
+                                                                            currency: fullProduct.priceRange.minVariantPrice.currencyCode,
+                                                                            minimumFractionDigits: 0
+                                                                        })}
                                                                 </span>
                                                             </>
                                                         )}
