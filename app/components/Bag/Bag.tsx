@@ -3,11 +3,8 @@ import './Bag.css';
 import { closeIcon, trashIcon } from '~/assets/icons/icons';
 import { useCart } from '~/hooks/Cart';
 import { useTranslation } from 'react-i18next';
-import { getCheckoutStatus } from '~/api/getCartItems';
 import { useFetcher } from '@remix-run/react';
-import { Cookie, createCookie } from '@remix-run/node';
-
-// Definimos una interfaz para el tipo de respuesta
+import { useProductContext } from '~/hooks/ProductContext';
 
 
 interface BagProps {
@@ -21,6 +18,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
     const { t } = useTranslation();
     const [selectedCurrency, setSelectedCurrency] = useState('COP');
     const { cartItems, setCartItems, webUrl, updateCart, subtotal } = useCart();
+    const { products } = useProductContext();
     const fetcher = useFetcher();
 
     useEffect(() => {
@@ -75,6 +73,10 @@ export default function Bag({ isOpen, onClose }: BagProps) {
         }
     };
 
+    // Función para obtener el producto completo desde products
+    const getFullProduct = (productId: string) => {
+        return products.find(product => product.id === productId);
+    };
     return (
         <>
             <div className={`overlay-bag ${isOpen ? 'open' : ''}`} onClick={onClose}></div>
@@ -86,56 +88,56 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                     </div>
                     <div className="BagContent">
                         {cartItems.length > 0 ? (
-                            cartItems.map((item) => (
-                                <div key={item.id} className="bagItem">
-                                    <picture className="bagItemImage">
-                                        <img src={item.imageUrl} alt={item.productTitle} />
-                                    </picture>
-                                    <div className="itemDetails">
-                                        <a href={`/products/${item.productHandle.toLowerCase().replace(/\s+/g, '-')}`}>{item.productTitle}</a>
-                                        <section aria-label='price' className='bagPriceIrem'>
-                                            <div className="priceWrapper">
-                                                <p className='productPrice'>
-                                                    {loading
-                                                        ? <span>0</span>
-                                                        :
-                                                        <>
-                                                            {item.compareAtPrice && (
+                            cartItems.map((item: any) => {
+                                const fullProduct = getFullProduct(item.productId);
+                                if (!fullProduct) return null; // Si no se encuentra el producto, no lo mostramos
 
-                                                                <span className='ProductPriceDiscount'>
-                                                                    {parseFloat(item.compareAtPrice).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                return (
+                                    <div key={item.id} className="bagItem">
+                                        <picture className="bagItemImage">
+                                            <img src={fullProduct.images.edges[0].node.src} alt={fullProduct.title} />
+                                        </picture>
+                                        <div className="itemDetails">
+                                            <a href={`/products/${fullProduct.handle}`}>{fullProduct.title}</a>
+                                            <section aria-label='price' className='bagPriceIrem'>
+                                                <div className="priceWrapper">
+                                                    <p className='productPrice'>
+                                                        {loading ? (
+                                                            <span>0</span>
+                                                        ) : (
+                                                            <>
+                                                                {fullProduct.priceRange.minVariantPrice && (
+                                                                    <span className='ProductPriceDiscount'>
+                                                                        {fullProduct.priceRange.minVariantPrice.amount} {fullProduct.priceRange.minVariantPrice.currencyCode}
+                                                                    </span>
+                                                                )}
+                                                                <span>
+                                                                    {fullProduct.priceRange.minVariantPrice.amount} {fullProduct.priceRange.minVariantPrice.currencyCode}
                                                                 </span>
-
-
-                                                            )}
-
-                                                            <span>
-                                                                {parseFloat(item.price).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
-                                                            </span>
-                                                        </>
-                                                    }
-
-                                                </p>
+                                                            </>
+                                                        )}
+                                                    </p>
+                                                </div>
+                                            </section>
+                                            <div className="itemVariants">
+                                                <p>{t('bag.size_title')}: {item.title}</p>
                                             </div>
-                                        </section>
-                                        <div className="itemVariants">
-                                            <p>{t('bag.size_title')}: {item.title}</p>
+                                            <div className="itemQuantity">
+                                                <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)} disabled={loading} >
+                                                    <span>-</span>
+                                                </button>
+                                                <span>{item.quantity}</span>
+                                                <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity + 1)} disabled={loading}>
+                                                    <span>+</span>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="itemQuantity">
-                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity - 1)} disabled={loading} >
-                                                <span>-</span>
-                                            </button>
-                                            <span>{item.quantity}</span>
-                                            <button className='quantity-button btn-primary' onClick={() => handleUpdateCartItemQuantity(item.id, item.quantity + 1)} disabled={loading}>
-                                                <span>+</span>
-                                            </button>
-                                        </div>
+                                        <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id)} disabled={loading}>
+                                            {trashIcon()}
+                                        </button>
                                     </div>
-                                    <button className='removeItem btn-primary' onClick={() => removeFromCart(item.id)} disabled={loading}>
-                                        {trashIcon()}
-                                    </button>
-                                </div>
-                            ))
+                                );
+                            })
                         ) : (
                             <div className="bagEmpty">
                                 <p>{t('bag.bag_empty')}</p>
@@ -150,11 +152,17 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                     {loading
                                         ? <span>0</span>
                                         : <span>
-                                            {parseFloat(subtotal).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', {
-                                                style: 'currency',
-                                                currency: selectedCurrency,
-                                                minimumFractionDigits: 0
-                                            })}
+                                            {cartItems.reduce((total, item: any) => {
+                                                const itemPrice = getFullProduct(item.productId)?.priceRange.minVariantPrice.amount || item.variant.price.amount;
+                                                return total + item.quantity * parseFloat(itemPrice);
+                                            }, 0).toLocaleString(
+                                                selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES',
+                                                {
+                                                    style: 'currency',
+                                                    currency: selectedCurrency,
+                                                    minimumFractionDigits: 0
+                                                }
+                                            )}
                                         </span>
                                     }
                                 </p>

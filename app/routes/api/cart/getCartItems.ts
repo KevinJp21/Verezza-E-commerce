@@ -34,6 +34,7 @@ query cart($id: ID!) {
                 url
               }
               product {
+                id
                 title
                 handle
                 }
@@ -77,6 +78,7 @@ export const loader: LoaderFunction = async ({ request }) => {
             id: node.id,
             quantity: node.quantity,
             title: node.merchandise.title,
+            productId: node.merchandise.product.id,
             productTitle: node.merchandise.product.title,
             price: node.merchandise.price.amount,
             currency: node.merchandise.price.currencyCode,
