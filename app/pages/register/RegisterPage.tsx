@@ -27,17 +27,18 @@ export default function RegisterPage() {
     lastName: '',
     email: '',
     password: '',
-    phone: '',
-    birthday: '',
     identificationType: '',
     identificationNumber: '',
-    address1: '',
-    city: '',
+    phone: '',
+    birthday: '',
     country: '',
-    zip: '',
+    city: '',
     province: '',
+    address1: '',
+    zip: '',
     acceptsMarketing: false,
   });
+  const [errors, setErrors] = useState<string[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -47,28 +48,106 @@ export default function RegisterPage() {
       ...customerData,
       [name]: type === 'checkbox' ? checked : value,
     });
+    setErrors([]);
+  };
+
+  const validateFields = () => {
+    let validationErrors: string[] = [];
+
+    Object.entries(customerData).forEach(([key, value]) => {
+      switch (key) {
+        case 'firstName':
+          if (!value) {
+            validationErrors.push(t("register.error.firstName"));
+          } else if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(value as string)) {
+            validationErrors.push(t("register.error.firstName")); // Agrega un mensaje para nombres no válidos
+          }
+          break;
+        case 'lastName':
+          if (!value) {
+            validationErrors.push(t("register.error.lastName"));
+          } else if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(value as string)) {
+            validationErrors.push(t("register.error.invalidLastName")); // Agrega un mensaje para apellidos no válidos
+          }
+          break;
+        case 'email':
+          return (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value as string)) ? validationErrors.push(t("register.error_email")) : '';
+        case 'password':
+          return ((value as string).length < 8) ? validationErrors.push(t("register.error.password")) : '';
+        case 'identificationType':
+          return (!value) ? validationErrors.push(t("register.error.identificationType")) : '';
+        case 'identificationNumber':
+          return (!value) ? validationErrors.push(t("register.error.identificationNumber")) : '';
+        case 'phone':
+          return (!/^\d{7,}$/.test(value as string)) ? validationErrors.push(t("register.error.phone")) : '';
+        case 'birthday':
+          if (!value) {
+            validationErrors.push(t("register.error.birthday"));
+          } else {
+            const birthday = new Date(value as string);
+            const age = new Date().getFullYear() - birthday.getFullYear();
+            const isBeforeBirthdayThisYear =
+              new Date().setFullYear(new Date().getFullYear()) < birthday.setFullYear(new Date().getFullYear());
+            const actualAge = isBeforeBirthdayThisYear ? age - 1 : age;
+
+            if (isNaN(birthday.getTime())) {
+              validationErrors.push(t("register.error.birthday"));
+            } else if (actualAge < 18) {
+              validationErrors.push(t("register.error.birthday"));
+            }
+          }
+          break;
+        case 'country':
+          return (!value) ? validationErrors.push(t("register.error.country")) : '';
+        case 'city':
+          return (!value) ? validationErrors.push(t("register.error.city")) : '';
+        case 'province':
+          return (!value) ? validationErrors.push(t("register.error.province")) : '';
+        case 'address1':
+          return (!value) ? validationErrors.push(t("register.error.address1")) : '';
+        case 'zip':
+          return (!value) ? validationErrors.push(t("register.error.zip")) : '';
+        default:
+          break;
+      }
+    });
+
+    return validationErrors;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetcher.submit(
-      { json: JSON.stringify(customerData) },
-      {
-        method: "post",
-        action: "/api/registerCustomer",
-        encType: "application/json"
-      }
-    );
+    const validationErrors = validateFields();
+
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+    } else {
+      fetcher.submit(
+        { json: JSON.stringify(customerData) },
+        {
+          method: "post",
+          action: "/api/registerCustomer",
+          encType: "application/json"
+        }
+      );
+    }
   };
 
   return (
     <section className='ContainerRegister'>
       <fetcher.Form onSubmit={handleSubmit} className='FormRegister'>
         <h1>{t("register.title")}</h1>
+        {errors.length > 0 && (
+          <p className='ErrorMsg'>
+            {
+              <span>{errors[0]}<br /></span>
+            }
+          </p>
+        )}
         {fetcher.data && fetcher.data.CreateCustomerErrors && fetcher.data.CreateCustomerErrors.length > 0 && (
           <p className='ErrorMsg'>
             {fetcher.data.CreateCustomerErrors[0].code === 'TAKEN'
-              ? t("register.emailTaken")
+              ? t("register.error.emailTaken")
               : t("register.error")}
           </p>
         )}
@@ -80,7 +159,7 @@ export default function RegisterPage() {
               name="firstName"
               value={customerData.firstName}
               onChange={handleChange}
-              required
+
               autoComplete="on"
             />
           </div>
@@ -91,7 +170,7 @@ export default function RegisterPage() {
               name="lastName"
               value={customerData.lastName}
               onChange={handleChange}
-              required
+
               autoComplete="on"
             />
           </div>
@@ -104,7 +183,7 @@ export default function RegisterPage() {
               name="email"
               value={customerData.email}
               onChange={handleChange}
-              required
+
               autoComplete="on"
               placeholder='example@gmail.com'
             />
@@ -116,7 +195,7 @@ export default function RegisterPage() {
               name="password"
               value={customerData.password}
               onChange={handleChange}
-              required
+
               autoComplete="on"
             />
           </div>
@@ -129,7 +208,7 @@ export default function RegisterPage() {
               name="identificationType"
               value={customerData.identificationType}
               onChange={handleChange}
-              required
+
               autoComplete="on"
               placeholder={t("register.identification_type_placeholder")}
             />
@@ -141,7 +220,7 @@ export default function RegisterPage() {
               name="identificationNumber"
               value={customerData.identificationNumber}
               onChange={handleChange}
-              required
+
               autoComplete="on"
             />
           </div>
@@ -153,7 +232,7 @@ export default function RegisterPage() {
             name="phone"
             value={customerData.phone}
             onChange={handleChange}
-            required
+
             autoComplete="on"
             placeholder={t("register.phone_placeholder")}
           />
@@ -175,10 +254,11 @@ export default function RegisterPage() {
             <select
               name="country"
               value={customerData.country}
-              required
+
               autoComplete="on"
               onChange={handleChange}
             >
+              <option value="">{t("register.choose_country")}</option>
               {countries.map((country, index) => (
                 <option key={index} value={country.isoCode}>{country.name}</option>
               ))}
@@ -192,7 +272,7 @@ export default function RegisterPage() {
               name="city"
               value={customerData.city}
               onChange={handleChange}
-              required
+
               autoComplete="on"
               placeholder={t("register.city_placeholder")}
             />
@@ -205,7 +285,7 @@ export default function RegisterPage() {
               name="province"
               value={customerData.province}
               onChange={handleChange}
-              required
+
               autoComplete="on"
               placeholder={t("register.province_placeholder")}
             />
@@ -219,7 +299,7 @@ export default function RegisterPage() {
               name="address1"
               value={customerData.address1}
               onChange={handleChange}
-              required
+
               autoComplete="on"
             />
           </div>
