@@ -161,7 +161,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                         ? <span>0</span>
                                         : <span>
                                             {cartItems.reduce((total, item: any) => {
-                                                const itemPrice = getFullProduct(item.productId)?.priceRange.minVariantPrice.amount || item.variant.price.amount;
+                                                const itemPrice = getFullProduct(item.productId)?.priceRange.minVariantPrice.amount || item.price.amount;
                                                 return total + item.quantity * parseFloat(itemPrice);
                                             }, 0).toLocaleString(
                                                 selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES',
