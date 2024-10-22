@@ -87,7 +87,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                         <button className='BagClose' title='Close' onClick={onClose}>{closeIcon()}</button>
                     </div>
                     <div className="BagContent">
-                        {cartItems.length > 0 ? (
+                        {cartItems && cartItems.length > 0 ? (
                             cartItems.map((item: any) => {
                                 const fullProduct = getFullProduct(item.productId);
                                 if (!fullProduct) return null; // Si no se encuentra el producto, no lo mostramos
@@ -152,7 +152,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                             </div>
                         )}
                     </div>
-                    {cartItems.length > 0 && (
+                    {cartItems && cartItems.length > 0 && (
                         <footer className="BagFooter">
                             <div className="BagFooterWrapper">
                                 <p>
