@@ -8,7 +8,11 @@ interface CustomerCreateResponse {
     customer: {
       id: string;
     };
-    userErrors: Array<{ message: string }>;
+    errors: Array<{ 
+      message: string;
+      code: string;
+      field: string;
+    }>;
   };
 }
 
@@ -52,10 +56,19 @@ export default function RegisterPage() {
     );
   };
 
+  console.log(fetcher.data);
+
   return (
     <section className='ContainerRegister'>
       <fetcher.Form onSubmit={handleSubmit} className='FormRegister'>
         <h1>{t("register.title")}</h1>
+        {fetcher.data && fetcher.data.customerCreate && fetcher.data.customerCreate.errors.length > 0 && (
+          <p className='ErrorMsg'>
+            {fetcher.data.customerCreate.errors[0].code === 'TAKEN'
+              ? t("register.emailTaken")
+              : t("register.error")}
+          </p>
+        )}
         <div className="formGroup">
           <div className='InputContainer'>
             <label>{t("register.name")}</label>
@@ -233,13 +246,6 @@ export default function RegisterPage() {
         </div>
         <button className='btn-secondary' type="submit"><span>{t("register.button")}</span></button>
       </fetcher.Form>
-      {fetcher.state === "submitting" && <p>Registrando cliente...</p>}
-      {fetcher.data && 'customerCreate' in fetcher.data && (
-        <p>Cliente registrado con éxito: {fetcher.data.customerCreate.customer.id}</p>
-      )}
-      {fetcher.data && 'customerCreate' in fetcher.data && fetcher.data.customerCreate.userErrors.length > 0 && (
-        <p>Error: {fetcher.data.customerCreate.userErrors[0].message}</p>
-      )}
     </section>
   );
 }

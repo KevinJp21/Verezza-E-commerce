@@ -23,7 +23,6 @@ export default function LoginPage() {
 
     const loading = fetcher.state === 'submitting';
 
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setLoginData({

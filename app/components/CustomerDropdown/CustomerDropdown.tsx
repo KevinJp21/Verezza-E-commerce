@@ -10,10 +10,9 @@ interface CustomerDropdownProps {
 export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOpen }) => {
     const isLogged = useAuthStatus();
     const fetcher = useFetcher();
-    const [isLoading, setIsLoading] = useState(false);
+    const loading = fetcher.state === "submitting";
 
     const handleLogout = () => {
-        setIsLoading(true);
         fetcher.submit(
             null,
             {
@@ -26,7 +25,6 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
 
     useEffect(() => {
         if (fetcher.state === "idle" && fetcher.data) {
-            setIsLoading(false);
             window.location.reload();
         }
     }, [fetcher.state, fetcher.data]);
@@ -52,7 +50,7 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
                             </a>
                         </li>
                         <li className="customerDropdownItem">
-                            <button className="customerDropdownLogout" onClick={handleLogout} disabled={isLoading}>
+                            <button className="customerDropdownLogout" onClick={handleLogout} disabled={loading}>
                                 <span>CERRAR SESIÓN</span>
                             </button>
                         </li>
@@ -65,7 +63,7 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
                             </a>
                         </li>
                         <li className="customerDropdownItem">
-                            <a href="/register">
+                            <a href="/account/auth/register">
                                 <span>REGISTRARSE</span>
                             </a>
                         </li>
