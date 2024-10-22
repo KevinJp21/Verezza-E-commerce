@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useCountries } from '~/hooks/Countries';
 import './Footer.css'
 
 import { useTranslation } from "react-i18next";
@@ -15,6 +16,8 @@ export default function Footer() {
 
   const [isSelectLanguageOpen, setIsSelectLanguageOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('');
+
+  const countries = useCountries();
 
   const { t, i18n } = useTranslation();
 
@@ -144,15 +147,11 @@ export default function Footer() {
                   </div>
                 </div>
                 <ul className="optionsList">
-                  <li className="option" onClick={() => handleLocationClick("Colombia")}>
-                    <span>Colombia</span>
-                  </li>
-                  <li className="option" onClick={() => handleLocationClick("United States")}>
-                    <span>United States</span>
-                  </li>
-                  <li className="option" onClick={() => handleLocationClick("Europe")}>
-                    <span>Europe</span>
-                  </li>
+                  {countries.map((country, index) => (
+                    <li key={index} className="option" onClick={() => handleLocationClick(country.name)}>
+                      <span>{country.name}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

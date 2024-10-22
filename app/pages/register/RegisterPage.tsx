@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from 'react-i18next';
+import { useCountries } from '~/hooks/Countries';
 import './RegisterPage.css';
 
 interface CustomerCreateResponse {
@@ -18,6 +19,7 @@ interface CustomerCreateResponse {
 
 export default function RegisterPage() {
   const { t } = useTranslation();
+  const countries = useCountries();
   const fetcher = useFetcher<CustomerCreateResponse>();
   const [customerData, setCustomerData] = useState({
     firstName: '',
@@ -36,8 +38,10 @@ export default function RegisterPage() {
     acceptsMarketing: false,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+  
     setCustomerData({
       ...customerData,
       [name]: type === 'checkbox' ? checked : value,
@@ -55,8 +59,6 @@ export default function RegisterPage() {
       }
     );
   };
-
-  console.log(fetcher.data);
 
   return (
     <section className='ContainerRegister'>
@@ -169,15 +171,17 @@ export default function RegisterPage() {
         <div className="formGroup">
           <div className='InputContainer'>
             <label>{t("register.country")}</label>
-            <input
-              type="text"
+            <select
               name="country"
               value={customerData.country}
-              onChange={handleChange}
               required
               autoComplete="on"
-              placeholder={t("register.country_placeholder")}
-            />
+              onChange={handleChange}
+            >
+              {countries.map((country, index) => (
+                <option key={index} value={country.isoCode}>{country.name}</option>
+              ))}
+            </select>
           </div>
 
           <div className='InputContainer'>

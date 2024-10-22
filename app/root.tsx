@@ -17,7 +17,7 @@ import { useChangeLanguage } from "remix-i18next/react";
 import NimbusSans from '~/assets/fonts/fonts.css?url';
 import { AuthProvider } from "./hooks/authStatus";
 import { CartProvider } from '~/hooks/Cart';
-
+import { CountriesProvider } from '~/hooks/Countries';
 export const handle = { i18n: ["translation"] }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -48,9 +48,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <AuthProvider>
-          <CartProvider>
-            {children}
-          </CartProvider>
+          <CountriesProvider>
+            <CartProvider>
+              {children}
+            </CartProvider>
+          </CountriesProvider>
         </AuthProvider>
         <ScrollRestoration />
         <Scripts />
