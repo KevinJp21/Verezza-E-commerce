@@ -62,6 +62,8 @@ export default {
     },
     "login": {
         "title": "Iniciar sesión",
+        "unidentifiedCustomer": "Correo o contraseña incorrectos",
+        "error": "Error al iniciar sesión",
         "email": "Correo",
         "password": "Contraseña",
         "recoveryPassword": "¿Olvidaste tu contraseña?",

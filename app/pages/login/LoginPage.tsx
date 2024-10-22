@@ -5,13 +5,12 @@ import LoadingSpinner from '~/components/loadingSpinner/loadingSpinner';
 import './LoginPage.css';
 
 interface CustomerLoginResponse {
-    customerAccessTokenCreate: {
-        customerAccessToken: {
-            accessToken: string;
-            expiresAt: string;
-        };
-        customerUserErrors: Array<{ message: string }>;
-    };
+    message: string;
+   errors: {
+    field: string;
+    code: string;
+    message: string;
+   }[];
 }
 
 export default function LoginPage() {
@@ -22,7 +21,7 @@ export default function LoginPage() {
         password: '',
     });
 
-    const [isLoading, setIsLoading] = useState(false);
+    const loading = fetcher.state === 'submitting';
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +34,6 @@ export default function LoginPage() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsLoading(true);
         fetcher.submit(
             { json: JSON.stringify(loginData) },
             {
@@ -46,20 +44,17 @@ export default function LoginPage() {
         );
     };
 
-    useEffect(() => {
-        if (fetcher.state === "idle" && fetcher.data) {
-            if (typeof window !== "undefined") {
-                setIsLoading(false);
-                window.location.href = '/';
-            }
-        }
-    }, [fetcher.state, fetcher.data]);
-
-
     return (
         <section className='ContainerLogin'>
             <fetcher.Form onSubmit={handleSubmit} className='FormLogin'>
                 <h1>{t("login.title")}</h1>
+                {fetcher.data && fetcher.data.errors && fetcher.data.errors.length > 0 && (
+                    <p className='ErrorMsg'>
+                        {fetcher.data.errors[0].code === 'UNIDENTIFIED_CUSTOMER'
+                            ? t("login.unidentifiedCustomer")
+                            : t("login.error")}
+                    </p>
+                )}
                 <div className='InputContainer'>
                     <label>{t("login.email")}</label>
                     <input
@@ -88,14 +83,7 @@ export default function LoginPage() {
                 </div>
                 <button className='btn-secondary' type="submit"><span>{t("login.button")}</span></button>
             </fetcher.Form>
-            {fetcher.state === "submitting" && <p>{t("login.submitting")}</p>}
-            {fetcher.data && 'customerAccessTokenCreate' in fetcher.data && (
-                <p>Cliente logeado con éxito: {fetcher.data.customerAccessTokenCreate.customerAccessToken.accessToken}</p>
-            )}
-            {fetcher.data && 'customerAccessTokenCreate' in fetcher.data && fetcher.data.customerAccessTokenCreate.customerUserErrors.length > 0 && (
-                <p>Error: {fetcher.data.customerAccessTokenCreate.customerUserErrors[0].message}</p>
-            )}
-            {isLoading && <LoadingSpinner isLoading={isLoading}/>}
+            {loading && <LoadingSpinner isLoading={loading}/>}
         </section>
     );
 }

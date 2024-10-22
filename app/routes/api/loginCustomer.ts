@@ -50,8 +50,15 @@ export const action: ActionFunction = async ({ request }) => {
         const loginDataResponse = loginResponse.data.customerAccessTokenCreate;
 
         if (loginDataResponse.customerUserErrors.length > 0) {
-            throw new Error(loginDataResponse.customerUserErrors[0].message);
+            return json(
+                { 
+                    message: 'Login failed', 
+                    errors: loginDataResponse.customerUserErrors 
+                }, 
+                { status: 401 } 
+            );
         }
+
 
         // Obtener token de acceso y fecha de expiración
         const accessToken = loginDataResponse.customerAccessToken.accessToken;
@@ -79,11 +86,11 @@ export const action: ActionFunction = async ({ request }) => {
         const headers = new Headers();
         headers.append("Set-Cookie", serializedCookie);
 
-        return json({ message: 'Inicio de sesión exitoso' }, { status: 200, headers });
+        return json({ message: 'Login successful' }, { status: 200, headers });
 
     } catch (error) {
-        console.error('Error en la consulta de login a Shopify:', error);
-        return json({ message: 'Error al iniciar sesión' }, { status: 500 });
+        console.error('unauthorized:', error);
+        return json({ message: 'Login failed' }, { status: 500 });
     }
 
 }

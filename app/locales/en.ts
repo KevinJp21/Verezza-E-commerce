@@ -62,6 +62,8 @@ export default {
   },
   "login": {
     "title": "Login",
+    "unidentifiedCustomer": "Email or password incorrect",
+    "error": "Error logging in",
     "email": "Email",
     "password": "Password",
     "recoveryPassword": "Forgot your password?",
