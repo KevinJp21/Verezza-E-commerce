@@ -75,6 +75,7 @@ export default {
       "description": "Create your account in Olga Lucía Cortés to enjoy our exclusive benefits."
     },
     "title": "Create your account",
+    "emailTaken": "Email already taken",
     "name": "Name",
     "last_name": "Last name",
     "email": "Email",

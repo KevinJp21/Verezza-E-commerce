@@ -82,7 +82,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     // Manejo de errores de la Storefront API
     if (customerCreateData.customerUserErrors.length > 0) {
-        return json({ message: "Register failed", storefrontErrors: customerCreateData.customerUserErrors }, { status: 400 });
+        return json({ message: "Register failed", CreateCustomerErrors: customerCreateData.customerUserErrors }, { status: 400 });
     }
 
     const customerId = customerCreateData.customer.id;
@@ -137,7 +137,7 @@ export const action: ActionFunction = async ({ request }) => {
     const customerUpdateData = customerUpdateResponse.data.customerUpdate;
     
     if (customerUpdateData.userErrors.length > 0) {
-      return json({ message: "Register failed", errors: customerUpdateData.userErrors }, { status: 400 });
+      return json({ message: "Register failed", UpdateCustomerErrors: customerUpdateData.userErrors }, { status: 400 });
     }
 
     return json({ customerId });

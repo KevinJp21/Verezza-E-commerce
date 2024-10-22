@@ -48,13 +48,16 @@
     color: var(--olga-black-primary);
 }
 
-.FormRegister .InputContainer input{
+.FormRegister .InputContainer input,
+.FormRegister .InputContainer select{
     width: 100%;
     height: 40px;
     border: 1px solid var(--olga-gray-100);
     border-radius: 6px;
     padding: 0 8px;
 }
+
+
 
 .FormRegister .CheckboxContainer{
     display: flex;
@@ -73,7 +76,8 @@
 }
 
 
-.FormRegister .InputContainer input:focus{
+.FormRegister .InputContainer input:focus,
+.FormRegister .InputContainer select:focus{
     outline: none;
     border: 1px solid var(--olga-black-primary);
 }
@@ -83,6 +87,10 @@
     width: 100%;
     border-radius: 0;
     height: 56px;
+}
+
+.ContainerRegister .ErrorMsg{
+    margin-bottom: 16px;
 }
 
 @media (min-width: 768px) {

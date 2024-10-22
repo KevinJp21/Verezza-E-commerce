@@ -42,7 +42,8 @@ span,
 a,
 label,
 input,
-option {
+option, 
+select {
     font-family: "Nimbus Sans", "DM Sans", sans-serif;
 }
 a{
@@ -235,6 +236,14 @@ button{
       opacity: 0;
     }
   }
+
+  
+.ErrorMsg{
+  color: var(--olga-red-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
   
   
   

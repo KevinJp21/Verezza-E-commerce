@@ -5,16 +5,17 @@ import { useCountries } from '~/hooks/Countries';
 import './RegisterPage.css';
 
 interface CustomerCreateResponse {
-  customerCreate: {
-    customer: {
-      id: string;
-    };
-    errors: Array<{ 
-      message: string;
-      code: string;
-      field: string;
-    }>;
-  };
+  CreateCustomerErrors: Array<{
+    message: string;
+    code: string;
+    field: string;
+  }>;
+
+  UpdateCustomerErrors: Array<{
+    message: string;
+    code: string;
+    field: string;
+  }>;
 }
 
 export default function RegisterPage() {
@@ -41,7 +42,7 @@ export default function RegisterPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
-  
+
     setCustomerData({
       ...customerData,
       [name]: type === 'checkbox' ? checked : value,
@@ -64,9 +65,9 @@ export default function RegisterPage() {
     <section className='ContainerRegister'>
       <fetcher.Form onSubmit={handleSubmit} className='FormRegister'>
         <h1>{t("register.title")}</h1>
-        {fetcher.data && fetcher.data.customerCreate && fetcher.data.customerCreate.errors.length > 0 && (
+        {fetcher.data && fetcher.data.CreateCustomerErrors && fetcher.data.CreateCustomerErrors.length > 0 && (
           <p className='ErrorMsg'>
-            {fetcher.data.customerCreate.errors[0].code === 'TAKEN'
+            {fetcher.data.CreateCustomerErrors[0].code === 'TAKEN'
               ? t("register.emailTaken")
               : t("register.error")}
           </p>

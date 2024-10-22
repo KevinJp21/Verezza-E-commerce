@@ -75,6 +75,7 @@ export default {
             "description": "Crea tu cuenta en Olga Lucía Cortés para disfrutar de nuestros beneficios exclusivos."
         },
         "title": "Crea tu cuenta",
+        "emailTaken": "El correo electrónico ya se ha tomado",
         "name": "Nombre",
         "last_name": "Apellido",
         "email": "Correo",
