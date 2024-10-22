@@ -100,6 +100,7 @@ export default {
         "phone": "Teléfono",
         "phone_placeholder": "Ej: +573123456789 (Prefijo primero sin simbolo +)",
         "birthday": "Fecha de Nacimiento",
+        "country": "País",
         "choose_country": "Selecciona un país",
         "city": "Ciudad",
         "city_placeholder": "Ej: Barranquilla, New York, Toronto, etc.",
