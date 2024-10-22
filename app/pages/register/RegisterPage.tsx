@@ -43,8 +43,6 @@ export default function RegisterPage() {
   const [selectedPrefix, setSelectedPrefix] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  console.log(customerData.phone);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -70,7 +68,6 @@ export default function RegisterPage() {
     }
     setErrors([]);
   };
-
   const validateFields = () => {
     let validationErrors: string[] = [];
 
@@ -99,7 +96,11 @@ export default function RegisterPage() {
         case 'identificationNumber':
           return (!value) ? validationErrors.push(t("register.error.identificationNumber")) : '';
         case 'phone':
-          return (!/^\d{7,}$/.test(value as string)) ? validationErrors.push(t("register.error.phone")) : '';
+          if (!/^\d{7,}$/.test(value as string)) {
+            validationErrors.push(t("register.error.phone"));
+          } else if (!selectedPrefix) {
+            validationErrors.push(t("register.error.phonePrefix"));
+          }
         case 'birthday':
           if (!value) {
             validationErrors.push(t("register.error.birthday"));
@@ -226,7 +227,7 @@ export default function RegisterPage() {
             <input
               type="text"
               name="identificationType"
-              value={customerData.identificationType}
+              value={customerData.identificationType.toUpperCase()}
               onChange={handleChange}
 
               autoComplete="on"
@@ -261,7 +262,7 @@ export default function RegisterPage() {
             </div>
           </div>
           <div className="InputContainer">
-          <label>{t("register.phone")}</label>
+            <label>{t("register.prefix")}</label>
             <select
               name="phonePrefix"
               value={selectedPrefix}

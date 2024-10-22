@@ -114,7 +114,7 @@ export const action: ActionFunction = async ({ request }) => {
               namespace: 'customer_identification',
               key: 'identification_type',
               type: 'single_line_text_field',
-              value: customerData.identificationType,
+              value: customerData.identificationType.toUpperCase(),
             },
             {
               namespace: 'customer_identification',
