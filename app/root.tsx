@@ -16,6 +16,8 @@ import i18nServer from "./modules/i18n.server";
 import { useChangeLanguage } from "remix-i18next/react";
 import NimbusSans from '~/assets/fonts/fonts.css?url';
 import { AuthProvider } from "./hooks/authStatus";
+import { CartProvider } from '~/hooks/Cart';
+
 export const handle = { i18n: ["translation"] }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -34,7 +36,6 @@ export const links: LinksFunction = () => {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-
   let loaderData = useRouteLoaderData<typeof loader>("root");
 
   return (
@@ -47,7 +48,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <AuthProvider>
-          {children}
+          <CartProvider>
+            {children}
+          </CartProvider>
         </AuthProvider>
         <ScrollRestoration />
         <Scripts />

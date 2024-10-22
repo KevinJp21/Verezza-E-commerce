@@ -13,6 +13,10 @@ export default defineConfig({
           route("/api/logOutCustomer", "routes/api/logOutCustomer.ts");
           route("/api/authStatus", "routes/api/authStatus.ts");
           route("/api/getCustomerOrders", "routes/api/getCustomerOrders.ts");
+          route("/api/cart/addToCart", "routes/api/cart/addToCart.ts");
+          route("/api/cart/getCartItems", "routes/api/cart/getCartItems.ts");
+          route("/api/cart/updateCartItem", "routes/api/cart/updateCartItem.ts");
+          route("/api/cart/removeCartItem", "routes/api/cart/removeCartItem.ts");
         });
       },
       future: {
