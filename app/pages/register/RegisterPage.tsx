@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from 'react-i18next';
 import { useCountries } from '~/hooks/Countries';
+import phonePrefix from '~/utils/PhonePrefix';
 import './RegisterPage.css';
 
 interface CustomerCreateResponse {
@@ -39,15 +40,34 @@ export default function RegisterPage() {
     acceptsMarketing: false,
   });
   const [errors, setErrors] = useState<string[]>([]);
+  const [selectedPrefix, setSelectedPrefix] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  console.log(customerData.phone);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
 
-    setCustomerData({
-      ...customerData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
+    if (name === 'phonePrefix') {
+      setSelectedPrefix(value);
+      setCustomerData({
+        ...customerData,
+        phone: value + phoneNumber,
+      });
+    } else if (name === 'phone') {
+      const newPhoneNumber = value.replace(/\D/g, '');
+      setPhoneNumber(newPhoneNumber);
+      setCustomerData({
+        ...customerData,
+        phone: selectedPrefix + newPhoneNumber,
+      });
+    } else {
+      setCustomerData({
+        ...customerData,
+        [name]: type === 'checkbox' ? checked : value,
+      });
+    }
     setErrors([]);
   };
 
@@ -225,17 +245,37 @@ export default function RegisterPage() {
             />
           </div>
         </div>
-        <div className='InputContainer'>
+        <div className="formGroup">
+          <div className='InputContainer'>
+            <label>{t("register.phone")}</label>
+            <div className="phone-input-container">
+              <input
+                type="tel"
+                name="phone"
+                value={phoneNumber}
+                onChange={handleChange}
+                autoComplete="on"
+                placeholder={t("register.phone_placeholder")}
+                className="phone-input"
+              />
+            </div>
+          </div>
+          <div className="InputContainer">
           <label>{t("register.phone")}</label>
-          <input
-            type="text"
-            name="phone"
-            value={customerData.phone}
-            onChange={handleChange}
-
-            autoComplete="on"
-            placeholder={t("register.phone_placeholder")}
-          />
+            <select
+              name="phonePrefix"
+              value={selectedPrefix}
+              onChange={handleChange}
+              className="phone-prefix-select"
+            >
+              <option value="">{t("register.select_prefix")}</option>
+              {phonePrefix.map((country) => (
+                <option key={country.code} value={`${country.phoneNumberPrefix}`}>
+                  {country.name} (+{country.phoneNumberPrefix})
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className='InputContainer'>
           <label>{t("register.birthday")}</label>
