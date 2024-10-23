@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from 'react-i18next';
-import { useCountries } from '~/hooks/Countries';
 import phonePrefix from '~/utils/PhonePrefix';
 import './RegisterPage.css';
 import { parsePhoneNumber, isValidPhoneNumber, CountryCode } from 'libphonenumber-js';
@@ -26,7 +25,7 @@ interface CustomerCreateResponse {
 
 export default function RegisterPage() {
   const { t } = useTranslation();
-  const countries = useCountries();
+  const [countries, setCountries] = useState<Array<{ name: string; isoCode: string }>>([]);
   const fetcher = useFetcher<CustomerCreateResponse>();
   const [customerData, setCustomerData] = useState({
     firstName: '',
@@ -170,6 +169,20 @@ export default function RegisterPage() {
       window.location.href = `/account/auth/login`;
     }
   }, [fetcher.data?.customerId]);
+
+  //Get countries
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try{
+        const response = await fetch('/api/getAvailableCountries');
+        const data = await response.json();
+        setCountries(data.localization.availableCountries);
+      } catch (error) {
+        console.error('Error al obtener los países:', error);
+      }
+    };
+    fetchCountries();
+  }, []);
 
   return (
     <section className='ContainerRegister'>

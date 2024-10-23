@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useCountries } from '~/hooks/Countries';
 import './Footer.css'
 
 import { useTranslation } from "react-i18next";
@@ -17,7 +16,6 @@ export default function Footer() {
   const [isSelectLanguageOpen, setIsSelectLanguageOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('');
 
-  const countries = useCountries();
 
   const { t, i18n } = useTranslation();
 
@@ -134,28 +132,6 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-
-            <div className="FooterSelector LocationSelector">
-              <h3>{t("footer.location.title")}</h3>
-              <div className={`customSelect ${isSelectLocationOpen ? 'open' : ''}`}>
-                <div className="selectHeader" onClick={toggleSelectLocation}>
-                  <div className="currencyWrapper">
-                    <div className="currencyDetails">
-                      <span>{selectedLocation || t("footer.location.placeholder")}</span>
-                    </div>
-                    <span className="arrow"></span>
-                  </div>
-                </div>
-                <ul className="optionsList">
-                  {countries.map((country, index) => (
-                    <li key={index} className="option" onClick={() => handleLocationClick(country.name)}>
-                      <span>{country.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
             <div className="FooterSelector LanguajeSelector">
               <h3>{t("footer.language.title")}</h3>
               <div className={`customSelect ${isSelectLanguageOpen ? 'open' : ''}`}>
