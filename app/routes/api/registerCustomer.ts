@@ -73,6 +73,7 @@ export const action: ActionFunction = async ({ request }) => {
           email: customerData.email,
           acceptsMarketing: customerData.acceptsMarketing,
           password: customerData.password,
+          phone: customerData.phone,
         },
       },
       fetchPolicy: 'network-only',
@@ -98,12 +99,10 @@ export const action: ActionFunction = async ({ request }) => {
       variables: {
         input: {
           id: customerId,
-          phone: customerData.phone,
           addresses: [
             {
               countryCode: customerData.country,
               city: customerData.city,
-              provinceCode: customerData.province,
               address1: customerData.address1,
               phone: customerData.phone,
               zip: customerData.zip,

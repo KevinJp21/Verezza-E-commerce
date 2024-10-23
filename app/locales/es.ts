@@ -85,10 +85,10 @@ export default {
             "identificationNumber": "Ingrese una identificación válida",
             "phone": "Ingrese un teléfono válido",
             "phonePrefix": "Seleccione un prefijo",
+            "phoneTaken": "El número de teléfono ya se ha tomado",
             "birthday": "Debes tener al menos 18 años para crear una cuenta",
             "country": "Seleccione un país",
             "city": "Ingrese una ciudad válida",
-            "province": "Ingrese una provincia válida",
             "address1": "Ingrese una dirección válida",
             "zip": "Ingrese un código postal válido",
             "errorRegister": "Error al registrar, intente nuevamente"
@@ -110,8 +110,6 @@ export default {
         "city_placeholder": "Ej: Barranquilla, New York, Toronto, etc.",
         "address": "Dirección",
         "zip": "Código postal",
-        "province": "Provincia",
-        "province_placeholder": "Ej: Atlántico, New York, Toronto, etc.",
         "accepts_marketing": "¿Desea recibir promociones, cupones exclusivos y novedades?",
         "button": "Registrar"
     },

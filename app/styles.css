@@ -10,6 +10,7 @@ body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -51,7 +52,6 @@ a{
 }
 
 button{
-    -webkit-tap-highlight-color: transparent;
     cursor: pointer;
 }
 

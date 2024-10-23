@@ -85,10 +85,10 @@ export default {
       "identificationNumber": "Enter a valid identification",
       "phone": "Enter a valid phone",
       "phonePrefix": "Select a prefix",
+      "phoneTaken": "The phone has already been taken",
       "birthday": "You must be at least 18 years old to create an account",
       "country": "Select a country",
       "city": "Enter a valid city",
-      "province": "Enter a valid province",
       "address1": "Enter a valid address",
       "zip": "Enter a valid zip code",
       "errorRegister": "Error registering, try again"
@@ -110,8 +110,6 @@ export default {
     "city_placeholder": "e.g: Barranquilla, New York, Toronto, etc.",
     "address": "Address",
     "zip": "Zip code",
-    "province": "Province",
-    "province_placeholder": "e.g: Atlántico, New York, Toronto, etc.",
     "accepts_marketing": "Do you want to receive promotions, exclusive coupons and news?",
     "button": "Register"
   },

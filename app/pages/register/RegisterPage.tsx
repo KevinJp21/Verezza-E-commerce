@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useCountries } from '~/hooks/Countries';
 import phonePrefix from '~/utils/PhonePrefix';
 import './RegisterPage.css';
+import { parsePhoneNumber, isValidPhoneNumber, CountryCode } from 'libphonenumber-js';
 
 interface CustomerCreateResponse {
   message: string;
@@ -12,13 +13,13 @@ interface CustomerCreateResponse {
   CreateCustomerErrors: Array<{
     message: string;
     code: string;
-    field: string;
+    field: string[];
   }>;
 
   UpdateCustomerErrors: Array<{
     message: string;
     code: string;
-    field: string;
+    field: string[];
   }>;
 
 }
@@ -38,7 +39,6 @@ export default function RegisterPage() {
     birthday: '',
     country: '',
     city: '',
-    province: '',
     address1: '',
     zip: '',
     acceptsMarketing: false,
@@ -46,6 +46,7 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<string[]>([]);
   const [selectedPrefix, setSelectedPrefix] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -53,6 +54,9 @@ export default function RegisterPage() {
 
     if (name === 'phonePrefix') {
       setSelectedPrefix(value);
+      if (e.target instanceof HTMLSelectElement) {
+        setSelectedCountry(e.target.options[e.target.selectedIndex].getAttribute('data-country') || '');
+      }
       setCustomerData({
         ...customerData,
         phone: value + phoneNumber,
@@ -100,10 +104,13 @@ export default function RegisterPage() {
         case 'identificationNumber':
           return (!value) ? validationErrors.push(t("register.error.identificationNumber")) : '';
         case 'phone':
-          if (!/^\d{7,}$/.test(value as string)) {
+          if (!selectedPrefix || !phoneNumber) {
             validationErrors.push(t("register.error.phone"));
-          } else if (!selectedPrefix) {
-            validationErrors.push(t("register.error.phonePrefix"));
+          } else {
+            const fullPhoneNumber = selectedPrefix + phoneNumber;
+            if (!isValidPhoneNumber(fullPhoneNumber, selectedCountry as CountryCode)) {
+              validationErrors.push(t("register.error.phone"));
+            }
           }
         case 'birthday':
           if (!value) {
@@ -126,8 +133,6 @@ export default function RegisterPage() {
           return (!value) ? validationErrors.push(t("register.error.country")) : '';
         case 'city':
           return (!value) ? validationErrors.push(t("register.error.city")) : '';
-        case 'province':
-          return (!value) ? validationErrors.push(t("register.error.province")) : '';
         case 'address1':
           return (!value) ? validationErrors.push(t("register.error.address1")) : '';
         case 'zip':
@@ -179,11 +184,15 @@ export default function RegisterPage() {
         )}
         {fetcher.data && (
           <p className='ErrorMsg'>
-            {fetcher.data.CreateCustomerErrors && fetcher.data.CreateCustomerErrors.length > 0
-              ? (fetcher.data.CreateCustomerErrors[0].code === 'TAKEN'
+            {fetcher.data && fetcher.data.CreateCustomerErrors && fetcher.data.CreateCustomerErrors.length > 0
+              ? (fetcher.data.CreateCustomerErrors[0].code === 'TAKEN' &&
+                fetcher.data.CreateCustomerErrors[0].field.includes('email')
                 ? t("register.error.emailTaken")
-                : t("register.error.errorRegister"))
-              : fetcher.data.message && fetcher.data.message.length > 0
+                : fetcher.data.CreateCustomerErrors[0].code === 'TAKEN' &&
+                  fetcher.data.CreateCustomerErrors[0].field.includes('phone')
+                  ? t("register.error.phoneTaken")
+                  : t("register.error.errorRegister"))
+              : fetcher.data && fetcher.data.message
                 ? t("register.error.errorRegister")
                 : ''}
           </p>
@@ -274,7 +283,11 @@ export default function RegisterPage() {
             >
               <option value="">{t("register.select_prefix")}</option>
               {phonePrefix.map((country) => (
-                <option key={country.code} value={`${country.phoneNumberPrefix}`}>
+                <option
+                  key={country.code}
+                  value={`+${country.phoneNumberPrefix}`}
+                  data-country={country.code}
+                >
                   {country.name} (+{country.phoneNumberPrefix})
                 </option>
               ))}
@@ -314,17 +327,6 @@ export default function RegisterPage() {
               value={customerData.city}
               onChange={handleChange}
               placeholder={t("register.city_placeholder")}
-            />
-          </div>
-
-          <div className='InputContainer'>
-            <label>{t("register.province")}</label>
-            <input
-              type="text"
-              name="province"
-              value={customerData.province}
-              onChange={handleChange}
-              placeholder={t("register.province_placeholder")}
             />
           </div>
         </div>
