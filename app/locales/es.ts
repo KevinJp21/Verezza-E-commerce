@@ -91,6 +91,7 @@ export default {
             "province": "Ingrese una provincia válida",
             "address1": "Ingrese una dirección válida",
             "zip": "Ingrese un código postal válido",
+            "errorRegister": "Error al registrar, intente nuevamente"
         },
         "name": "Nombre",
         "last_name": "Apellido",

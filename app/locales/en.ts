@@ -91,6 +91,7 @@ export default {
       "province": "Enter a valid province",
       "address1": "Enter a valid address",
       "zip": "Enter a valid zip code",
+      "errorRegister": "Error registering, try again"
     },
     "name": "Name",
     "last_name": "Last name",

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFetcher } from "@remix-run/react";
 import { useTranslation } from 'react-i18next';
 import { useCountries } from '~/hooks/Countries';
@@ -6,6 +6,9 @@ import phonePrefix from '~/utils/PhonePrefix';
 import './RegisterPage.css';
 
 interface CustomerCreateResponse {
+  message: string;
+  customerId: string;
+
   CreateCustomerErrors: Array<{
     message: string;
     code: string;
@@ -17,6 +20,7 @@ interface CustomerCreateResponse {
     code: string;
     field: string;
   }>;
+
 }
 
 export default function RegisterPage() {
@@ -136,6 +140,8 @@ export default function RegisterPage() {
     return validationErrors;
   };
 
+  const loading = fetcher.state === 'submitting';
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validateFields();
@@ -154,6 +160,12 @@ export default function RegisterPage() {
     }
   };
 
+  useEffect(() => {
+    if (fetcher.data?.customerId) {
+      window.location.href = `/account/auth/login`;
+    }
+  }, [fetcher.data?.customerId]);
+
   return (
     <section className='ContainerRegister'>
       <fetcher.Form onSubmit={handleSubmit} className='FormRegister'>
@@ -165,11 +177,15 @@ export default function RegisterPage() {
             }
           </p>
         )}
-        {fetcher.data && fetcher.data.CreateCustomerErrors && fetcher.data.CreateCustomerErrors.length > 0 && (
+        {fetcher.data && (
           <p className='ErrorMsg'>
-            {fetcher.data.CreateCustomerErrors[0].code === 'TAKEN'
-              ? t("register.error.emailTaken")
-              : t("register.error")}
+            {fetcher.data.CreateCustomerErrors && fetcher.data.CreateCustomerErrors.length > 0
+              ? (fetcher.data.CreateCustomerErrors[0].code === 'TAKEN'
+                ? t("register.error.emailTaken")
+                : t("register.error.errorRegister"))
+              : fetcher.data.message && fetcher.data.message.length > 0
+                ? t("register.error.errorRegister")
+                : ''}
           </p>
         )}
         <div className="formGroup">
@@ -180,8 +196,6 @@ export default function RegisterPage() {
               name="firstName"
               value={customerData.firstName}
               onChange={handleChange}
-
-              autoComplete="on"
             />
           </div>
           <div className='InputContainer'>
@@ -191,8 +205,6 @@ export default function RegisterPage() {
               name="lastName"
               value={customerData.lastName}
               onChange={handleChange}
-
-              autoComplete="on"
             />
           </div>
         </div>
@@ -204,8 +216,6 @@ export default function RegisterPage() {
               name="email"
               value={customerData.email}
               onChange={handleChange}
-
-              autoComplete="on"
               placeholder='example@gmail.com'
             />
           </div>
@@ -216,8 +226,6 @@ export default function RegisterPage() {
               name="password"
               value={customerData.password}
               onChange={handleChange}
-
-              autoComplete="on"
             />
           </div>
         </div>
@@ -229,8 +237,6 @@ export default function RegisterPage() {
               name="identificationType"
               value={customerData.identificationType.toUpperCase()}
               onChange={handleChange}
-
-              autoComplete="on"
               placeholder={t("register.identification_type_placeholder")}
             />
           </div>
@@ -241,8 +247,6 @@ export default function RegisterPage() {
               name="identificationNumber"
               value={customerData.identificationNumber}
               onChange={handleChange}
-
-              autoComplete="on"
             />
           </div>
         </div>
@@ -255,7 +259,6 @@ export default function RegisterPage() {
                 name="phone"
                 value={phoneNumber}
                 onChange={handleChange}
-                autoComplete="on"
                 placeholder={t("register.phone_placeholder")}
                 className="phone-input"
               />
@@ -285,7 +288,6 @@ export default function RegisterPage() {
             name="birthday"
             value={customerData.birthday}
             onChange={handleChange}
-            autoComplete="on"
           />
 
         </div>
@@ -295,8 +297,6 @@ export default function RegisterPage() {
             <select
               name="country"
               value={customerData.country}
-
-              autoComplete="on"
               onChange={handleChange}
             >
               <option value="">{t("register.choose_country")}</option>
@@ -313,8 +313,6 @@ export default function RegisterPage() {
               name="city"
               value={customerData.city}
               onChange={handleChange}
-
-              autoComplete="on"
               placeholder={t("register.city_placeholder")}
             />
           </div>
@@ -326,8 +324,6 @@ export default function RegisterPage() {
               name="province"
               value={customerData.province}
               onChange={handleChange}
-
-              autoComplete="on"
               placeholder={t("register.province_placeholder")}
             />
           </div>
@@ -340,8 +336,6 @@ export default function RegisterPage() {
               name="address1"
               value={customerData.address1}
               onChange={handleChange}
-
-              autoComplete="on"
             />
           </div>
 
@@ -352,7 +346,6 @@ export default function RegisterPage() {
               name="zip"
               value={customerData.zip}
               onChange={handleChange}
-              autoComplete="on"
               placeholder='Ej: 131011, 10001, 1000, etc.'
             />
           </div>
@@ -370,7 +363,7 @@ export default function RegisterPage() {
             <span>{t("register.accepts_marketing")}</span>
           </label>
         </div>
-        <button className='btn-secondary' type="submit"><span>{t("register.button")}</span></button>
+        <button className='btn-secondary' type="submit" disabled={loading}><span>{t("register.button")}</span></button>
       </fetcher.Form>
     </section>
   );
