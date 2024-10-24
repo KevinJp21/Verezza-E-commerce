@@ -247,6 +247,12 @@
     flex-direction: column;
 }
 
+.SearchResults .searhResultWrapper .resultDetails .ProductPriceDiscount{
+    text-decoration: line-through;
+    color: var(--olga-red-primary);
+    margin-right: 5px;
+}
+
 @media screen and (min-width: 960px) {
     .NavBar1-2 {
         display: flex;

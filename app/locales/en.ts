@@ -144,9 +144,11 @@ export default {
   },
   "modalCart":{
     "size_title": "Size",
+    "description": "Description",
     "size_warning": "Select a size",
     "add_to_cart": "Add to cart",
-    "buy_now": "Shop now"
+    "buy_now": "Shop now",
+
   },
   "products":{
     "products_seo":{
@@ -160,5 +162,12 @@ export default {
     "products_price_asc": "PRICE: LOW TO HIGH",
     "products_price_desc": "PRICE: HIGH TO LOW",
     "buy_now": "Shop now"
-  }
+  },
+  "productHandle": {
+    "size_title": "Size",
+    "description": "Description",
+    "size_warning": "Select a size",
+    "add_to_cart": "Add to cart",
+    "buy_now": "Shop now"
+}
 }

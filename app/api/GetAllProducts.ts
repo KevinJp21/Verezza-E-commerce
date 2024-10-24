@@ -84,7 +84,7 @@ export async function getAllProducts(): Promise<Product[]> {
             images(first: 5) {
               edges {
                 node {
-                  src
+                  url
                   altText
                 }
               }

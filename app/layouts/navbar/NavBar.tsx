@@ -285,7 +285,7 @@ export default function NavBar() {
                             <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(product)}>
 
                                 <picture className='ResultImg'>
-                                    <img src={product.images.edges[0].node.src} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
+                                    <img src={product.images.edges[0].node.url} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
                                 </picture>
                                 <div className="resultDetails" >
                                     <span>{product.title}</span>

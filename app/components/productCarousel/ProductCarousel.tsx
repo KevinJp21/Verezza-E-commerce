@@ -3,7 +3,7 @@ import './ProductCarousel.css';
 import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 
 interface ProductCarouselProps {
-  productImages: Array<{ src: string; altText: string }>;
+  productImages: Array<{ url: string; altText: string }>;
   productId: string | null;
   productName: string;
 }
@@ -25,7 +25,7 @@ export default function ProductCarousel({ productImages, productId, productName}
       {productImages.map((image, index) => (
         <div key={`${productId}-${index}`}>
           <img
-          src={image.src}
+          src={image.url}
           alt={image.altText || (productName as string) || ''}
           draggable="false"
           className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}

@@ -13,7 +13,7 @@ export interface Product {
     images: {
       edges: Array<{
         node: {
-          src: string;
+          url: string;
           altText: string | null;
         };
       }>;

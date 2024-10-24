@@ -143,6 +143,7 @@ export default {
     },
     "modalCart": {
         "size_title": "Talla",
+        "description": "Descripción",
         "size_warning": "Selecciona una talla",
         "add_to_cart": "Agregar al carrito",
         "buy_now": "Comprar ahora"
@@ -158,6 +159,13 @@ export default {
         "products_oldest": "MÁS ANTIGUOS",
         "products_price_asc": "PRECIO: MENOR A MAYOR",
         "products_price_desc": "PRECIO: MAYOR A MENOR",
+        "buy_now": "Comprar ahora"
+    },
+    "productHandle": {
+        "size_title": "Talla",
+        "description": "Descripción",
+        "size_warning": "Selecciona una talla",
+        "add_to_cart": "Agregar al carrito",
         "buy_now": "Comprar ahora"
     }
 }

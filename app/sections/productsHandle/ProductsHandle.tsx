@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import ProductCarousel from '~/components/productCarousel/ProductCarousel';
 import { useFetcher } from '@remix-run/react';
 import { useCart } from '~/hooks/Cart';
+import { Product } from '~/utils/TypeProducts';
 import './ProductsHandle.css'
 import { t } from 'i18next';
 
-export default function ProductsHandle({ products }: any) {
+export default function ProductsHandle({ products }: { products: Product }) {
     const [selectedCurrency, setSelectedCurrency] = useState<string>('COP');
     const [selectedSize, setSelectedSize] = useState<string>('');
     const [isSizeSelected, setIsSizeSelected] = useState<boolean>(false);
@@ -45,7 +46,7 @@ export default function ProductsHandle({ products }: any) {
             }
 
             const formData = new FormData();
-            formData.append('merchandiseId', selectedVariant.id);
+            formData.append('merchandiseId', selectedVariant.id as string);
             formData.append('quantity', selectedQuantity.toString());
 
             fetcher.submit(formData, {
@@ -75,7 +76,7 @@ export default function ProductsHandle({ products }: any) {
     
             // Crear formData para agregar el producto al carrito
             const formData = new FormData();
-            formData.append('merchandiseId', selectedVariant.id);
+            formData.append('merchandiseId', selectedVariant.id as string);
             formData.append('quantity', selectedQuantity.toString());
     
             // Usar fetcher.submit para agregar el producto al carrito
@@ -105,7 +106,7 @@ export default function ProductsHandle({ products }: any) {
     };
 
     const handleScroll = () => {
-        const element = document.getElementById('ModalCartProductInfo');
+        const element = document.getElementById('ProductHandleProductInfo');
         element?.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -141,7 +142,7 @@ export default function ProductsHandle({ products }: any) {
                         <button className='btn-primary' onClick={handleScroll}><span></span></button>
                     </div>
                 </div>
-                <div className="HandleProductDetailsWrapper" id='ModalCartProductInfo'>
+                <div className="HandleProductDetailsWrapper" id='ProductHandleProductInfo'>
                     <div className="HandleProductDetails">
                         <div className='HandleProductDetailsHeader'>
                             <h3>{products.title}</h3>
@@ -149,7 +150,7 @@ export default function ProductsHandle({ products }: any) {
                         </div>
                         {products.description &&
                             <div className='productDescription'>
-                                <h4>Description</h4>
+                                <h4>{t('productHandle.description')}</h4>
                                 <p>{products.description}</p>
                             </div>
                         }
@@ -157,9 +158,9 @@ export default function ProductsHandle({ products }: any) {
                             {products.variants.nodes[0].compareAtPrice && <span className='productDiscountPrice'>{parseFloat(products.variants.nodes[0].compareAtPrice.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>}
                             {parseFloat(products.variants.nodes[0].price.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                         </p>
-                        <div className='ModalCartProductSize'>
+                        <div className='ProductHandleProductSize'>
                             <div className='size-header'>
-                                <span>{t('modalCart.size_title')}</span>
+                                <span>{t('productHandle.size_title')}</span>
                             </div>
                             <div className='size-buttons'>
                                 {products.variants.nodes.map((size: any) => (
@@ -173,7 +174,7 @@ export default function ProductsHandle({ products }: any) {
                                     </button>
                                 ))}
                             </div>
-                            {isSizeSelected && <span className='size-warning'>{t('modalCart.size_warning')}</span>}
+                            {isSizeSelected && <span className='size-warning'>{t('productHandle.size_warning')}</span>}
                         </div>
                         <div className='HandleProductQuantity'>
                             <button className='quantity-button btn-primary' onClick={() => handleQuantityClick(selectedQuantity - 1)}>
@@ -185,8 +186,8 @@ export default function ProductsHandle({ products }: any) {
                             </button>
                         </div>
                         <footer className='ProductsHandleFooter'>
-                            <button className='btn-secondary' onClick={handleAddToBag} disabled={loading || isLoading}><span>{t('modalCart.add_to_cart')}</span></button>
-                            {<button className='btn-secondary' onClick={handleBuyNow}><span>{t('modalCart.buy_now')}</span></button>}
+                            <button className='btn-secondary' onClick={handleAddToBag} disabled={loading || isLoading}><span>{t('productHandle.add_to_cart')}</span></button>
+                            {<button className='btn-secondary' onClick={handleBuyNow}><span>{t('productHandle.buy_now')}</span></button>}
                         </footer>
                     </div>
                 </div>

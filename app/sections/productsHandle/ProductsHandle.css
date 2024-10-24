@@ -96,27 +96,27 @@
 }
 
 
-.HandleProductDetails .ModalCartProductSize{
+.HandleProductDetails .ProductHandleProductSize{
     background-color: var(--olga-white-primary);
     padding: 20px;
     border-radius: 15px;
 }
 
-.HandleProductDetails .ModalCartProductSize .size-header {
+.HandleProductDetails .ProductHandleProductSize .size-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
 }
 
-.HandleProductDetails .ModalCartProductSize .size-header span {
+.HandleProductDetails .ProductHandleProductSize .size-header span {
     color: var(--olga-black-primary);
     font-weight: 600;
     font-size: 0.875rem;
     text-transform: uppercase;
 }
 
-.HandleProductDetails .ModalCartProductSize .size-buttons {
+.HandleProductDetails .ProductHandleProductSize .size-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -124,14 +124,14 @@
     position: relative;
 }
 
-.HandleProductDetails .ModalCartProductSize .size-warning{
+.HandleProductDetails .ProductHandleProductSize .size-warning{
     color: var(--olga-red-primary);
     font-size: 0.875rem;
     font-weight: 600;
 
 }
 
-.HandleProductDetails .ModalCartProductSize .size-button {
+.HandleProductDetails .ProductHandleProductSize .size-button {
     flex: 1;
     font-size: 0.875rem;
     font-weight: normal;
@@ -145,11 +145,11 @@
     text-transform: uppercase;
 }
 
-.HandleProductDetails .ModalCartProductSize .size-button.selected {
+.HandleProductDetails .ProductHandleProductSize .size-button.selected {
     border-color: var(--olga-black-primary);
 }
 
-.HandleProductDetails .ModalCartProductSize .size-button[disabled]:hover{
+.HandleProductDetails .ProductHandleProductSize .size-button[disabled]:hover{
     border-color: var(--olga-red-primary);
     opacity: 0.5;
     cursor: not-allowed;

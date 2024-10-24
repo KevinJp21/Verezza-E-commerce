@@ -1,4 +1,3 @@
-import { Link } from "@remix-run/react";
 import { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
@@ -13,7 +12,7 @@ export default function NotFound() {
     <div>
       <h1>404 - Página no encontrada</h1>
       <p>Lo sentimos, la página que estás buscando no existe.</p>
-      <Link to="/">Volver a la página principal</Link>
+      <a href="/">Volver a la página principal</a>
     </div>
   );
 }

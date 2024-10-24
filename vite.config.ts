@@ -18,6 +18,7 @@ export default defineConfig({
           route("/api/cart/updateCartItem", "routes/api/cart/updateCartItem.ts");
           route("/api/cart/removeCartItem", "routes/api/cart/removeCartItem.ts");
           route("/api/getAvailableCountries", "routes/api/getAvailableCountries.ts");
+          route("/api/products/getProductByHandle/:handle", "routes/api/products/getProductByHandle.ts");
         });
       },
       future: {

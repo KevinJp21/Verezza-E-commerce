@@ -4,48 +4,55 @@ import { useProductContext } from "~/hooks/ProductContext";
 import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
 import ProductsHandle from "~/sections/productsHandle/ProductsHandle";
 import { MetaFunction } from "@remix-run/react";
-import { LinksFunction } from "@remix-run/node";
 import { Product } from "~/utils/TypeProducts";
-import { useLoaderData } from "@remix-run/react";
-import { json, LoaderFunction } from "@remix-run/node";
-import { getProductByHandle } from "~/api/getProductByHandle";
+import { LoaderFunction, redirect } from "@remix-run/node";
+import axios from "axios";
 
-export let loader: LoaderFunction = async ({ params }) => {
+export let loader: LoaderFunction = async ({ params, request }) => {
+  const url = new URL(request.url);
+  console.log(url);
+  
+  const countryCode = url.searchParams.get('countryCode') || 'US';
+  const languageCode = url.searchParams.get('languageCode') || 'EN';
     try {
-        const product = await getProductByHandle(params.handle as string);
-        
+        const response = await axios.get(`${url.origin}/api/products/getProductByHandle/${params.handle}?countryCode=${countryCode}&languageCode=${languageCode}`);
+        if(response.status !== 200){
+          throw new Response("Producto no encontrado", { status: 404 });
+        }
+        const product = await response.data;
+        console.log("product", product);
         if (!product) {
             console.log(`No se encontró ningún producto con el handle: ${params.handle}`);
             throw new Response("Producto no encontrado", { status: 404 });
         }
         
-        return json({ product });
+        return { product };
     } catch (error) {
         console.error('Error al obtener el producto:', error);
-        throw new Response("Error al obtener el producto", { status: 500 });
+        return redirect("/pagina-no-encontrada");
     }
 };
 
 // Esta es la función `meta` por defecto si no se encuentra el producto
 export const meta: MetaFunction = ({ data }) => {
     const { product } = data as { product: Product };
-    return [
-        { title: product ? `${product.title} | Olga Lucia Cortes` : "Olga Lucia Cortes | Productos" },
-        { name: "description", content: `${product?.description}` },
+        return [
+        { title: `${product.title} | Olga Lucia Cortes` },
+        { name: "description", content: `${product.description || "Producto no encontrado"}` },
         { name: "og:site_name", content: "Olga Lucia Cortes" },
-        { name: "og:description", content: `${product?.description}` },
-        { name: "og:url", content: `https://olga-lucia-cortes.vercel.app/products/${product?.handle}` },
-        { name: "og:title", content: `${product?.title}` },
-        { name: "og:type", content: "product" },
-        { name: "og:image", content: `${product?.images.edges[0].node.src}` },
+        { name: "og:description", content: `${product?.description || "Producto no encontrado"}` },
+        { name: "og:url", content: `https://olga-lucia-cortes.vercel.app/products/${product?.handle || ""}` },
+        { name: "og:title", content: `${product?.title || "Producto no encontrado"}`},
+        { name: "og:type", content: "product"},
+        { name: "og:image", content:`${product.images.edges[0].node.url}` },
         { name: "og:image:width", content: "1440" },
         { name: "og:image:height", content: "2160" },
-        { name: "og:price:amount", content: `${product?.priceRange.minVariantPrice.amount}` },
-        { name: "og:price:currency", content: `${product?.priceRange.minVariantPrice.currencyCode}` },
+        { name: "og:price:amount", content: `${product.priceRange.minVariantPrice.amount}` },
+        { name: "og:price:currency", content: `${product.priceRange.minVariantPrice.currencyCode}` },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: `${product?.images.edges[0].node.src}` },
-        { name: "twitter:title", content: `${product?.title}` },
-        { name: "twitter:description", content: `${product?.description}` }
+        { name: "twitter:image", content: `${product.images.edges[0].node.url}` },
+        { name: "twitter:title", content: `${product.title || ""}` },
+        { name: "twitter:description", content: `${product.description || ""}` }
     ];
 };
 
