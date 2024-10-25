@@ -20,7 +20,6 @@ export let loader: LoaderFunction = async ({ params, request }) => {
           throw new Response("Producto no encontrado", { status: 404 });
         }
         const product = await response.data;
-        console.log("product", product);
         if (!product) {
             console.log(`No se encontró ningún producto con el handle: ${params.handle}`);
             throw new Response("Producto no encontrado", { status: 404 });

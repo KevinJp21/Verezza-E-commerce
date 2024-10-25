@@ -96,6 +96,7 @@ export default {
         "name": "Nombre",
         "last_name": "Apellido",
         "email": "Correo",
+        "error_email": "Ingresa un correo válido",
         "identification_type": "Tipo de Identificación",
         "identification_type_placeholder": "Ej: CC (Colombia), DNI (Argentina), RUT (Chile), INE (México)",
         "identification_number": "Número de Identificación",

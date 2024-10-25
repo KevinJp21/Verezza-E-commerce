@@ -79,6 +79,7 @@ export default {
       "firstName": "Enter a valid name",
       "lastName": "Enter a valid last name",
       "email": "Enter a valid email",
+      "error_email": "Enter a valid email",
       "emailTaken": "The email has already been taken",
       "password": "The password must be at least 8 characters long",
       "identificationType": "Enter an identification type",
