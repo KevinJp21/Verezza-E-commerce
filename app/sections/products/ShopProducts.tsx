@@ -240,10 +240,10 @@ export default function ShopProducts() {
                 <div className="ShopHeaderContent">
                     <p className="ProductsQuantity">{TotalProducts} {t('products.products_quantity')}</p>
                     <div className="ShopHeaderFiltersItem">
-                        <p>{t('products.products_filters')}</p>
-                        <span>|</span>
-                        <select
-                            className="ShopHeaderFiltersItemSelect"
+                        <p>{t('products.products_filters')} :</p>
+                        <div className="ShopHeaderFiltersItemSelectContainer">
+                            <select
+                                className="ShopHeaderFiltersItemSelect"
                             role="listbox"
                             onChange={(e) => handleCategoryFilter(e.target.value)}
                             value={categoryFilter}
@@ -267,8 +267,9 @@ export default function ShopProducts() {
                                 <option key={option.value} value={option.value}>
                                     {option.label.toUpperCase()}
                                 </option>
-                            ))}
-                        </select>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                 </div>
             </header>

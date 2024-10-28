@@ -144,22 +144,22 @@ export default function NavBar() {
                                 <a href="/products">{t("navbar.shop")}</a>
                             </li>
                             <li>
-                                <a href="">{t("navbar.blouses")}</a>
+                                <a href={`/products?category=${t("products.blouses")}`}>{t("navbar.blouses")}</a>
                             </li>
                             <li>
-                                <a href="">{t("navbar.dresses")}</a>
+                                <a href={`/products?category=${t("products.dresses")}`}>{t("navbar.dresses")}</a>
                             </li>
                             <li>
-                                <a href="">{t("navbar.sets")}</a>
+                                <a href={`/products?category=${t("products.sets")}`}>{t("navbar.sets")}</a>
                             </li>
                             <li>
-                                <a href="">{t("navbar.complements")}</a>
+                                <a href={`/products?category=${t("products.complements")}`}>{t("navbar.complements")}</a>
                             </li>
                             <li>
-                                <a href="">{t("navbar.atelier")}</a>
+                                <a href="/atelier">{t("navbar.atelier")}</a>
                             </li>
                             <li>
-                                <a href="" className='strongLink'>{t("navbar.our_brand")}</a>
+                                <a href="/our-brand" className='strongLink'>{t("navbar.our_brand")}</a>
                             </li>
                         </ul>
                     </div>
@@ -203,31 +203,31 @@ export default function NavBar() {
                                     <a href="/products">{t("sidebar.shop")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.blouses")}</a>
+                                    <a href={`/products?category=${t("products.blouses")}`}>{t("sidebar.blouses")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.jackets")}</a>
+                                    <a href={`/products?category=${t("products.jackets")}`}>{t("sidebar.jackets")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.pants")}</a>
+                                    <a href={`/products?category=${t("products.pants")}`}>{t("sidebar.pants")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.dresses")}</a>
+                                    <a href={`/products?category=${t("products.dresses")}`}>{t("sidebar.dresses")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.sets")}</a>
+                                    <a href={`/products?category=${t("products.sets")}`}>{t("sidebar.sets")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.skirts")}</a>
+                                    <a href={`/products?category=${t("products.skirts")}`}>{t("sidebar.skirts")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.complements")}</a>
+                                    <a href={`/products?category=${t("products.complements")}`}>{t("sidebar.complements")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.atelier")}</a>
+                                    <a href="/atelier">{t("sidebar.atelier")}</a>
                                 </li>
                                 <li>
-                                    <a href="" className='strongLink'>{t("sidebar.our_brand")}</a>
+                                    <a href="/our-brand" className='strongLink'>{t("sidebar.our_brand")}</a>
                                 </li>
                             </ul>
                         </div>

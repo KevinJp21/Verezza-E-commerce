@@ -8,7 +8,7 @@
 
 .ShopHeaderContainer{
     width: 100%;
-    height: 60px;
+    height: auto;
     background-color: var(--olga-white-primary);
     padding: 0 16px;
 }
@@ -33,9 +33,10 @@
 .ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    column-gap: 4px;
 }
 
 .ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem p{
@@ -197,6 +198,18 @@
   @media screen and (max-width: 450px) {
     .ProductContent p{
         font-size: .875rem;
+      }
+
+      .ShopHeaderContainer .ShopHeaderContent {
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+      }
+
+      .ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem {
+        flex-direction: column;
+        align-items: start;
+        margin-top: 5px;
       }
     
   }
