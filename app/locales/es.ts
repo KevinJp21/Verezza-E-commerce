@@ -176,6 +176,9 @@ export default {
         "products_price_desc": "PRECIO: MAYOR A MENOR",
         "products_name_asc": "NOMBRE: A - Z",
         "products_name_desc": "NOMBRE: Z - A",
+        "all_products": "Todos los productos",
+        "dresses": "vestidos",
+        "pants": "pantalones",
         "buy_now": "Comprar ahora"
     },
     "productHandle": {

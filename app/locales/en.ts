@@ -178,6 +178,9 @@ export default {
     "products_price_desc": "PRICE: HIGH TO LOW",
     "products_name_asc": "NAME: A - Z",
     "products_name_desc": "NAME: Z - A",
+    "all_products": "All products",
+    "dresses": "dresses",
+    "pants": "pants",
     "buy_now": "Shop now"
   },
   "productHandle": {

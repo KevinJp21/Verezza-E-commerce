@@ -89,14 +89,15 @@ export default function Footer() {
     setIsSelectLanguageOpen(false);
     localStorage.setItem('selectedLanguage', language);
 
-
     // Cambiar el idioma de i18next
     const newLang = language === 'Español' ? 'es' : 'en';
     i18n.changeLanguage(newLang);
 
     // Actualizar el atributo lang del HTML
     document.documentElement.lang = newLang;
-    window.location.reload();
+
+    // Recargar la página sin parámetros
+    window.location.href = window.location.pathname;
   }
 
   return (

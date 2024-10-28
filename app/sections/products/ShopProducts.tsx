@@ -7,6 +7,7 @@ import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
 import { Pagination } from "@mui/material";
 import "./ShopProducts.css";
 import { useSearchParams, useNavigate } from "@remix-run/react";
+import { Product } from "~/utils/TypeProducts";
 
 export default function ShopProducts() {
     const { t } = useTranslation();
@@ -34,10 +35,31 @@ export default function ShopProducts() {
     const { products } = useProductContext();
     const TotalProducts = products.length;
 
+    // URL params
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const sortBy = searchParams.get('sort_by') || 'created-descending';
+    const categoryFilter = searchParams.get('category') || 'all';
+
+    // Opciones de filtrado y ordenamiento
+    const categoryOptions = [
+        { value: 'all', label: t('products.all_products') },
+        { value: t('products.dresses'), label: t('products.dresses') },
+        { value: t('products.pants'), label: t('products.pants') }
+    ];
+
+
+    const sortOptions = [
+        { value: 'created-descending', label: t('products.products_default') },
+        { value: 'created-ascending', label: t('products.products_oldest') },
+        { value: 'price-ascending', label: t('products.products_price_asc') },
+        { value: 'price-descending', label: t('products.products_price_desc') },
+        { value: 'title-ascending', label: t('products.products_name_asc') },
+        { value: 'title-descending', label: t('products.products_name_desc') },
+    ];
+
+
     //Ordenar productos por los mas nuevos
-
-
-
     useEffect(() => {
         if (products.length > 0) {
             setLoading(false);
@@ -120,32 +142,52 @@ export default function ShopProducts() {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+    // Manejadores de filtros
+    const handleCategoryFilter = (value: string) => {
+        const newParams = new URLSearchParams(searchParams);
+        if (value === 'all') {
+            newParams.delete('category');
+        } else {
+            newParams.set('category', value);
+        }
+        setCurrentPage(1);
+        newParams.set('page', '1');
+        navigate(`?${newParams.toString()}`, { replace: true });
+    };
 
-    //Products filters
-    const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
-    const sortBy = searchParams.get('sort_by') || 'created-descending';
-    
-    // Definir las opciones de ordenamiento con valores compatibles con URLs
-    const sortOptions = [
-        { value: 'created-descending', label: t('products.products_default') },
-        { value: 'created-ascending', label: t('products.products_oldest') },
-        { value: 'price-ascending', label: t('products.products_price_asc') },
-        { value: 'price-descending', label: t('products.products_price_desc') },
-        { value: 'title-ascending', label: t('products.products_name_asc') },
-        { value: 'title-descending', label: t('products.products_name_desc') },
-    ];
-
-    // Actualizar el manejador de ordenamiento
     const handleSortBy = (value: string) => {
         const newParams = new URLSearchParams(searchParams);
         newParams.set('sort_by', value);
         navigate(`?${newParams.toString()}`, { replace: true });
     };
 
-    // Actualizar la función de ordenamiento
-    const sortProducts = (products: any[]) => {
-        return [...products].sort((a, b) => {
+    const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set('page', value.toString());
+        
+        // Primero realizamos el scroll suave
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Esperamos a que termine la animación antes de actualizar la URL
+        setTimeout(() => {
+            navigate(`?${newParams.toString()}`, { replace: true });
+            setCurrentPage(value);
+        }, 500);
+    };
+
+    // Función de filtrado y ordenamiento
+    const filterAndSortProducts = (products: any[]) => {
+        let filteredProducts = [...products];
+
+        // Aplicar filtro de categoría
+        if (categoryFilter !== 'all') {
+            filteredProducts = filteredProducts.filter(
+                (product: Product) => product.productType.toLowerCase() === categoryFilter.toLowerCase()
+            );
+        }
+
+        // Aplicar ordenamiento
+        return filteredProducts.sort((a, b) => {
             switch (sortBy) {
                 case 'created-ascending':
                     return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
@@ -165,20 +207,30 @@ export default function ShopProducts() {
         });
     };
 
+    // Effects
+    useEffect(() => {
+        if (products.length > 0) {
+            setLoading(false);
+        }
+    }, [products]);
+
+    useEffect(() => {
+        const page = parseInt(searchParams.get('page') || '1');
+        setCurrentPage(page);
+    }, [searchParams]);
+
+
     //Cargar loading spinner al iniciar
     if (isLoading) {
         return <LoadingSpinner isLoading={isLoading} />;
     }
 
-    // Modificar la lógica de renderizado para incluir paginación
+    // Aplicar filtros y paginación
+    const filteredAndSortedProducts = filterAndSortProducts(products);
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = sortProducts(products).slice(indexOfFirstProduct, indexOfLastProduct);
+    const currentProducts = filteredAndSortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-    const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-        setCurrentPage(value);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
 
     return (
         <section className="ShopProductsContainer">
@@ -188,17 +240,30 @@ export default function ShopProducts() {
                     <div className="ShopHeaderFiltersItem">
                         <p>{t('products.products_filters')}</p>
                         <span>|</span>
-                        <select 
-                            className="ShopHeaderFiltersItemSelect" 
-                            role="listbox" 
-                            id="products-sort-by" 
-                            title={t('products.products_sort_by')} 
+                        <select
+                            className="ShopHeaderFiltersItemSelect"
+                            role="listbox"
+                            onChange={(e) => handleCategoryFilter(e.target.value)}
+                            value={categoryFilter}
+                        >
+                            {categoryOptions.map(option => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label.toUpperCase()}
+                                </option>
+                            ))}
+                        </select>
+                        <span>|</span>
+                        <select
+                            className="ShopHeaderFiltersItemSelect"
+                            role="listbox"
+                            id="products-sort-by"
+                            title={t('products.products_sort_by')}
                             onChange={(e) => handleSortBy(e.target.value)}
                             value={sortBy}
                         >
                             {sortOptions.map(option => (
                                 <option key={option.value} value={option.value}>
-                                    {option.label}
+                                    {option.label.toUpperCase()}
                                 </option>
                             ))}
                         </select>
@@ -219,7 +284,7 @@ export default function ShopProducts() {
 
                         <div className="ProductDetails">
                             <div className="ProductDetailsHeader">
-                                <a href={`/category/${product.productType.toLowerCase().replace(/\s+/g, '-')}`}>{product.productType}</a>
+                                <a href={`/products?category=${product.productType.toLowerCase().replace(/\s+/g, '-')}`}>{product.productType}</a>
                             </div>
                             <div className="ProductContent">
                                 <p>{product.title}</p>
@@ -256,7 +321,7 @@ export default function ShopProducts() {
                 margin: '2rem 0'
             }}>
                 <Pagination
-                    count={Math.ceil(products.length / productsPerPage)}
+                    count={Math.ceil(filteredAndSortedProducts.length / productsPerPage)}
                     page={currentPage}
                     onChange={handlePageChange}
                     color="primary"
