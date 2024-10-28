@@ -6,6 +6,7 @@ import ModalCart from "~/components/modalCart/ModalCart";
 import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
 import { Pagination } from "@mui/material";
 import "./ShopProducts.css";
+import { useSearchParams, useNavigate } from "@remix-run/react";
 
 export default function ShopProducts() {
     const { t } = useTranslation();
@@ -121,22 +122,44 @@ export default function ShopProducts() {
     };
 
     //Products filters
-    const [sortBy, setSortBy] = useState<string>('0');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const sortBy = searchParams.get('sort_by') || 'created-descending';
+    
+    // Definir las opciones de ordenamiento con valores compatibles con URLs
+    const sortOptions = [
+        { value: 'created-descending', label: t('products.products_default') },
+        { value: 'created-ascending', label: t('products.products_oldest') },
+        { value: 'price-ascending', label: t('products.products_price_asc') },
+        { value: 'price-descending', label: t('products.products_price_desc') },
+        { value: 'title-ascending', label: t('products.products_name_asc') },
+        { value: 'title-descending', label: t('products.products_name_desc') },
+    ];
 
+    // Actualizar el manejador de ordenamiento
     const handleSortBy = (value: string) => {
-        setSortBy(value);
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set('sort_by', value);
+        navigate(`?${newParams.toString()}`, { replace: true });
     };
 
+    // Actualizar la función de ordenamiento
     const sortProducts = (products: any[]) => {
         return [...products].sort((a, b) => {
             switch (sortBy) {
-                case '1': // Más antiguos
+                case 'created-ascending':
                     return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-                case '2': // Precio ascendente
+                case 'created-descending':
+                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                case 'price-ascending':
                     return a.variants.nodes[0].price.amount - b.variants.nodes[0].price.amount;
-                case '3': // Precio descendente
+                case 'price-descending':
                     return b.variants.nodes[0].price.amount - a.variants.nodes[0].price.amount;
-                default: // Por defecto, no se ordena
+                case 'title-ascending':
+                    return a.title.localeCompare(b.title);
+                case 'title-descending':
+                    return b.title.localeCompare(a.title);
+                default:
                     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
             }
         });
@@ -165,11 +188,19 @@ export default function ShopProducts() {
                     <div className="ShopHeaderFiltersItem">
                         <p>{t('products.products_filters')}</p>
                         <span>|</span>
-                        <select className="ShopHeaderFiltersItemSelect" role="listbox" id="products-sort-by" title={t('products.products_sort_by')} onChange={(e) => handleSortBy(e.target.value)}>
-                            <option value="0">{t('products.products_default')}</option>
-                            <option value="1">{t('products.products_oldest')}</option>
-                            <option value="2">{t('products.products_price_asc')}</option>
-                            <option value="3">{t('products.products_price_desc')}</option>
+                        <select 
+                            className="ShopHeaderFiltersItemSelect" 
+                            role="listbox" 
+                            id="products-sort-by" 
+                            title={t('products.products_sort_by')} 
+                            onChange={(e) => handleSortBy(e.target.value)}
+                            value={sortBy}
+                        >
+                            {sortOptions.map(option => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
