@@ -291,6 +291,7 @@
     .NavbarListWrapper>li a:hover {
         color: var(--olga-black-secondary);
     }
+
 }
 
 
@@ -306,6 +307,9 @@
         display: none;
     }
 
+    .NavBar1-3 .CustomerContainer .customerDropdownContainer{
+        display: none;
+    }
 
     .NavBarMobileContainer {
         position: fixed;
@@ -337,6 +341,7 @@
 
     .NavBarMobileContainer ul li {
         padding-inline: 10px;
+        position: relative;
     }
 
     .NavBarMobileContainer ul li a {

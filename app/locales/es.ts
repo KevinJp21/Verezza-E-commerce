@@ -174,6 +174,8 @@ export default {
         "products_oldest": "MÁS ANTIGUOS",
         "products_price_asc": "PRECIO: MENOR A MAYOR",
         "products_price_desc": "PRECIO: MAYOR A MENOR",
+        "products_name_asc": "NOMBRE: A - Z",
+        "products_name_desc": "NOMBRE: Z - A",
         "buy_now": "Comprar ahora"
     },
     "productHandle": {

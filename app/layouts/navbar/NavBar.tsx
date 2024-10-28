@@ -261,8 +261,11 @@ export default function NavBar() {
                             {getTotalQuantity() > 0 && <span className="cart-count">{getTotalQuantity()}</span>}
                         </button>
                     </li>
-                    <li>
-                        <a href="/account/auth/login" aria-label="Usuario">{userIcon()}</a>
+                    <li className='NavBarMobileItem dropdown'>
+                        <button aria-label="Usuario" onClick={toggleDropdown}>
+                            {userIcon()}
+                        </button>
+                        <CustomerDropdown isDropdownOpen={isDropdownOpen} />
                     </li>
                     <li>
                         <button onClick={toggleSearch} aria-label="Buscar">{searchIcon()}</button>
