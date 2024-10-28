@@ -43,12 +43,12 @@ export default function LoginRecover() {
 
         // Validación del email
         if (!loginRecoverData.email.trim()) {
-            setErrors('El correo electrónico es requerido');
+            setErrors(t('loginRecover.emailRequired'));
             return;
         }
 
         if (!validateEmail(loginRecoverData.email)) {
-            setErrors('Por favor ingresa un correo electrónico válido');
+            setErrors(t('loginRecover.invalidEmail'));
             return;
         }
 
@@ -65,32 +65,32 @@ export default function LoginRecover() {
     return (
         <section className='ContainerLogin'>
             <fetcher.Form onSubmit={handleSubmit} className='FormLogin'>
-                <h1>Restablecer tu contraseña</h1>
-                <p className='LoginRecoverText'>Te enviaremos un correo electrónico para restablecer tu contraseña</p>
+                <h1>{t('loginRecover.title')}</h1>
+                <p className='LoginRecoverText'>{t('loginRecover.text')}</p>
                 {errors && <p className='ErrorMsg'>{errors}</p>}
                 {fetcher.data && (
                     <p className={`${fetcher.data.errors ? 'ErrorMsg' : fetcher.data.error ? 'ErrorMsg' : 'SuccessMsg'}`}>
                         {fetcher.data.errors?.[0]?.code === 'UNIDENTIFIED_CUSTOMER'
-                            ? "Correo no registrado"
+                            ? t('loginRecover.unidentifiedCustomer')
                             : fetcher.data.message === 'EMAIL_SENT_SUCCESSFULLY'
-                            ? "Se ha enviado un correo para restablecer tu contraseña"
-                            : "Ha ocurrido un error, por favor intente más tarde"}
+                            ? t('loginRecover.emailSentSuccessfully')
+                            : t('loginRecover.error')}
                     </p>
                 )}
                 <div className='InputContainer'>
-                    <label>Correo</label>
+                    <label>{t('loginRecover.emailLabel')}</label>
                     <input
                         type="email"
                         name="email"
                         value={loginRecoverData.email}
                         onChange={handleChange}
-                        placeholder='example@gmail.com'
+                        placeholder={t('loginRecover.emailPlaceholder')}
                     />
                 </div>
                 <div className='LoginLink'>
-                    <a href='/account/auth/login'>¿Ya tienes una cuenta? Inicia sesión</a>
+                    <a href='/account/auth/login'>{t('loginRecover.alreadyHaveAccount')}</a>
                 </div>
-                <button className='btn-secondary' type="submit"><span>Restablecer contraseña</span></button>
+                <button className='btn-secondary' type="submit"><span>{t('loginRecover.button')}</span></button>
             </fetcher.Form>
             {loading && <LoadingSpinner isLoading={loading}/>}
         </section>

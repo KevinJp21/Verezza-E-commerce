@@ -69,6 +69,19 @@ export default {
     "recoveryPassword": "Forgot your password?",
     "button": "Login"
   },
+  "loginRecover": {
+    "title": "Reset your password",
+    "text": "We will send you an email to reset your password",
+    "emailLabel": "Email",
+    "emailPlaceholder": "example@example.com",
+    "button": "Reset password",
+    "alreadyHaveAccount": "Already have an account? Login",
+    "emailRequired": "The email is required",
+    "unidentifiedCustomer": "Email not registered",
+    "invalidEmail": "Please enter a valid email",
+    "emailSentSuccessfully": "We have sent you an email to reset your password",
+    "error": "An error has occurred, please try again later"
+    },
   "register":{
     "seo":{
       "title": "Olga Lucía Cortés | Create your account",

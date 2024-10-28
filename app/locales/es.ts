@@ -69,6 +69,19 @@ export default {
         "recoveryPassword": "¿Olvidaste tu contraseña?",
         "button": "Iniciar sesión"
     },
+    "loginRecover": {
+        "title": "Restablecer tu contraseña",
+        "text": "Te enviaremos un correo electrónico para restablecer tu contraseña",
+        "emailLabel": "Correo electrónico",
+        "emailPlaceholder": "ejemplo@ejemplo.com",
+        "button": "Restablecer contraseña",
+        "alreadyHaveAccount": "¿Ya tienes una cuenta? Inicia sesión",
+        "emailRequired": "El correo electrónico es requerido",
+        "unidentifiedCustomer": "Correo no registrado",
+        "invalidEmail": "Por favor ingresa un correo electrónico válido",
+        "emailSentSuccessfully": "Se ha enviado un correo para restablecer tu contraseña",
+        "error": "Ha ocurrido un error, por favor intente más tarde"
+    },
     "register": {
         "seo": {
             "title": "Olga Lucía Cortés | Crear cuenta",
