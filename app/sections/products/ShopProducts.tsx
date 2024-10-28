@@ -4,6 +4,7 @@ import ProductCarousel from "~/components/productCarousel/ProductCarousel";
 import { useTranslation } from "react-i18next";
 import ModalCart from "~/components/modalCart/ModalCart";
 import LoadingSpinner from "~/components/loadingSpinner/loadingSpinner";
+import { Pagination } from "@mui/material";
 import "./ShopProducts.css";
 
 export default function ShopProducts() {
@@ -25,6 +26,9 @@ export default function ShopProducts() {
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
     const [productHandle, setProductHandle] = useState<string>('');
+    // Agregar estados para paginación
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const productsPerPage = 15;
     //Products
     const { products } = useProductContext();
     const TotalProducts = products.length;
@@ -143,6 +147,16 @@ export default function ShopProducts() {
         return <LoadingSpinner isLoading={isLoading} />;
     }
 
+    // Modificar la lógica de renderizado para incluir paginación
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = sortProducts(products).slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setCurrentPage(value);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     return (
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
@@ -164,7 +178,7 @@ export default function ShopProducts() {
                 display: 'grid',
                 gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`
             }}>
-                {insertSpecialItems(sortProducts(products).map((product: any, index: number) =>
+                {insertSpecialItems(currentProducts.map((product: any, index: number) =>
                     <div className="ShopProductsItem" key={`${product.id}-${index}`}>
                         <ProductCarousel
                             productImages={product.images.edges.map(({ node }: any) => node)}
@@ -203,6 +217,39 @@ export default function ShopProducts() {
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="pagination-container" style={{
+                display: 'flex',
+                justifyContent: 'center',
+                margin: '2rem 0'
+            }}>
+                <Pagination
+                    count={Math.ceil(products.length / productsPerPage)}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="medium"
+                    sx={{
+                        marginTop: 4,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        '& .MuiPaginationItem-root': {
+                            color: 'rgba(51, 51, 51, 1)',
+                            backgroundColor: "#fff",
+                            '&:hover': {
+                                backgroundColor: 'rgba(183, 183, 183, 1)',
+                            },
+                            '&.Mui-selected': {
+                                backgroundColor: 'rgba(183, 183, 183, 1)',
+                                color: 'rgba(51, 51, 51, 1)',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(183, 183, 183, 1)',
+                                },
+                            },
+                        },
+                    }}
+                />
             </div>
             {isModalOpen && <ModalCart isOpen={isModalOpen} onClose={handleCloseModal} selectedProduct={selectedProduct} productId={productId} productName={productName} productCategory={productCategory} productPrice={productPrice} productDiscountPrice={productDiscountPrice} productSizes={productSizes} productDescription={productDescription} productImages={productImages} productHandle={productHandle} />}
         </section>
