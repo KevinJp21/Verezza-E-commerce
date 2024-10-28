@@ -44,7 +44,9 @@ export default function ShopProducts() {
     // Opciones de filtrado y ordenamiento
     const categoryOptions = [
         { value: 'all', label: t('products.all_products') },
+        { value: t('products.blouses'), label: t('products.blouses') },
         { value: t('products.dresses'), label: t('products.dresses') },
+        { value: t('products.sets'), label: t('products.sets') },
         { value: t('products.pants'), label: t('products.pants') }
     ];
 

@@ -177,7 +177,9 @@ export default {
         "products_name_asc": "NOMBRE: A - Z",
         "products_name_desc": "NOMBRE: Z - A",
         "all_products": "Todos los productos",
+        "blouses": "blusas",
         "dresses": "vestidos",
+        "sets": "conjuntos",
         "pants": "pantalones",
         "buy_now": "Comprar ahora"
     },
