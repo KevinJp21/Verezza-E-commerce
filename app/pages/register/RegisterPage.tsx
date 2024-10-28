@@ -242,7 +242,7 @@ export default function RegisterPage() {
             />
           </div>
           <div className='InputContainer'>
-            <label>contraseña</label>
+            <label>{t("register.password")}</label>
             <input
               type="password"
               name="password"

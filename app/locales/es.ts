@@ -93,9 +93,10 @@ export default {
             "zip": "Ingrese un código postal válido",
             "errorRegister": "Error al registrar, intente nuevamente"
         },
-        "name": "Nombre",
-        "last_name": "Apellido",
+        "name": "Nombres",
+        "last_name": "Apellidos",
         "email": "Correo",
+        "password": "Contraseña",
         "error_email": "Ingresa un correo válido",
         "identification_type": "Tipo de Identificación",
         "identification_type_placeholder": "Ej: CC (Colombia), DNI (Argentina), RUT (Chile), INE (México)",

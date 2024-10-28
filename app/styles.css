@@ -244,6 +244,13 @@ button{
   font-weight: 700;
   text-align: center;
 }
+
+.SuccessMsg{
+  color: var(--olga-green-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
   
   
   
