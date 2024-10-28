@@ -166,10 +166,10 @@ export default function ShopProducts() {
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         const newParams = new URLSearchParams(searchParams);
         newParams.set('page', value.toString());
-        
+
         // Primero realizamos el scroll suave
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
+
         // Esperamos a que termine la animación antes de actualizar la URL
         setTimeout(() => {
             navigate(`?${newParams.toString()}`, { replace: true });
@@ -244,29 +244,30 @@ export default function ShopProducts() {
                         <div className="ShopHeaderFiltersItemSelectContainer">
                             <select
                                 className="ShopHeaderFiltersItemSelect"
-                            role="listbox"
-                            onChange={(e) => handleCategoryFilter(e.target.value)}
-                            value={categoryFilter}
-                        >
-                            {categoryOptions.map(option => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label.toUpperCase()}
-                                </option>
-                            ))}
-                        </select>
-                        <span>|</span>
-                        <select
-                            className="ShopHeaderFiltersItemSelect"
-                            role="listbox"
-                            id="products-sort-by"
-                            title={t('products.products_sort_by')}
-                            onChange={(e) => handleSortBy(e.target.value)}
-                            value={sortBy}
-                        >
-                            {sortOptions.map(option => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label.toUpperCase()}
-                                </option>
+                                role="listbox"
+                                onChange={(e) => handleCategoryFilter(e.target.value)}
+                                title="filter_category"
+                                value={categoryFilter}
+                            >
+                                {categoryOptions.map(option => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.label.toUpperCase()}
+                                    </option>
+                                ))}
+                            </select>
+                            <span>|</span>
+                            <select
+                                className="ShopHeaderFiltersItemSelect"
+                                role="listbox"
+                                id="products-sort-by"
+                                title="filter_sort"
+                                onChange={(e) => handleSortBy(e.target.value)}
+                                value={sortBy}
+                            >
+                                {sortOptions.map(option => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.label.toUpperCase()}
+                                    </option>
                                 ))}
                             </select>
                         </div>
