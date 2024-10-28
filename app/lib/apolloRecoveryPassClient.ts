@@ -4,11 +4,12 @@ const SHOPIFY_STOREFRONT_API_URL = process.env.SHOPIFY_STOREFRONT_API_URL as str
 const SHOPIFY_STOREFRONT_API_TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN as string;
 
 export const getClient = (request: Request) => {
-  const clientIP = request.headers.get('x-forwarded-for') || 
-                   request.headers.get('x-real-ip') || 
-                   '127.0.0.11';
-    console.log(clientIP);
-
+  // Intentar obtener la IP del cliente de diferentes headers en orden de prioridad
+  const clientIP = request.headers.get('x-forwarded-for')?.split(',')[0] || 
+                   request.headers.get('cf-connecting-ip') ||
+                   request.headers.get('x-real-ip') ||
+                   request.headers.get('x-client-ip') ||
+                   '127.0.0.1';
   return new ApolloClient({
     uri: SHOPIFY_STOREFRONT_API_URL,
     headers: {
