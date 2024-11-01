@@ -183,7 +183,7 @@ export default function Footer() {
                   <a href="https://www.instagram.com/olgaluciacorteshc/" target='_blank'>{instagramIcon()}</a>
                 </li>
                 <li className='FooterSocialItem'>
-                  <a href="#">{tiktokIcon()}</a>
+                  <a href="https://www.tiktok.com/@olgaluciacorteshc_">{tiktokIcon()}</a>
                 </li>
               </ul>
             </div>

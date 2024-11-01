@@ -173,7 +173,7 @@ export default function RegisterPage() {
   //Get countries
   useEffect(() => {
     const fetchCountries = async () => {
-      try{
+      try {
         const response = await fetch('/api/getAvailableCountries');
         const data = await response.json();
         setCountries(data.localization.availableCountries);
@@ -254,13 +254,15 @@ export default function RegisterPage() {
         <div className="formGroup">
           <div className='InputContainer'>
             <label>{t("register.identification_type")}</label>
-            <input
-              type="text"
+            <select
               name="identificationType"
-              value={customerData.identificationType.toUpperCase()}
+              value={customerData.identificationType}
               onChange={handleChange}
-              placeholder={t("register.identification_type_placeholder")}
-            />
+            >
+              <option value="">{t("register.select_identification_type")}</option>
+              <option value="CC">Cédula (CC)</option>
+              <option value="PP">{t("register.passport")}</option>
+            </select>
           </div>
           <div className='InputContainer'>
             <label>{t("register.identification_number")}</label>
