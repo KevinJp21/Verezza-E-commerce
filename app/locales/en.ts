@@ -192,5 +192,10 @@ export default {
     "size_warning": "Select a size",
     "add_to_cart": "Add to cart",
     "buy_now": "Shop now"
-}
+  },
+  "orders": {
+    "canceled": "Canceled",
+    "fulfilled": "Fulfilled",
+    "unfulfilled": "Unfulfilled"
+  }
 }

@@ -1,5 +1,6 @@
 import './CustomerOrders.css'
 import { truckIcon, pendingIcon, cancelIcon } from '../../assets/icons/icons'
+import { useTranslation } from 'react-i18next';
 
 interface OrderItem {
     title: string;
@@ -51,7 +52,7 @@ interface CustomerData {
 
 export default function CustomerOrders({ data }: { data: CustomerData }) {
     const { customer } = data;
-
+    const { t } = useTranslation();
     if (!customer) {
         return <div>No se encontraron datos del cliente</div>;
     }
@@ -65,7 +66,7 @@ export default function CustomerOrders({ data }: { data: CustomerData }) {
                         <div className="orderItemContent">
                             <div className="orderStatus">
                                 {order.canceledAt !== null ? cancelIcon() : order.fulfillmentStatus === 'FULFILLED' ? truckIcon() : pendingIcon()}
-                                <span>{order.canceledAt !== null ? 'Cancelado' : order.fulfillmentStatus === 'FULFILLED' ? 'En camino' : 'Pendiente'} - {new Date(order.processedAt).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}</span>
+                                <span>{order.canceledAt !== null ? t('orders.canceled') : order.fulfillmentStatus === 'FULFILLED' ? t('orders.fulfilled') : t('orders.unfulfilled')} - {new Date(order.processedAt).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}</span>
                             </div>
                             <div className="orderImages">
                                 {order.lineItems.edges.map(({ node: item }) => (

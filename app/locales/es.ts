@@ -190,5 +190,10 @@ export default {
         "size_warning": "Selecciona una talla",
         "add_to_cart": "Agregar al carrito",
         "buy_now": "Comprar ahora"
+    },
+    "orders": {
+        "canceled": "Cancelado",
+        "fulfilled": "Completado",
+        "unfulfilled": "No realizada"
     }
 }

@@ -28,11 +28,13 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
             <div className="customerDropdownContainer">
                 {isLogged ? (
                     <ul className="customerDropdownContent">
-                        <li className="customerDropdownItem">
+                        {/*
+                           <li className="customerDropdownItem">
                             <a href="/account/profile">
                                 <span>MI CUENTA</span>
                             </a>
                         </li>
+                        */}
                         <li className="customerDropdownItem">
                             <a href="/account/orders">
                                 <span>MIS PEDIDOS</span>
