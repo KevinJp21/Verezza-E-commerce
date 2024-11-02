@@ -312,5 +312,46 @@ export default {
       "p1": "By accessing the website olgaluciacortes.com, you acknowledge and agree that all copyright rights, section designs, graphics, visual interfaces, product designs, the look of the site, trademarks, graphic content, and all other intellectual property rights and materials related to the content as described in this document, compilation, information, data, including all HTML code that enables navigation through the site, source code, and all other elements that comprise the site shall remain at all times with olgaluciacortes.com and are the property of SOLO BLANCO – OLGA LUCIA CORTES.",
       "p2": "You are permitted to use the content only as expressly authorized by SOLO BLANCO – OLGA LUCIA CORTES."
     }
+  },
+  "returnsRefunds": {
+    "seo": {
+      "title": "Returns and Refunds",
+      "description": "Learn about our return and refund policies at Olga Lucia Cortes. We are committed to providing you with a seamless shopping experience. If you have any questions or concerns, please contact our customer service team."
+    },
+    "salesPolicies": {
+      "title": "Sales Policies",
+      "li1P1": "In all Purchase Orders, the shipping costs will be at the customer's expense and risk. Under no circumstances may the customer withhold payment or deduct merchandise from the company due to damage or loss that may occur during the shipment of the package.",
+      "li1P2": "Once the garment and size have been selected, it is sent to the pattern making or cutting workshop."
+    },
+    "purchasePolicies": {
+      "title": "Purchase Policies",
+      "li1P1": "Customers must make their payment by choosing the most convenient method, and the product will be sent after confirming the payment in our system.",
+      "li1P2": "We offer Bank Transfer, Checking Account, and payment through the PayU system. In any case, your data is always confidential and secure. Security is very important to our brand.",
+      "li1P3": "Olga Lucia Cortes has a physical store (for health reasons, we do not accept in-person sales); we conduct sales through the website."
+    },
+    "orderCancellationPolicies": {
+      "title": "Order Cancellation Policies",
+      "li1P1": "Orders can be canceled as long as they have not gone through pattern or molding for the sewing and cutting of the garment. However, an additional charge of 20% of the total invoice amount will apply to cover the time invested by the designer and pattern makers in developing the order.",
+      "li1P2": "They must include the sales invoice.",
+      "li1P3": "Products must have all their original tags.",
+      "li1P4": "If you receive a damaged or defective product, you must notify us within 2 days of receiving your order; otherwise, your return will not be accepted after that time.",
+      "p1": "<strong>NOTE</strong>: Shipping costs are non-refundable."
+    },
+    "returnPolicies": {
+      "title": "Return Policies",
+      "li1P1": "Returns of products that are damaged, abused, discontinued, or specially ordered will not be accepted.",
+      "li1P2": "They must include a sales invoice.",
+      "li1P3": "Products must have all their original tags.",
+      "li1P4": "If you receive a damaged or defective product, you must notify us within 2 days after receiving your order; otherwise, your return will not be accepted after that time.",
+      "p1": "<strong>NOTE</strong>: shipping costs are non-refundable."
+    },
+    "shippingPolicies": {
+      "title": "Shipping Policies",
+      "li1P1": "Shipments are generally made on the third business day after the payment has been processed.",
+      "li1P2": "The shipping cost varies based on the size, weight, and destination of the package.",
+      "li1P3": "International shipments are made through DHL.",
+      "li1P4": "International shipments incur additional tax charges set by international customs."
+
+    }
   }
 }

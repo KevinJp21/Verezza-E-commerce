@@ -312,5 +312,41 @@ export default {
             "p1": "Al ingresar al sitio web olgaluciacortes.com usted reconoce y acepta que todos los derechos de autor, los diseños de las secciones, gráficos, interfaces visuales, los diseños de los productos, la apariencia del sitio, la marca comercial, los contenidos gráficos y todos los demás derechos de propiedad intelectual y materiales relacionados con el contenido como se describen en este documento, compilación, información, datos, incluido todo el código HTML que hace posible la navegación a través del sitio , el código fuente y todos los demás elementos que componen el sitio deberán permanecer en todo momento en olgaluciacortes.com y son propiedad SOLO BLANCO – OLGA LUCIA CORTES",
             "p2": "Se le permite usar el contenido solo como lo autoriza expresamente SOLO BLANCO – OLGA LUCIA CORTES."
         }
+    },
+    "returnsRefunds":{
+        "seo": {
+            "title": "Devoluciones y reembolsos",
+            "description": "Aprende sobre nuestras políticas de devolución y reembolso en Olga Lucia Cortes. Nos comprometemos a brindarte una experiencia de compra sin complicaciones. Si tienes alguna pregunta o inquietud, no dudes en contactar a nuestro equipo de atención al cliente."
+        },
+        "salesPolicies":{
+            "title": "Políticas de venta",
+            "li1P1": "En todas las Órdenes de Compra, el flete será por cuenta y riesgo del cliente. En ningún caso el cliente podrá dejar de pagar o descontar mercancía a la empresa por que haya sufrido algún deterioro o pérdida durante el trayecto del paquete.",
+            "li1P2": "Una vez elegida la prenda y tallaje, se manda a taller de moldería o corte de la prenda."
+        },
+        "purchasePolicies":{
+            "title": "Políticas de compra",
+            "li1P1": " Los clientes deberán de realizar su pago eligiendo la forma más cómoda y se le enviará el producto hasta confirmar el pago del mismo en nuestro sistema.",
+            "li1P2": " Contamos con, Transferencia Bancaria, Cuenta corriente y pago a través del sistema PayU. En cualquiera de los casos, tus datos siempre son confidenciales y están seguros. La seguridad es muy importante para nuestra marca.",
+            "li1P3": " Olga Lucia Cortes tiene tienda física (por motivo sanitario no aceptamos ventas presenciales), contamos con ventas en la página Web."
+        },
+        "orderCancellationPolicies":{
+            "title": "Políticas de cancelación de orden",
+            "li1P1": " Tienen un valor adicional por concepto de cancelación los pedidos pueden ser cancelados siempre y cuando no hayan pasado por patrón o moldería para la costura y corte de la prenda, y/o el tiempo invertido para su desarrollo de la diseñadora y patronistas, por este motivo tiene un porcentaje del 20% del valor total de la factura."
+        },
+        "returnPolicies":{
+            "title": "Políticas de devolución",
+            "li1P1": "No se aceptarán devoluciones de productos, dañados, maltratados, descontinuados, y productos que se hayan solicitado para un pedido especial.",
+            "li1P2": "Deberán contar con factura de venta.",
+            "li1P3": "Los productos deben de tener todas sus etiquetas originales.",
+            "li1P4": "Si recibes un producto dañado o defectuoso, debes notificarnos dentro de 2 días después de recibir tu pedido, si no, tu devolución no será aceptada después de ese tiempo.",
+            "p1": "<strong>NOTA</strong>: los gastos de envío no son reembolsables."
+        },
+        "shippingPolicies":{
+            "title": "Políticas de envío",
+            "li1P1": "Los envíos se hacen generalmente al tercer día hábil en que fue procesado el pago.",
+            "li1P2": "El costo del envío varía por el tamaño, peso y destino del paquete.",
+            "li1P3": "Los envíos internacionales se hacen por medio de la empresa DHL.",
+            "li1P4": " Envíos internacionales presentan cargos adicionales de impuestos, establecidos por la Aduana internacional."
+        }
     }
 }

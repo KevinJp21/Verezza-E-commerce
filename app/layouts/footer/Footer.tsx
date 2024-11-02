@@ -170,7 +170,7 @@ export default function Footer() {
                   <a href="/terms-of-use"><span>{t("footer.info.links.terms_of_use")}</span></a>
                 </li>
                 <li className='FooterInfoItem'>
-                  <a href=""><span>{t("footer.info.links.returns")}</span></a>
+                  <a href="/returns-refunds"><span>{t("footer.info.links.returns")}</span></a>
                 </li>
               </ul>
             </div>
