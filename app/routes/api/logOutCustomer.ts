@@ -63,7 +63,7 @@ export const action: ActionFunction = async ({ request }) => {
       })
     );
 
-    return redirect("/", { headers });
+    return redirect("/redirect", { headers });
   } catch (error) {
     console.error("Error en el cierre de sesión:", error);
     return json({ message: "Error al cerrar sesión" }, { status: 500 });

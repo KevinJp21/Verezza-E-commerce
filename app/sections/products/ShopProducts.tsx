@@ -246,7 +246,7 @@ export default function ShopProducts() {
                                 className="ShopHeaderFiltersItemSelect"
                                 role="listbox"
                                 onChange={(e) => handleCategoryFilter(e.target.value)}
-                                title="filter_category"
+                                title="Filter category"
                                 value={categoryFilter}
                             >
                                 {categoryOptions.map(option => (
@@ -260,7 +260,7 @@ export default function ShopProducts() {
                                 className="ShopHeaderFiltersItemSelect"
                                 role="listbox"
                                 id="products-sort-by"
-                                title="filter_sort"
+                                title="Filter sort"
                                 onChange={(e) => handleSortBy(e.target.value)}
                                 value={sortBy}
                             >

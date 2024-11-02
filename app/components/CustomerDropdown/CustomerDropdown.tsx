@@ -23,12 +23,6 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
         );
     };
 
-    useEffect(() => {
-        if (fetcher.state === "idle" && fetcher.data) {
-            window.location.reload();
-        }
-    }, [fetcher.state, fetcher.data]);
-
     return (
         (isDropdownOpen) ? (
             <div className="customerDropdownContainer">
@@ -42,11 +36,6 @@ export const CustomerDropdown: React.FC<CustomerDropdownProps> = ({ isDropdownOp
                         <li className="customerDropdownItem">
                             <a href="/account/orders">
                                 <span>MIS PEDIDOS</span>
-                            </a>
-                        </li>
-                        <li className="customerDropdownItem">
-                            <a href="/account/addresses">
-                                <span>MIS DIRECCIONES</span>
                             </a>
                         </li>
                         <li className="customerDropdownItem">
