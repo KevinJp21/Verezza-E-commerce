@@ -256,6 +256,25 @@ export default {
       "li3-3P1": "Color migration.",
       "li3-3P2": "Broken fibers.",
       "p9": "For all other cases, and after determining the validity of the warranty claim, it will be addressed through repair. Shipping costs for warranty-related exchanges will be covered by SOLO BLANCO – OLGA LUCIA CORTES. The customer should send the package via the chosen courier with payment on delivery. SOLO BLANCO – OLGA LUCIA CORTES is not responsible for departure or loss of packages. The availability period for spare parts, components, supplies, and trained labor in case of repair requests will be 30 days from the purchase date. Costs associated with repairs not covered by the warranty will be borne by the customer. After 90 days, we may, but are not obligated to, attempt repairs, including providing replacements for some parts such as missing buttons, zippers, snaps, or drawstrings, to the extent that these items or repair services are available and will be subject to case-by-case analysis by the responsible department. However, we will not provide a replacement, product substitution, or refund after 90 days."
+    },
+    "termsAndConditions": {
+      "title": "Terms and Conditions",
+      "p1": "At <strong><a href='https://olgaluciacortes.com'>olgaluciacortes.com</a></strong>, we are committed to meeting delivery times. Therefore, if you are not available to receive your order on the day it arrives, the courier will be authorized to leave it at the reception or with someone present at the specified address. It is not necessary for the person who made the purchase to be the one to receive the order, unless you notify us through one of our customer service channels. We understand how important it is for you, and we know you wouldn’t want to wait until a later time to receive it.",
+      "p2": "At SOLO BLANCO – OLGA LUCIA CORTES, we want to ensure that your order is delivered within the agreed time.",
+      "p3": "If we need to contact you to inform you of any updates regarding your order and are unable to reach you within one month, we will proceed with a refund.",
+      "p4": "If the payment was made via credit card, we will request a reversal from PAYU. If it was made with a debit card, we will send a voucher or credit note to your registered email with a balance for the amount of your purchase.",
+      "p5": "Shipping costs are not included in the product price; they will be provided during checkout after entering your delivery address. SHIPPING IS ONLY INCLUDED WITHIN COLOMBIA.",
+      "p6": "On certain occasions, as part of promotional strategies, shipping may be free. This will be announced on the website during current promotions.",
+      "p7": "In our online store, we aim to deliver your order as quickly as possible, and we will strive to meet the following delivery times:",
+      "li1P1": "National Orders (Colombia): Products will be shipped through Servientrega S.A., an external logistics operator contracted by SOLO BLANCO – OLGA LUCIA CORTES.",
+      "li1-1P1": "The logistics operator is responsible for the safe delivery of products within the agreed timeframe. Our delivery time is 1 to 12 business days, counted from the day after the order is placed.",
+      "li1P2": "International Orders (outside of Colombia): Products will be shipped through DHL, an external logistics operator contracted by SOLO BLANCO – OLGA LUCIA CORTES.",
+      "p8": "The logistics operator is responsible for the safe delivery of products within the agreed timeframe. Our delivery time is 3 to 20 business days, starting from the day after the order is placed. This may vary due to customs or local authority delays. These times do not apply during promotions or special industry events such as Cyber Monday, Cyber Days, Hot Sale, Black Friday, CyberSanta, or Big Sale. For these dates, delivery times will be extended and announced on the website during active promotions. You will also be able to see the estimated time during the checkout process after entering the delivery address; in any case, this period will not exceed thirty (30) calendar days from the date the order was placed.",
+      "p9": "In accordance with legal regulations, if the delivery cannot be made within thirty (30) calendar days, you may request the cancellation of the transaction and a refund of the amount paid.",
+      "p10": "Once this request is submitted, the refund will be processed within a maximum of thirty (30) calendar days from the date you report the non-receipt of the order within the thirty (30)-day period."
+
+
+
     }
   }
 }

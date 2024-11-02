@@ -159,6 +159,32 @@ export default function PrivacyPolicyPage() {
                 </ul>
                 <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.refundPolicy.p9') }} />
             </div>
+            <div className='termsAndConditionsContainer container'>
+                <h2>{t('privacyPolicyPage.termsAndConditions.title')}</h2>
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p1') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p2') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p3') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p4') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p5') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p6') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p7') }} />
+                <ul className='list-style-numeric'>
+                    <li>
+                        <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.li1P1') }} />
+                        <ul className='list-style-disc'>
+                            <li>
+                                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.li1-1P1') }} />
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.li1P2') }} />
+                    </li>
+                </ul>
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p8') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p9') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('privacyPolicyPage.termsAndConditions.p10') }} />
+            </div>
         </section>
     )
 }
