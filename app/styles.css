@@ -44,7 +44,7 @@ a,
 label,
 input,
 option, 
-select {
+select, ul {
     font-family: "Nimbus Sans", "DM Sans", sans-serif;
 }
 a{
