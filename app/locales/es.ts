@@ -48,7 +48,7 @@ export default {
             "links": {
                 "atelier": "Atélier",
                 "our_brand": "Nuestra marca",
-                "privacy_policy": "Política de privacidad",
+                "terms_of_use": "Condiciones de uso",
                 "returns": "Devoluciones/reembolsos"
             }
         }
@@ -196,8 +196,12 @@ export default {
         "fulfilled": "Completado",
         "unfulfilled": "No realizada"
     },
-    "privacyPolicyPage": {
-        "privacyPolicy": {  
+    "TermsofUse": {
+        "seo": {
+            "title": "Condiciones de uso | Olga Lucia Cortes",
+            "descripcion": "Conoce las Condiciones de Uso del sitio web de SOLO BLANCO – OLGA LUCIA CORTES. Al acceder y navegar por nuestro sitio, aceptas cumplir con estos términos que regulan el uso del sitio y las compras realizadas."
+        },
+        "privacyPolicy": {
             "title": "Política de privacidad",
             "p1": "Parte integrante de los Términos de Uso y Condiciones de Navegación del Portal olgaluciacortes.com, esta sección, denominado Política de Privacidad, cuya finalidad es establecer las reglas sobre la obtención, uso y almacenamiento de los datos e informaciones recogidas de los internautas, además del registro de sus actividades en el Portal.",
             "p2": "A lo largo del proceso de compra en olgaluciacortes.com solicitaremos algunos datos personales a nuestros clientes. Dando cumplimiento con la Ley 1581 de 2012 “Ley de protección de datos personales” y el Decreto 1377 de 2013, SOLO BLANCO – OLGA LUCIA CORTES informa que es responsable de la administración de dichos datos. Según nuestras políticas de tratamiento de datos personales, los mecanismos a través de los cuales hacemos uso de éstos son seguros y confidenciales, pues contamos con los medios tecnológicos idóneos para asegurar que sean almacenados para evitar el acceso indeseado por parte de terceros, y en ese mismo orden aseguramos la confidencialidad de los mismos.",
@@ -254,9 +258,9 @@ export default {
             "li3-3P1": "Migración de color.",
             "li3-3P2": "Fibras reventadas.",
             "p9": "Para los demás casos, y luego de determinarse la procedencia de la atención de la garantía, la misma se atenderá mediante la reparación. Los gastos de envío de cambios por garantas serán asumidos por SOLO BLANCO – OLGA LUCIA CORTES, el cliente hará el envío del paquete con la transporta elegida con cobro contra entrega, SOLO BLANCO – OLGA LUCIA CORTES no se hace responsable de la partida o pérdida de los paquetes. El término de disponibilidad de repuestos, partes, insumos y mano de obra capacitada en caso de solicitud de reparación será de 30 días contados a partir de la fecha de compra. Los costos asociados a una reparación -no cubierta por garanta- serán asumidos por el cliente. Después de 90 días, podemos, pero no estamos obligados a, intentar ayudar con las reparaciones, lo que incluye proporcionar reemplazo de algunas piezas como botones perdidos, cremalleras, broches, cordones, en la medida en que estos elementos o servicios de reparación están y estarán sujetos al análisis de cada caso por el área encargada, pero no proporcionaremos un reemplazo, sustitución del producto o el reembolso después de 90 días."
-           
+
         },
-        "termsAndConditions": { 
+        "termsAndConditions": {
             "title": "Términos y condiciones",
             "p1": "En <strong><a href='https://olgaluciacortes.com'>olgaluciacortes.com</a></strong> es nuestro compromiso cumplir con los tiempos de entrega, por lo tanto si el día que llegue tu pedido no estás presente para recibirlo, la transportadora estará autorizada para dejarlo en la portería o con alguna persona que se encuentre en dirección indicada, no es indispensable que la misma persona que hace la compra sea quien reciba el pedido, salvo que nos lo notifiques a través de alguno de nuestros canales de atención, sabemos lo importante que es para ti y que no te gustaría esperar hasta una próxima oportunidad para recibirlo.",
             "p2": "En SOLO BLANCO – OLGA LUCIA CORTES, queremos garantizar que tu pedido sea entregado en el tiempo acordado.",
@@ -270,7 +274,43 @@ export default {
             "li1P2": "Pedidos internacionales (fuera de Colombia): El envío de los productos se realizará por medio de DHL, un operador logístico externo y contratado por SOLO BLANCO – OLGA LUCIA CORTES.",
             "p8": "El operador logístico se hace responsables de la entrega segura de los productos y en los tiempos acordados. Tenemos un tiempo de entrega de 3 a 20 días hábiles, contados a partir del día siguiente al que se realiza el pedido él puede variar por retenciones o demoras en aduanas o autoridades locales. Estos tiempos no aplican en promociones o eventos especiales de la industria como por ejemplo CyberLunes, Cyber Days, Hot Sale, Black Friday, CyberSanta o Bigsale, para estas fechas se ampliarán los plazos de entrega, estos serán informados en el sitio web en promociones. Vigentes también conocerá el tiempo estimado durante el proceso de compra al ingresar la dirección de entrega, en todo caso dicho plazo no superará los treinta (30) días calendario desde que fue efectuado el pedido.",
             "p9": "En todo caso de acuerdo con el régimen legal, y en caso de que la entrega del pedido no logre efectuarse en un plazo de treinta (30) días calendario podrás solicitar la cancelación de la transacción y devolución del precio pagado.",
-            "p10": "Presentada ésta solicitud, la devolución del precio pagado se hará efectiva en un plazo máximo de treinta (30) días calendario, contados a partir de la fecha en que reportes el no recibo del pedido en el plazo de treinta (30) días."
+            "p10": "Presentada ésta solicitud, la devolución del precio pagado se hará efectiva en un plazo máximo de treinta (30) días calendario, contados a partir de la fecha en que reportes el no recibo del pedido en el plazo de treinta (30) días.",
+            "title2": "Aceptación de términos y condiciones",
+            "p11": "Al acceder, navegar y comprar el sitio web olgaluciacortes.com, estas aceptando y estás sujeto a estas Condiciones, y todas las leyes aplicables regirán y se interpretarán de conformidad con las leyes colombianas.",
+            "p12": "<strong>PEDIDOS</strong>: Nosotros somos fabricantes y vendedores de la marca, por ende no manejamos stock de todas las piezas exhibidas en la página, al realizar usted la compra nosotros nos pondremos manos a la obra para la confección, envió y la entrega del pedido, sin embargo si después de agotar todos nuestros recursos para cumplir con su pedido, si entre la compra y el procesamiento del pedido el producto deja de estar disponible, ello le será informado de forma inmediata, y usted podrá cancelar la compra y obtener la devolución del dinero.",
+            "p13": "La compra podrá ser realizada en cualquier horario y día de la semana pues nuestro sitio Web está activo las 24 horas del día y los 7 días de la semana, sin embargo, si el pedido se realiza en un horario posterior a las 5:00 pm o días domingos y festivos, el mismo será procesado el día hábil siguiente de su realización.",
+            "p14": "<strong>COLORES</strong>: Hemos hecho todos los esfuerzos para mostrar con la mayor precisión posible los colores de nuestros productos, No obstante, estos pueden variar dependiendo del dispositivo y pantalla desde el cual se navegue, por esta razón no podemos garantizar que la visualización que usted tenga desde su dispositivo sea precisa e idéntica al color real.",
+            "p15": "<strong>PRECIOS</strong>: Los precios que se muestran en nuestro sitio <strong><a href='https://olgaluciacortes.com'>olgaluciacortes.com</a></strong>, dependiendo del país donde usted se encuentre, por lo que pueden mostrarse en pesos colombianos (COP – $), dólares estadounidenses (USD – $), estos precios incluyen los impuestos.",
+            "p16": "En ningún caso los precios en USD están calculados con base a la tasa de cambio del COP, estos son diferenciados para los productos que se venden fuera de Colombia.",
+            "p17": "Si usted es un cliente cuya tarjeta de crédito / débito no está denominada en la moneda que realiza la compra, el precio final se calculará de acuerdo con la tasa de cambio aplicable el día en que el emisor de la tarjeta procese la transacción. SOLO BLANCO – OLGA LUCIA CORTES se reserva el derecho de determinar el precio de los productos y realizar cambios de estos sin previo aviso, pero el precio aplicable a su pedido será el precio que se encuentre publicado en el momento en que usted realice la transacción y se acepte su pedido y su pago.",
+            "p18": "No ofrecemos un ajuste de precio en los artículos comprados cuyo precio se haya reducido temporalmente con posterioridad a su transacción, una vez que se haya comprado un artículo a un precio de venta con o sin descuento no habrá lugar a cambio de su precio ni a devolución de la diferencia entre el precio pagado y el nuevo que hubiera sido publicado, con posterioridad a su pago.",
+            "p19": "SOLO BLANCO – OLGA LUCIA CORTES realizará esfuerzos razonables para mantener actualizada la información de precios publicada en el sitio web.",
+            "p20": "Le recomendamos que visite nuestro sitio web periódicamente para obtener información sobre los precios actuales.",
+            "p21": "SOLO BLANCO – OLGA LUCIA CORTES puede hacer ofertas promocionales con diferentes características, dinámicas y precios sin que estos sean aplicables para todos los compradores, en todo caso en la publicación de tales ofertas estarán publicadas las condiciones de tiempo, modo y lugar para poder acceder a ellas."
+
+        },
+        "paymentAndCollections": {
+            "title": "Pago y recaudos",
+            "p1": "<strong>PAGO</strong>: Una vez confirmado el pedido, éste será redireccionado automáticamente a la pasarela de pagos Payu.",
+            "p2": "Allí se debe seguir el proceso de pago correspondiente.",
+            "p3": "SOLO BLANCO – OLGA LUCIA CORTES no almacena información financiera de los clientes.",
+            "li1P1": "Medios de pagos: El pago se efectuará única y exclusivamente por los siguientes medios:",
+            "li1-1P1": "Tarjetas de crédito: Visa, Diners, Master Card, American Express.",
+            "li1-1P2": "Débito bancario a través de PSE.",
+            "li1-1P3": "Vale por saldos a favor otorgados al cliente.",
+            "li1P2": "Pasarela de pagos:",
+            "li1-2P1": "Los pagos serán procesados a través de y Payu, un servicio externo contratado por SOLO BLANCO – OLGA LUCIA CORTES que cuenta con la infraestructura tecnológica necesaria y certificación PCI DSS para que la información del pago se mantenga segura.",
+            "p4": "Al momento de proceder con el pago, el cliente declara entender y aceptar que en el evento que use la pasarela de pagos Payu aplicarán los términos y condiciones generales de uso para compradores los cuales podrán ser validados directamente en la página <a href='https://www.mercadopago.com.co/ayuda/terminos-y-condiciones_299'>https://www.mercadopago.com.co/ayuda/terminos-y-condiciones_299</a>.",
+            "p5": "<strong>ORIGEN DE LOS FONDOS</strong>: Al realizar un pago a través de <strong><a href='https://olgaluciacortes.com'>olgaluciacortes.com</a></strong> y ser procesado y aprobado por la pasarela de pagos Payu para compras en Colombia y Payu para compras internacionales, el cliente declara y sostiene que:",
+            "li2P1": "Los recursos con los cuales efectuó la compra, provienen de operación, oficio, profesión actividad o negocio lícito y en ningún caso ilícito, clandestino o que infrinja la ley o que influya en una violación parcial o total de esta.",
+            "li2P2": "Los dineros con los que efectuó la compra NO fueron obtenidos en virtud de cualquier tipo de conducta que esté consagrada en la ley colombiana como falta constitutiva de infracción penal.",
+            "li2P3": "Nunca he permitido que terceras personas utilicen mis cuentas o mis tarjetas de crédito o débito para consignar o administrar dineros que desconozca su origen o provengan de conductas contrarias a la ley y especialmente a la ley penal.",
+            "li2P4": "Eximo a SOLO BLANCO – OLGA LUCIA CORTES de toda responsabilidad por la información errónea, falsa, inexacta que se hubiese suministrado en este documento o por la violación del mismo, de tal suerte que seré el único responsable por ello."
+        },
+        "restrictions":{
+            "title": "Restricciones de uso y propiedad intelectual",
+            "p1": "Al ingresar al sitio web olgaluciacortes.com usted reconoce y acepta que todos los derechos de autor, los diseños de las secciones, gráficos, interfaces visuales, los diseños de los productos, la apariencia del sitio, la marca comercial, los contenidos gráficos y todos los demás derechos de propiedad intelectual y materiales relacionados con el contenido como se describen en este documento, compilación, información, datos, incluido todo el código HTML que hace posible la navegación a través del sitio , el código fuente y todos los demás elementos que componen el sitio deberán permanecer en todo momento en olgaluciacortes.com y son propiedad SOLO BLANCO – OLGA LUCIA CORTES",
+            "p2": "Se le permite usar el contenido solo como lo autoriza expresamente SOLO BLANCO – OLGA LUCIA CORTES."
         }
     }
 }

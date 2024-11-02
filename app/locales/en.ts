@@ -48,7 +48,7 @@ export default {
       "links": {
         "atelier": "Atelier",
         "our_brand": "Our brand",
-        "privacy_policy": "Privacy policy",
+        "terms_of_use": "Terms of use",
         "returns": "Returns/refunds"
       }
     }
@@ -198,7 +198,11 @@ export default {
     "fulfilled": "Fulfilled",
     "unfulfilled": "Unfulfilled"
   },
-  "privacyPolicyPage": {
+  "TermsofUse": {
+    "seo": {
+      "title": "Terms of use | Olga Lucia Cortes",
+      "description": "Learn about the Terms of Use for the SOLO BLANCO – OLGA LUCIA CORTES website. By accessing and browsing our site, you agree to comply with these terms that govern your use of the site and any purchases made."
+    },
     "privacyPolicy": {
       "title": "Privacy Policy",
       "p1": "Part of the Terms of Use and Navigation Conditions of the Portal olgaluciacortes.com, this section, called Privacy Policy, whose purpose is to establish the rules on the acquisition, use and storage of the data and information collected from internet users, as well as the registration of their activities on the Portal.",
@@ -271,10 +275,42 @@ export default {
       "li1P2": "International Orders (outside of Colombia): Products will be shipped through DHL, an external logistics operator contracted by SOLO BLANCO – OLGA LUCIA CORTES.",
       "p8": "The logistics operator is responsible for the safe delivery of products within the agreed timeframe. Our delivery time is 3 to 20 business days, starting from the day after the order is placed. This may vary due to customs or local authority delays. These times do not apply during promotions or special industry events such as Cyber Monday, Cyber Days, Hot Sale, Black Friday, CyberSanta, or Big Sale. For these dates, delivery times will be extended and announced on the website during active promotions. You will also be able to see the estimated time during the checkout process after entering the delivery address; in any case, this period will not exceed thirty (30) calendar days from the date the order was placed.",
       "p9": "In accordance with legal regulations, if the delivery cannot be made within thirty (30) calendar days, you may request the cancellation of the transaction and a refund of the amount paid.",
-      "p10": "Once this request is submitted, the refund will be processed within a maximum of thirty (30) calendar days from the date you report the non-receipt of the order within the thirty (30)-day period."
-
-
-
+      "p10": "Once this request is submitted, the refund will be processed within a maximum of thirty (30) calendar days from the date you report the non-receipt of the order within the thirty (30)-day period.",
+      "title2": "Acceptance of Terms and Conditions",
+      "p11": "By accessing, browsing, and purchasing on the website olgaluciacortes.com, you accept and are subject to these Terms, and all applicable laws will govern and be interpreted in accordance with Colombian laws.",
+      "p12": "<strong>ORDERS</strong>: We are manufacturers and sellers of the brand; therefore, we do not keep stock of all the pieces displayed on the page. When you make a purchase, we will get to work on the production, shipping, and delivery of your order. However, if after exhausting all our resources to fulfill your order, the product becomes unavailable between the purchase and the processing of the order, you will be immediately informed, and you can cancel the purchase and obtain a refund.",
+      "p13": "Purchases can be made at any time and any day of the week since our website is active 24 hours a day, 7 days a week. However, if the order is placed after 5:00 PM or on Sundays and holidays, it will be processed on the next business day.",
+      "p14": "<strong>COLORS</strong>: We have made every effort to display the colors of our products as accurately as possible. However, these may vary depending on the device and screen from which you are browsing, which is why we cannot guarantee that the display you see on your device is accurate and identical to the actual color.",
+      "p15": "<strong>PRICES</strong>: The prices displayed on our site <strong><a href='https://olgaluciacortes.com'>olgaluciacortes.com</a></strong> vary depending on the country you are in, and may be shown in Colombian pesos (COP – $) or US dollars (USD – $). These prices include taxes.",
+      "p16": "In no case are prices in USD calculated based on the exchange rate of COP; these are differentiated for products sold outside of Colombia.",
+      "p17": "If you are a customer whose credit/debit card is not denominated in the currency in which the purchase is made, the final price will be calculated according to the exchange rate applicable on the day the card issuer processes the transaction. SOLO BLANCO – OLGA LUCIA CORTES reserves the right to determine the price of the products and to make changes to these without prior notice, but the applicable price for your order will be the price published at the time you make the transaction and your order and payment are accepted.",
+      "p18": "We do not offer price adjustments on items purchased whose price has been temporarily reduced after your transaction. Once an item has been purchased at a sale price, with or without a discount, there will be no changes to its price or refund of the difference between the price paid and the new price that may have been published after your payment.",
+      "p19": "SOLO BLANCO – OLGA LUCIA CORTES will make reasonable efforts to keep the published price information on the website up to date.",
+      "p20": "We recommend that you visit our website periodically for information on current prices.",
+      "p21": "SOLO BLANCO – OLGA LUCIA CORTES may make promotional offers with different characteristics, dynamics, and prices that may not apply to all buyers. In any case, the conditions of time, manner, and place to access such offers will be published with the offers."
+    },
+    "paymentAndCollections": {
+      "title": "Payments and Collections",
+      "p1": "<strong>PAYMENT</strong>: Once the order is confirmed, it will be automatically redirected to the Payu payment gateway.",
+      "p2": "There, you must follow the corresponding payment process.",
+      "p3": "SOLO BLANCO – OLGA LUCIA CORTES does not store customers' financial information.",
+      "li1P1": "Payment methods: Payment will be made exclusively through the following means:",
+      "li1-1P1": "Credit cards: Visa, Diners, MasterCard, American Express.",
+      "li1-1P2": "Bank debit through PSE.",
+      "li1-1P3": "Credit note for balances in favor granted to the customer.",
+      "li1P2": "Payment gateway:",
+      "li1-2P1": "Payments will be processed through PayU, an external service contracted by SOLO BLANCO – OLGA LUCIA CORTES, which has the necessary technological infrastructure and PCI DSS certification to keep payment information secure.",
+      "p4": "At the time of proceeding with the payment, the customer declares that they understand and accept that in the event they use the PayU payment gateway, the general terms and conditions of use for buyers will apply, which can be validated directly on the page <a href='https://www.mercadopago.com.co/ayuda/terminos-y-condiciones_299'>https://www.mercadopago.com.co/ayuda/terminos-y-condiciones_299</a>.",
+      "p5": "<strong>SOURCE OF FUNDS</strong>: When making a payment through <strong><a href='https://olgaluciacortes.com'>olgaluciacortes.com</a></strong> and it is processed and approved by the PayU payment gateway for purchases in Colombia and PayU for international purchases, the customer declares and affirms that:",
+      "li2P1": "The funds used to make the purchase come from lawful operation, trade, profession, activity, or business, and in no case are they from unlawful, clandestine activities, or that violate the law or contribute to a partial or total violation of it.",
+      "li2P2": "The money used for the purchase was NOT obtained as a result of any conduct that is established in Colombian law as a crime.",
+      "li2P3": "I have never allowed third parties to use my accounts or my credit or debit cards to deposit or manage money whose origin I do not know or that comes from conduct contrary to the law, especially criminal law.",
+      "li2P4": "I release SOLO BLANCO – OLGA LUCIA CORTES from any responsibility for incorrect, false, or inaccurate information that may have been provided in this document or for any violation thereof, so that I will be solely responsible for it."
+    },
+    "restrictions": {
+      "title": "Restrictions on Use and Intellectual Property",
+      "p1": "By accessing the website olgaluciacortes.com, you acknowledge and agree that all copyright rights, section designs, graphics, visual interfaces, product designs, the look of the site, trademarks, graphic content, and all other intellectual property rights and materials related to the content as described in this document, compilation, information, data, including all HTML code that enables navigation through the site, source code, and all other elements that comprise the site shall remain at all times with olgaluciacortes.com and are the property of SOLO BLANCO – OLGA LUCIA CORTES.",
+      "p2": "You are permitted to use the content only as expressly authorized by SOLO BLANCO – OLGA LUCIA CORTES."
     }
   }
 }
