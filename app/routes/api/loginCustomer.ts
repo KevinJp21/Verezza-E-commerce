@@ -69,7 +69,7 @@ export const action: ActionFunction = async ({ request }) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
-            maxAge: expiresAt ? new Date(expiresAt).getTime() / 1000 : undefined,
+            maxAge: expiresAt ? 48 * 60 * 60 : undefined,
             path: "/",
         });
 
