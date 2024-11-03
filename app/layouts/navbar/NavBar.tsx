@@ -238,13 +238,10 @@ export default function NavBar() {
                                     <a href="/account/auth/login"><strong>{t("sidebar.login")}</strong> / <strong>{t("sidebar.create_account")}</strong></a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.shopping_bag")}</a>
+                                    <a href="/terms-of-use">{t("sidebar.terms_of_use")}</a>
                                 </li>
                                 <li>
-                                    <a href="">{t("sidebar.privacy_policy")}</a>
-                                </li>
-                                <li>
-                                    <a href="">{t("sidebar.returns")}</a>
+                                    <a href="/returns-refunds">{t("sidebar.returns")}</a>
                                 </li>
                             </ul>
                         </div>

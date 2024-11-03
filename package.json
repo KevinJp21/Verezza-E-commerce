@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.1",
     "@remix-run/node": "^2.12.1",
     "@remix-run/react": "^2.12.1",
     "@remix-run/serve": "^2.12.1",
@@ -25,16 +28,15 @@
     "i18next-http-backend": "^2.6.1",
     "isbot": "^4.4.0",
     "libphonenumber-js": "^1.11.12",
+    "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.2",
-    "remix-i18next": "^6.4.1",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/material": "^6.0.1"
+    "remix-i18next": "^6.4.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.12.1",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",

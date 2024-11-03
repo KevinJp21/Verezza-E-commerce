@@ -1,41 +1,42 @@
 html {
-    font-size: 16px;
+  font-size: 16px;
 }
 
-body{
-    background-color: var(--olga-gray-secondary);
+body {
+  background-color: var(--olga-gray-secondary);
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-    --olga-gray-primary: rgba(183, 183, 183, 1);
-    --olga-gray-secondary: rgba(245, 245, 245, 1);
-    --olga-gray-100: rgba(232, 232, 232, 1);
-    --olga-gray-50: rgba(232, 232, 232, 0.3);
-    --olga-black-primary: rgba(51, 51, 51, 1);
-    --olga-black-tp: rgba(51, 51, 51, 0.2);
-    --olga-black-secondary: rgba(27, 27, 27, 1);
-    --olga-brown-primary: rgba(32, 16, 0, 1);
-    --olga-white-primary: rgba(255, 255, 255, 1);
-    --olga-white-tp: rgba(255, 255, 255, 0.5);
-    --olga-yellow-primary: rgb(255, 230, 30);
-    --olga-red-primary: rgba(139, 0, 0, 0.9);
-    --olga-green-primary: rgba(0, 107, 84, 1);
-    
+  --olga-gray-primary: rgba(183, 183, 183, 1);
+  --olga-gray-secondary: rgba(245, 245, 245, 1);
+  --olga-gray-100: rgba(232, 232, 232, 1);
+  --olga-gray-50: rgba(232, 232, 232, 0.3);
+  --olga-black-primary: rgba(51, 51, 51, 1);
+  --olga-black-tp: rgba(51, 51, 51, 0.2);
+  --olga-black-secondary: rgba(27, 27, 27, 1);
+  --olga-brown-primary: rgba(32, 16, 0, 1);
+  --olga-white-primary: rgba(255, 255, 255, 1);
+  --olga-white-tp: rgba(255, 255, 255, 0.5);
+  --olga-yellow-primary: rgb(255, 230, 30);
+  --olga-red-primary: rgba(139, 0, 0, 0.9);
+  --olga-green-primary: rgba(0, 107, 84, 1);
+
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: "Nimbus Sans", "DM Sans", sans-serif;
+  font-family: "Nimbus Sans", "DM Sans", sans-serif;
 }
 
 p,
@@ -43,214 +44,236 @@ span,
 a,
 label,
 input,
-option, 
-select, ul {
-    font-family: "Nimbus Sans", "DM Sans", sans-serif;
-}
-a{
-    text-underline-offset: 3px;
+option,
+select,
+ul, textarea {
+  font-family: "Nimbus Sans", "DM Sans", sans-serif;
 }
 
-button{
-    cursor: pointer;
+a {
+  text-underline-offset: 3px;
 }
 
-.btn-primary{
-    background-color: var(--olga-white-primary);
-    width: fit-content;
-    height: 30px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    border-radius: 20px;
-    color: var(--olga-black-primary);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 10px 32px;
-    margin-top: 20px;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
 
-.btn-primary:hover{
-    opacity: 0.7;
+.btn-primary {
+  background-color: var(--olga-white-primary);
+  width: fit-content;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 20px;
+  color: var(--olga-black-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 10px 32px;
+  margin-top: 20px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 0.7;
 }
 
 
-.btn-secondary{
-    margin: 0;
-    border: 1px solid var(--olga-black-primary);
-    cursor: pointer;
-    color: var(--olga-black-primary);
-    background-color: transparent;
-    padding: 10px 32px;
-    font-size: .6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
+.btn-secondary {
+  margin: 0;
+  border: 1px solid var(--olga-black-primary);
+  cursor: pointer;
+  color: var(--olga-black-primary);
+  background-color: transparent;
+  padding: 10px 32px;
+  font-size: .6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
-    color: var(--olga-white-primary);
-    background-color: var(--olga-black-primary);
-  }
+.btn-secondary:hover, .btn-tertiary:hover {
+  color: var(--olga-white-primary);
+  background-color: var(--olga-black-primary);
+}
 
-  button[disabled]{
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.btn-tertiary{
+  border: 1px solid var(--olga-black-primary);
+  cursor: pointer;
+  color: var(--olga-black-primary);
+  background-color: transparent;
+  padding: 10px 32px;
+  font-size: .6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+  width: 100%;
+  border-radius: 0;
+  height: 56px;
+}
 
-.CarrouselButtonLeft, .CarrouselButtonRight {
-    all: unset;
-    background-color: var(--olga-white-primary);
-    color: var(--olga-black-primary);
-    height: 30px;
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-  }
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-  .CarrouselSectionPagination{
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-  }
+.CarrouselButtonLeft,
+.CarrouselButtonRight {
+  all: unset;
+  background-color: var(--olga-white-primary);
+  color: var(--olga-black-primary);
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-  .CarrouselSectionPagination .CarrouselSectionPaginationText{
-    background-color: var(--olga-white-primary);
-    padding: 7px 16px 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    font-size: 0.875rem;
-    font-weight: normal;
+.CarrouselSectionPagination {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.CarrouselSectionPagination .CarrouselSectionPaginationText {
+  background-color: var(--olga-white-primary);
+  padding: 7px 16px 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-size: 0.875rem;
+  font-weight: normal;
 }
 
 *::-webkit-scrollbar {
-    width: 8px; 
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
-    background-color: var(--olga-white-primary);
+  background-color: var(--olga-white-primary);
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--olga-black-primary);
-    border-radius: 4px; 
+  background-color: var(--olga-black-primary);
+  border-radius: 4px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: var(--olga-black-secondary); 
+  background-color: var(--olga-black-secondary);
 }
 
 .title-primary {
-    text-decoration: none;
-    text-wrap: nowrap;
-    color: var(--olga-black-primary);
-    font-size: 1rem;
-    letter-spacing: 2.5px;
-    font-weight: normal;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
+  text-decoration: none;
+  text-wrap: nowrap;
+  color: var(--olga-black-primary);
+  font-size: 1rem;
+  letter-spacing: 2.5px;
+  font-weight: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
 }
 
 /* Scroll Element */
 
-#ScrollElement{
-    position:absolute;
-    bottom: 70px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+#ScrollElement {
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 #ScrollElement button {
-    position: relative;
-    border:none;
-    background: none;
-    text-decoration: none;
-    color: var(--olga-black-primary);
-    font-size: 2rem;
-    font-weight:600;
-    text-shadow: 0px 0px 10px rgb(255, 255, 255);
-    --webkit-tap-highlight-color: transparent;
+  position: relative;
+  border: none;
+  background: none;
+  text-decoration: none;
+  color: var(--olga-black-primary);
+  font-size: 2rem;
+  font-weight: 600;
+  text-shadow: 0px 0px 10px rgb(255, 255, 255);
+  --webkit-tap-highlight-color: transparent;
+}
+
+#ScrollElement button span {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 3px solid var(--olga-white-primary);
+  border-bottom: 3px solid var(--olga-white-primary);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb05 1.5s infinite;
+  animation: sdb05 1.5s infinite;
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes sdb05 {
+
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
   }
 
-  #ScrollElement button span {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    width: 24px;
-    height: 24px;
-    margin-left: -12px;
-    border-left: 3px solid var(--olga-white-primary);
-    border-bottom: 3px solid var(--olga-white-primary);
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    -webkit-animation: sdb05 1.5s infinite;
-    animation: sdb05 1.5s infinite;
-    box-sizing: border-box;
+  50% {
+    opacity: 1;
   }
 
-  @-webkit-keyframes sdb05 {
-
-    0% {
-      -webkit-transform: rotate(-45deg) translate(0, 0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: rotate(-45deg) translate(-20px, 20px);
-      opacity: 0;
-    }
+  100% {
+    -webkit-transform: rotate(-45deg) translate(-20px, 20px);
+    opacity: 0;
   }
-  @keyframes sdb05 {
-    0% {
-      transform: rotate(-45deg) translate(0, 0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(-45deg) translate(-20px, 20px);
-      opacity: 0;
-    }
+}
+
+@keyframes sdb05 {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
   }
 
-  
-.ErrorMsg{
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+
+
+.ErrorMsg {
   color: var(--olga-red-primary);
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
 }
 
-.SuccessMsg{
+.SuccessMsg {
   color: var(--olga-green-primary);
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
 }
-  
-  
-  

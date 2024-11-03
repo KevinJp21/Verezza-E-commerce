@@ -27,7 +27,7 @@ export default {
     "login": "Login",
     "create_account": "Sign up",
     "shopping_bag": "Shopping bag",
-    "privacy_policy": "Privacy policy",
+    "terms_of_use": "Terms of use",
     "returns": "Returns/Refunds"
   },
   "footer": {
@@ -362,5 +362,19 @@ export default {
     "p1": "Like music, film, and literature, fashion is also made for all tastes, and in this sense, many women, in addition to wanting to feel comfortable, seek looks or outfits that highlight their most feminine, romantic, and elegant side.",
     "p2": "At Olga Lucía Cortés, we understand this concept very well, and that's why, through our creations, we carefully explore and enhance each of these details.",
     "p3": "<strong>«I have always loved fashion. Since I was three years old, I dressed my dolls, made clothes for them, then took them apart and redressed them. Later, at a very young age, I studied fashion design. This led to the birth of my brand, which bears my name, and with which I have been dressing real women for over 28 years»</strong>. The garments feature details from the latest trends that I transform and blend into timeless basics, such as the renewed white shirt with striking details, where the print becomes the star. <strong>«The delicacy of women is the most important thing in our brand; each piece, style, and trend is crafted with the message of beauty and peace for the ideal, spontaneous, and natural woman»</strong>."
+  },
+  "atelier":{
+    "name": "Full Name",
+    "placeholder_name": "Full Name",
+    "email": "Email",
+    "placeholder_email": "Email",
+    "phone": "Phone",
+    "placeholder_phone": "Phone",
+    "subject": "Subject",
+    "placeholder_subject": "Subject",
+    "message": "Message (Optional)",
+    "placeholder_message": "Message (Optional)",
+    "button": "Send",
+    "placeholder_button": "Send"
   }
 }

@@ -82,13 +82,6 @@
     border: 1px solid var(--olga-black-primary);
 }
 
-.FormRegister .btn-secondary{
-    margin-top: 16px;
-    width: 100%;
-    border-radius: 0;
-    height: 56px;
-}
-
 .ContainerRegister .ErrorMsg{
     margin-bottom: 16px;
 }

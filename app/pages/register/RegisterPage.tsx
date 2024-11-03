@@ -380,7 +380,7 @@ export default function RegisterPage() {
             <span>{t("register.accepts_marketing")}</span>
           </label>
         </div>
-        <button className='btn-secondary' type="submit" disabled={loading}><span>{t("register.button")}</span></button>
+        <button className='btn-tertiary' type="submit" disabled={loading}><span>{t("register.button")}</span></button>
       </fetcher.Form>
     </section>
   );

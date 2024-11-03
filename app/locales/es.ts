@@ -27,7 +27,7 @@ export default {
         "login": "Inicia sesión",
         "create_account": "Crea una cuenta",
         "shopping_bag": "Bolsa de compras",
-        "privacy_policy": "Política de privacidad",
+        "terms_of_use": "Condiciones de uso",
         "returns": "Devoluciones/reembolsos"
     },
     "footer": {
@@ -358,5 +358,19 @@ export default {
         "p1": "Como la música, el cine y la literatura, la moda también está hecha para todos los gustos y en ese sentido, hay muchas mujeres que además de querer sentirse cómodas buscan que sus looks o atuendos resalten su parte más femenina, romántica y elegante.",
         "p2": "En Olga Lucía Cortés conocemos muy bien este concepto y por eso a través de nuestras creaciones exploramos y explotamos con delicadeza cada uno de estos detalles.",
         "p3": "<strong>«Siempre me ha gustado la moda, desde los tres años vestía mis muñecas, les hacía ropa que luego desarmaba y les volvía arreglar. Más adelante, a muy temprana edad, estudié diseño de modas. A raíz de todo esto nació mi marca, la cual lleva mi nombre y con la que llevo más de 28 años vistiendo a mujeres reales»</strong>, Las prendas llevan detalles de las últimas tendencias que transformo y combino en básicos eternos como la camisa blanca de aires renovados y detalles rompedores, en los que el estampado se convierte en protagonista, <strong>«La delicadeza de la mujer es lo más importante en nuestra marca; cada obra, estilo y moda la fabricamos siempre con el mensaje de belleza y tranquilad de la mujer idónea, espontánea y natural«</strong>."
+    },
+    "atelier":{
+        "name": "Nombre Completo",
+        "placeholder_name": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "placeholder_email": "Correo Electrónico",
+        "phone": "Teléfono",
+        "placeholder_phone": "Teléfono",
+        "subject": "Asunto",
+        "placeholder_subject": "Asunto",
+        "message": "Mensaje (Opcional)",
+        "placeholder_message": "Mensaje (Opcional)",
+        "button": "Enviar",
+        "placeholder_button": "Enviar"
     }
 }

@@ -20,6 +20,7 @@ export default defineConfig({
           route("/api/getAvailableCountries", "routes/api/getAvailableCountries.ts");
           route("/api/products/getProductByHandle/:handle", "routes/api/products/getProductByHandle.ts");
           route("/api/LoginRecoveryPassword", "routes/api/LoginRecoveryPassword.ts");
+          route("/api/sendEmail", "routes/api/sendEmail.ts");
         });
       },
       future: {
