@@ -164,7 +164,7 @@ export default function Footer() {
                   <a href=""><span>{t("footer.info.links.atelier")}</span></a>
                 </li>
                 <li className='FooterInfoItem'>
-                  <a href=""><span>{t("footer.info.links.our_brand")}</span></a>
+                  <a href="/our-brand"><span>{t("footer.info.links.our_brand")}</span></a>
                 </li>
                 <li className='FooterInfoItem'>
                   <a href="/terms-of-use"><span>{t("footer.info.links.terms_of_use")}</span></a>
