@@ -1,12 +1,41 @@
 import './AtelierPage.css';
 import { useTranslation } from 'react-i18next';
+import { useFetcher } from '@remix-run/react';
+
+interface FetcherData {
+    error?: string;
+    message?: string;
+}
 
 export default function AtelierPage() {
     const { t } = useTranslation();
+    const fetcher = useFetcher();
+    const loading = fetcher.state === 'submitting';
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+
+        fetcher.submit(
+            formData,
+            {
+                method: 'POST',
+                action: '/api/sendEmail',
+                encType: "application/x-www-form-urlencoded"
+            }
+        );
+    };
+
     return (
         <section className="AtelierContainer">
             <div className="atelierFormWrapper">
-                <form action="/api/sendEmail" method="post" className="atelierForm">
+                <fetcher.Form className="atelierForm" onSubmit={handleSubmit}>
+                    {(fetcher.data as FetcherData)?.message === "EMAIL_SENT" && (
+                        <p className='SuccessMsg'>Correo enviado con éxito</p>
+                    )}
+                    {(fetcher.data as FetcherData)?.error === "EMAIL_ERROR_SEND" && (
+                        <p className='ErrorMsg'>Ha ocurrido un error al enviar el correo, intente nuevamente más tarde</p>
+                    )}
                     <div className="formGroup">
                         <div className="inputContainer">
                             <label htmlFor="name">{t("atelier.name")}</label>
@@ -37,8 +66,10 @@ export default function AtelierPage() {
                             <textarea name="message" placeholder={t("atelier.placeholder_message")}></textarea>
                         </div>
                     </div>
-                    <button type="submit" className='btn-tertiary'><span>{t("atelier.button")}</span></button>
-                </form>
+                    <button type="submit" className='btn-tertiary' disabled={loading}>
+                        <span>{t("atelier.button")}</span>
+                    </button>
+                </fetcher.Form>
             </div>
         </section>
     );

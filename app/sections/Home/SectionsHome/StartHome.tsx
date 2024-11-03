@@ -31,7 +31,7 @@ export default function StartHome() {
         <div className="StartHomeContent">
           <h1>{t("home.start_home.title")}</h1>
           <h2>{t("home.start_home.subtitle")}</h2>
-          <a className='btn-primary' href='#'>{t("home.start_home.button")}</a>
+          <a className='btn-primary' href='/products'>{t("home.start_home.button")}</a>
         </div>
       </div>
     </section>

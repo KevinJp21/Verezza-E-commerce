@@ -360,12 +360,16 @@ export default {
         "p3": "<strong>«Siempre me ha gustado la moda, desde los tres años vestía mis muñecas, les hacía ropa que luego desarmaba y les volvía arreglar. Más adelante, a muy temprana edad, estudié diseño de modas. A raíz de todo esto nació mi marca, la cual lleva mi nombre y con la que llevo más de 28 años vistiendo a mujeres reales»</strong>, Las prendas llevan detalles de las últimas tendencias que transformo y combino en básicos eternos como la camisa blanca de aires renovados y detalles rompedores, en los que el estampado se convierte en protagonista, <strong>«La delicadeza de la mujer es lo más importante en nuestra marca; cada obra, estilo y moda la fabricamos siempre con el mensaje de belleza y tranquilad de la mujer idónea, espontánea y natural«</strong>."
     },
     "atelier":{
+        "seo": {
+            "title": "Atelier",
+            "description": "Envíanos un mensaje a Olga Lucía Cortés y con gusto te responderemos."
+        },
         "name": "Nombre Completo",
         "placeholder_name": "Nombre Completo",
         "email": "Correo Electrónico",
-        "placeholder_email": "Correo Electrónico",
+        "placeholder_email": "ejemplo@ejemplo.com",
         "phone": "Teléfono",
-        "placeholder_phone": "Teléfono",
+        "placeholder_phone": "+57 300 000 0000",
         "subject": "Asunto",
         "placeholder_subject": "Asunto",
         "message": "Mensaje (Opcional)",
