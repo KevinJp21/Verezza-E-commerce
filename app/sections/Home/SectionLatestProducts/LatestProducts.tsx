@@ -14,10 +14,10 @@ export default function LatestProducts() {
     const latestProducts = products.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 5);
 
     useEffect(() => {
-        if (latestProducts.length > 0) {
+        if (products.length === 0 || latestProducts.length > 0) {
             setIsLoading(false);
         }
-    }, [latestProducts]);
+    }, [products, latestProducts]);
 
     //Cargar loading spinner al iniciar
     if (isLoading) {

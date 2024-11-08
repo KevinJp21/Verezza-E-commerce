@@ -211,7 +211,7 @@ export default function ShopProducts() {
 
     // Effects
     useEffect(() => {
-        if (products.length > 0) {
+        if (products.length === 0 || products.length > 0) {
             setLoading(false);
         }
     }, [products]);
