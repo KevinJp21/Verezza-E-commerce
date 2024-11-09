@@ -25,7 +25,8 @@ export default function StartHome() {
   return (
     <section className="StartHomeContainer">
       <div className="StartHomeImg">
-        <img className='img1' src={isMobile ? imgStartHome1 : imgStartHome1} alt="Imagen modelo de Olga Lucía Cortes" loading='eager' decoding='async' width={800} height={430} />
+        {/* <img className='img1' src={imgStartHome1} alt="Imagen modelo de Olga Lucía Cortes" loading='eager' decoding='async' width={800} height={430} /> */}
+        <video className='video1' src="https://cdn.shopify.com/videos/c/o/v/b261e1c20a9d4e4c81bb7b65eb81baac.webm" autoPlay muted loop playsInline></video>
       </div>
       <div className="StartHomeWrapper">
         <div className="StartHomeContent">
