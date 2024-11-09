@@ -10,7 +10,7 @@ import axios from "axios";
 
 export let loader: LoaderFunction = async ({ params, request }) => {
   const url = new URL(request.url);
-  console.log(url);
+  //console.log(url);
   
   const countryCode = url.searchParams.get('countryCode') || 'US';
   const languageCode = url.searchParams.get('languageCode') || 'EN';
