@@ -41,6 +41,8 @@ export default function ShopProducts() {
     const sortBy = searchParams.get('sort_by') || 'created-descending';
     const categoryFilter = searchParams.get('category') || 'all';
 
+    const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+
     // Opciones de filtrado y ordenamiento
     const categoryOptions = [
         { value: 'all', label: t('products.all_products') },
@@ -92,8 +94,11 @@ export default function ShopProducts() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Agregar un estado para las posiciones de los elementos especiales
+    const [specialItemPositions, setSpecialItemPositions] = useState<Set<number>>(new Set());
+
+    // Modificar el useEffect de los elementos especiales
     useEffect(() => {
-        // Generar elementos especiales
         const generateSpecialItems = () => {
             const items = [
                 <div key="promo" className="ShopProductsItem SpecialItem videoFashionOfPower">
@@ -101,26 +106,30 @@ export default function ShopProducts() {
                 </div>
             ];
             setSpecialItems(items);
+
+            // Generar y guardar las posiciones una sola vez
+            const positions = new Set<number>();
+            while (positions.size < items.length) {
+                const pos = Math.floor(Math.random() * (products.length + items.length));
+                if (!positions.has(pos)) positions.add(pos);
+            }
+            setSpecialItemPositions(positions);
         };
 
         generateSpecialItems();
-    }, []);
+    }, []); // Solo se ejecuta una vez al montar el componente
 
+    // Modificar la función insertSpecialItems
     const insertSpecialItems = (items: JSX.Element[]) => {
         const result = [...items];
-        const positions = new Set<number>();
-
-        // Determinar posiciones aleatorias para insertar elementos especiales
-        while (positions.size < specialItems.length) {
-            const pos = Math.floor(Math.random() * (items.length + specialItems.length));
-            if (!positions.has(pos)) positions.add(pos);
-        }
-
-        // Insertar elementos especiales en las posiciones determinadas
         let specialItemIndex = 0;
-        positions.forEach(pos => {
-            result.splice(pos, 0, specialItems[specialItemIndex]);
-            specialItemIndex++;
+        
+        // Usar las posiciones guardadas en el estado
+        Array.from(specialItemPositions).sort((a, b) => a - b).forEach(pos => {
+            if (specialItemIndex < specialItems.length) {
+                result.splice(pos, 0, specialItems[specialItemIndex]);
+                specialItemIndex++;
+            }
         });
 
         return result;
@@ -234,6 +243,10 @@ export default function ShopProducts() {
     const currentProducts = filteredAndSortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
 
+    //Aplicar animacion al hacer click
+    const handleClick = (index: number) => {
+        setClickedIndex(clickedIndex === index ? null : index);
+    };
     return (
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
@@ -279,7 +292,10 @@ export default function ShopProducts() {
                 gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`
             }}>
                 {insertSpecialItems(currentProducts.map((product: any, index: number) =>
-                    <div className="ShopProductsItem" key={`${product.id}-${index}`}>
+                    <div className={`ShopProductsItem ${clickedIndex === index ? 'clicked' : ''} product-item`}
+                        key={`${product.id}-${index}`}
+                        onClick={() => handleClick(index)}
+                    >
                         <ProductCarousel
                             productImages={product.images.edges.map(({ node }: any) => node)}
                             productId={product.id}

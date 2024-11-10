@@ -173,13 +173,13 @@
     opacity: 0;
   }
   
-  .ShopProductsItem:hover .ProductDetailsFooter {
+  .ShopProductsItem.clicked.product-item .ProductDetailsFooter {
     padding: 5px 10px 10px 10px;
     height: 50px;
     opacity: 1;
   }
   
-  .ShopProductsItem:hover .ProductDetailsFooter button {
+  .ShopProductsItem.clicked.product-item .ProductDetailsFooter button {
     transform: translateY(0);
     opacity: 1;
   }

@@ -33,6 +33,9 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
     const [productDescription, setProductDescription] = useState<string>('');
     const [productImages, setProductImages] = useState<string[]>([]);
     const [productHandle, setProductHandle] = useState<string>('');
+
+    const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+
     const handleNavigation = (direction: 'next' | 'prev') => {
         if (isButtonDisabled) return;
 
@@ -132,6 +135,10 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
         setIsModalOpen(false);
     };
 
+    const handleClick = (index: number) => {
+        setClickedIndex(clickedIndex === index ? null : index);
+    };
+
     //Selected currency
     useEffect(() => {
         let currency = localStorage.getItem('selectedCurrencySymbol');
@@ -165,10 +172,11 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                     {extendedProducts.map((product, index) => (
                         <div
                             key={`${product.id}-${index}`}
-                            className="ProductItem"
+                            className={`ProductItem ${clickedIndex === index ? 'clicked' : ''}`}
                             style={{ flex: `0 0 ${100 / itemsPerView}%`, minWidth: `${100 / itemsPerView}%` }}
                             onMouseDown={(e) => e.preventDefault()}
                             draggable="false"
+                            onClick={() => handleClick(index)}
                         >
                             <ProductCarousel
                                 productImages={product.images.edges.map(({ node }: any) => node)}
