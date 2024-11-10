@@ -43,13 +43,13 @@ export const meta: MetaFunction = ({ data }) => {
         { name: "og:url", content: `https://olga-lucia-cortes.vercel.app/products/${product?.handle || ""}` },
         { name: "og:title", content: `${product?.title || "Producto no encontrado"}`},
         { name: "og:type", content: "product"},
-        { name: "og:image", content:`${product.images.edges[0].node.url}` },
+        { name: "og:image", content:`${product.images?.edges?.[0]?.node?.url}` },
         { name: "og:image:width", content: "1440" },
         { name: "og:image:height", content: "2160" },
-        { name: "og:price:amount", content: `${product.priceRange.minVariantPrice.amount}` },
-        { name: "og:price:currency", content: `${product.priceRange.minVariantPrice.currencyCode}` },
+        { name: "og:price:amount", content: `${product.priceRange?.minVariantPrice?.amount}` },
+        { name: "og:price:currency", content: `${product.priceRange?.minVariantPrice?.currencyCode}` },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: `${product.images.edges[0].node.url}` },
+        { name: "twitter:image", content: `${product.images?.edges?.[0]?.node?.url}` },
         { name: "twitter:title", content: `${product.title || ""}` },
         { name: "twitter:description", content: `${product.description || ""}` }
     ];

@@ -134,7 +134,7 @@ export default function ProductsHandle({ products }: { products: Product }) {
             <div className='ProductsHandleWprapper'>
                 <div className="HandleProductImg">
                     <ProductCarousel
-                        productImages={products.images.edges.map(({ node }: any) => node)}
+                        productImages={products.images?.edges?.map(({ node }: any) => node) || []}
                         productId={products.id}
                         productName={products.title}
                     />
@@ -155,15 +155,15 @@ export default function ProductsHandle({ products }: { products: Product }) {
                             </div>
                         }
                         <p className='productPrice'>
-                            {products.variants.nodes[0].compareAtPrice && <span className='productDiscountPrice'>{parseFloat(products.variants.nodes[0].compareAtPrice.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>}
-                            {parseFloat(products.variants.nodes[0].price.amount.toString()).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                            {products.variants?.nodes?.[0]?.compareAtPrice && <span className='productDiscountPrice'>{parseFloat(products.variants?.nodes?.[0]?.compareAtPrice?.amount?.toString() || '0').toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>}
+                            {parseFloat(products.variants?.nodes?.[0]?.price?.amount?.toString() || '0').toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
                         </p>
                         <div className='ProductHandleProductSize'>
                             <div className='size-header'>
                                 <span>{t('productHandle.size_title')}</span>
                             </div>
                             <div className='size-buttons'>
-                                {products.variants.nodes.map((size: any) => (
+                                {products.variants?.nodes?.map((size: any) => (
                                     <button
                                         key={size.id}
                                         className={`size-button ${selectedSize === size.id ? 'selected' : ''}`}

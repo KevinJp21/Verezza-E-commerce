@@ -25,8 +25,8 @@ export default function ProductCarousel({ productImages, productId, productName}
       {productImages.map((image, index) => (
         <div key={`${productId}-${index}`}>
           <img
-          src={image.url}
-          alt={image.altText || (productName as string) || ''}
+          src={image?.url}
+          alt={image?.altText || (productName as string) || ''}
           draggable="false"
           className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}
           decoding='async'
