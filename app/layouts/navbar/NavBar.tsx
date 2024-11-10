@@ -84,12 +84,20 @@ export default function NavBar() {
         const term = event.target.value.toLowerCase();
         setSearchTerm(term);
 
-        const filtered = products.filter(product =>
-            product && (
-                (product.title && product.title.toLowerCase().includes(term)) ||
-                (product.productType && product.productType.toLowerCase().includes(term))
-            )
-        );
+        const searchTerms = term.split(' ').filter(t => t.length > 0);
+        
+        const filtered = products.filter(product => {
+            if (!product) return false;
+            
+            const titleLower = product.title?.toLowerCase() || '';
+            const typeLower = product.productType?.toLowerCase() || '';
+            const searchString = `${titleLower} ${typeLower}`;
+
+            return searchTerms.every(term => 
+                searchString.includes(term)
+            );
+        });
+        
         setFilteredProducts(filtered);
     };
 
