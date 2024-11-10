@@ -182,6 +182,9 @@ export default function CarouselSection({ title, products }: CarouselSectionProp
                                 productImages={product.images.edges.map(({ node }: any) => node)}
                                 productId={product.id}
                                 productName={product.title}
+                                onNavigationClick={(e: React.MouseEvent) => {
+                                    e.stopPropagation(); // Detiene la propagación del evento
+                                }}
                             />
                             <div className="ProductDetails">
                                 <div className="ProductDetailsHeader">

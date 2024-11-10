@@ -3,9 +3,10 @@ import './ProductCarousel.css';
 import { arrowLeftIcon, arrowRightIcon } from '~/assets/icons/icons';
 
 interface ProductCarouselProps {
-  productImages: Array<{ url: string; altText: string }>;
-  productId: string | null;
+  productImages: any[];
+  productId: string;
   productName: string;
+  onNavigationClick?: (e: React.MouseEvent) => void;
 }
 
 export default function ProductCarousel({ productImages, productId, productName}: ProductCarouselProps) {
@@ -21,7 +22,16 @@ export default function ProductCarousel({ productImages, productId, productName}
 
   return (
     <div className="ProductCarousel">
-      <button onClick={prevImage} className="carrouselButton CarrouselButtonLeft"  aria-label="Botón Prev">{arrowLeftIcon()}</button>
+      <button 
+        onClick={(e) => {
+          e.stopPropagation();
+          prevImage();
+        }} 
+        className="carrouselButton CarrouselButtonLeft" 
+        aria-label="Botón Prev"
+      >
+        {arrowLeftIcon()}
+      </button>
       {productImages.map((image, index) => (
         <div key={`${productId}-${index}`}>
           <img
@@ -33,7 +43,16 @@ export default function ProductCarousel({ productImages, productId, productName}
         />
         </div>
       ))}
-      <button onClick={nextImage} className="carrouselButton CarrouselButtonRight" aria-label="Botón Next">{arrowRightIcon()}</button>
+      <button 
+        onClick={(e) => {
+          e.stopPropagation();
+          nextImage();
+        }} 
+        className="carrouselButton CarrouselButtonRight" 
+        aria-label="Botón Next"
+      >
+        {arrowRightIcon()}
+      </button>
     </div>
   );
 }
