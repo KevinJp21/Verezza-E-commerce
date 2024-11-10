@@ -49,7 +49,11 @@ export default function ShopProducts() {
         { value: t('products.blouses'), label: t('products.blouses') },
         { value: t('products.dresses'), label: t('products.dresses') },
         { value: t('products.sets'), label: t('products.sets') },
-        { value: t('products.pants'), label: t('products.pants') }
+        { value: t('products.pants'), label: t('products.pants') },
+        { value: t('products.complements'), label: t('products.complements') },
+        { value: t('products.shorts'), label: t('products.shorts') },
+        { value: t('products.skirts'), label: t('products.skirts') },
+        { value: t('products.jackets'), label: t('products.jackets') }
     ];
 
 

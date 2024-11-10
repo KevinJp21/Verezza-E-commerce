@@ -182,6 +182,10 @@ export default {
         "dresses": "vestidos",
         "sets": "conjuntos",
         "pants": "pantalones",
+        "complements": "complementos",
+        "shorts": "short",
+        "skirts": "vestidos",
+        "jackets": "chaquetas",
         "buy_now": "Comprar ahora"
     },
     "productHandle": {

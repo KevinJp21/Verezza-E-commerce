@@ -184,6 +184,10 @@ export default {
     "dresses": "dresses",
     "sets": "sets",
     "pants": "pants",
+    "complements": "complements",
+    "shorts": "shorts",
+    "skirts": "skirts",
+    "jackets": "jackets",
     "buy_now": "Shop now"
   },
   "productHandle": {
