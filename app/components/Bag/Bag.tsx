@@ -95,7 +95,7 @@ export default function Bag({ isOpen, onClose }: BagProps) {
                                 return (
                                     <div key={item.id} className="bagItem">
                                         <picture className="bagItemImage">
-                                            <img src={fullProduct.images.edges[0].node.url} alt={fullProduct.title} />
+                                            <img src={fullProduct.images?.edges?.[0]?.node?.url} alt={fullProduct.title} />
                                         </picture>
                                         <div className="itemDetails">
                                             <a href={`/products/${fullProduct.handle}`}>{fullProduct.title}</a>
