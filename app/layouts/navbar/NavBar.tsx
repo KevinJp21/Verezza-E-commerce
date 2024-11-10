@@ -81,11 +81,14 @@ export default function NavBar() {
 
     //Obtener productos y filtrarlos en tiempo real
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const term = event.target.value;
+        const term = event.target.value.toLowerCase();
         setSearchTerm(term);
 
         const filtered = products.filter(product =>
-            product && product.title && product.title.toLowerCase().includes(term.toLowerCase())
+            product && (
+                (product.title && product.title.toLowerCase().includes(term)) ||
+                (product.productType && product.productType.toLowerCase().includes(term))
+            )
         );
         setFilteredProducts(filtered);
     };
@@ -285,7 +288,7 @@ export default function NavBar() {
                             <li key={`${product.id}-${index}`} className='searhResultWrapper' onClick={() => handleOpenModal(product)}>
 
                                 <picture className='ResultImg'>
-                                    <img src={product.images.edges[0].node.url} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
+                                    <img src={product.images?.edges[0]?.node?.url} alt={product.title} width={50} height={50} loading='lazy' decoding='async' />
                                 </picture>
                                 <div className="resultDetails" >
                                     <span>{product.title}</span>
@@ -294,7 +297,7 @@ export default function NavBar() {
                                             <span className='ProductPriceDiscount'>{parseFloat(product.variants.nodes[0].compareAtPrice.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}</span>
                                         )}
 
-                                        <span>{parseFloat(product.variants.nodes[0].price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
+                                        <span>{parseFloat(product.variants?.nodes?.[0]?.price.amount).toLocaleString(selectedCurrency === 'USD' ? 'en-US' : selectedCurrency === 'COP' ? 'es-CO' : 'es-ES', { style: 'currency', currency: selectedCurrency, minimumFractionDigits: 0 })} {selectedCurrency}
 
                                         </span>
 
