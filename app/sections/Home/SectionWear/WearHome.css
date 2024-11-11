@@ -1,7 +1,7 @@
 .WearHomeContainer{
     padding: 16px;
     width: 100%;
-    height: fit-content;
+    min-height: 75vh;
 }
 
 .WearHomeContainer h2{
@@ -112,5 +112,19 @@
         grid-row: 1/2;
     }
 
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--olga-white-primary);
+    cursor: pointer;
+    margin-left: 5px;
+    text-decoration: underline;
+    font-size: 0.9em;
+}
+
+.read-more-btn:hover {
+    color: var(--olga-gray-primary);
 }
 

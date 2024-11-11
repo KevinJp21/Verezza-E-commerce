@@ -141,14 +141,8 @@ export default {
     "section_wear": {
       "title": "Complete your look",
       "button": "Explore now",
-      "promo_1": {
-        "title": "Mehtap",
-        "description": "Blouse in white yarn olan with V-neckline and large volume sleeves that provide an elegant and sophisticated touch."
-      },
-      "promo_2": {
-        "title": "Esen",
-        "description": "Baby blue cotton blouse with shirt collar and long sleeves.\nIt features a distinctive maxi flower detail."
-      }
+      "read_more": "Read more",
+      "read_less": "Read less"
     },
 
     "section_latest_products": {

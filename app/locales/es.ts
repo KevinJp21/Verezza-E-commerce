@@ -141,14 +141,8 @@ export default {
         "section_wear": {
             "title": "Complementa tu look",
             "button": "Explora ahora",
-            "promo_1": {
-                "title": "Mehtap",
-                "description": "Blusa en olan de hilo blanco con escote en V y mangas de gran volumen que aportan un toque elegante y sofisticado."
-            },
-            "promo_2": {
-                "title": "Esen",
-                "description": "Blusa en algodón tono baby blue con cuello camisero y mangas largas.\nDestaca por un detalle distintivo de una maxi flor."
-            }
+            "read_more": "Leer más",
+            "read_less": "Leer menos"
         },
         "section_latest_products": {
             "title": "Productos recientes"
