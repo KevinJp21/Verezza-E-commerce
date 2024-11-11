@@ -24,7 +24,7 @@ export default function NavBar() {
     //Obtener datosa al seleccionarlo en la busqueda
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
-    const [productId, setProductId] = useState<string | null>(null);
+    const [productId, setProductId] = useState<string>('');
     const [productName, setProductName] = useState<string>('');
     const [productCategory, setProductCategory] = useState<string>('');
     const [productPrice, setProductPrice] = useState<number>(0);
