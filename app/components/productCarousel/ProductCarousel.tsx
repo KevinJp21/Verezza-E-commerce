@@ -32,17 +32,15 @@ export default function ProductCarousel({ productImages, productId, productName}
       >
         {arrowLeftIcon()}
       </button>
-      {productImages.map((image, index) => (
-        <div key={`${productId}-${index}`}>
-          <img
-          src={image?.url}
-          alt={image?.altText || (productName as string) || ''}
+      <div key={`${productId}-${currentImageIndex}`}>
+        <img
+          src={productImages[currentImageIndex]?.url}
+          alt={productImages[currentImageIndex]?.altText || (productName as string) || ''}
           draggable="false"
-          className={`ProductImage ${index === currentImageIndex ? 'visible' : ''}`}
+          className="ProductImage visible"
           decoding='async'
         />
-        </div>
-      ))}
+      </div>
       <button 
         onClick={(e) => {
           e.stopPropagation();
