@@ -5,25 +5,25 @@ import { useTranslation } from "react-i18next";
 
 export const meta: MetaFunction = () => {
   const { t } = useTranslation();
-  const baseUrl = "https://olga-lucia-cortes.vercel.app";
+  const baseUrl = "https://olgaluciacortes.com";
   return [
-    { title: t("home.home_seo.title") },
-    { name: "description", content: "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas." },
-    { name: "keywords", content: "moda, ropa de mujer, blusas, pantalones, vestidos, accesorios, moda colombiana, talla s, talla m, talla l, talla xl, talla xxl, complementos" },
-    { name: "og:title", content: "Olga Lucía Cortes | Moda exclusiva para mujeres reales" },
-    { name: "og:site_name", content: "Olga Lucía Cortes"},
-    { name: "og:description", content: "Descubre nuestra colección de moda diseñada para resaltar la belleza de todas las mujeres. Prendas únicas y elegantes para cada ocasión." },
-    { name: "og:image", content: `${baseUrl}/seo/HomeScreen.png` },
-    { name: "og:image:alt", content: "Página de inicio de Olga Lucía Cortés" },
-    { name: "og:image:width", content: "1200" },
-    { name: "og:image:height", content: "630" },
+    { title: t("home.home_seo.title") || "Exclusive fashion for real women | Olga Lucía Cortes" },
+    { name: "description", content: t("home.home_seo.description") },
+    { name: "keywords", content: t("home.home_seo.keywords") },
+    { name: "og:title", content: t("home.home_seo.title") },
+    { name: "og:site_name", content: t("home.home_seo.title")},
+    { name: "og:description", content: t("home.home_seo.description") },
+    { name: "og:image", content: `${baseUrl}/seo/icon.jpg` },
+    { name: "og:image:alt", content: t("home.home_seo.title") },
+    { name: "og:image:width", content: "192" },
+    { name: "og:image:height", content: "192" },
     { name: "og:type", content: "website" },
     { name: "og:url", content: `${baseUrl}` },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: "Olga Lucía Cortes | Moda exclusiva para mujeres reales" },
-    { name: "twitter:description", content: "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas." },
-    { name: "twitter:image", content: `${baseUrl}/seo/HomeScreen.png` },
-    { name: "og:updated_time", content: "2024-08-18T14:59:00Z" },
+    { name: "twitter:title", content: t("home.home_seo.title") },
+    { name: "twitter:description", content: t("home.home_seo.description") },
+    { name: "twitter:image", content: `${baseUrl}/seo/icon.jpg` },
+    { name: "og:updated_time", content: "2024-11-12T14:59:00Z" },
   ];
 };
 

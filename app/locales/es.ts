@@ -131,7 +131,9 @@ export default {
     },
     "home": {
         "home_seo": {
-            "title": "Olga Lucía Cortes | Moda exclusiva para mujeres reales"
+            "title": "Moda exclusiva para mujeres reales | Olga Lucía Cortes",
+            "description": "Descubre la moda exclusiva de Olga Lucía Cortés. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas.",
+            "keywords": "moda, ropa de mujer, blusas, pantalones, vestidos, accesorios, moda colombiana, talla s, talla m, talla l, talla xl, talla xxl, complementos"
         },
         "start_home": {
             "title": "Descubre la moda que te hará sentir única",
@@ -160,7 +162,9 @@ export default {
     },
     "products": {
         "products_seo": {
-            "title": "Olga Lucía Cortes | Tienda"
+            "title": "Tienda | Olga Lucía Cortes",
+            "description": "Explora nuestra exclusiva colección de moda femenina. Encuentra blusas, vestidos, conjuntos y complementos diseñados con elegancia y estilo. Descubre prendas únicas que realzan tu belleza natural.",
+            "keywords": "tienda ropa mujer, moda femenina, vestidos elegantes, blusas mujer, ropa colombiana, conjuntos mujer, ropa casual elegante, moda latina, ropa exclusiva, diseños únicos, Olga Lucía Cortes, tienda online moda"
         },
         "products_quantity": "PRODUCTOS",
         "products_filters": "FILTROS",
@@ -349,8 +353,9 @@ export default {
     },
     "ourBrand":{  
         "seo": {
-            "title": "Nuestra marca",
-            "description": "Como la música, el cine y la literatura, la moda también está hecha para todos los gustos y en ese sentido, hay muchas mujeres que además de querer sentirse cómodas buscan que sus looks o atuendos resalten su parte más femenina, romántica y elegante."
+            "title": "Nuestra Marca | Olga Lucía Cortes",
+            "description": "Con más de 28 años vistiendo mujeres reales, Olga Lucía Cortés crea prendas que resaltan la feminidad, elegancia y delicadeza. Nuestras creaciones combinan las últimas tendencias con básicos eternos, donde cada detalle está pensado para la mujer espontánea y natural.",
+            "keywords": "Olga Lucía Cortes, marca de moda, diseñadora colombiana, moda latinoamericana, ropa elegante, historia de la marca, visión de moda, estilo femenino, moda sostenible, diseños exclusivos, identidad de marca"
         },
         "title": "Nuestra marca",
         "p1": "Como la música, el cine y la literatura, la moda también está hecha para todos los gustos y en ese sentido, hay muchas mujeres que además de querer sentirse cómodas buscan que sus looks o atuendos resalten su parte más femenina, romántica y elegante.",

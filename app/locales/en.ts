@@ -131,7 +131,9 @@ export default {
   },
   "home": {
     "home_seo": {
-      "title": "Olga Lucía Cortes | Exclusive fashion for real women"
+      "title": "Exclusive fashion for real women | Olga Lucía Cortes",
+      "description": "Discover the exclusive fashion of Olga Lucía Cortés. Find blouses, pants, dresses, and more, designed for real women. Shop now and complete your look with our unique collections.",
+      "keywords": "fashion, women's clothing, blouses, pants, dresses, accessories, Colombian fashion, size S, size M, size L, size XL, size XXL, complements"
     },
     "start_home": {
       "title": "Discover the fashion that will make you feel unique",
@@ -162,7 +164,9 @@ export default {
   },
   "products": {
     "products_seo": {
-      "title": "Olga Lucía Cortes | Shop",
+      "title": "Shop | Olga Lucía Cortes",
+        "description": "Explore our exclusive women's fashion collection. Find blouses, dresses, sets, and accessories designed with elegance and style. Discover unique pieces that enhance your natural beauty.",
+        "keywords": "women's clothing store, women's fashion, elegant dresses, women's blouses, Colombian clothing, women's sets, casual elegant clothing, Latin fashion, exclusive clothing, unique designs, Olga Lucía Cortes, online fashion store"
     },
     "products_quantity": "PRODUCTS",
     "products_filters": "FILTERS",
@@ -353,8 +357,9 @@ export default {
   },
   "ourBrand": {
     "seo": {
-      "title": "Our Brand",
-      "description": "Like music, film, and literature, fashion is also made for all tastes, and in this sense, many women, in addition to wanting to feel comfortable, seek looks or outfits that highlight their most feminine, romantic, and elegant side."
+      "title": "Our Brand | Olga Lucía Cortes",
+        "description": "With over 28 years dressing real women, Olga Lucía Cortés creates garments that enhance femininity, elegance, and delicacy. Our creations combine the latest trends with timeless basics, where every detail is designed for the spontaneous and natural woman.",
+        "keywords": "Olga Lucía Cortes, fashion brand, Colombian designer, Latin American fashion, elegant clothing, brand history, fashion vision, feminine style, sustainable fashion, exclusive designs, brand identity"
     },
     "title": "Our Brand",
     "p1": "Like music, film, and literature, fashion is also made for all tastes, and in this sense, many women, in addition to wanting to feel comfortable, seek looks or outfits that highlight their most feminine, romantic, and elegant side.",
