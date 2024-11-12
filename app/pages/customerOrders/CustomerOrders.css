@@ -8,6 +8,24 @@
     margin: 0 auto;
 }
 
+.customerOrdersNoData{
+    max-width: 1440px;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 46px 16px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customerOrdersNoData span{
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
 .customerOrdersContainer .customerOrdersTitle{
     font-size: 1.313rem;
     font-weight: 600;
@@ -110,6 +128,7 @@
     font-weight: 600;
     color: var(--olga-black-primary);
 }
+
 
 @media screen and (min-width: 768px) {
     .orderList .orderItem{

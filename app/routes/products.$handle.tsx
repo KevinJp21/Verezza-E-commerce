@@ -38,7 +38,7 @@ export const meta: MetaFunction = ({ data }) => {
         return [
         { title: `${product.title} | Olga Lucia Cortes` },
         { name: "description", content: `${product.description || "Producto no encontrado"}` },
-        { name: "og:site_name", content: "Olga Lucia Cortes" },
+        { name: "og:site_name", content: "Olga Lucía Cortes" },
         { name: "og:description", content: `${product?.description || "Producto no encontrado"}` },
         { name: "og:url", content: `https://olgaluciacortes.com/products/${product?.handle || ""}` },
         { name: "og:title", content: `${product?.title || "Producto no encontrado"}`},

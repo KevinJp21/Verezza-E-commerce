@@ -61,6 +61,10 @@ export default {
     "subtotal": "Subtotal",
   },
   "login": {
+    "seo": {
+      "title": "Login | Olga Lucía Cortes",
+      "description": "Login to Olga Lucía Cortes to access your purchases and exclusive benefits."
+    },
     "title": "Login",
     "unidentifiedCustomer": "Email or password incorrect",
     "error": "Error logging in",
@@ -84,8 +88,8 @@ export default {
   },
   "register": {
     "seo": {
-      "title": "Olga Lucía Cortés | Create your account",
-      "description": "Create your account in Olga Lucía Cortés to enjoy our exclusive benefits."
+      "title": "Create account | Olga Lucía Cortes",
+      "description": "Create your account in Olga Lucía Cortes to enjoy our exclusive benefits."
     },
     "title": "Create your account",
     "error": {
@@ -368,8 +372,8 @@ export default {
   },
   "atelier":{
     "seo": {
-      "title": "Atelier",
-      "description": "Send us a message to Olga Lucía Cortés and we will respond to you with pleasure."
+      "title": "Atelier | Olga Lucía Cortes",
+      "description": "Send us a message to Olga Lucía Cortes and we will respond to you with pleasure."
     },
     "name": "Full Name",
     "placeholder_name": "Full Name",
@@ -383,5 +387,27 @@ export default {
     "placeholder_message": "Message (Optional)",
     "button": "Send",
     "placeholder_button": "Send"
+  },
+  "account_orders":{
+    "seo": {
+      "title": "My Orders | Olga Lucía Cortes",
+      "description": "Here you can see the status of your orders."
+    },
+    "title": "My Orders",
+    "no_data": "You have not made any purchases"
+  },
+  "account_recover":{
+    "seo": {
+      "title": "Recover Password | Olga Lucía Cortes",
+      "description": "Recover your password to access your account."
+    }
+  },
+  "page_not_found":{
+    "seo": {
+      "title": "Page not found | Olga Lucía Cortes",
+      "description": "Sorry, the page you are looking for does not exist."
+    },
+    "title": "Page not found",
+    "description": "Sorry, the page you are looking for does not exist."
   }
 }

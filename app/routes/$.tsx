@@ -1,18 +1,20 @@
 import { MetaFunction } from "@remix-run/node";
+import Layout from "~/layouts/layout";
+import NotFoundPage from "~/pages/NotFoundPage/NotFoundPage";
+import { useTranslation } from "react-i18next";
 
 export const meta: MetaFunction = () => {
+    const { t } = useTranslation();
     return [
-        { title: "Página no encontrada" },
-        { name: "description", content: "Lo sentimos, la página que estás buscando no existe." }
+        { title: t('page_not_found.seo.title') || "Page not found | Olga Lucía Cortes" },
+        { name: "description", content: t('page_not_found.seo.description') }
     ];
 };
 
 export default function NotFound() {
   return (
-    <div>
-      <h1>404 - Página no encontrada</h1>
-      <p>Lo sentimos, la página que estás buscando no existe.</p>
-      <a href="/">Volver a la página principal</a>
-    </div>
+    <Layout>
+      <NotFoundPage />
+    </Layout>
   );
 }

@@ -61,6 +61,10 @@ export default {
         "subtotal": "Subtotal"
     },
     "login": {
+        "seo": {
+            "title": "Iniciar sesión | Olga Lucía Cortes",
+            "description": "Inicia sesión en Olga Lucía Cortes para acceder a tus compras y beneficios exclusivos."
+        },
         "title": "Iniciar sesión",
         "unidentifiedCustomer": "Correo o contraseña incorrectos",
         "error": "Error al iniciar sesión",
@@ -84,8 +88,8 @@ export default {
     },
     "register": {
         "seo": {
-            "title": "Olga Lucía Cortés | Crear cuenta",
-            "description": "Crea tu cuenta en Olga Lucía Cortés para disfrutar de nuestros beneficios exclusivos."
+            "title": "Crear cuenta | Olga Lucía Cortes",
+            "description": "Crea tu cuenta en Olga Lucía Cortes para disfrutar de nuestros beneficios exclusivos."
         },
         "title": "Crea tu cuenta",
         "error": {
@@ -364,8 +368,8 @@ export default {
     },
     "atelier":{
         "seo": {
-            "title": "Atelier",
-            "description": "Envíanos un mensaje a Olga Lucía Cortés y con gusto te responderemos."
+            "title": "Atelier | Olga Lucía Cortes",
+            "description": "Envíanos un mensaje a Olga Lucía Cortes y con gusto te responderemos."
         },
         "name": "Nombre Completo",
         "placeholder_name": "Nombre Completo",
@@ -379,5 +383,30 @@ export default {
         "placeholder_message": "Mensaje (Opcional)",
         "button": "Enviar",
         "placeholder_button": "Enviar"
+    },
+    "account_orders":{
+        "seo": {
+            "title": "Mis Ordenes | Olga Lucía Cortes",
+            "description": "Aquí podrás ver el estado de tus ordenes."
+        },
+        "title": "Mis Ordenes",
+        "no_data": "No has realizado ninguna compra",
+        "canceled": "Cancelada",
+        "fulfilled": "Cumplida",
+        "unfulfilled": "Pendiente"
+    },
+    "account_recover":{
+        "seo": {
+            "title": "Recuperar contraseña | Olga Lucía Cortes",
+            "description": "Recupera tu contraseña de acceso a tu cuenta."
+        }
+    },
+    "page_not_found":{
+        "seo": {
+            "title": "Página no encontrada | Olga Lucía Cortes",
+            "description": "Lo sentimos, la página que estás buscando no existe."
+        },
+        "title": "Página no encontrada",
+        "description": "Lo sentimos, la página que estás buscando no existe."
     }
 }

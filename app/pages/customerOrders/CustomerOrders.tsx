@@ -53,13 +53,13 @@ interface CustomerData {
 export default function CustomerOrders({ data }: { data: CustomerData }) {
     const { customer } = data;
     const { t } = useTranslation();
-    if (!customer) {
-        return <div>No se encontraron datos del cliente</div>;
+    if (!customer || customer.orders.edges.length === 0) {
+        return <div className='customerOrdersNoData'><span>{t('account_orders.no_data')}</span></div>;
     }
 
     return (
         <section className="customerOrdersContainer">
-            <h1 className='customerOrdersTitle'>Pedidos</h1>
+            <h1 className='customerOrdersTitle'>{t('account_orders.title')}</h1>
             <ul className="orderList">
                 {customer.orders.edges.map(({ node: order }) => (
                     <li className="orderItem" key={order.id}>
