@@ -182,7 +182,7 @@ export default {
         "pants": "pantalones",
         "complements": "complementos",
         "shorts": "short",
-        "skirts": "vestidos",
+        "skirts": "faldas",
         "jackets": "chaquetas",
         "buy_now": "Comprar ahora"
     },
