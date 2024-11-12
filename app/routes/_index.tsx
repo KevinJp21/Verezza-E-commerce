@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
     { name: "og:title", content: t("home.home_seo.title") },
     { name: "og:site_name", content: "Olga Lucía Cortes" },
     { name: "og:description", content: t("home.home_seo.description") },
-    { name: "og:image", content: `${baseUrl}/seo/icon.jpg` },
+    { name: "og:image", content: `${baseUrl}/seo/icon.webp` },
     { name: "og:image:alt", content: "Olga Lucía Cortes Icon" },
     { name: "og:image:width", content: "192" },
     { name: "og:image:height", content: "192" },
@@ -23,7 +23,7 @@ export const meta: MetaFunction = () => {
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: t("home.home_seo.title") },
     { name: "twitter:description", content: t("home.home_seo.description") },
-    { name: "twitter:image", content: `${baseUrl}/seo/icon.jpg` },
+    { name: "twitter:image", content: `${baseUrl}/seo/icon.webp` },
     { name: "og:updated_time", content: "2024-11-12T14:59:00Z" },
   ];
 };
