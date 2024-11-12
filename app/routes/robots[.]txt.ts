@@ -51,7 +51,6 @@ export const loader: LoaderFunction = async ({ request }) => {
     // Agregar URLs de páginas estáticas
     const pagesUrls = [
       baseUrl,
-      `/`,
       `/products`,
       `/atelier`,
       `/our-brand`,
@@ -68,7 +67,6 @@ Disallow: /account/orders
 Disallow: /account/recover
 Allow: /products/*
 ${allUrls}
-
 Sitemap: ${baseUrl}/sitemap.xml
 
 # Crawl-delay: 10
