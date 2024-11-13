@@ -161,7 +161,7 @@ export default function Footer() {
               <h3>{t("footer.info.title")}</h3>
               <ul className='FooterInfoList'>
                 <li className='FooterInfoItem'>
-                  <a href=""><span>{t("footer.info.links.atelier")}</span></a>
+                  <a href="/atelier"><span>{t("footer.info.links.atelier")}</span></a>
                 </li>
                 <li className='FooterInfoItem'>
                   <a href="/our-brand"><span>{t("footer.info.links.our_brand")}</span></a>
@@ -175,6 +175,7 @@ export default function Footer() {
               </ul>
             </div>
             <div className="FooterSocial">
+              <h3>{t("footer.social.follow_us")}</h3>
               <ul className='FooterSocialList'>
                 <li className='FooterSocialItem'>
                   <a href="https://www.facebook.com/olgaluciacorteshautecouture" target='_blank' aria-label='Facebook'>{facebookIcon()}</a>

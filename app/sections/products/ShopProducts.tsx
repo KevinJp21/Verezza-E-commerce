@@ -33,7 +33,6 @@ export default function ShopProducts() {
     const productsPerPage = 15;
     //Products
     const { products } = useProductContext();
-    const TotalProducts = products.length;
 
     // URL params
     const [searchParams, setSearchParams] = useSearchParams();
@@ -255,38 +254,45 @@ export default function ShopProducts() {
         <section className="ShopProductsContainer">
             <header className="ShopHeaderContainer">
                 <div className="ShopHeaderContent">
-                    <p className="ProductsQuantity">{TotalProducts} {t('products.products_quantity')}</p>
-                    <div className="ShopHeaderFiltersItem">
-                        <p>{t('products.products_filters')} :</p>
-                        <div className="ShopHeaderFiltersItemSelectContainer">
-                            <select
-                                className="ShopHeaderFiltersItemSelect"
-                                role="listbox"
-                                onChange={(e) => handleCategoryFilter(e.target.value)}
-                                title="Filter category"
-                                value={categoryFilter}
-                            >
-                                {categoryOptions.map(option => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label.toUpperCase()}
-                                    </option>
-                                ))}
-                            </select>
-                            <span>|</span>
-                            <select
-                                className="ShopHeaderFiltersItemSelect"
-                                role="listbox"
-                                id="products-sort-by"
-                                title="Filter sort"
-                                onChange={(e) => handleSortBy(e.target.value)}
-                                value={sortBy}
-                            >
-                                {sortOptions.map(option => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label.toUpperCase()}
-                                    </option>
-                                ))}
-                            </select>
+                    <div className="ShopHeaderFilters">
+                        <div className="ShopHeaderFiltersGroup">
+                            <label>{t('products.products_filters')}:</label>
+                            <div className="ShopHeaderFiltersSelects">
+                                <div className="SelectWrapper">
+                                    <select
+                                        className="ShopHeaderFiltersItemSelect"
+                                        role="listbox"
+                                        onChange={(e) => handleCategoryFilter(e.target.value)}
+                                        title="Filter category"
+                                        value={categoryFilter}
+                                    >
+                                        {categoryOptions.map(option => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <span className="SelectArrow">▼</span>
+                                </div>
+                                <div className="SelectDivider"></div>
+                                <div className="SelectWrapper">
+                                    <select
+                                        className="ShopHeaderFiltersItemSelect"
+                                        role="listbox"
+                                        id="products-sort-by"
+                                        title="Filter sort"
+                                        onChange={(e) => handleSortBy(e.target.value)}
+                                        value={sortBy}
+                                    >
+                                        {sortOptions.map(option => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <span className="SelectArrow">▼</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,280 +1,315 @@
-.Footer{
-    background-color: var(--olga-black-primary);
-    height: fit-content;
-    padding: 48px 16px 16px 16px;
+.Footer {
+  background-color: var(--olga-black-primary);
+  height: fit-content;
+  padding: 48px 16px 16px 16px;
 
 }
 
-.FooterContainer{
-    max-width: 1440px;
-    margin: 0 auto;
+.FooterContainer {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-.FooterHeader{
-    display: flex;
-    flex-direction: column;
+.FooterHeader {
+  display: flex;
+  flex-direction: column;
 }
 
 
 .FooterSelector {
-    position: relative;
-    width: 100%;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    row-gap: 10px;
-  }
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
 
 .FooterSelector h3 {
-    color: var(--olga-white-primary);
-    font-size: 0.875rem;
-    font-weight: bold;
-    opacity: 0.7;
+  color: var(--olga-white-primary);
+  font-size: 0.875rem;
+  font-weight: bold;
+  opacity: 0.7;
 }
-  
-  .customSelect {
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .selectHeader {
-    display: flex;
-    flex-direction: column;
+
+.customSelect {
+  position: relative;
+  cursor: pointer;
+}
+
+.selectHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.selectHeader::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: var(--olga-white-primary);
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+.currencyWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  gap: 20px;
+}
+
+.currencyDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+}
+
+.currencyDetails span {
+  color: var(--olga-white-primary);
+  font-size: 0.875rem;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.arrow {
+  justify-self: flex-end;
+  border: solid var(--olga-white-primary);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(225deg);
+  transition: transform 0.3s ease;
+}
+
+.customSelect.open .arrow {
+  transform: rotate(45deg);
+}
+
+.optionsList {
+  background-color: transparent;
+  border-top: none;
+  border-radius: 0px 0px 10px 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all .5s ease-out;
+  opacity: 0;
+}
+
+.customSelect.open .optionsList {
+  max-height: 300px;
+  opacity: 1;
+  padding-inline: 20px;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+  color: var(--olga-white-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-size: 0.875rem;
+  font-weight: normal;
+  opacity: 0.7;
+  border-width: 0;
+  position: relative;
+
+}
+
+
+.option::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: '';
+  width: 0;
+  height: 1px;
+  background-color: var(--olga-white-primary);
+  opacity: 0.7;
+  transition: width 0.3s ease;
+}
+
+.option:hover::after {
+  width: 100%;
+}
+
+.FooterInfoWrapper {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.FooterInfoWrapper h3 {
+  color: var(--olga-white-primary);
+  font-size: 0.875rem;
+  margin: 0 0 24px;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.FooterInfoWrapper .FooterInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.FooterInfoList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: start;
+  align-items: start;
+}
+
+.FooterInfoList li {
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.FooterInfoList li a {
+  color: var(--olga-white-primary);
+  text-decoration: none;
+  opacity: 0.7;
+  width: 100%;
+  position: relative;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.FooterInfoList li:hover a {
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+.FooterInfoList li:hover::after {
+  width: 100%;
+}
+
+.FooterInfoList li::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  content: '';
+  height: 1px;
+  background-color: var(--olga-white-primary);
+  transition: width 0.3s ease;
+}
+
+
+.FooterSocial {
+  margin-top: 15px;
+}
+
+.FooterSocial h3 {
+  color: var(--olga-white-primary);
+  font-size: 0.875rem;
+  margin: 0 0 24px;
+  font-weight: bold;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.FooterSocialList {
+  display: flex;
+  list-style: none;
+}
+
+.FooterSocialList .FooterSocialItem {
+  padding-inline: 10px;
+}
+
+.FooterSocialList .FooterSocialItem a {
+  color: var(--olga-gray-primary);
+  text-decoration: none;
+}
+
+.FooterSocialList .FooterSocialItem a:hover {
+  color: var(--olga-white-primary);
+}
+
+.FooterBottom {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.FooterBottom::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: var(--olga-white-primary);
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.FooterBottom span {
+  color: var(--olga-white-primary);
+  font-size: 0.875rem;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.footerSelectorWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footerSelectorWrapper .CurrencySelector {
+  flex: 1 0 60%;
+}
+
+.footerSelectorWrapper .LocationSelector {
+  flex: 1 0 40%;
+}
+
+.footerSelectorWrapper .LanguajeSelector {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .FooterHeader {
+    flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: transparent;
   }
 
-  .selectHeader::after {
-    content: '';
-    width: 100%;
-    height: 1px;
-    background-color: var(--olga-white-primary);
-    opacity: 0.7;
-    margin-top: 10px;
-  }
-  .currencyWrapper{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-inline: 20px;
-    gap: 20px;
+  .FooterInfoWrapper {
+    max-width: 400px;
   }
 
-  .currencyDetails {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-
-  }
-   .currencyDetails span{
-    color: var(--olga-white-primary);
-    font-size: 0.875rem;
-    font-weight: normal;
-    opacity: 0.7;
-   }
-
-  .arrow {
-    justify-self: flex-end;
-    border: solid var(--olga-white-primary);
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(225deg);
-    transition: transform 0.3s ease;
-  }
-  
-  .customSelect.open .arrow {
-    transform: rotate(45deg);
-  }
-  
-  .optionsList {
-    background-color: transparent;
-    border-top: none;
-    border-radius: 0px 0px 10px 10px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: all .5s ease-out;
-    opacity: 0;
-  }
-  
-  .customSelect.open .optionsList {
-    max-height: 300px;
-    opacity: 1;
-    padding-inline: 20px;
-  }
-  
-  .option {
-    padding: 10px;
-    cursor: pointer;
-    color: var(--olga-white-primary);
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    font-size: 0.875rem;
-    font-weight: normal;
-    opacity: 0.7;
-    border-width: 0;
-    position: relative;
-
-  }
-
-
-  .option::after {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    content: '';
-    width: 0;
-    height: 1px;
-    background-color: var(--olga-white-primary);
-    opacity: 0.7;
-    transition: width 0.3s ease;
-  }
-
-  .option:hover::after {
-    width: 100%;
-  }
-
-  .FooterInfoWrapper{
+  .footerSelectorWrapper {
     margin: 20px 0;
-    display: flex;
-    flex-direction: column;
   }
 
-  .FooterInfoWrapper h3{
-    color: var(--olga-white-primary);
-    font-size: 0.875rem;
-    margin: 0 0 24px;
-    font-weight: bold;
-    opacity: 0.7;
+  .footerSelectorWrapper,
+  .FooterInfoWrapper {
+    padding-inline: 20px;
   }
 
-  .FooterInfoWrapper .FooterInfo{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .FooterInfoList{
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    justify-content: start;
-    align-items: center;
-  }
-
-  .FooterInfoList li{
-    padding: 10px 5px;
-  }
-
-  .FooterInfoList li a{
-    color: var(--olga-white-primary);
-    text-decoration: none;
-    opacity: 0.7;
-  }
-
-  .FooterInfoList li a:hover{
-    opacity: 1;
-  }
-
-  .FooterSocial{
-    margin-top: 15px;
-  }
-
-  .FooterSocialList{
-    display: flex;
-    list-style: none;
-  }
-
-  .FooterSocialList .FooterSocialItem{
-    padding-inline: 10px;
-  }
-
-  .FooterSocialList .FooterSocialItem a{
-    color: var(--olga-gray-primary);
-    text-decoration: none;
-  }
-
-  .FooterSocialList .FooterSocialItem a:hover{
-    color: var(--olga-white-primary);
-  }
-
-  .FooterBottom{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-
-  .FooterBottom::before{
-    content: '';
-    width: 100%;
-    height: 1px;
-    background-color: var(--olga-white-primary);
-    opacity: 0.7;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .FooterBottom span{
-    color: var(--olga-white-primary);
-    font-size: 0.875rem;
-    font-weight: normal;
-    opacity: 0.7;
-  }
-
-  .footerSelectorWrapper{
-    display: flex;
-    flex-wrap: wrap;
-
-    .CurrencySelector{
-      flex: 1 0 60%;
-    }
-
-    .LocationSelector{
-      flex: 1 0 40%;
-    }
-
-    .LanguajeSelector{
-      width: 100%;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    .FooterHeader{
-        flex-direction: row-reverse;
-        justify-content: space-between;
-    }
-
-    .FooterInfoWrapper{
-        max-width: 400px;
-    }
-
-    .footerSelectorWrapper{
-        margin: 20px 0;
-    }
-
-    .footerSelectorWrapper, .FooterInfoWrapper{
-        padding-inline: 20px;
-    }   
-
-    .footerSelectorWrapper{
-        flex: 1;
-
-    }
-
- 
+  .footerSelectorWrapper {
+    flex: 1;
 
   }
+
+
+
+}

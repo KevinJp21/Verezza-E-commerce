@@ -8,65 +8,85 @@
 
 .ShopHeaderContainer{
     width: 100%;
-    height: auto;
     background-color: var(--olga-white-primary);
-    padding: 0 16px;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.ShopHeaderContainer .ShopHeaderContent{
+.ShopHeaderContent{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ShopHeaderFilters{
     width: 100%;
-    height: 100%;
+}
+
+.ShopHeaderFiltersGroup{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
+    gap: 20px;
 }
 
-.ShopHeaderContainer .ShopHeaderContent .ProductsQuantity{
-    font-size: clamp(.688rem, 1vw, 0.75rem);
-    font-weight: bold;
+.ShopHeaderFiltersGroup label{
+    font-size: 0.875rem;
+    font-weight: 600;
     color: var(--olga-black-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem{
+.ShopHeaderFiltersSelects{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    column-gap: 4px;
+    gap: 15px;
 }
 
-.ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem p{
-  font-size: clamp(.688rem, 1vw, 0.75rem);
-    font-weight: bold;
+.SelectWrapper{
+    position: relative;
+    min-width: 200px;
+}
+
+.ShopHeaderFiltersItemSelect{
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    background-color: white;
+    font-size: 0.875rem;
+    text-transform: uppercase;
     color: var(--olga-black-primary);
-    line-height: 1;
-}
-
-.ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem .ShopHeaderFiltersItemSelectContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem select{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-size: clamp(.688rem, 1vw, 0.75rem);
-    font-weight: bold;
-    color: var(--olga-black-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
 }
 
-.ShopHeaderContainer .ShopHeaderContent .ShopHeaderFiltersItem select::ms-expand{
-    display: none;
+.ShopHeaderFiltersItemSelect:hover{
+    border-color: var(--olga-black-primary);
+}
+
+.ShopHeaderFiltersItemSelect:focus{
+    outline: none;
+    border-color: var(--olga-black-primary);
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+}
+
+.SelectArrow{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.625rem;
+    color: var(--olga-black-primary);
+    pointer-events: none;
+}
+
+.SelectDivider{
+    width: 1px;
+    height: 20px;
+    background-color: rgba(0,0,0,0.1);
 }
 
 .ShopProductsContainer .ShopProductsContent{
@@ -219,4 +239,30 @@
         margin-top: 5px;
       }
     
+  }
+
+  @media screen and (max-width: 768px) {
+    .ShopHeaderContainer {
+        padding: 15px 20px;
+    }
+
+    .ShopHeaderFiltersGroup {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .ShopHeaderFiltersSelects {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .SelectWrapper {
+        width: 100%;
+    }
+
+    .SelectDivider {
+        display: none;
+    }
   }

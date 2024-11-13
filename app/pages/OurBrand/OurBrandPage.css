@@ -36,14 +36,14 @@
 }
 
 .OurBrandContent .OurBrandText h2{
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--olga-black-primary);
 }
 
 .OurBrandContent .OurBrandText p{
-    font-size: .875rem;
+    font-size: 1rem;
     color: var(--olga-black-primary);
     margin-bottom: 1rem;
 }

@@ -7,11 +7,11 @@ export const meta: MetaFunction = () => {
   const { t } = useTranslation();
   const baseUrl = "https://olgaluciacortes.com";
   return [
-    { title: t('termsOfUse.seo.title') || "Terms of Use | Olga Lucía Cortes" },
-    { name: "description", content: t('termsOfUse.seo.description') },
-    { name: "og:title", content: t("termsOfUse.seo.title") },
+    { title: t('TermsofUse.seo.title') || "Terms of Use | Olga Lucía Cortes" },
+    { name: "description", content: t('TermsofUse.seo.description') },
+    { name: "og:title", content: t("TermsofUse.seo.title") },
     { name: "og:site_name", content: "Olga Lucía Cortes" },
-    { name: "og:description", content: t("termsOfUse.seo.description") },
+    { name: "og:description", content: t("TermsofUse.seo.description") },
     { name: "og:image", content: `${baseUrl}/seo/icon.webp` },
     { name: "og:image:alt", content: "Olga Lucía Cortes Icon" },
     { name: "og:image:width", content: "192" },
@@ -19,8 +19,8 @@ export const meta: MetaFunction = () => {
     { name: "og:type", content: "website" },
     { name: "og:url", content: `${baseUrl}` },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: t("termsOfUse.seo.title") },
-    { name: "twitter:description", content: t("termsOfUse.seo.description") },
+    { name: "twitter:title", content: t("TermsofUse.seo.title") },
+    { name: "twitter:description", content: t("TermsofUse.seo.description") },
     { name: "twitter:image", content: `${baseUrl}/seo/icon.webp` },
     { name: "og:updated_time", content: "2024-11-12T14:59:00Z" },
   ];
