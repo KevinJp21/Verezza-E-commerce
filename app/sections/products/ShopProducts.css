@@ -1,3 +1,6 @@
+main{
+  background-color: var(--olga-white-primary);
+}
 .ShopProductsContainer{
     position: relative;
     width: 100%;
@@ -14,18 +17,21 @@
 }
 
 .ShopHeaderContent{
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
 }
 
 .ShopHeaderFilters{
     width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
 }
 
 .ShopHeaderFiltersGroup{
     display: flex;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 .ShopHeaderFiltersGroup label{

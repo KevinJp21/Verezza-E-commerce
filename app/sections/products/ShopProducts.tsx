@@ -79,19 +79,20 @@ export default function ShopProducts() {
         if (currency) {
             setSelectedCurrency(currency);
         }
-
+        // Usando un array de breakpoints ordenados para mostrar el numero de productos por fila
+        const breakpoints = [
+            { width: 450, columns: 1 },
+            { width: 900, columns: 2 },
+            { width: 1200, columns: 3 },
+            { width: 1440, columns: 4 },
+            { width: 2160, columns: 5 },
+            { width: Infinity, columns: 6 }
+        ];
+    
         function handleResize() {
-            if (window.innerWidth < 450) {
-                setItemsPerRow(1);
-            } else if (window.innerWidth < 900) {
-                setItemsPerRow(2);
-            } else if (window.innerWidth < 1200) {
-                setItemsPerRow(3);
-            } else {
-                setItemsPerRow(4);
-            }
+            const { columns } = breakpoints.find(bp => window.innerWidth < bp.width) || breakpoints[breakpoints.length - 1];
+            setItemsPerRow(columns);
         }
-
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
