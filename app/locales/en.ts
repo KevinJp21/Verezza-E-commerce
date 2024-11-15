@@ -378,6 +378,13 @@ export default {
       "title": "Atelier | Olga Lucía Cortes",
       "description": "Send us a message to Olga Lucía Cortes and we will respond to you with pleasure."
     },
+    "title": "Atelier",
+    "p1": "In our Atelier, we offer an exclusive service to help you create the perfect look that reflects your style and personality. With over 28 years of experience in designing and crafting unique garments, we provide personalized attention to ensure every detail is flawless.",
+    "p2": "At Atelier, we believe that everyone deserves a piece that tells their own story. That's why we are dedicated to creating custom-made designs using the highest quality materials and meticulous attention to detail. Our team of experts works to ensure that each creation not only meets but exceeds expectations, reflecting a timeless style that transcends fleeting trends.",
+    "p3": "Whether it's for a special event or to transform everyday moments into memorable experiences, Atelier is here to help you express your essence through design. If you’d like to learn more about our services, schedule an appointment by completing the form, and our team will contact you as soon as possible.",
+    "form_title": "Schedule Your Appointment",
+    "form_p1": "To schedule your appointment, please fill out the following form. Our team will contact you as soon as possible to confirm availability and appointment details.",
+    "form_p2": "The service costs $250,000 COP per hour, during which you will receive comprehensive advice on material selection, design, and custom adjustments, ensuring a unique and tailored experience. Complete the attached form to schedule your appointment and start designing your next masterpiece with us.",
     "name": "Full Name",
     "placeholder_name": "Full Name",
     "email": "Email",

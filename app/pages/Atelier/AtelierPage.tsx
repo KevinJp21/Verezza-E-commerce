@@ -1,6 +1,7 @@
 import './AtelierPage.css';
 import { useTranslation } from 'react-i18next';
 import { useFetcher } from '@remix-run/react';
+import CollageAtelier from '../../assets/images/Atelier/Collage Atelier.webp';
 
 interface FetcherData {
     error?: string;
@@ -28,7 +29,21 @@ export default function AtelierPage() {
 
     return (
         <section className="AtelierContainer">
+            <div className="AtelierWrapper">
+                <div className="AtelierContent">
+                    <h2>{t("atelier.title")}</h2>
+                    <p>{t("atelier.p1")}</p>
+                    <p>{t("atelier.p2")}</p>
+                    <p>{t("atelier.p3")}</p>
+                </div>
+                <img src={CollageAtelier} alt="Collage Atelier" />
+            </div>
             <div className="atelierFormWrapper">
+                <div className="AtelierFormDescription">
+                    <h2 className='atelierFormTitle'>{t("atelier.form_title")}</h2>
+                    <p>{t("atelier.form_p1")}</p>
+                    <p>{t("atelier.form_p2")}</p>
+                </div>
                 <fetcher.Form className="atelierForm" onSubmit={handleSubmit}>
                     {(fetcher.data as FetcherData)?.message === "EMAIL_SENT" && (
                         <p className='SuccessMsg'>Correo enviado con éxito</p>

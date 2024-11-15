@@ -374,6 +374,13 @@ export default {
             "title": "Atelier | Olga Lucía Cortes",
             "description": "Envíanos un mensaje a Olga Lucía Cortes y con gusto te responderemos."
         },
+        "title": "Atelier",
+        "p1": "En nuestro Atelier, ofrecemos un servicio exclusivo para ayudarte a crear el look perfecto que refleje tu estilo y personalidad. Con más de 28 años de experiencia en el diseño y confección de prendas únicas, te brindamos una atención personalizada para garantizar que cada detalle sea impecable.",
+        "p2": "En Atelier creemos que cada persona merece una pieza que cuente su propia historia. Por ello, nos dedicamos a confeccionar creaciones hechas a medida, utilizando materiales de la más alta calidad y un enfoque minucioso en cada detalle. Nuestro equipo de expertos trabaja para garantizar que cada obra no solo cumpla, sino que supere las expectativas, reflejando un estilo atemporal que trasciende las tendencias pasajeras.",
+        "p3": "Ya sea para un evento especial o para transformar momentos cotidianos en recuerdos memorables, Atelier está aquí para ayudarte a expresar tu esencia a través del diseño. Si deseas conocer más sobre nuestros servicios, agenda una cita completando el formulario y nuestro equipo se pondrá en contacto contigo lo antes posible.",
+        "form_title": "Agenda tu cita",
+        "form_p1": "Para agendar tu cita, por favor completa el siguiente formulario. Nuestro equipo se pondrá en contacto contigo lo antes posible para confirmar la disponibilidad y detalles de la cita.",
+        "form_p2": "El servicio tiene un costo de $250,000 COP por hora, durante el cual recibirás asesoramiento integral en selección de materiales, diseño y ajustes a medida, asegurando una experiencia única y hecha a tu medida. Completa el formulario adjunto para agendar tu cita y comenzar a diseñar juntos tu próxima obra maestra.",
         "name": "Nombre Completo",
         "placeholder_name": "Nombre Completo",
         "email": "Correo Electrónico",

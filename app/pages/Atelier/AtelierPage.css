@@ -5,20 +5,88 @@
     overflow: hidden;
     padding: 46px 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    background: var(--olga-white-primary);
+}
+
+.AtelierWrapper{
+    max-width: 1440px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+}
+
+.AtelierWrapper .AtelierContent{
+    max-width: 700px;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.AtelierWrapper .AtelierContent h2{
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--olga-black-primary);
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.AtelierWrapper .AtelierContent p{
+    margin-bottom: 1rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--olga-black-primary);
+}
+
+.AtelierWrapper img{
+    max-width: 550px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0 1rem;
 }
 
 .atelierFormWrapper{
+    max-width: 1440px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    flex-wrap: wrap;
+    padding: 0 16px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+    
 }
 
+.atelierFormWrapper .AtelierFormDescription{
+    width: 100%;
+    padding: 0 1rem;
+    margin-bottom: 48px;
+    
+}
+
+.atelierFormWrapper .AtelierFormDescription .atelierFormTitle{
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--olga-black-primary);
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.atelierFormWrapper .AtelierFormDescription p{
+    margin-bottom: 1rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--olga-black-primary);
+}
 .atelierForm{
     padding: 32px;
-    max-width: 1440px;
     width: 90%;
     background: var(--olga-white-primary);
     border-radius: 8px;
@@ -78,5 +146,31 @@
     padding: 8px;
     max-height: 100px;
     resize: none;
+}
+
+/* Agregar media queries para pantallas más pequeñas */
+@media screen and (max-width: 1200px) {
+    .AtelierWrapper .AtelierContent{
+        max-width: 500px;
+    }
+    
+    .AtelierWrapper img{
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .AtelierWrapper{
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .AtelierWrapper .AtelierContent{
+        max-width: 100%;
+    }
+    
+    .AtelierWrapper img{
+        max-width: 100%;
+    }
 }
 
