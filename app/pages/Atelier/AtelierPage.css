@@ -87,7 +87,7 @@
 }
 .atelierForm{
     padding: 32px;
-    width: 90%;
+    width: 100%;
     background: var(--olga-white-primary);
     border-radius: 8px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); 
