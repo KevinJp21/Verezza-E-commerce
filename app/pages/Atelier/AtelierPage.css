@@ -1,176 +1,148 @@
-.AtelierContainer{
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
-    padding: 46px 0;
-    display: flex;
-    flex-direction: column;
+.AtelierContainer {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.AtelierWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
     align-items: center;
-    background: var(--olga-white-primary);
 }
 
-.AtelierWrapper{
-    max-width: 1440px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 16px;
-    margin: 0 auto;
-    margin-bottom: 48px;
+.AtelierContent h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--olga-black-secondary);
+    font-weight: 600;
 }
 
-.AtelierWrapper .AtelierContent{
-    max-width: 700px;
-    width: 100%;
-    padding: 0 1rem;
-}
-
-.AtelierWrapper .AtelierContent h2{
-    font-size: 2.5rem;
-    font-weight: 700;
+.AtelierContent p {
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: var(--olga-black-primary);
-    margin-bottom: 24px;
-    text-align: left;
+    margin-bottom: 1.5rem;
 }
 
-.AtelierWrapper .AtelierContent p{
-    margin-bottom: 1rem;
-    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
-    font-weight: 400;
-    color: var(--olga-black-primary);
-}
-
-.AtelierWrapper img{
-    max-width: 550px;
+.AtelierWrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 0 1rem;
-}
-
-.atelierFormWrapper{
-    max-width: 1440px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    flex-wrap: wrap;
-    padding: 0 16px;
-    margin: 0 auto;
-    margin-bottom: 48px;
-    
-}
-
-.atelierFormWrapper .AtelierFormDescription{
-    width: 100%;
-    padding: 0 1rem;
-    margin-bottom: 48px;
-    
-}
-
-.atelierFormWrapper .AtelierFormDescription .atelierFormTitle{
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--olga-black-primary);
-    margin-bottom: 24px;
-    text-align: left;
-}
-
-.atelierFormWrapper .AtelierFormDescription p{
-    margin-bottom: 1rem;
-    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
-    font-weight: 400;
-    color: var(--olga-black-primary);
-}
-.atelierForm{
-    padding: 32px;
-    width: 100%;
-    background: var(--olga-white-primary);
     border-radius: 8px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 1rem;
+    background: var(--olga-white-primary);
 }
 
-.atelierForm p{
-    width: 100%;
+.atelierFormWrapper {
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    padding: 4rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.AtelierFormDescription {
     text-align: center;
-    margin-bottom: 1rem;
-}
-
-
-.atelierForm .formGroup{
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    gap: 24px;
+    margin: 0 auto 3rem;
 }
 
-.atelierForm .inputContainer{
-    flex: 1 1 100%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
+.atelierFormTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--olga-black-secondary);
 }
 
-
-.atelierForm .inputContainer label{
-    margin-bottom: 4px;
-    font-size: 1rem;
-    font-weight: 500;
+.AtelierFormDescription p {
     color: var(--olga-black-primary);
+    line-height: 1.7;
+    text-align: left;
+    margin-bottom: .875rem;
+    font-size: 1.25rem;
 }
 
-
-.atelierForm .inputContainer input,
-.atelierForm .inputContainer select{
+.atelierForm {
     width: 100%;
-    height: 40px;
-    border: 1px solid var(--olga-gray-100);
-    border-radius: 6px;
-    padding: 0 8px;
+    margin: 0 auto;
 }
 
-.atelierForm .inputContainer input:focus{
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.inputContainer label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--olga-black-secondary);
+    font-weight: 500;
+}
+
+.inputContainer input,
+.inputContainer textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.inputContainer input:focus,
+.inputContainer textarea:focus {
     outline: none;
-    border: 1px solid var(--olga-black-primary);
+    border-color: var(--olga-black-secondary);
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
 }
 
-.atelierForm .inputContainer textarea{
-    max-width: 100%;
-    width: 100%;
-    height: 100px;
-    border: 1px solid var(--olga-gray-100);
+.inputContainer textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+
+.btn-tertiary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.SuccessMsg,
+.ErrorMsg {
+    text-align: center;
+    padding: 1rem;
     border-radius: 6px;
-    padding: 8px;
-    max-height: 100px;
-    resize: none;
+    margin-bottom: 1.5rem;
 }
 
-/* Agregar media queries para pantallas más pequeñas */
-@media screen and (max-width: 1200px) {
-    .AtelierWrapper .AtelierContent{
-        max-width: 500px;
-    }
-    
-    .AtelierWrapper img{
-        max-width: 400px;
-    }
+.SuccessMsg {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
-@media screen and (max-width: 768px) {
-    .AtelierWrapper{
-        flex-direction: column;
+.ErrorMsg {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .AtelierWrapper {
+        grid-template-columns: 1fr;
         gap: 2rem;
     }
 
-    .AtelierWrapper .AtelierContent{
-        max-width: 100%;
+    .atelierFormWrapper {
+        padding: 2rem;
     }
-    
-    .AtelierWrapper img{
-        max-width: 100%;
+
+    .AtelierContent h2 {
+        font-size: 2.2rem;
+    }
+
+    .atelierFormTitle {
+        font-size: 2rem;
     }
 }
-
