@@ -22,7 +22,7 @@
 
 .WearImg{
     position: relative;
-    height: fit-content;
+    height: 900px;
 }
 
 .img1 .img1-2{
@@ -31,7 +31,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -42,7 +42,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -67,7 +67,7 @@
 .WearHomeContainer .WearHomeWrapper .WearImg> img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 .WearHomeContainer .WearHomeWrapper .WearImg{
     position: relative;
@@ -112,6 +112,12 @@
         grid-row: 1/2;
     }
 
+}
+
+@media (min-width: 1440px) {
+    .WearImg{
+        height: 1300px;
+    }
 }
 
 .read-more-btn {

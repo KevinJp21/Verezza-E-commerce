@@ -40,7 +40,7 @@ export const action: ActionFunction = async ({ request }) => {
             <body>
                  <div style="font-family: 'DM Sans', sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; background-color: white;">
                     <div style="text-align: center; border-bottom: 2px solid rgba(232, 232, 232, 1); padding-bottom: 20px; margin-bottom: 30px;">
-                        <h2 style="color: rgba(51, 51, 51, 1); font-size: 24px; margin: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 400;">OLGA LUCIA CORTES</h2>
+                        <h2 style="color: rgba(51, 51, 51, 1); font-size: 24px; margin: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 400;">VEREZZA</h2>
                         <p style="color: rgba(183, 183, 183, 1); font-size: 14px; margin-top: 5px;">Nueva Consulta</p>
                     </div>
         
@@ -72,7 +72,7 @@ export const action: ActionFunction = async ({ request }) => {
                     </div>
                     
                     <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid rgba(232, 232, 232, 1);">
-                        <p style="color: rgba(183, 183, 183, 1); font-size: 12px; margin: 0;">© ${new Date().getFullYear()} OLGA LUCIA CORTES. Todos los derechos reservados.</p>
+                        <p style="color: rgba(183, 183, 183, 1); font-size: 12px; margin: 0;">© ${new Date().getFullYear()} VEREZZA. Todos los derechos reservados.</p>
                     </div>
                 </div>
             </body>

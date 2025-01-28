@@ -147,7 +147,7 @@ export default function NavBar() {
             <nav className='NavBarContainer'>
                 <div className='NavBar1'>
                     <h1 className='title-primary'>
-                        <a href="/">OLGA LUCIA CORTES</a>
+                        <a href="/">VEREZZA</a>
                     </h1>
                     <div className='NavBar1-2'>
                         <ul className='NavbarListWrapper'>
@@ -201,7 +201,7 @@ export default function NavBar() {
             <div className={`sidebar ${isSideBarOpen ? 'open' : ''}`}>
                 <div className='sidebarWrapper'>
                     <div className="sidebarHeader">
-                        <a className='title-primary' href="/">OLGA LUCIA CORTES</a>
+                        <a className='title-primary' href="/">VEREZZA</a>
                         <button className='closeSidebar' onClick={closeSidebar} aria-label="Cerrar menu">
                             {closeIcon()}
                         </button>

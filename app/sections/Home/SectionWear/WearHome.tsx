@@ -14,8 +14,8 @@ export default function WearHome(){
     const [isExpanded2, setIsExpanded2] = useState(false)
 
     // Filtramos los productos y limitamos a 2 imágenes por producto
-    const product1 = products.find(product => product.title.toLowerCase() === 'silvia')
-    const product2 = products.find(product => product.title.toLowerCase() === 'amada')
+    const product1 = products.find(product => product.handle === "citychic-jeans")
+    const product2 = products.find(product => product.handle === "urbanflex-denim")
 
     // Agregar función auxiliar para truncar texto
     const truncateText = (text: string, maxLength: number) => {
@@ -35,15 +35,6 @@ export default function WearHome(){
                             alt={product1.title} 
                             loading="lazy" 
                             decoding="async" 
-                            width={1440} 
-                            height={2160} 
-                        />
-                        <img 
-                            className='img1-2' 
-                            src={product1.images.edges[1].node.url} 
-                            alt={product1.title} 
-                            loading="lazy" 
-                            decoding='async' 
                             width={1440} 
                             height={2160} 
                         />
@@ -74,15 +65,6 @@ export default function WearHome(){
                         <img 
                             className='img1-1' 
                             src={product2.images.edges[0].node.url} 
-                            alt={product2.title} 
-                            loading='lazy' 
-                            decoding='async' 
-                            width={1440} 
-                            height={2160} 
-                        />
-                        <img 
-                            className='img1-2' 
-                            src={product2.images.edges[1].node.url} 
                             alt={product2.title} 
                             loading='lazy' 
                             decoding='async' 

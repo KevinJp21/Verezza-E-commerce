@@ -192,7 +192,7 @@ export default function Footer() {
         </div>
 
         <div className="FooterBottom">
-          <a className='title-primary' href="/"><span>© {currentYear} OLGA LUCIA CORTES</span></a>
+          <a className='title-primary' href="/"><span>© {currentYear} VEREZZA</span></a>
         </div>
       </div>
     </footer>

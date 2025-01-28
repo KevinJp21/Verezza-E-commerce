@@ -36,7 +36,7 @@ export let loader: LoaderFunction = async ({ params, request }) => {
 export const meta: MetaFunction = ({ data }) => {
     const { product } = data as { product: Product };
         return [
-        { title: `${product.title} | Olga Lucia Cortes` },
+        { title: `${product.title} | VEREZZA` },
         { name: "description", content: `${product.description || "Producto no encontrado"}` },
         { name: "og:site_name", content: "Olga Lucía Cortes" },
         { name: "og:description", content: `${product?.description || "Producto no encontrado"}` },
