@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export const meta: MetaFunction = () => {
     const { t } = useTranslation();
     return [
-        { title: t('page_not_found.seo.title') || "Page not found | Olga Lucía Cortes" },
+        { title: t('page_not_found.seo.title') || "Page not found | Verezza" },
         { name: "description", content: t('page_not_found.seo.description') }
     ];
 };

@@ -65,8 +65,8 @@ export default {
   },
   "login": {
     "seo": {
-      "title": "Login | Olga Lucía Cortes",
-      "description": "Login to Olga Lucía Cortes to access your purchases and exclusive benefits."
+      "title": "Login | Verezza",
+      "description": "Login to Verezza to access your purchases and exclusive benefits."
     },
     "title": "Login",
     "unidentifiedCustomer": "Email or password incorrect",
@@ -91,8 +91,8 @@ export default {
   },
   "register": {
     "seo": {
-      "title": "Create account | Olga Lucía Cortes",
-      "description": "Create your account in Olga Lucía Cortes to enjoy our exclusive benefits."
+      "title": "Create account | Verezza",
+      "description": "Create your account in Verezza to enjoy our exclusive benefits."
     },
     "title": "Create your account",
     "error": {
@@ -138,7 +138,7 @@ export default {
   },
   "home": {
     "home_seo": {
-      "title": "Exclusive fashion for real women | Olga Lucía Cortes",
+      "title": "Exclusive fashion for real women | Verezza",
       "description": "Discover the exclusive fashion of Verezza. Find blouses, pants, dresses, and more, designed for real women. Shop now and complete your look with our unique collections.",
       "keywords": "fashion, women's clothing, blouses, pants, dresses, accessories, Colombian fashion, size S, size M, size L, size XL, size XXL, complements"
     },
@@ -171,9 +171,9 @@ export default {
   },
   "products": {
     "products_seo": {
-      "title": "Shop | Olga Lucía Cortes",
+      "title": "Shop | Verezza",
         "description": "Explore our exclusive women's fashion collection. Find blouses, dresses, sets, and accessories designed with elegance and style. Discover unique pieces that enhance your natural beauty.",
-        "keywords": "women's clothing store, women's fashion, elegant dresses, women's blouses, Colombian clothing, women's sets, casual elegant clothing, Latin fashion, exclusive clothing, unique designs, Olga Lucía Cortes, online fashion store"
+        "keywords": "women's clothing store, women's fashion, elegant dresses, women's blouses, Colombian clothing, women's sets, casual elegant clothing, Latin fashion, exclusive clothing, unique designs, Verezza, online fashion store"
     },
     "products_quantity": "PRODUCTS",
     "products_filters": "FILTERS",
@@ -364,9 +364,9 @@ export default {
   },
   "ourBrand": {
     "seo": {
-      "title": "Our Brand | Olga Lucía Cortes",
+      "title": "Our Brand | Verezza",
         "description": "With over 28 years dressing real women, Verezza creates garments that enhance femininity, elegance, and delicacy. Our creations combine the latest trends with timeless basics, where every detail is designed for the spontaneous and natural woman.",
-        "keywords": "Olga Lucía Cortes, fashion brand, Colombian designer, Latin American fashion, elegant clothing, brand history, fashion vision, feminine style, sustainable fashion, exclusive designs, brand identity"
+        "keywords": "Verezza, fashion brand, Colombian designer, Latin American fashion, elegant clothing, brand history, fashion vision, feminine style, sustainable fashion, exclusive designs, brand identity"
     },
     "title": "Our Brand",
     "p1": "Like music, film, and literature, fashion is also made for all tastes, and in this sense, many women, in addition to wanting to feel comfortable, seek looks or outfits that highlight their most feminine, romantic, and elegant side.",
@@ -375,8 +375,8 @@ export default {
   },
   "atelier":{
     "seo": {
-      "title": "Atelier | Olga Lucía Cortes",
-      "description": "Send us a message to Olga Lucía Cortes and we will respond to you with pleasure."
+      "title": "Atelier | Verezza",
+      "description": "Send us a message to Verezza and we will respond to you with pleasure."
     },
     "title": "Atelier",
     "p1": "In our Atelier, we offer an exclusive service to help you create the perfect look that reflects your style and personality. With over 28 years of experience in designing and crafting unique garments, we provide personalized attention to ensure every detail is flawless.",
@@ -400,7 +400,7 @@ export default {
   },
   "account_orders":{
     "seo": {
-      "title": "My Orders | Olga Lucía Cortes",
+      "title": "My Orders | Verezza",
       "description": "Here you can see the status of your orders."
     },
     "title": "My Orders",
@@ -408,13 +408,13 @@ export default {
   },
   "account_recover":{
     "seo": {
-      "title": "Recover Password | Olga Lucía Cortes",
+      "title": "Recover Password | Verezza",
       "description": "Recover your password to access your account."
     }
   },
   "page_not_found":{
     "seo": {
-      "title": "Page not found | Olga Lucía Cortes",
+      "title": "Page not found | Verezza",
       "description": "Sorry, the page you are looking for does not exist."
     },
     "title": "Page not found",

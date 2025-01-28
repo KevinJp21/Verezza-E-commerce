@@ -65,8 +65,8 @@ export default {
     },
     "login": {
         "seo": {
-            "title": "Iniciar sesión | Olga Lucía Cortes",
-            "description": "Inicia sesión en Olga Lucía Cortes para acceder a tus compras y beneficios exclusivos."
+            "title": "Iniciar sesión | Verezza",
+            "description": "Inicia sesión en Verezza para acceder a tus compras y beneficios exclusivos."
         },
         "title": "Iniciar sesión",
         "unidentifiedCustomer": "Correo o contraseña incorrectos",
@@ -91,8 +91,8 @@ export default {
     },
     "register": {
         "seo": {
-            "title": "Crear cuenta | Olga Lucía Cortes",
-            "description": "Crea tu cuenta en Olga Lucía Cortes para disfrutar de nuestros beneficios exclusivos."
+            "title": "Crear cuenta | Verezza",
+            "description": "Crea tu cuenta en Verezza para disfrutar de nuestros beneficios exclusivos."
         },
         "title": "Crea tu cuenta",
         "error": {
@@ -138,7 +138,7 @@ export default {
     },
     "home": {
         "home_seo": {
-            "title": "Moda exclusiva para mujeres reales | Olga Lucía Cortes",
+            "title": "Moda exclusiva para mujeres reales | Verezza",
             "description": "Descubre la moda exclusiva de Verezza. Encuentra blusas, pantalones, vestidos y más, diseñados para mujeres reales. Compra ahora y complementa tu look con nuestras colecciones únicas.",
             "keywords": "moda, ropa de mujer, blusas, pantalones, vestidos, accesorios, moda colombiana, talla s, talla m, talla l, talla xl, talla xxl, complementos"
         },
@@ -169,9 +169,9 @@ export default {
     },
     "products": {
         "products_seo": {
-            "title": "Tienda | Olga Lucía Cortes",
+            "title": "Tienda | Verezza",
             "description": "Explora nuestra exclusiva colección de moda femenina. Encuentra blusas, vestidos, conjuntos y complementos diseñados con elegancia y estilo. Descubre prendas únicas que realzan tu belleza natural.",
-            "keywords": "tienda ropa mujer, moda femenina, vestidos elegantes, blusas mujer, ropa colombiana, conjuntos mujer, ropa casual elegante, moda latina, ropa exclusiva, diseños únicos, Olga Lucía Cortes, tienda online moda"
+            "keywords": "tienda ropa mujer, moda femenina, vestidos elegantes, blusas mujer, ropa colombiana, conjuntos mujer, ropa casual elegante, moda latina, ropa exclusiva, diseños únicos, Verezza, tienda online moda"
         },
         "products_quantity": "PRODUCTOS",
         "products_filters": "FILTROS",
@@ -360,9 +360,9 @@ export default {
     },
     "ourBrand":{  
         "seo": {
-            "title": "Nuestra Marca | Olga Lucía Cortes",
+            "title": "Nuestra Marca | Verezza",
             "description": "Con más de 28 años vistiendo mujeres reales, Verezza crea prendas que resaltan la feminidad, elegancia y delicadeza. Nuestras creaciones combinan las últimas tendencias con básicos eternos, donde cada detalle está pensado para la mujer espontánea y natural.",
-            "keywords": "Olga Lucía Cortes, marca de moda, diseñadora colombiana, moda latinoamericana, ropa elegante, historia de la marca, visión de moda, estilo femenino, moda sostenible, diseños exclusivos, identidad de marca"
+            "keywords": "Verezza, marca de moda, diseñadora colombiana, moda latinoamericana, ropa elegante, historia de la marca, visión de moda, estilo femenino, moda sostenible, diseños exclusivos, identidad de marca"
         },
         "title": "Nuestra marca",
         "p1": "Como la música, el cine y la literatura, la moda también está hecha para todos los gustos y en ese sentido, hay muchas mujeres que además de querer sentirse cómodas buscan que sus looks o atuendos resalten su parte más femenina, romántica y elegante.",
@@ -371,8 +371,8 @@ export default {
     },
     "atelier":{
         "seo": {
-            "title": "Atelier | Olga Lucía Cortes",
-            "description": "Envíanos un mensaje a Olga Lucía Cortes y con gusto te responderemos."
+            "title": "Atelier | Verezza",
+            "description": "Envíanos un mensaje a Verezza y con gusto te responderemos."
         },
         "title": "Atelier",
         "p1": "En nuestro Atelier, ofrecemos un servicio exclusivo para ayudarte a crear el look perfecto que refleje tu estilo y personalidad. Con más de 28 años de experiencia en el diseño y confección de prendas únicas, te brindamos una atención personalizada para garantizar que cada detalle sea impecable.",
@@ -396,7 +396,7 @@ export default {
     },
     "account_orders":{
         "seo": {
-            "title": "Mis Ordenes | Olga Lucía Cortes",
+            "title": "Mis Ordenes | Verezza",
             "description": "Aquí podrás ver el estado de tus ordenes."
         },
         "title": "Mis Ordenes",
@@ -407,13 +407,13 @@ export default {
     },
     "account_recover":{
         "seo": {
-            "title": "Recuperar contraseña | Olga Lucía Cortes",
+            "title": "Recuperar contraseña | Verezza",
             "description": "Recupera tu contraseña de acceso a tu cuenta."
         }
     },
     "page_not_found":{
         "seo": {
-            "title": "Página no encontrada | Olga Lucía Cortes",
+            "title": "Página no encontrada | Verezza",
             "description": "Lo sentimos, la página que estás buscando no existe."
         },
         "title": "Página no encontrada",

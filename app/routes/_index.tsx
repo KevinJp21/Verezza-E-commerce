@@ -7,15 +7,15 @@ export const meta: MetaFunction = () => {
   const { t } = useTranslation();
   const baseUrl = "https://olgaluciacortes.com";
   return [
-    { title: t("home.home_seo.title") || "Exclusive fashion for real women | Olga Lucía Cortes" },
+    { title: t("home.home_seo.title") || "Exclusive fashion for real women | Verezza" },
     { name: "description", content: t("home.home_seo.description") },
     { name: "keywords", content: t("home.home_seo.keywords") },
     { name: "canonical", content: `${baseUrl}` },
     { name: "og:title", content: t("home.home_seo.title") },
-    { name: "og:site_name", content: "Olga Lucía Cortes" },
+    { name: "og:site_name", content: "Verezza" },
     { name: "og:description", content: t("home.home_seo.description") },
     { name: "og:image", content: `${baseUrl}/seo/icon.webp` },
-    { name: "og:image:alt", content: "Olga Lucía Cortes Icon" },
+    { name: "og:image:alt", content: "Verezza Icon" },
     { name: "og:image:width", content: "192" },
     { name: "og:image:height", content: "192" },
     { name: "og:type", content: "website" },
