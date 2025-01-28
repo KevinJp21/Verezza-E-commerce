@@ -32,9 +32,11 @@ export default function AtelierPage() {
             <div className="AtelierWrapper">
                 <div className="AtelierContent">
                     <h2>{t("atelier.title")}</h2>
-                    <p>{t("atelier.p1")}</p>
-                    <p>{t("atelier.p2")}</p>
-                    <p>{t("atelier.p3")}</p>
+                    <p dangerouslySetInnerHTML={{ __html: t('atelier.p1') }} />
+                    <p dangerouslySetInnerHTML={{ __html: t('atelier.p2') }} />
+                    <p dangerouslySetInnerHTML={{ __html: t('atelier.p3') }} />
+                    <p dangerouslySetInnerHTML={{ __html: t('atelier.p4') }} />
+                    <p dangerouslySetInnerHTML={{ __html: t('atelier.p5') }} />
                 </div>
                 <img src={CollageAtelier} alt="Collage Atelier" />
             </div>

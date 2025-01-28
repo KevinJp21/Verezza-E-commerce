@@ -40,7 +40,7 @@ export const meta: MetaFunction = ({ data }) => {
         { name: "description", content: `${product.description || "Producto no encontrado"}` },
         { name: "og:site_name", content: "Verezza" },
         { name: "og:description", content: `${product?.description || "Producto no encontrado"}` },
-        { name: "og:url", content: `https://olgaluciacortes.com/products/${product?.handle || ""}` },
+        { name: "og:url", content: `https://verezzastore.com/products/${product?.handle || ""}` },
         { name: "og:title", content: `${product?.title || "Producto no encontrado"}`},
         { name: "og:type", content: "product"},
         { name: "og:image", content:`${product.images?.edges?.[0]?.node?.url}` },

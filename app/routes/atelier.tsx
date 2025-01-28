@@ -7,7 +7,7 @@ import { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
     const { t } = useTranslation();
-    const baseUrl = "https://olgaluciacortes.com";
+    const baseUrl = "https://verezzastore.com";
     return [
       { title: t('atelier.seo.title') || "Atelier | Verezza" },
       { name: "description", content: t('atelier.seo.description') },

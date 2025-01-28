@@ -31,7 +31,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export const meta: MetaFunction = () => {
   const { t } = useTranslation();
-  const baseUrl = "https://olgaluciacortes.com";
+  const baseUrl = "https://verezzastore.com";
   return [
     { title: t('login.seo.title') },
     { name: "description", content: t('login.seo.description') },

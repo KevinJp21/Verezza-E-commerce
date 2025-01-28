@@ -106,7 +106,7 @@ export default function ShopProducts() {
         const generateSpecialItems = () => {
             const items = [
                 <div key="promo" className="ShopProductsItem SpecialItem videoFashionOfPower">
-                    <video src="https://cdn.shopify.com/videos/c/o/v/4716a587e6094175a493f8e84a26ceef.mp4" autoPlay muted loop></video>
+                    <video src="https://cdn.shopify.com/videos/c/o/v/9de874055a4d4f56b0d8474646c67cce.mp4" autoPlay muted loop></video>
                 </div>
             ];
             setSpecialItems(items);

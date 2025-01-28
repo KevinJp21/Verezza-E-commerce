@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export const meta: MetaFunction = () => {
     const { t } = useTranslation();
-    const baseUrl = "https://olgaluciacortes.com";
+    const baseUrl = "https://verezzastore.com";
     return [
       { title: t('account_orders.seo.title') || "My Orders | Verezza" },
       { name: "description", content: t('account_orders.seo.description') },

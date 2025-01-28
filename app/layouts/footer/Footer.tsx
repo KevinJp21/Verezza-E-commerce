@@ -178,13 +178,13 @@ export default function Footer() {
               <h3>{t("footer.social.follow_us")}</h3>
               <ul className='FooterSocialList'>
                 <li className='FooterSocialItem'>
-                  <a href="https://www.facebook.com/olgaluciacorteshautecouture" target='_blank' aria-label='Facebook'>{facebookIcon()}</a>
+                  <a href="" target='_blank' aria-label='Facebook'>{facebookIcon()}</a>
                 </li>
                 <li className='FooterSocialItem'>
-                  <a href="https://www.instagram.com/olgaluciacorteshc/" target='_blank' aria-label='Instagram'>{instagramIcon()}</a>
+                  <a href="" target='_blank' aria-label='Instagram'>{instagramIcon()}</a>
                 </li>
                 <li className='FooterSocialItem'>
-                  <a href="https://www.tiktok.com/@olgaluciacorteshc_" target='_blank' aria-label='TikTok'>{tiktokIcon()}</a>
+                  <a href="" target='_blank' aria-label='TikTok'>{tiktokIcon()}</a>
                 </li>
               </ul>
             </div>
