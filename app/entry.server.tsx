@@ -33,7 +33,7 @@ export default function handleRequest(
   responseHeaders.set(
     "Content-Security-Policy",
     "default-src 'self'; " +
-    "connect-src 'self' https://d0a712-45.myshopify.com https://vercel.live wss://ws-us3.pusher.com; " +
+    "connect-src 'self' https://quickstart-0b4313f5.myshopify.com https://vercel.live wss://ws-us3.pusher.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://vercel.live; " +
     "font-src 'self' https://fonts.gstatic.com https://vercel.live https://assets.vercel.com; " +
     "img-src 'self' data: https: https://vercel.live https://vercel.com blob:; " +
