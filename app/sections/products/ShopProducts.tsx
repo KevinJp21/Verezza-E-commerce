@@ -84,9 +84,7 @@ export default function ShopProducts() {
             { width: 450, columns: 1 },
             { width: 900, columns: 2 },
             { width: 1200, columns: 3 },
-            { width: 1440, columns: 4 },
-            { width: 2160, columns: 5 },
-            { width: Infinity, columns: 6 }
+            { width: Infinity, columns: 4 }
         ];
     
         function handleResize() {
