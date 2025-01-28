@@ -1,6 +1,6 @@
 import './OurBrandPage.css';
 import { useTranslation } from 'react-i18next';
-import VerezzaImage from '~/assets/images/Verezza-image.png';
+import VerezzaImage from '~/assets/images/verezza-image.png';
 
 export default function OurBrandPage() {
     const { t } = useTranslation();
