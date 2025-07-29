@@ -190,9 +190,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
         <div className="FooterBottom">
-          <a className='title-primary' href="/"><span>© {currentYear} VEREZZA</span></a>
+          <a className='title-primary' href="https://kevinjp.dev" target='_blank'><span>© {currentYear} Verezza - Developed by KevinJp</span></a>
         </div>
       </div>
     </footer>
