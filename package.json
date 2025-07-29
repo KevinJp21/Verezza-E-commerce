@@ -1,5 +1,5 @@
 {
-  "name": "olga-lucia-cortes",
+  "name": "verezza-e-commerce",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -30,7 +30,7 @@
     "isbot": "^4.4.0",
     "libphonenumber-js": "^1.11.12",
     "nodemailer": "^6.9.16",
-    "olga-lucia-cortes": "file:",
+    "verezza-e-commerce": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.2",

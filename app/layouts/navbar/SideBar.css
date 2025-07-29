@@ -24,7 +24,7 @@
 .sidebar{
     position: fixed;
     padding: 24px 24px 104px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     max-width: 100%;
     width: 100%;
     height: 100vh;
@@ -72,7 +72,7 @@
     max-width: 34px;
     width: 100%;
     height: fit-content;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 .sidebarContent{
@@ -83,7 +83,7 @@
 .sidebarContent span{
     display: block;
     font-size: 0.938rem;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 20px 32px 10px;
     text-align: center;
     font-weight: bold;
@@ -95,7 +95,7 @@
     display: block;
     width: 100%;
     height: 1px;
-    background-color: var(--olga-gray-primary);
+    background-color: var(--verezza-gray-primary);
     margin-top: 10px;
 }
 
@@ -112,21 +112,21 @@
 
 .sidebarList > li a{
     text-decoration: none;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-size: 0.938rem;
     font-weight: normal;
 }
 
 .sidebarList > li .strongLink{
-    color: var(--olga-brown-primary);
+    color: var(--verezza-brown-primary);
 }
 
 .sidebarList > li a:hover{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .sidebarList > li .strongLink:hover{
-    color: var(--olga-brown-primary);
+    color: var(--verezza-brown-primary);
 }
 
 .sidebarListOthers a strong{

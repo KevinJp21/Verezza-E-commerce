@@ -43,7 +43,7 @@
 .orderList .orderItem{
     flex: 1 1 100%;
     min-height: 600px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding: 16px;
     border-radius: 6px;
 }
@@ -59,7 +59,7 @@
     margin-bottom: 16px;
     padding: 16px;
     border-radius: 6px;
-    background-color: var(--olga-gray-100);
+    background-color: var(--verezza-gray-100);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -111,14 +111,14 @@
     margin-top: 8px;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .orderItem .orderItemContent .orderDetails .orderNumber{
     margin-top: 8px;
     font-size: .875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     opacity: .8;
 }
 
@@ -126,7 +126,7 @@
     margin-top: 8px;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 

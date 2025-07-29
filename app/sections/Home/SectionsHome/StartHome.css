@@ -48,7 +48,7 @@
 
 
 .StartHomeWrapper h1{
-    color: var(--olga-white-primary);
+    color: var(--verezza-white-primary);
     text-align: center;
     text-wrap: balance;
     font-size: min(1.4rem, 7vw);
@@ -58,7 +58,7 @@
 }
 
 .StartHomeWrapper h2{
-    color: var(--olga-white-primary);
+    color: var(--verezza-white-primary);
     text-align: center;
     text-wrap: balance;
     font-size: min(1.25rem, 7vw);

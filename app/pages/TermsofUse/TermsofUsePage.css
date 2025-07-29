@@ -13,7 +13,7 @@
 }
 
 .PrivacyPolicyContainer h2{
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-size: 1.75rem;
     font-weight: 700;
     text-align: left;
@@ -27,19 +27,19 @@
     width: 100%;
     margin-bottom: 1rem;
     line-height: 1.8;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 .PrivacyPolicyContainer p strong{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .PrivacyPolicyContainer p a{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .PrivacyPolicyContainer p a:hover{
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 .PrivacyPolicyContainer ul{
@@ -58,7 +58,7 @@
 
 .PrivacyPolicyContainer li{
     display: list-item;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
 }

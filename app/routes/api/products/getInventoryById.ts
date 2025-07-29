@@ -11,7 +11,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
   try {
     const response = await axios.get(
-      `https://olgaluciacortes.myshopify.com/admin/api/2024-07/products/${productId}.json`,
+      ``,
       {
         headers: {
           "X-Shopify-Access-Token": SHOPIFY_ADMIN_API_TOKEN,

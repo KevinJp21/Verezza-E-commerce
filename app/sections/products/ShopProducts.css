@@ -1,5 +1,5 @@
 main{
-  background-color: var(--olga-white-primary);
+  background-color: var(--verezza-white-primary);
 }
 .ShopProductsContainer{
     position: relative;
@@ -13,7 +13,7 @@ main{
 
 .ShopHeaderContainer{
     width: 100%;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding: 20px 30px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
@@ -39,7 +39,7 @@ main{
 .ShopHeaderFiltersGroup label{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -63,7 +63,7 @@ main{
     background-color: white;
     font-size: 0.875rem;
     text-transform: uppercase;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     cursor: pointer;
     transition: all 0.3s ease;
     appearance: none;
@@ -72,12 +72,12 @@ main{
 }
 
 .ShopHeaderFiltersItemSelect:hover{
-    border-color: var(--olga-black-primary);
+    border-color: var(--verezza-black-primary);
 }
 
 .ShopHeaderFiltersItemSelect:focus{
     outline: none;
-    border-color: var(--olga-black-primary);
+    border-color: var(--verezza-black-primary);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
 }
 
@@ -87,7 +87,7 @@ main{
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.625rem;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     pointer-events: none;
 }
 
@@ -133,8 +133,8 @@ main{
 .ProductDetails {
     height: fit-content;
     width: 100%;
-    background: var(--olga-white-primary);
-    color: var(--olga-black-primary);
+    background: var(--verezza-white-primary);
+    color: var(--verezza-black-primary);
     padding: 10px;
     z-index: 1;
     text-decoration: none;
@@ -147,7 +147,7 @@ main{
   .ProductDetails .ProductDetailsHeader a {
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-decoration: none;
     text-transform: uppercase;
   }
@@ -162,7 +162,7 @@ main{
   .ProductContent p{
     font-size: clamp(0.75rem, 2vw, 0.875rem);
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
   }
   
   .ProductSize{
@@ -177,12 +177,12 @@ main{
   .ProductSize span{
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-transform: uppercase;
   }
   
   .ProductDetailsFooter {
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -214,7 +214,7 @@ main{
   
   .ProductPriceDiscount{
     text-decoration: line-through;
-    color: var(--olga-red-primary);
+    color: var(--verezza-red-primary);
     margin-right: 5px;
   }
 

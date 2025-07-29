@@ -7,7 +7,7 @@
 .WearHomeContainer h2{
     font-size: min(max(0.8125rem, 5vw), 1rem);
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-align: center;
     text-transform: uppercase;
     padding: 16px;
@@ -87,14 +87,14 @@
 }
 
 .WearImgText h3{
-    color: var(--olga-white-primary);
+    color: var(--verezza-white-primary);
     opacity: 0.8;
     font-size: 2rem;
     font-weight: bold;
 }
 
 .WearImgText p{
-    color: var(--olga-white-primary);
+    color: var(--verezza-white-primary);
     opacity: 0.8;
     font-size: 1rem;
     font-weight: normal;
@@ -123,7 +123,7 @@
 .read-more-btn {
     background: none;
     border: none;
-    color: var(--olga-white-primary);
+    color: var(--verezza-white-primary);
     cursor: pointer;
     margin-left: 5px;
     text-decoration: underline;
@@ -131,6 +131,6 @@
 }
 
 .read-more-btn:hover {
-    color: var(--olga-gray-primary);
+    color: var(--verezza-gray-primary);
 }
 

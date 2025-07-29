@@ -26,14 +26,14 @@
     font-size: 2.8rem;
     margin-bottom: 2rem;
     font-family: 'Playfair Display', serif;
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
     font-weight: 600;
 }
 
 .OurBrandText p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     margin-bottom: 1.5rem;
 }
 

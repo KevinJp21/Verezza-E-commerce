@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     z-index: 1000;
-    background: var(--olga-gra-tp);
+    background: var(--verezza-gra-tp);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@
     width: 90%;
     max-height: 80%;
     border-radius: 15px;
-    background-color: var(--olga-gray-secondary);
+    background-color: var(--verezza-gray-secondary);
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -47,7 +47,7 @@
     position: sticky;
     top: 0;
     padding: 20px;
-    background-color: var(--olga-gray-secondary);
+    background-color: var(--verezza-gray-secondary);
     z-index: 1000;
 }
 
@@ -58,11 +58,11 @@
     content: '';
     width: 100%;
     height: 1px;
-    background-color: var(--olga-black-tp);
+    background-color: var(--verezza-black-tp);
 }
 
 .ModalCartHeader h2{
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-size: 1.25rem;
 }
 
@@ -76,12 +76,12 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     -webkit-tap-highlight-color: transparent;
 }
 
 .ModalCartHeader button:hover{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .ModalCartContent{
@@ -134,19 +134,19 @@
 
 .ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader h3{
     font-size: 1.25rem;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-weight: bold;
 }
 
 .ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader a{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-transform: uppercase;
 }
 
 .ModalCartContent .ModalCartProductInfo .ModalCartProductInfoHeader a:hover{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .ModalCartContent .productDescription{
@@ -158,25 +158,25 @@
 .ModalCartContent .productDescription h4{
     font-size: 0.875rem;
     font-weight: bold;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 8px 0;
 }
 .ModalCartContent .productDescription p{
     font-size: 0.875rem;
     font-weight: normal;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 8px 0;
 }
 
 .ModalCartContent .productPrice{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 8px 0;
 }
 
 .ModalCartContent .ModalCartProductSize{
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding: 20px;
     border-radius: 15px;
 }
@@ -190,7 +190,7 @@
 }
 
 .ModalCartContent .ModalCartProductSize .size-header span {
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-weight: 600;
     font-size: 0.875rem;
     text-transform: uppercase;
@@ -205,7 +205,7 @@
 }
 
 .ModalCartContent .ModalCartProductSize .size-warning{
-    color: var(--olga-red-primary);
+    color: var(--verezza-red-primary);
     font-size: 0.875rem;
     font-weight: 600;
 
@@ -216,9 +216,9 @@
     font-size: 0.875rem;
     font-weight: normal;
     padding: 10px 32px;
-    border: 1px solid var(--olga-black-tp);
+    border: 1px solid var(--verezza-black-tp);
     border-radius: 20px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     cursor: pointer;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
@@ -226,11 +226,11 @@
 }
 
 .ModalCartContent .ModalCartProductSize .size-button.selected {
-    border-color: var(--olga-black-primary);
+    border-color: var(--verezza-black-primary);
 }
 
 .ModalCartContent .ModalCartProductSize .size-button[disabled]:hover{
-    border-color: var(--olga-red-primary);
+    border-color: var(--verezza-red-primary);
     opacity: 0.5;
     cursor: not-allowed;
 }
@@ -240,7 +240,7 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding: 10px;
     border-radius: 15px;
     width: fit-content;
@@ -249,7 +249,7 @@
 
 .ModalCartContent .ModalCartProductQuantity .quantity-button {
     margin: 0;
-    border: 1px solid var(--olga-black-tp);
+    border: 1px solid var(--verezza-black-tp);
     cursor: pointer;
     padding: 10px;
     width: 60px;
@@ -258,7 +258,7 @@
 }
 
 .ModalCartContent .ModalCartProductQuantity .quantity-button:hover{
-    border-color: var(--olga-black-primary);
+    border-color: var(--verezza-black-primary);
 }
 
 .ModalCartWrapper .ModalCartFooter{
@@ -269,7 +269,7 @@
     bottom: 0;
     gap: 10px;
     padding: 20px;
-    background-color: var(--olga-gray-secondary);
+    background-color: var(--verezza-gray-secondary);
     z-index: 1000;
 }
 
@@ -281,7 +281,7 @@
     content: '';
     width: 90%;
     height: 1px;
-    background-color: var(--olga-black-tp);
+    background-color: var(--verezza-black-tp);
 }
 
 .ModalCartWrapper .ModalCartFooter button{
@@ -292,7 +292,7 @@
 
 .productDiscountPrice{
     text-decoration: line-through;
-    color: var(--olga-red-primary);
+    color: var(--verezza-red-primary);
     margin-right: 5px;
 }
 #ScrollElement{

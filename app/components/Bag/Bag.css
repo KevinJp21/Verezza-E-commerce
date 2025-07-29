@@ -23,7 +23,7 @@
 
 .BagContainer{
     position: fixed;
-    background-color: var(--olga-gray-primary);
+    background-color: var(--verezza-gray-primary);
     max-width: 560px;
     width: 100%;
     height: 100vh;
@@ -43,7 +43,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: var(--olga-gray-secondary);
+    background-color: var(--verezza-gray-secondary);
     z-index: 1000;
     transition: .3s ease;
     padding: 24px 24px 104px;
@@ -77,7 +77,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--olga-black-tp);
+    background-color: var(--verezza-black-tp);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
     opacity: 0.5;
 
@@ -90,20 +90,20 @@
 .BagHeader .BagClose{
     all: unset;
     cursor: pointer;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .BagHeader .BagClose:hover{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .BagContent .bagEmpty p{
     font-size: 0.875rem;
     font-weight: normal;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 .bagItem{
@@ -113,7 +113,7 @@
     align-items: start;
     margin-bottom: 24px;
     padding-bottom: 24px;
-    border-bottom: 1px solid var(--olga-black-tp);
+    border-bottom: 1px solid var(--verezza-black-tp);
 }
 
 .bagItemImage{
@@ -138,7 +138,7 @@
 .itemDetails a{
     font-size: .9375rem;
     font-weight: bold;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-decoration: none;
     padding: 2px 0;
 }
@@ -159,19 +159,19 @@
 .bagPriceIrem .priceWrapper .productPrice{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-green-primary);
+    color: var(--verezza-green-primary);
 }
 
 .productPrice .ProductPriceDiscount{
     text-decoration: line-through;
-    color: var(--olga-red-primary);
+    color: var(--verezza-red-primary);
     margin-right: 5px;
   }
 
 .itemVariants p{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 .itemQuantity{
@@ -180,7 +180,7 @@
     align-items: center;
     justify-content: space-around;
     gap: 10px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     width: 100px;
     margin-top: 10px;
     border-radius: 15px;
@@ -191,7 +191,7 @@
     padding: 10px;
     margin: 0;
     border: none;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
 }
 
 .removeItem{
@@ -199,7 +199,7 @@
     all: unset;
     margin-left: auto;
     cursor: pointer;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 .BagFooter {
@@ -215,7 +215,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--olga-black-tp);
+    border-top: 1px solid var(--verezza-black-tp);
 }
 
 .BagFooterWrapper p{

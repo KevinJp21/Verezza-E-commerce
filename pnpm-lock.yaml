@@ -65,9 +65,6 @@ importers:
       nodemailer:
         specifier: ^6.9.16
         version: 6.9.16
-      olga-lucia-cortes:
-        specifier: 'file:'
-        version: file:(@types/react@18.3.10)(typescript@5.6.2)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -80,6 +77,9 @@ importers:
       remix-i18next:
         specifier: ^6.4.1
         version: 6.4.1(@remix-run/node@2.12.1(typescript@5.6.2))(@remix-run/react@2.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2))(i18next@23.15.1)(react-i18next@15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      verezza-e-commerce:
+        specifier: 'file:'
+        version: file:(@types/react@18.3.10)(typescript@5.6.2)
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.12.1
@@ -2840,10 +2840,6 @@ packages:
     resolution: {integrity: sha512-yBYjY9QX2hnRmZHAjG/f13MzmBzxzYgQhFrke06TTyKY5zSTEqkOeukBzIdVA3j3ulu8Qa3MbVFShV7T2RmGtQ==}
     engines: {node: '>= 0.4'}
 
-  'olga-lucia-cortes@file:':
-    resolution: {directory: '', type: directory}
-    engines: {node: '>=20.0.0'}
-
   on-finished@2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
     engines: {node: '>= 0.8'}
@@ -3701,6 +3697,10 @@ packages:
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
+
+  'verezza-e-commerce@file:':
+    resolution: {directory: '', type: directory}
+    engines: {node: '>=20.0.0'}
 
   vfile-message@3.1.4:
     resolution: {integrity: sha512-fa0Z6P8HUrQN4BZaX05SIVXic+7kE3b05PWAtPuYP9QLHsLKYR7/AlLW3NtOrpXRLeawpDLMsVkmk5DG0NXgWw==}
@@ -7106,47 +7106,6 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
-  olga-lucia-cortes@file:(@types/react@18.3.10)(typescript@5.6.2):
-    dependencies:
-      '@apollo/client': 3.11.8(@types/react@18.3.10)(graphql@16.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@emotion/react': 11.13.3(@types/react@18.3.10)(react@18.3.1)
-      '@emotion/styled': 11.13.0(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1)
-      '@mui/material': 6.1.5(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@remix-run/node': 2.12.1(typescript@5.6.2)
-      '@remix-run/react': 2.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
-      '@remix-run/serve': 2.12.1(typescript@5.6.2)
-      '@shopify/storefront-api-client': 1.0.2
-      axios: 1.7.7
-      dotenv: 16.4.5
-      graphql: 16.9.0
-      graphql-request: 7.1.0(graphql@16.9.0)
-      i18next: 23.15.1
-      i18next-browser-languagedetector: 8.0.0
-      i18next-fs-backend: 2.3.2
-      i18next-http-backend: 2.6.1
-      isbot: 4.4.0
-      libphonenumber-js: 1.11.12
-      nodemailer: 6.9.16
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-i18next: 15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      remix-i18next: 6.4.1(@remix-run/node@2.12.1(typescript@5.6.2))(@remix-run/react@2.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2))(i18next@23.15.1)(react-i18next@15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-    transitivePeerDependencies:
-      - '@dprint/formatter'
-      - '@dprint/typescript'
-      - '@mui/material-pigment-css'
-      - '@remix-run/cloudflare'
-      - '@remix-run/deno'
-      - '@types/react'
-      - debug
-      - dprint
-      - encoding
-      - graphql-ws
-      - react-native
-      - subscriptions-transport-ws
-      - supports-color
-      - typescript
-
   on-finished@2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -8086,6 +8045,47 @@ snapshots:
   validate-npm-package-name@5.0.1: {}
 
   vary@1.1.2: {}
+
+  verezza-e-commerce@file:(@types/react@18.3.10)(typescript@5.6.2):
+    dependencies:
+      '@apollo/client': 3.11.8(@types/react@18.3.10)(graphql@16.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@emotion/react': 11.13.3(@types/react@18.3.10)(react@18.3.1)
+      '@emotion/styled': 11.13.0(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1)
+      '@mui/material': 6.1.5(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@remix-run/node': 2.12.1(typescript@5.6.2)
+      '@remix-run/react': 2.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
+      '@remix-run/serve': 2.12.1(typescript@5.6.2)
+      '@shopify/storefront-api-client': 1.0.2
+      axios: 1.7.7
+      dotenv: 16.4.5
+      graphql: 16.9.0
+      graphql-request: 7.1.0(graphql@16.9.0)
+      i18next: 23.15.1
+      i18next-browser-languagedetector: 8.0.0
+      i18next-fs-backend: 2.3.2
+      i18next-http-backend: 2.6.1
+      isbot: 4.4.0
+      libphonenumber-js: 1.11.12
+      nodemailer: 6.9.16
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-i18next: 15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      remix-i18next: 6.4.1(@remix-run/node@2.12.1(typescript@5.6.2))(@remix-run/react@2.12.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2))(i18next@23.15.1)(react-i18next@15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+    transitivePeerDependencies:
+      - '@dprint/formatter'
+      - '@dprint/typescript'
+      - '@mui/material-pigment-css'
+      - '@remix-run/cloudflare'
+      - '@remix-run/deno'
+      - '@types/react'
+      - debug
+      - dprint
+      - encoding
+      - graphql-ws
+      - react-native
+      - subscriptions-transport-ws
+      - supports-color
+      - typescript
 
   vfile-message@3.1.4:
     dependencies:

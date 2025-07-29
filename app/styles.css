@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: var(--olga-gray-secondary);
+  background-color: var(--verezza-gray-secondary);
 }
 
 * {
@@ -14,19 +14,19 @@ body {
 }
 
 :root {
-  --olga-gray-primary: rgba(183, 183, 183, 1);
-  --olga-gray-secondary: rgba(245, 245, 245, 1);
-  --olga-gray-100: rgba(232, 232, 232, 1);
-  --olga-gray-50: rgba(232, 232, 232, 0.3);
-  --olga-black-primary: rgba(51, 51, 51, 1);
-  --olga-black-tp: rgba(51, 51, 51, 0.2);
-  --olga-black-secondary: rgba(27, 27, 27, 1);
-  --olga-brown-primary: rgba(32, 16, 0, 1);
-  --olga-white-primary: rgba(255, 255, 255, 1);
-  --olga-white-tp: rgba(255, 255, 255, 0.5);
-  --olga-yellow-primary: rgb(255, 230, 30);
-  --olga-red-primary: rgba(139, 0, 0, 0.9);
-  --olga-green-primary: rgba(0, 107, 84, 1);
+  --verezza-gray-primary: rgba(183, 183, 183, 1);
+  --verezza-gray-secondary: rgba(245, 245, 245, 1);
+  --verezza-gray-100: rgba(232, 232, 232, 1);
+  --verezza-gray-50: rgba(232, 232, 232, 0.3);
+  --verezza-black-primary: rgba(51, 51, 51, 1);
+  --verezza-black-tp: rgba(51, 51, 51, 0.2);
+  --verezza-black-secondary: rgba(27, 27, 27, 1);
+  --verezza-brown-primary: rgba(32, 16, 0, 1);
+  --verezza-white-primary: rgba(255, 255, 255, 1);
+  --verezza-white-tp: rgba(255, 255, 255, 0.5);
+  --verezza-yellow-primary: rgb(255, 230, 30);
+  --verezza-red-primary: rgba(139, 0, 0, 0.9);
+  --verezza-green-primary: rgba(0, 107, 84, 1);
 
 }
 
@@ -59,7 +59,7 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--olga-white-primary);
+  background-color: var(--verezza-white-primary);
   width: fit-content;
   height: 30px;
   text-align: center;
@@ -68,7 +68,7 @@ button {
   align-items: center;
   text-decoration: none;
   border-radius: 20px;
-  color: var(--olga-black-primary);
+  color: var(--verezza-black-primary);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 10px 32px;
@@ -84,9 +84,9 @@ button {
 
 .btn-secondary {
   margin: 0;
-  border: 1px solid var(--olga-black-primary);
+  border: 1px solid var(--verezza-black-primary);
   cursor: pointer;
-  color: var(--olga-black-primary);
+  color: var(--verezza-black-primary);
   background-color: transparent;
   padding: 10px 32px;
   font-size: .6875rem;
@@ -98,14 +98,14 @@ button {
 }
 
 .btn-secondary:hover, .btn-tertiary:hover {
-  color: var(--olga-white-primary);
-  background-color: var(--olga-black-primary);
+  color: var(--verezza-white-primary);
+  background-color: var(--verezza-black-primary);
 }
 
 .btn-tertiary{
-  border: 1px solid var(--olga-black-primary);
+  border: 1px solid var(--verezza-black-primary);
   cursor: pointer;
-  color: var(--olga-black-primary);
+  color: var(--verezza-black-primary);
   background-color: transparent;
   padding: 10px 32px;
   font-size: .6875rem;
@@ -127,8 +127,8 @@ button[disabled] {
 .CarrouselButtonLeft,
 .CarrouselButtonRight {
   all: unset;
-  background-color: var(--olga-white-primary);
-  color: var(--olga-black-primary);
+  background-color: var(--verezza-white-primary);
+  color: var(--verezza-black-primary);
   height: 30px;
   width: 30px;
   display: flex;
@@ -145,7 +145,7 @@ button[disabled] {
 }
 
 .CarrouselSectionPagination .CarrouselSectionPaginationText {
-  background-color: var(--olga-white-primary);
+  background-color: var(--verezza-white-primary);
   padding: 7px 16px 6px;
   display: flex;
   justify-content: center;
@@ -160,22 +160,22 @@ button[disabled] {
 }
 
 *::-webkit-scrollbar-track {
-  background-color: var(--olga-white-primary);
+  background-color: var(--verezza-white-primary);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--olga-black-primary);
+  background-color: var(--verezza-black-primary);
   border-radius: 4px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: var(--olga-black-secondary);
+  background-color: var(--verezza-black-secondary);
 }
 
 .title-primary {
   text-decoration: none;
   text-wrap: nowrap;
-  color: var(--olga-black-primary);
+  color: var(--verezza-black-primary);
   font-size: 1rem;
   letter-spacing: 2.5px;
   font-weight: normal;
@@ -207,7 +207,7 @@ button[disabled] {
   border: none;
   background: none;
   text-decoration: none;
-  color: var(--olga-black-primary);
+  color: var(--verezza-black-primary);
   font-size: 2rem;
   font-weight: 600;
   text-shadow: 0px 0px 10px rgb(255, 255, 255);
@@ -221,8 +221,8 @@ button[disabled] {
   width: 24px;
   height: 24px;
   margin-left: -12px;
-  border-left: 3px solid var(--olga-white-primary);
-  border-bottom: 3px solid var(--olga-white-primary);
+  border-left: 3px solid var(--verezza-white-primary);
+  border-bottom: 3px solid var(--verezza-white-primary);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   -webkit-animation: sdb05 1.5s infinite;
@@ -265,14 +265,14 @@ button[disabled] {
 
 
 .ErrorMsg {
-  color: var(--olga-red-primary);
+  color: var(--verezza-red-primary);
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
 }
 
 .SuccessMsg {
-  color: var(--olga-green-primary);
+  color: var(--verezza-green-primary);
   font-size: 1rem;
   font-weight: 700;
   text-align: center;

@@ -1,7 +1,7 @@
 .navbar {
     width: 100%;
     height: 40px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding-inline: 20px;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
 
 .NavBar1 .title-primary a{
     text-decoration: none;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
 }
 
 
@@ -54,7 +54,7 @@
 .NavBar1-3 .accoutHeader,
 .NavBar1-3 .BTNSearch,
 .NavBar1-3 .CartHeader {
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     display: flex;
     border: none;
     background-color: transparent;
@@ -66,7 +66,7 @@
 .NavBar1-3 .accoutHeader:hover,
 .NavBar1-3 .BTNSearch:hover,
 .NavBar1-3 .CartHeader:hover {
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .NavBar1-3 .CustomerContainer{
@@ -80,8 +80,8 @@
     position: absolute;
     top: 0;
     left: 10px;
-    background-color: var(--olga-white-primary);
-    color: var(--olga-black-primary);
+    background-color: var(--verezza-white-primary);
+    color: var(--verezza-black-primary);
     border-radius: 50%;
     width: 15px;
     height: 15px;
@@ -116,7 +116,7 @@
     width: 100%;
     height: 1px;
     margin: 3px 0;
-    background-color: var(--olga-black-primary);
+    background-color: var(--verezza-black-primary);
     transition: .4s;
 }
 
@@ -153,7 +153,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     height: 0;
     overflow: hidden;
     transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
@@ -181,10 +181,10 @@
     border: none;
     outline: none;
     padding: 10px;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-size: 1.25rem;
     font-weight: normal;
-    border-bottom: 1px solid var(--olga-black-tp);
+    border-bottom: 1px solid var(--verezza-black-tp);
     max-width: 1920px;
     width: 100%;
     display: none;
@@ -242,14 +242,14 @@
     margin: 0;
     padding: 0;
     font-size: 0.875rem;
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
     display: flex;
     flex-direction: column;
 }
 
 .SearchResults .searhResultWrapper .resultDetails .ProductPriceDiscount{
     text-decoration: line-through;
-    color: var(--olga-red-primary);
+    color: var(--verezza-red-primary);
     margin-right: 5px;
 }
 
@@ -274,22 +274,22 @@
     }
 
     .NavbarListWrapper>li .strongLink {
-        color: var(--olga-brown-primary);
+        color: var(--verezza-brown-primary);
     }
 
     .NavbarListWrapper>li .strongLink:hover {
-        color: var(--olga-brown-primary);
+        color: var(--verezza-brown-primary);
     }
 
     .NavbarListWrapper>li a {
         text-decoration: none;
         font-size: .6875rem;
-        color: var(--olga-black-primary);
+        color: var(--verezza-black-primary);
         font-weight: 600;
     }
 
     .NavbarListWrapper>li a:hover {
-        color: var(--olga-black-secondary);
+        color: var(--verezza-black-secondary);
     }
 
 }
@@ -321,7 +321,7 @@
         align-items: center;
         height: 50px;
         width: 90%;
-        background-color: var(--olga-white-primary);
+        background-color: var(--verezza-white-primary);
         opacity: .95;
         border-radius: 20px;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
@@ -345,12 +345,12 @@
     }
 
     .NavBarMobileContainer ul li a {
-        color: var(--olga-black-primary);
+        color: var(--verezza-black-primary);
     }
 
     .NavBarMobileContainer ul li button {
         all: unset;
-        color: var(--olga-black-primary);
+        color: var(--verezza-black-primary);
     }
 
     .NavBarMobileContainer .CartHeader .cart-count {

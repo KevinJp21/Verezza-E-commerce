@@ -54,19 +54,19 @@
 
 .HandleProductDetails .HandleProductDetailsHeader h3{
     font-size: 1.25rem;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-weight: bold;
 }
 
 .HandleProductDetails .HandleProductDetailsHeader a{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     text-transform: uppercase;
 }
 
 .HandleProductDetails .HandleProductDetailsHeader a:hover{
-    color: var(--olga-black-secondary);
+    color: var(--verezza-black-secondary);
 }
 
 .HandleProductDetails .productDescription{
@@ -78,26 +78,26 @@
 .HandleProductDetails .productDescription h4{
     font-size: 0.875rem;
     font-weight: bold;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 8px 0;
 }
 .HandleProductDetails .productDescription p{
     font-size: 0.875rem;
     font-weight: normal;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 8px 0;
 }
 
 .HandleProductDetails .productPrice{
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     padding: 8px 0;
 }
 
 
 .HandleProductDetails .ProductHandleProductSize{
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding: 20px;
     border-radius: 15px;
 }
@@ -110,7 +110,7 @@
 }
 
 .HandleProductDetails .ProductHandleProductSize .size-header span {
-    color: var(--olga-black-primary);
+    color: var(--verezza-black-primary);
     font-weight: 600;
     font-size: 0.875rem;
     text-transform: uppercase;
@@ -125,7 +125,7 @@
 }
 
 .HandleProductDetails .ProductHandleProductSize .size-warning{
-    color: var(--olga-red-primary);
+    color: var(--verezza-red-primary);
     font-size: 0.875rem;
     font-weight: 600;
 
@@ -136,9 +136,9 @@
     font-size: 0.875rem;
     font-weight: normal;
     padding: 10px 32px;
-    border: 1px solid var(--olga-black-tp);
+    border: 1px solid var(--verezza-black-tp);
     border-radius: 20px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     cursor: pointer;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
@@ -146,11 +146,11 @@
 }
 
 .HandleProductDetails .ProductHandleProductSize .size-button.selected {
-    border-color: var(--olga-black-primary);
+    border-color: var(--verezza-black-primary);
 }
 
 .HandleProductDetails .ProductHandleProductSize .size-button[disabled]:hover{
-    border-color: var(--olga-red-primary);
+    border-color: var(--verezza-red-primary);
     opacity: 0.5;
     cursor: not-allowed;
 }
@@ -161,7 +161,7 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    background-color: var(--olga-white-primary);
+    background-color: var(--verezza-white-primary);
     padding: 10px;
     border-radius: 15px;
     width: fit-content;
@@ -170,7 +170,7 @@
 
 .HandleProductDetails .HandleProductQuantity .quantity-button {
     margin: 0;
-    border: 1px solid var(--olga-black-tp);
+    border: 1px solid var(--verezza-black-tp);
     cursor: pointer;
     padding: 10px;
     width: 60px;
@@ -179,7 +179,7 @@
 }
 
 .HandleProductDetails .HandleProductQuantity .quantity-button:hover{
-    border-color: var(--olga-black-primary);
+    border-color: var(--verezza-black-primary);
 }
 
 
@@ -190,7 +190,7 @@
     flex-wrap: wrap;
     gap: 10px;
     padding: 20px 0;
-    background-color: var(--olga-gray-secondary);
+    background-color: var(--verezza-gray-secondary);
 }
 
 .HandleProductDetails .ProductsHandleFooter button{
